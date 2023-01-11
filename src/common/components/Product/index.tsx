@@ -1,51 +1,57 @@
-import {
-  Button,
-  Card,
-  Container,
-  Icon,
-  RichText,
-  Title,
-} from '@gamiui/standard';
+import { useContext } from 'react';
+import Link from 'next/link';
 import classNames from 'classnames';
+import { Card, Container, RichText, Title } from '@gamiui/standard';
+
+import { ThemeContext } from '../../../context/ThemeContext';
+import { NextImage } from '../NextImage';
 import * as S from './styles';
 
-export const Product = () => {
+export interface IProduct {
+  description: string;
+  id?: number;
+  imageUrl: string;
+  price: number;
+  title: string;
+}
+
+export const Product = ({ description, id, imageUrl, price, title }: IProduct) => {
+
+  const { categoryName } = useContext(ThemeContext);
+
   return (
     <S.Product>
-      <Card width='fit' shadow='xs' rounded='xs'>
-        <Card.Cover>
-          <img
-            alt=''
-            width='100%'
-            src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-          />
-        </Card.Cover>
+      <Card width='full' shadow='xs' rounded='md'>
+        <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${id}`}>
+          <Card.Cover>
+            <NextImage imageUrl={imageUrl} alt={title} />
+          </Card.Cover>
+        </Link>
         <Card.Content
-          title={<RichText text='**Arroz con pollo**' />}
+          title={<S.ProductName text={title} />}
           description={
             <Container>
-              <RichText text='Comida criolla acompañada con cremas incluidas' />
+              <RichText text={description} />
             </Container>
           }
         />
         <S.CardFooter>
           <Container
             className={classNames('flex', 'justify-between')}
-            style={{ marginBottom: '1rem' }}
+            margin='0 0 1rem'
           >
-            <Icon name='heart' />
-            <Title level='h3'>S/35.00</Title>
+            <S.WishListIcon name='heart' />
+            <Title level='h3'>S/{price}</Title>
           </Container>
           <Container>
-            <Button
-              type='button'
-              rounded='sm'
-              height='auto'
-              variant='primary'
-              width='full'
-            >
-              View
-            </Button>
+            <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${id}`}>
+              <S.ProductButton
+                type='button'
+                rounded='sm'
+              >
+                Ver
+              </S.ProductButton>
+            </Link>
           </Container>
         </S.CardFooter>
       </Card>
