@@ -1,26 +1,26 @@
 export const categories = [
   {
-    id: 1,
+    idCategory: 1,
     text: 'Bebidas',
+    icon: 'share' as const
+  },
+  {
+    idCategory: 2,
+    text: 'Menú',
     icon: 'share' as const,
   },
   {
-    id: 2,
-    text: 'Menu',
-    icon: 'share' as const,
-  },
-  {
-    id: 3,
+    idCategory: 3,
     text: 'Guarniciones',
     icon: 'share' as const,
   },
   {
-    id: 4,
+    idCategory: 4,
     text: 'Pizzas',
     icon: 'share' as const,
   },
   {
-    id: 5,
+    idCategory: 5,
     text: 'Marinos',
     icon: 'share' as const,
   },
