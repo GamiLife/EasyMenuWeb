@@ -14,14 +14,15 @@ export const ProductList = ({isLoading, productsByPage}: IProductList) => {
       {
         !isLoading && (
           productsByPage?.map(
-            ({ description, id, imageUrl, price, title }: IProduct) => (
+            ({ description, id, imageUrl, price, title, slug }: IProduct) => (
               <Product
+                key={id}
                 id={id}
                 description={description}
                 imageUrl={imageUrl}
                 price={price}
                 title={title}
-                key={id}
+                slug={slug}
               />
             )
           )

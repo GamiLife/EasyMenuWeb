@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import classNames from "classnames";
-import { Container, RichText } from "@gamiui/standard";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import classNames from 'classnames';
+import { Container, RichText } from '@gamiui/standard';
 
-import { get } from "../../../config/api";
-import { NextImage } from "../NextImage";
-import * as S from "./styles";
+import { get } from '../../../config/api';
+import { NextImage } from '../NextImage';
+import * as S from './styles';
 
 export const ProductDetails = () => {
   const [dishInfo, setDishInfo] = useState({
@@ -20,14 +20,14 @@ export const ProductDetails = () => {
   const { description, imageUrl, price, title } = dishInfo;
 
   const router = useRouter();
-  const { pid } = router.query;
+  const { pslug } = router.query;
 
   useEffect(() => {
-    if (!pid) return;
+    if (!pslug) return;
 
     async function dishesIdfetch() {
       try {
-        const result = await get(`dishes/${pid}`);
+        const result = await get(`dishes/${pslug}`);
         const { dishSauces, dishDishes } = result.data;
         const { description, imageUrl, price, title } = result.data.dishInfo;
         setDishInfo({
@@ -43,7 +43,7 @@ export const ProductDetails = () => {
       }
     }
     dishesIdfetch();
-  }, [pid]);
+  }, [pslug]);
 
   return (
     <S.ProductDetails>

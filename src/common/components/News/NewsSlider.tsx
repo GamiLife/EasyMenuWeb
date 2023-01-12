@@ -1,8 +1,9 @@
-import { RichText, Title } from "@gamiui/standard";
-import { INews } from ".";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
-import * as S from "./styles";
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
+import { RichText, Title } from '@gamiui/standard';
+
+import { INews } from '.';
+import * as S from './styles';
 
 export interface INewsSlider {
   news: INews[];
@@ -57,8 +58,6 @@ export const NewsSlider = ({ news }: INewsSlider) => {
             className={`keen-slider__slide number-slide${index + 1}`}
             $backgroundColor={backgroundColor}
             $backgroundImg={imageUrl}
-            // $color={color}
-            // width='full'
           >
             <Title level="h3">{title}</Title>
             <RichText text={description} />

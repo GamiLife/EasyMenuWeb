@@ -24,7 +24,4 @@ export const KeenSliderSlide = styled(Container)<{
   justify-content: center;
   min-height: 60px;
   padding: 1rem;
-
-  /* min-width: 100%!important;
-  max-width: 100%!important; */
 `;

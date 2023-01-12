@@ -13,16 +13,17 @@ export interface IProduct {
   imageUrl: string;
   price: number;
   title: string;
+  slug: string;
 }
 
-export const Product = ({ description, id, imageUrl, price, title }: IProduct) => {
+export const Product = ({ description, id, imageUrl, price, title, slug }: IProduct) => {
 
   const { categoryName } = useContext(ThemeContext);
 
   return (
     <S.Product>
       <Card width='full' shadow='xs' rounded='md'>
-        <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${id}`}>
+        <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${slug}`}>
           <Card.Cover>
             <NextImage imageUrl={imageUrl} alt={title} />
           </Card.Cover>
@@ -44,7 +45,7 @@ export const Product = ({ description, id, imageUrl, price, title }: IProduct) =
             <Title level='h3'>S/{price}</Title>
           </Container>
           <Container>
-            <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${id}`}>
+            <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${slug}`}>
               <S.ProductButton
                 type='button'
                 rounded='sm'
