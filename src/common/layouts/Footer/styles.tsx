@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from '@emotion/styled';
 import { Button, Container, Icon, RichText, Title } from '@gamiui/standard';
 
@@ -46,6 +47,12 @@ export const LinkContainer = styled(Container)`
     font-size: 14px;
     row-gap: 0.5rem;
     width: 100%;
+`;
+
+export const PageLink = styled(Link)`
+    &:hover{
+        text-decoration: underline;
+    }
 `;
 
 export const Legal = styled(Title)`

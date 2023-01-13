@@ -27,9 +27,9 @@ export const ProductDetails = () => {
 
     async function dishesIdfetch() {
       try {
-        const result = await get(`dishes/${pslug}`);
-        const { dishSauces, dishDishes } = result.data;
-        const { description, imageUrl, price, title } = result.data.dishInfo;
+        const { data } = await get(`dishes/slug/${pslug}`);
+        const { dishSauces, dishDishes, dishInfo } = data;
+        const { description, imageUrl, price, title } = dishInfo;
         setDishInfo({
           description: description,
           imageUrl: imageUrl,

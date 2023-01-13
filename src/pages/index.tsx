@@ -31,7 +31,6 @@ export default function Home() {
     async function dishesFetch(){
       try{
         const result = await get(`dishes/categories/${idCategory}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}&search=${debouncedValue}`);
-        console.log(result);
         setProductsByPage(result.data);
         setTotalItems(result.metaData.pagination.totalItems);
         setIsLoading(false);

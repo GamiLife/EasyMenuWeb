@@ -23,15 +23,15 @@ export const Footer = () => {
         <S.FooterMenu className={classNames('flex', 'items-center')}>
           <S.Information level='h3'>Información</S.Information>
           <S.LinkContainer className={classNames('flex')}>
-            <Link href='/'>Carta</Link>
-            <Link href='/about'>Nosotros</Link>
+            <S.PageLink href='/'>Carta</S.PageLink>
+            <S.PageLink href='/about'>Nosotros</S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.FooterMenu className={classNames('flex')}>
           <S.Legal level='h3'>Legal</S.Legal>
           <S.LinkContainer className={classNames('flex')}>
-            <Link href='/terms-conditions'>Términos y condiciones</Link>
-            <Link href='/policies-privacy'>Políticas de privacidad</Link>
+            <S.PageLink href='/terms-conditions'>Términos y condiciones</S.PageLink>
+            <S.PageLink href='/policies-privacy'>Políticas de privacidad</S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.SocialBlock className={classNames('flex')}>

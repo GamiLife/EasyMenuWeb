@@ -15,12 +15,14 @@ export interface INews {
 
 export const News = () => {
   const [news, setNews] = useState<INews[] | undefined>(undefined);
+  const date = new Date();
+  const toISOString = date.toISOString();
 
   useEffect(() => {
     async function newsFetch() {
       try {
-        const { data } = await get(`news?startDate=2023-01-03&companyId=1`);
-        // console.log(data); 
+        const { data } = await get(`news/companies/1?byDate=2023-01-06T00:00:00Z`);
+        console.log(data); 
         setNews(data);
       } catch (e) {
         console.log(e);
