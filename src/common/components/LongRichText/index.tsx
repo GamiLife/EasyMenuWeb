@@ -1,8 +1,11 @@
 import * as S from './styles';
 
-const content = `<div class="container page-ctn"><p><strong>platterNOTAS LEGALES</strong></p>
-<p></p>
+{/* <p><strong>platterNOTAS LEGALES</strong></p>
+<p></p> */}
+
+const content = `<div class="container page-ctn">
 <p><strong>TÉRMINOS Y CONDICIONES DE USO DEL TALONARIO: FRIDAYS EN PRIMERA FILA CERVEZAS GRATIS POR 1 AÑO</strong></p>
+<p>&nbsp;</p>
 <ul>
 <li>Recibirán 365 botellas de Budweiser de 343ml como material del premio&nbsp;a través de un&nbsp;talonario con 365 códigos únicos, donde cada código equivale a 1 cerveza Budweiser.</li>
 <li>La mecánica de canje se realizará&nbsp;solo&nbsp;en el salón, en cualquiera de los&nbsp;locales de&nbsp;Fridays&nbsp;de Lima y provincias a excepción de&nbsp;Fridays&nbsp;Aeropuerto.&nbsp;No se podrá canjear el premio por&nbsp;delivery.&nbsp;</li>
@@ -213,7 +216,6 @@ const content = `<div class="container page-ctn"><p><strong>platterNOTAS LEGALES
 <p></p>
 <p><strong>Términos y condiciones: PROMO BLACK FRIDAYS</strong></p>
 <p>La promoción incluye un 1 Crispy chicken tacos + 1 bebida personal (Coca cola normal o sin azúcar, Inka cola normal o sin azúcar, Sprite, Fanta o agua san Luis) a S/24.90 soles. Válido solo para delivery y para take out (para llevar), comprando desde la web www.fridaysperu.com. Promoción vigente del 21.11.2022 al 27.11.2022 o hasta agotar stock, stock mínimo de 1,000 unidades. No acumulable con otros descuentos y/o promociones. No válido para consumo en tienda. Zona de reparto y/o cobertura limitada. El precio no incluye recargo de delivery. Imágenes reverenciales. Sujeto a cambios y a disponibilidad de stock sin previo aviso. Los productos de promoción no se pueden cambiar por otro producto.</p></div>`;
-
 
 export const LongRichText = () => {
   return (
