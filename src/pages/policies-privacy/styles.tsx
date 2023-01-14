@@ -3,9 +3,11 @@ import { Container, RichText } from '@gamiui/standard';
 
 export const ContentWrapper = styled(Container)`
     height: 100%;
-    margin: auto;
-    padding: 15px 40px 15px 78px;
-    width: 90%;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 980px;
+    padding: 40px 15px 78px 15px;
+    width: 100%;
 `;
 
 export const RichTextTitle = styled(RichText)`

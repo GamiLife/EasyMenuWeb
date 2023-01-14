@@ -5,7 +5,7 @@ import { lightTheme } from '../../../../styles/design-system/theme';
 import { tokens } from '../../../../styles/design-system/token';
 
 export const ContentWrapper = styled(Container)`
-    p:first-of-type{
+    &>div>p:first-of-type{
         text-align: center;
         text-decoration: underline;
     }
@@ -14,9 +14,6 @@ export const ContentWrapper = styled(Container)`
         color: ${lightTheme.neutral[200]};
         margin-bottom: 1rem;
         text-align: justify;
-        span{
-            text-decoration: none;
-        } 
     }
 
     strong{
@@ -25,5 +22,13 @@ export const ContentWrapper = styled(Container)`
 
     ul{
         list-style-type: none;
+    }
+
+    li{
+        text-align: justify;
+    }
+
+    span{
+        color: ${lightTheme.neutral[200]};
     }
 `;

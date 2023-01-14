@@ -5,12 +5,9 @@ export const ContentWrapper = styled(Container)`
     height: 100%;
     line-height: 1.8;
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 980px;
     padding: 40px 15px 78px 15px;
-    width: 1170px;
-
-    /* max-width: 1170px;
-    width: 100%; */
+    width: 100%;
 `;
 
 export const RichTextTitle = styled(RichText)`
