@@ -11,7 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@gamiui/standard": "^0.1.0-alpha.86",
+    "@gamiui/standard": "^0.1.0-alpha.95",
     "@types/classnames": "^2.3.1",
     "babel-plugin-emotion": "^11.0.0",
     "classnames": "^2.3.2",

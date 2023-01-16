@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Icon } from '@gamiui/standard';
+import { Icon, SocialNetworks } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import * as S from './styles';
+// import { AllSocialNetworks } from '../../components/AllSocialNetworks';
 
 export const Footer = () => {
   const date = new Date();
@@ -36,7 +37,12 @@ export const Footer = () => {
         </S.FooterMenu>
         <S.SocialBlock className={classNames('flex')}>
           <S.SocialFollow level='h3'>Síguenos en:</S.SocialFollow>
+          {/* <AllSocialNetworks /> */}
           <S.SocialMedia className={classNames('flex')}>
+            {/* <SocialNetworks.Whatsapp message='Hi, man!' phone='917586966' />
+            <SocialNetworks.Instagram user='user.test' color='green' />
+            <SocialNetworks.Facebook user='ecz97' color='blue' />
+            <SocialNetworks.Tiktok user='followchain' color='black' /> */}
             <Link href='/' target='_blank'>
               <S.SocialMediaIcon
                 color={`${lightTheme.primary.white}`}
