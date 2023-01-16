@@ -5,9 +5,10 @@ import * as S from './styles';
 export interface IImage {
     imageUrl: string;
     alt: string;
+    height?: string;
 }
 
-export const NextImage = ({ imageUrl, alt }: IImage) => {
+export const NextImage = ({ imageUrl, alt, height='300px'}: IImage) => {
     const base = imageUrl.split("/").slice(0,-1).join("/");
     const src = imageUrl.split("/").slice(-1)[0];
 
@@ -16,7 +17,7 @@ export const NextImage = ({ imageUrl, alt }: IImage) => {
     }
 
     return (
-        <S.NextImage> 
+        <S.NextImage $height={height}> 
             <Image
                 loader={customLoader}
                 alt={alt}

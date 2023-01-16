@@ -17,6 +17,13 @@ export const Categories = styled(Container)`
 export const Category = styled(Container)`
   display: grid;
   gap: 1rem;
+
+  &.active{
+    img{
+      filter: invert(21%) sepia(100%) saturate(7136%) hue-rotate(344deg) brightness(85%) contrast(103%);
+    }
+  }
+
   &:hover {
     cursor: pointer;
   }
