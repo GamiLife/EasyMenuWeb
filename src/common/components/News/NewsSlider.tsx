@@ -56,11 +56,17 @@ export const NewsSlider = ({ news }: INewsSlider) => {
           <S.KeenSliderSlide
             key={id}
             className={`keen-slider__slide number-slide${index + 1}`}
-            $backgroundColor={backgroundColor}
             $backgroundImg={imageUrl}
+            $backgroundColor={imageUrl ? '' : backgroundColor}
           >
-            <Title level="h3">{title}</Title>
-            <RichText text={description} />
+            {
+              !imageUrl && (
+                <>
+                  <Title level="h3">{title}</Title>
+                  <RichText text={description} />
+                </>
+              )
+            }
           </S.KeenSliderSlide>
         )
       )}

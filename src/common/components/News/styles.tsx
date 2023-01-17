@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Container } from '@gamiui/standard';
+
 import { lightTheme } from '../../../../styles/design-system/theme';
 
 export const News = styled.div`
@@ -13,11 +14,9 @@ export const KeenSliderSlide = styled(Container)<{
 }>`
   align-items: center;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
-  background-image: ${({ $backgroundImg }) => `url(${$backgroundImg})`};
-  /* background-image: ''; */
+  background-image: ${({ $backgroundImg }) => $backgroundImg && `url(${$backgroundImg})`};
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  color: ${({ $color }) => $color};
   color: ${lightTheme.primary.first};
   display: flex;
   flex-direction: column;
