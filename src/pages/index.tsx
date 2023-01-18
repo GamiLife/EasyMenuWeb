@@ -56,14 +56,14 @@ export default function Home() {
       <Modal visible={visible} onClose={onClose} title='This is my title'>
         <p style={{ padding: '1rem' }}>Hola como estas</p>
       </Modal>
-
-      <Container padding='1rem' className={classNames('topics')}>
+      
+      <Container padding='30px' className={classNames('topics')}>
         <Container>
           <Categories />
         </Container>
-
+      </Container>
         <News />
-
+      <Container padding='30px'>
         <ProductList
           isLoading={isLoading}
           productsByPage={productsByPage}

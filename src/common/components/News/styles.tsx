@@ -4,7 +4,7 @@ import { Container } from '@gamiui/standard';
 import { lightTheme } from '../../../../styles/design-system/theme';
 
 export const News = styled.div`
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
 `;
 
 export const KeenSliderSlide = styled(Container)<{
