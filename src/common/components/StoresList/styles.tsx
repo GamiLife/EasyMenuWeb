@@ -4,27 +4,23 @@ import { Card, Container, Icon, RichText, Title } from '@gamiui/standard';
 import { lightTheme } from '../../../../styles/design-system/theme';
 
 export const StoresList = styled(Container)`
-    border-top: 1px solid ${lightTheme.neutral[100]};
+    border-top: 1px solid ${lightTheme.neutral[200]};
     display: grid;
-
+    gap: 25px;
     grid-template-columns: repeat(2, minmax(0,1fr));
-    grid-column-gap: 25px;
-    column-gap: 25px;
-    grid-row-gap: 25px;
-    row-gap: 25px;
-    padding-top: 25px;
-    padding-bottom: 50px;
     margin-top: 0;
+    padding-block: 25px 50px;
 `;
 
 export const StoreItem = styled(Card)`
-    background: #fff;
+    background-color: ${lightTheme.primary.white};
     border-radius: 15px;
     padding: 20px;
     border: 1px solid #ccc;
 `;
 
 export const StoreItemTitle = styled(Title)`
+    margin-bottom: 0;
     text-transform: uppercase;
 `;
 

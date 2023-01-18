@@ -1,19 +1,10 @@
 import styled from '@emotion/styled';
-import { Card, Container, RichText, Title } from '@gamiui/standard';
-
-import { lightTheme } from '../../../styles/design-system/theme';
+import { Container, Title } from '@gamiui/standard';
 
 export const ContentWrapper = styled(Container)`
     height: 100%;
     max-width: 100%;
-    /* padding-inline: 100px; */
-
-    margin: 0 auto;
-    max-width: 980px;
-    /* padding: 40px 15px 78px 15px; */
-    width: 100%;
-
-    border: 1px solid red;
+    padding-inline: 100px;
 `;
 
 export const TitleContainer = styled(Container)`
@@ -28,4 +19,9 @@ export const LocationsTitle = styled(Title)`
     text-transform: uppercase;
 `;
 
-export const StoresContainer = styled(Container)``;
+export const StoresContainer = styled(Container)`
+    margin: 0 auto;
+    max-width: 800px;
+    min-height: 800px;
+    width: 100%;
+`;

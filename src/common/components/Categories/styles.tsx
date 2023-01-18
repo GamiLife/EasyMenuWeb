@@ -4,38 +4,34 @@ import { Container, RichText } from '@gamiui/standard';
 import { lightTheme } from '../../../../styles/design-system/theme';
 
 export const Categories = styled(Container)`
-  /* backdrop-filter: blur(4px); */
   background: ${lightTheme.primary.white};
-  border-radius: 0.4rem;
+  border: 2px solid ${lightTheme.neutral[600]};
+  border-radius: 22px;
   display: flex;
   justify-content: center;
-  margin: auto;
-  padding: 1rem 5px;
-  /* -webkit-backdrop-filter: blur(4px); */
-
-  border-radius: 22px;
-  border: 2px solid ${lightTheme.neutral[600]};
+  padding-block: 1rem;
 `;
 
 export const Category = styled(Container)`
-  display: grid;
-  gap: 1rem;
-  padding: 9px 19px 3px;
-
+  align-items: center;
+  display: flex;
   flex-basis: 141px;
+  flex-direction: column;
+  padding: 9px 19px 3px;
   position: relative;
-
-  &.active::after{
-    content: '';
-    background-color: ${lightTheme.extended.oceanStrong};
-    height: 5px;
-    width: 100%;
-    position: absolute;
-
-    bottom: -5px;
-  }
+  row-gap: 1rem;
 
   &.active{
+    ::after{
+      background-color: ${lightTheme.extended.oceanStrong};
+      bottom: -5px;
+      content: '';
+      height: 5px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
     img{
       filter: invert(65%) sepia(44%) saturate(6301%) hue-rotate(222deg) brightness(100%) contrast(84%);
     }
@@ -48,5 +44,4 @@ export const Category = styled(Container)`
 
 export const CategoryTitle = styled(RichText)<{color?: string}>`
   color: ${({color}) => color};
-  text-align: center;
 `;

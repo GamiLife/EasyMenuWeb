@@ -15,7 +15,6 @@ export const Categories = () => {
     async function categoriesFetch(){
       try{
         const result = await get('categories/companies/1');
-        // console.log(result);
         setCategories(result.data);
       }catch(e){
         console.log(e);

@@ -57,13 +57,15 @@ export default function Home() {
         <p style={{ padding: '1rem' }}>Hola como estas</p>
       </Modal>
       
-      <Container padding='30px' className={classNames('topics')}>
+      <Container padding='20px 30px' className={classNames('topics')}>
         <Container>
           <Categories />
         </Container>
       </Container>
-        <News />
-      <Container padding='30px'>
+
+      <News />
+      
+      <Container padding='20px 30px'>
         <ProductList
           isLoading={isLoading}
           productsByPage={productsByPage}
@@ -91,15 +93,17 @@ export default function Home() {
           }
         </Container>
 
-        <Container margin='0 0 2rem'>
-          {numberPages >= 1 && (
-            <Pagination
-              numberPages={numberPages}
-              initialPage={0}
-              onChangePage={page => handleChangePage(page)}
-              page={page}
-            />
-          )}
+        <Container margin='0 0 1rem'>
+          {
+            numberPages >= 1 && (
+              <Pagination
+                numberPages={numberPages}
+                initialPage={0}
+                onChangePage={page => handleChangePage(page)}
+                page={page}
+              />
+            )
+          }
         </Container>
       </Container>
     </React.Fragment>

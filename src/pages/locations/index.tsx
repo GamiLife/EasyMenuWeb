@@ -12,7 +12,7 @@ export default function Locations() {
       <S.ContentWrapper>
         <S.TitleContainer>
           <S.LocationsTitle level='h2'>Nuestros locales</S.LocationsTitle>
-          <RichText text='Cuéntanos donde estás para que podamos presentarte el menú y las ofertas disponibles en la tienda más cercana. Incluye la dirección para entrega a delivery.' />
+          <RichText text='Cuéntanos donde estás para que podamos presentarte el menú y las ofertas disponibles en la <br> tienda más cercana. Incluye la dirección para entrega a delivery.' />
         </S.TitleContainer>
         <S.StoresContainer>
           <StoresList />
