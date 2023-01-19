@@ -12,7 +12,6 @@ export const StoresList = () => {
     async function locationsFetch(){
       try{
         const { data } = await get('locations/companies/1?page=1&sizeByPage=6');
-        // console.log(data);
         setLocations(data);
       }catch(e){
         console.log(e);
@@ -25,21 +24,25 @@ export const StoresList = () => {
     <S.StoresList>
       {
         locations.map( ({address, id, name, phone}) => (
-          <S.StoreItem key={id} width='full' rounded='md' >
+          <S.StoreItem 
+            key={id}
+            width='full'
+            shadow='xs'
+            rounded='md'
+          >
             <Card.Content
-              title={<S.StoreItemTitle level='h3' margin='0'>{name}</S.StoreItemTitle>}
+              title={<S.StoreItemTitle level='h3'>{name}</S.StoreItemTitle>}
               description={
-                <Container>
-                  <RichText text={address} />
-                  <Container
+                <S.PhoneAddressContainer>
+                  <RichText text={address} margin='0 0 10px' />
+                  <S.PhoneContainer
                     className={classNames('flex')}
-                    margin='0 0 1rem'
                   >
                     <S.PhoneIcon name='phone' />
                     <S.PhoneHeader level='h4'>Teléfono</S.PhoneHeader>
-                  </Container>
+                  </S.PhoneContainer>
                   <S.Phone text={phone} />
-                </Container>
+                </S.PhoneAddressContainer>
               }
             />
           </S.StoreItem>
