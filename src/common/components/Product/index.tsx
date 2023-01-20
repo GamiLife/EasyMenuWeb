@@ -16,16 +16,30 @@ export interface IProduct {
   slug: string;
 }
 
-export const Product = ({ description, id, imageUrl, price, title, slug }: IProduct) => {
-
+export const Product = ({
+  description,
+  id,
+  imageUrl,
+  price,
+  title,
+  slug,
+}: IProduct) => {
   const { categoryName } = useContext(ThemeContext);
 
   return (
     <S.Product>
-      <Card width='full' shadow='xs' rounded='md'>
-        <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${slug}`}>
+      <Card width="full" shadow="xs" rounded="md">
+        <Link
+          href={`/${categoryName
+            .toLowerCase()
+            .replace(' ', '-')}/product/${slug}`}
+        >
           <Card.Cover>
-            <NextImage imageUrl={imageUrl} alt={title} />
+            <S.ProductImage
+              imageUrl={imageUrl}
+              alt={title}
+              className="product__image"
+            />
           </Card.Cover>
         </Link>
         <Card.Content
@@ -39,17 +53,18 @@ export const Product = ({ description, id, imageUrl, price, title, slug }: IProd
         <S.CardFooter>
           <Container
             className={classNames('flex', 'justify-between')}
-            margin='0 0 1rem'
+            margin="0 0 1rem"
           >
-            <S.WishListIcon name='heart' />
-            <Title level='h3'>S/{price}</Title>
+            <S.WishListIcon name="heart" />
+            <Title level="h3">S/{price}</Title>
           </Container>
           <Container>
-            <Link href={`/${categoryName.toLowerCase().replace(' ', '-')}/product/${slug}`}>
-              <S.ProductButton
-                type='button'
-                rounded='sm'
-              >
+            <Link
+              href={`/${categoryName
+                .toLowerCase()
+                .replace(' ', '-')}/product/${slug}`}
+            >
+              <S.ProductButton type="button" rounded="sm">
                 Ver
               </S.ProductButton>
             </Link>

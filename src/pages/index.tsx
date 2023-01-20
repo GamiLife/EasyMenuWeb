@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useContext, useState, useEffect } from 'react';
 import classNames from 'classnames';
-import { Container, Modal, Pagination, Empty, Loader } from '@gamiui/standard';
+import { Container, Pagination, Empty, Loader } from '@gamiui/standard';
 
+import ThemeProvider from '../context/ThemeContext';
 import { Categories } from '../common/components/Categories';
 import { News } from '../common/components/News';
 import { IProduct } from '../common/components/Product';
@@ -11,20 +12,26 @@ import { ThemeContext } from '../context/ThemeContext';
 import { get } from '../config/api';
 import { lightTheme } from '../../styles/design-system/theme';
 import { ProductList } from '../common/components/ProductList';
-import { useDebounce } from '../common/hooks';
+import { useDebounce, useToggle } from '../common/hooks';
 
 export default function Home() {
-  const [visible, setVisible] = useState(false);
+  const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
+    defaultVisible: true,
+  });
+  const { isVisible: showMessage, handleToggle: setShowMessage } = useToggle({
+    defaultVisible: false,
+  });
+
   const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
+
   const [totalItems, setTotalItems] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [showMessage, setShowMessage] = useState(false);
   const { idCategory, value, page, setPage } = useContext(ThemeContext);
   const debouncedValue = useDebounce(value, 500);
 
   const SIZE_BY_PAGE = 5;
-  let pageNumber = 1 + page;
+  const pageNumber = 1 + page;
   const numberPages = Math.ceil(totalItems / SIZE_BY_PAGE);
+  const handleChangePage = (page: number) => setPage(page);
 
   useEffect(() => {
     async function dishesFetch() {
@@ -44,20 +51,8 @@ export default function Home() {
     dishesFetch();
   }, [idCategory, pageNumber, debouncedValue]);
 
-  const onOpen = () => setVisible(true);
-  const onClose = () => setVisible(false);
-
-  const handleChangePage = (page: number) => {
-    // console.log('test', page);
-    setPage(page);
-  };
-
   return (
     <React.Fragment>
-      <Modal visible={visible} onClose={onClose} title="This is my title">
-        <p style={{ padding: '1rem' }}>Hola como estas</p>
-      </Modal>
-
       <Container padding="20px 30px" className={classNames('topics')}>
         <Container>
           <Categories />
@@ -81,7 +76,9 @@ export default function Home() {
                 ></Loader>
               }
               className={classNames('flex', 'items-center')}
-            ></Loader.Wrapper>
+            >
+              {''}
+            </Loader.Wrapper>
           )}
         </Container>
 
@@ -107,5 +104,7 @@ export default function Home() {
 }
 
 Home.getLayout = (children: React.ReactNode) => (
+  //<ThemeProvider>
   <LayoutWrapper>{children}</LayoutWrapper>
+  //</ThemeProvider>
 );

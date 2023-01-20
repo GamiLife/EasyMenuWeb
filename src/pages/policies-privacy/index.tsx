@@ -3,19 +3,18 @@ import { Container } from '@gamiui/standard';
 
 import { LayoutWrapper } from '../../common/layouts';
 import { LongRichText } from '../../common/components/LongRichText';
-import * as S from './styles';
+import * as GlobalS from '../../../styles/design-system/commons';
 
 export default function PoliciesPrivacy() {
-
   return (
-    <Container height='full' className={classNames('topics')}>
-      <S.ContentWrapper>
+    <Container height="full" className={classNames('policies_privacy')}>
+      <GlobalS.DynamicPage>
         <LongRichText />
-      </S.ContentWrapper>
+      </GlobalS.DynamicPage>
     </Container>
-  )
+  );
 }
 
 PoliciesPrivacy.getLayout = (children: React.ReactNode) => (
-    <LayoutWrapper>{children}</LayoutWrapper>
-)
+  <LayoutWrapper>{children}</LayoutWrapper>
+);

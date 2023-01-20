@@ -3,19 +3,18 @@ import { Container } from '@gamiui/standard';
 
 import { LayoutWrapper } from '../../common/layouts';
 import { LongRichText } from '../../common/components/LongRichText';
-import * as S from './styles';
+import * as GlobalS from '../../../styles/design-system/commons';
 
 export default function TermsConditions() {
-
   return (
-    <Container height='full' className={classNames('topics')}>
-      <S.ContentWrapper>
+    <Container height="full" className={classNames('terms_condition')}>
+      <GlobalS.DynamicPage>
         <LongRichText />
-      </S.ContentWrapper>
+      </GlobalS.DynamicPage>
     </Container>
-  )
+  );
 }
 
 TermsConditions.getLayout = (children: React.ReactNode) => (
-    <LayoutWrapper>{children}</LayoutWrapper>
-)
+  <LayoutWrapper>{children}</LayoutWrapper>
+);

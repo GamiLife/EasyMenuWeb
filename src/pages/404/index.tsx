@@ -3,22 +3,29 @@ import { Container, RichText } from '@gamiui/standard';
 
 import { LayoutWrapper } from '../../common/layouts';
 import * as S from './styles';
+import { NextImage } from '../../common/components/NextImage';
+import { messages } from '../../common/constants';
+
+const { page404 } = messages;
 
 export default function Custom404() {
   return (
-    <Container padding='1rem' className={classNames('topics')}>
-      <S.ErrorPage>
+    <Container padding="1rem" className={classNames('custom404')}>
+      <S.PageError>
         <S.ContentError>
-          <S.ErrorTitle level='h2'>Lo sentimos</S.ErrorTitle>
-          <S.ErrorImagen level='h3'>404</S.ErrorImagen>
-          <RichText text='No se pudo encontrar esta página.' fontWeight='bold' />
+          <S.TitleError level="h2">{page404.title}</S.TitleError>
+          <S.ImageError>
+            <NextImage imageUrl="" alt={page404.alt} />
+          </S.ImageError>
+          <RichText text={page404.description} fontWeight="bold" />
         </S.ContentError>
-        <S.BackLink href='/'>Volver al inicio</S.BackLink>
-      </S.ErrorPage>
+
+        <S.BackLink href="/">{page404.backlink}</S.BackLink>
+      </S.PageError>
     </Container>
-  )
+  );
 }
 
 Custom404.getLayout = (children: React.ReactNode) => (
-    <LayoutWrapper>{children}</LayoutWrapper>
-)
+  <LayoutWrapper>{children}</LayoutWrapper>
+);

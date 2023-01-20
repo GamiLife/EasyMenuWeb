@@ -6,7 +6,7 @@ import { ProductDetails } from '../../../common/components/ProductDetails';
 
 const Product = () => {
   return (
-    <Container height="full" className={classNames('topics')}>
+    <Container height="full" className={classNames('products')}>
       <ProductDetails />
     </Container>
   );

@@ -3,6 +3,7 @@ import { Button, Card, Container, Icon, RichText } from '@gamiui/standard';
 import Link from 'next/link';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
+import { NextImage } from '../NextImage';
 
 export const Product = styled(Container)`
   display: flex;
@@ -25,4 +26,15 @@ export const ProductButton = styled(Button)`
   height: auto;
   text-transform: uppercase;
   width: 100%;
+`;
+
+export const ProductImage = styled(NextImage)`
+  overflow: hidden;
+  img {
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
 `;
