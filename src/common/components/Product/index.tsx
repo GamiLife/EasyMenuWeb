@@ -3,7 +3,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { Card, Container, RichText, Title } from '@gamiui/standard';
 
-import { ThemeContext } from '../../../context/ThemeContext';
+import { ThemeContext } from '../../../context/HomeContext';
 import { NextImage } from '../NextImage';
 import * as S from './styles';
 

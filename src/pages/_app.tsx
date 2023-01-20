@@ -3,7 +3,7 @@ import { NextComponentType, NextPageContext } from 'next';
 import type { AppProps } from 'next/app';
 import { ThemeGamification } from '@gamiui/standard';
 
-import ThemeProvider from '../context/ThemeContext';
+import ThemeProvider from '../context/HomeContext';
 import '../../styles/globals.css';
 
 type TComponent = NextComponentType<NextPageContext, any, any> & {

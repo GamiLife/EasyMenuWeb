@@ -3,12 +3,12 @@ import { useContext, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty, Loader } from '@gamiui/standard';
 
-import ThemeProvider from '../context/ThemeContext';
+import ThemeProvider from '../context/HomeContext';
 import { Categories } from '../common/components/Categories';
 import { News } from '../common/components/News';
 import { IProduct } from '../common/components/Product';
 import { LayoutWrapper } from '../common/layouts';
-import { ThemeContext } from '../context/ThemeContext';
+import { ThemeContext } from '../context/HomeContext';
 import { get } from '../config/api';
 import { lightTheme } from '../../styles/design-system/theme';
 import { ProductList } from '../common/components/ProductList';
