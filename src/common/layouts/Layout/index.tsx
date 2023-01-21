@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Layout } from "@gamiui/standard";
+import * as React from 'react';
+import { Layout } from '@gamiui/standard';
 
-import { Header, Footer } from "..";
-import * as S from "./styles";
+import { Header, Footer } from '..';
+import * as S from './styles';
 
 export interface ILayoutWrapper {
   children: React.ReactNode;

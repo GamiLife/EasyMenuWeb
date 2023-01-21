@@ -8,6 +8,10 @@ export interface IHomeContext {
   setIdCategory: (id: number) => void;
 }
 
+export interface IHomeProvider {
+  children: React.ReactNode;
+}
+
 export const defaultHomeSetter = {
   setCategoryName: () => {
     return;
@@ -30,10 +34,6 @@ export const defaultHomeContext = {
 export const HomeContext = createContext<IHomeContext>({
   ...defaultHomeContext,
 });
-
-export interface IHomeProvider {
-  children: React.ReactNode;
-}
 
 const HomeProvider = ({ children }: IHomeProvider) => {
   const [categoryName, setCategoryName] = useState('seafoods');

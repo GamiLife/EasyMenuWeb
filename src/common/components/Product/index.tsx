@@ -3,8 +3,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { Card, Container, RichText, Title } from '@gamiui/standard';
 
-import { ThemeContext } from '../../../context/HomeContext';
-import { NextImage } from '../NextImage';
+import { HomeContext } from '../../../context/HomeContext';
 import * as S from './styles';
 
 export interface IProduct {
@@ -18,13 +17,12 @@ export interface IProduct {
 
 export const Product = ({
   description,
-  id,
   imageUrl,
   price,
   title,
   slug,
 }: IProduct) => {
-  const { categoryName } = useContext(ThemeContext);
+  const { categoryName } = useContext(HomeContext);
 
   return (
     <S.Product>

@@ -2,21 +2,23 @@ import { useContext, useEffect, useState } from 'react';
 import { Icon } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
-import { ThemeContext } from '../../../context/HomeContext';
+import { HomeContext } from '../../../context/HomeContext';
 import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';
+import { PaginationContext } from '../../../context';
 import * as S from './styles';
 
 export const Categories = () => {
-  const { idCategory, setIdCategory, setPage, setCategoryName } =
-    useContext(ThemeContext);
   const [categories, setCategories] = useState([]);
+  const { idCategory, setIdCategory, setCategoryName } =
+    useContext(HomeContext);
+  const { setPage } = useContext(PaginationContext);
 
   useEffect(() => {
     async function categoriesFetch() {
       try {
-        const result = await get('categories/companies/1');
-        setCategories(result.data);
+        const { data } = await get('categories/companies/1');
+        setCategories(data);
       } catch (e) {
         console.log(e);
       }

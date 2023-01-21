@@ -3,35 +3,36 @@ import { useContext, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty, Loader } from '@gamiui/standard';
 
-import ThemeProvider from '../context/HomeContext';
 import { Categories } from '../common/components/Categories';
 import { News } from '../common/components/News';
 import { IProduct } from '../common/components/Product';
 import { LayoutWrapper } from '../common/layouts';
-import { ThemeContext } from '../context/HomeContext';
 import { get } from '../config/api';
 import { lightTheme } from '../../styles/design-system/theme';
 import { ProductList } from '../common/components/ProductList';
-import { useDebounce, useToggle } from '../common/hooks';
+import { useDebounce, usePagination, useToggle } from '../common/hooks';
+import { HomeContext, PaginationContext } from '../context';
 
 export default function Home() {
+  const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
+  const { idCategory } = useContext(HomeContext);
+  const { search, page } = useContext(PaginationContext);
+
   const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
     defaultVisible: true,
   });
   const { isVisible: showMessage, handleToggle: setShowMessage } = useToggle({
     defaultVisible: false,
   });
+  const debouncedValue = useDebounce(search, 500);
 
-  const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
-
-  const [totalItems, setTotalItems] = useState(0);
-  const { idCategory, value, page, setPage } = useContext(ThemeContext);
-  const debouncedValue = useDebounce(value, 500);
-
-  const SIZE_BY_PAGE = 5;
-  const pageNumber = 1 + page;
-  const numberPages = Math.ceil(totalItems / SIZE_BY_PAGE);
-  const handleChangePage = (page: number) => setPage(page);
+  const {
+    pageNumber,
+    SIZE_BY_PAGE,
+    setTotalItems,
+    numberPages,
+    handleChangePage,
+  } = usePagination(5);
 
   useEffect(() => {
     async function dishesFetch() {
@@ -49,7 +50,15 @@ export default function Home() {
       }
     }
     dishesFetch();
-  }, [idCategory, pageNumber, debouncedValue]);
+  }, [
+    SIZE_BY_PAGE,
+    debouncedValue,
+    idCategory,
+    pageNumber,
+    setIsLoading,
+    setShowMessage,
+    setTotalItems,
+  ]);
 
   return (
     <React.Fragment>
@@ -104,7 +113,5 @@ export default function Home() {
 }
 
 Home.getLayout = (children: React.ReactNode) => (
-  //<ThemeProvider>
   <LayoutWrapper>{children}</LayoutWrapper>
-  //</ThemeProvider>
 );

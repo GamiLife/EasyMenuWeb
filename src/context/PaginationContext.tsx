@@ -2,14 +2,18 @@ import { createContext, useState } from 'react';
 import * as React from 'react';
 
 export interface IPaginationContext {
-  value: string;
+  search: string;
   page: number;
-  setValue: (value: string) => void;
+  setSearch: (value: string) => void;
   setPage: (value: number) => void;
 }
 
+export interface IPaginationProvider {
+  children: React.ReactNode;
+}
+
 export const defaultPaginationSetter = {
-  setValue: () => {
+  setSearch: () => {
     return;
   },
   setPage: () => {
@@ -18,7 +22,7 @@ export const defaultPaginationSetter = {
 };
 
 export const defaultPaginationValues = {
-  value: '',
+  search: '',
   page: 0,
 };
 
@@ -31,20 +35,16 @@ export const PaginationContext = createContext<IPaginationContext>({
   ...defaultPaginationContext,
 });
 
-export interface IPaginationProvider {
-  children: React.ReactNode;
-}
-
 const PaginationProvider = ({ children }: IPaginationProvider) => {
-  const [value, setValue] = useState('');
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(0);
 
   return (
     <PaginationContext.Provider
       value={{
-        value,
+        search,
         page,
-        setValue,
+        setSearch,
         setPage,
       }}
     >
