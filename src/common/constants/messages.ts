@@ -1,4 +1,8 @@
 export const messages = {
+  pageHome: {
+    emptyComponentText:
+      'No encontramos ningún producto para la búsqueda, intente con otro nombre.',
+  },
   page404: {
     title: 'Lo sentimos',
     description: 'No se pudo encontrar esta página.',

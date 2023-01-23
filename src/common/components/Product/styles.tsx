@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { Button, Card, Container, Icon, RichText } from '@gamiui/standard';
-import Link from 'next/link';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';

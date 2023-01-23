@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { Layout } from "@gamiui/standard";
+import styled from '@emotion/styled';
+import { Layout } from '@gamiui/standard';
 
-import { lightTheme } from "../../../../styles/design-system/theme";
+import { lightTheme } from '../../../../styles/design-system/theme';
 
 export const LayoutHeader = styled(Layout.Header)`
   box-shadow: 0px 2px 8px 0px rgb(0 0 0 / 5%);

@@ -1,64 +1,23 @@
 import * as React from 'react';
-import { useContext, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty, Loader } from '@gamiui/standard';
 
 import { Categories } from '../common/components/Categories';
 import { News } from '../common/components/News';
-import { IProduct } from '../common/components/Product';
 import { LayoutWrapper } from '../common/layouts';
-import { get } from '../config/api';
 import { lightTheme } from '../../styles/design-system/theme';
 import { ProductList } from '../common/components/ProductList';
-import { useDebounce, usePagination, useToggle } from '../common/hooks';
-import { HomeContext, PaginationContext } from '../context';
+import { usePagination } from '../common/hooks';
+import { messages } from '../common/constants';
+import { useFetchDishes } from '../common/hooks/useFetchDishes';
+import HomeProvider from '../context/HomeContext';
+import PaginationProvider from '../context/PaginationContext';
+
+const { pageHome } = messages;
 
 export default function Home() {
-  const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
-  const { idCategory } = useContext(HomeContext);
-  const { search, page } = useContext(PaginationContext);
-
-  const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
-    defaultVisible: true,
-  });
-  const { isVisible: showMessage, handleToggle: setShowMessage } = useToggle({
-    defaultVisible: false,
-  });
-  const debouncedValue = useDebounce(search, 500);
-
-  const {
-    pageNumber,
-    SIZE_BY_PAGE,
-    setTotalItems,
-    numberPages,
-    handleChangePage,
-  } = usePagination(5);
-
-  useEffect(() => {
-    async function dishesFetch() {
-      try {
-        const result = await get(
-          `dishes/categories/${idCategory}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}&search=${debouncedValue}`
-        );
-        setProductsByPage(result.data);
-        setTotalItems(result.metaData.pagination.totalItems);
-        setIsLoading(false);
-        setShowMessage(false);
-        !result.data.length && setShowMessage(true);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    dishesFetch();
-  }, [
-    SIZE_BY_PAGE,
-    debouncedValue,
-    idCategory,
-    pageNumber,
-    setIsLoading,
-    setShowMessage,
-    setTotalItems,
-  ]);
+  const { productsByPage, isLoading, showMessage } = useFetchDishes();
+  const { numberPages, page, handleChangePage } = usePagination(5);
 
   return (
     <React.Fragment>
@@ -92,9 +51,7 @@ export default function Home() {
         </Container>
 
         <Container>
-          {showMessage && (
-            <Empty text="No encontramos ningún producto para la búsqueda, intente con otro nombre." />
-          )}
+          {showMessage && <Empty text={pageHome.emptyComponentText} />}
         </Container>
 
         <Container margin="0 0 1rem">
@@ -113,5 +70,9 @@ export default function Home() {
 }
 
 Home.getLayout = (children: React.ReactNode) => (
-  <LayoutWrapper>{children}</LayoutWrapper>
+  <HomeProvider>
+    <PaginationProvider>
+      <LayoutWrapper>{children}</LayoutWrapper>
+    </PaginationProvider>
+  </HomeProvider>
 );

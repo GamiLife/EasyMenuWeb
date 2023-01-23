@@ -5,30 +5,30 @@ import { lightTheme } from '../../../../styles/design-system/theme';
 import { tokens } from '../../../../styles/design-system/token';
 
 export const ContentWrapper = styled(Container)`
-    &>div>p:first-of-type{
-        text-align: center;
-        text-decoration: underline;
-    }
+  & > div > p:first-of-type {
+    text-align: center;
+    text-decoration: underline;
+  }
 
-    p{
-        color: ${lightTheme.neutral[200]};
-        margin-bottom: 1rem;
-        text-align: justify;
-    }
+  p {
+    color: ${lightTheme.neutral[200]};
+    margin-bottom: 1rem;
+    text-align: justify;
+  }
 
-    strong{
-        font-weight: ${tokens.font.weight.bold};
-    }
+  strong {
+    font-weight: ${tokens.font.weight.bold};
+  }
 
-    ul{
-        list-style-type: none;
-    }
+  ul {
+    list-style-type: none;
+  }
 
-    li{
-        text-align: justify;
-    }
+  li {
+    text-align: justify;
+  }
 
-    span{
-        color: ${lightTheme.neutral[200]};
-    }
+  span {
+    color: ${lightTheme.neutral[200]};
+  }
 `;

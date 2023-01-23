@@ -3,9 +3,9 @@ import { Icon } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { HomeContext } from '../../../context/HomeContext';
+import { PaginationContext } from '../../../context';
 import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';
-import { PaginationContext } from '../../../context';
 import * as S from './styles';
 
 export const Categories = () => {

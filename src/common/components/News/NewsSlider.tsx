@@ -28,20 +28,20 @@ export const NewsSlider = ({ news }: INewsSlider) => {
             slider.next();
           }, 2000);
         }
-        slider.on("created", () => {
-          slider.container.addEventListener("mouseover", () => {
+        slider.on('created', () => {
+          slider.container.addEventListener('mouseover', () => {
             mouseOver = true;
             clearNextTimeout();
           });
-          slider.container.addEventListener("mouseout", () => {
+          slider.container.addEventListener('mouseout', () => {
             mouseOver = false;
             nextTimeout();
           });
           nextTimeout();
         });
-        slider.on("dragStarted", clearNextTimeout);
-        slider.on("animationEnded", nextTimeout);
-        slider.on("updated", nextTimeout);
+        slider.on('dragStarted', clearNextTimeout);
+        slider.on('animationEnded', nextTimeout);
+        slider.on('updated', nextTimeout);
       },
     ]
   );
@@ -59,14 +59,12 @@ export const NewsSlider = ({ news }: INewsSlider) => {
             $backgroundImg={imageUrl}
             $backgroundColor={imageUrl ? '' : backgroundColor}
           >
-            {
-              !imageUrl && (
-                <>
-                  <Title level="h3">{title}</Title>
-                  <RichText text={description} />
-                </>
-              )
-            }
+            {!imageUrl && (
+              <>
+                <Title level="h3">{title}</Title>
+                <RichText text={description} />
+              </>
+            )}
           </S.KeenSliderSlide>
         )
       )}

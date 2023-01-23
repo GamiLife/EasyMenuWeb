@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { Container } from '@gamiui/standard';
 
-import { LayoutWrapper } from '../../../common/layouts';
 import { ProductDetails } from '../../../common/components/ProductDetails';
+import { LayoutWrapper } from '../../../common/layouts';
 
 const Product = () => {
   return (

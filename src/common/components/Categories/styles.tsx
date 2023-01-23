@@ -21,8 +21,8 @@ export const Category = styled(Container)`
   position: relative;
   row-gap: 1rem;
 
-  &.active{
-    ::after{
+  &.active {
+    ::after {
       background-color: ${lightTheme.extended.oceanStrong};
       bottom: -5px;
       content: '';
@@ -32,8 +32,9 @@ export const Category = styled(Container)`
       width: 100%;
     }
 
-    img{
-      filter: invert(65%) sepia(44%) saturate(6301%) hue-rotate(222deg) brightness(100%) contrast(84%);
+    img {
+      filter: invert(65%) sepia(44%) saturate(6301%) hue-rotate(222deg)
+        brightness(100%) contrast(84%);
     }
   }
 
@@ -42,6 +43,6 @@ export const Category = styled(Container)`
   }
 `;
 
-export const CategoryTitle = styled(RichText)<{color?: string}>`
-  color: ${({color}) => color};
+export const CategoryTitle = styled(RichText)<{ color?: string }>`
+  color: ${({ color }) => color};
 `;

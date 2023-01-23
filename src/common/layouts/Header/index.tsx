@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 import {
@@ -11,12 +10,11 @@ import {
 } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
-import { PaginationContext } from '../../../context';
+import { useSearch } from '../../hooks/useSearch';
 import * as S from './styles';
 
 export const Header = () => {
-  const { search, setSearch } = useContext(PaginationContext);
-  const handleChange = (newValue: string) => setSearch(newValue);
+  const { search, handleChangeSearch } = useSearch();
 
   return (
     <S.Header className={classNames('header')}>
@@ -36,7 +34,7 @@ export const Header = () => {
           prefix={<Icon name="setting" color={lightTheme.neutral[300]} />}
           positionPrefix="right"
           value={search}
-          onChangeFormItem={handleChange}
+          onChangeFormItem={handleChangeSearch}
         />
       </Container>
       <Container

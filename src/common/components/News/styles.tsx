@@ -14,14 +14,15 @@ export const KeenSliderSlide = styled(Container)<{
 }>`
   align-items: center;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
-  background-image: ${({ $backgroundImg }) => $backgroundImg && `url(${$backgroundImg})`};
+  background-image: ${({ $backgroundImg }) =>
+    $backgroundImg && `url(${$backgroundImg})`};
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: ${lightTheme.primary.first};
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 100px!important; 
+  height: 100px !important;
   justify-content: center;
   min-height: 60px;
   padding: 1rem;

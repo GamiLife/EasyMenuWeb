@@ -3,16 +3,16 @@ import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
 
-import { get } from '../../../config/api';
 import { NextImage } from '../NextImage';
+import { get } from '../../../config/api';
 import * as S from './styles';
 
 export const ProductDetails = () => {
   const [dishInfo, setDishInfo] = useState({
-    description: "",
-    imageUrl: "",
+    description: '',
+    imageUrl: '',
     price: 0,
-    title: "",
+    title: '',
   });
   const [dishSauces, setDishSauces] = useState([]);
   const [dishDishes, setDishDishes] = useState([]);
@@ -89,7 +89,7 @@ export const ProductDetails = () => {
           </Container>
         </S.Selections>
       </S.ContentContainer>
-      <S.PriceImageContainer className={classNames("flex", "items-center")}>
+      <S.PriceImageContainer className={classNames('flex', 'items-center')}>
         {imageUrl && <NextImage imageUrl={imageUrl} alt={title} />}
         <S.ProductPriceDetails>S/ {price}</S.ProductPriceDetails>
       </S.PriceImageContainer>

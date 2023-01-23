@@ -7,7 +7,7 @@ import * as GlobalS from '../../../styles/design-system/commons';
 
 export default function About() {
   return (
-    <Container height="full" className={classNames('topics')}>
+    <Container height="full" className={classNames('about')}>
       <GlobalS.DynamicPage>
         <LongRichText />
       </GlobalS.DynamicPage>

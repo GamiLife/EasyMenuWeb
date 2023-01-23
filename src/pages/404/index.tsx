@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
 
 import { LayoutWrapper } from '../../common/layouts';
-import * as S from './styles';
 import { NextImage } from '../../common/components/NextImage';
 import { messages } from '../../common/constants';
+import * as S from './styles';
 
 const { page404 } = messages;
 
