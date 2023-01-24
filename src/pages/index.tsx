@@ -7,7 +7,6 @@ import { News } from '../common/components/News';
 import { LayoutWrapper } from '../common/layouts';
 import { lightTheme } from '../../styles/design-system/theme';
 import { ProductList } from '../common/components/ProductList';
-import { usePagination } from '../common/hooks';
 import { messages } from '../common/constants';
 import { useFetchDishes } from '../common/hooks/useFetchDishes';
 import HomeProvider from '../context/HomeContext';
@@ -16,8 +15,14 @@ import PaginationProvider from '../context/PaginationContext';
 const { pageHome } = messages;
 
 export default function Home() {
-  const { productsByPage, isLoading, showMessage } = useFetchDishes();
-  const { numberPages, page, handleChangePage } = usePagination(5);
+  const {
+    page,
+    numberPages,
+    productsByPage,
+    isLoading,
+    showMessage,
+    handleChangePage,
+  } = useFetchDishes();
 
   return (
     <React.Fragment>

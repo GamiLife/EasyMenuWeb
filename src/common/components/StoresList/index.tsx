@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Card, RichText } from '@gamiui/standard';
 
-import { get } from '../../../config/api';
 import * as S from './styles';
 
-export const StoresList = () => {
-  const [locations, setLocations] = useState([]);
-
-  useEffect(() => {
-    async function locationsFetch() {
-      try {
-        const { data } = await get('locations/companies/1?page=1&sizeByPage=6');
-        setLocations(data);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    locationsFetch();
-  }, []);
-
+export const StoresList = ({ locations }) => {
   return (
     <S.StoresList>
       {locations.map(({ address, id, name, phone }) => (

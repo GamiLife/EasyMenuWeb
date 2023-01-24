@@ -11,12 +11,7 @@ import * as S from './styles';
 const { pageLocations } = messages;
 
 export default function Locations() {
-  // const { page, numberPages, handleChangePage } = usePagination(3);
-  // console.log(numberPages);
-  // console.log(handleChangePage);
-  // console.log(page);
-  const { page, numberPages, handleChangePage } = useLocations();
-  // console.log(page, numberPages, handleChangePage);
+  const { locations } = useLocations();
 
   return (
     <Container height="full" className={classNames('locations')}>
@@ -26,7 +21,7 @@ export default function Locations() {
           <RichText text={pageLocations.description} />
         </S.TitleContainer>
         <S.StoresContainer>
-          <StoresList />
+          <StoresList locations={locations} />
           <Container margin="0 0 1rem">
             {numberPages >= 1 && (
               <Pagination

@@ -12,7 +12,14 @@ export const useFetchDishes = () => {
   const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
   const { idCategory } = useContext(HomeContext);
 
-  const { pageNumber, setTotalItems, SIZE_BY_PAGE } = usePagination(5);
+  const {
+    page,
+    numberPages,
+    pageNumber,
+    SIZE_BY_PAGE,
+    setTotalItems,
+    handleChangePage,
+  } = usePagination(5);
   const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
     defaultVisible: true,
   });
@@ -49,8 +56,11 @@ export const useFetchDishes = () => {
   ]);
 
   return {
+    page,
+    numberPages,
     productsByPage,
     isLoading,
     showMessage,
+    handleChangePage,
   };
 };
