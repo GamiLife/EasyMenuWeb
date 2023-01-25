@@ -10,7 +10,7 @@ interface IProductList {
 
 export const ProductList = ({ isLoading, productsByPage }: IProductList) => {
   return (
-    <S.ProductList className={classNames('topics__header')}>
+    <S.ProductList className={classNames('productlist')}>
       {!isLoading &&
         productsByPage?.map(
           ({ description, id, imageUrl, price, title, slug }: IProduct) => (

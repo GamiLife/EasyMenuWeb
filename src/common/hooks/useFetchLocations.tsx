@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 
-import { get } from '../../config/api';
 import { usePagination } from './usePagination';
+import { ILocation } from '../components/Location';
+import { get } from '../../config/api';
 
-export const useLocations = () => {
-  const [locations, setLocations] = useState([]);
+export const useFetchLocations = () => {
+  const [locations, setLocations] = useState<ILocation[]>([]);
 
-  const { pageNumber, SIZE_BY_PAGE } = usePagination(4);
+  const {
+    page,
+    numberPages,
+    pageNumber,
+    SIZE_BY_PAGE,
+    setTotalItems,
+    handleChangePage,
+  } = usePagination(4);
 
   useEffect(() => {
     async function locationsFetch() {
@@ -14,8 +22,8 @@ export const useLocations = () => {
         const { data, metaData } = await get(
           `locations/companies/1?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}`
         );
-        console.log(data);
         setLocations(data);
+        setTotalItems(metaData.pagination.totalItems);
       } catch (e) {
         console.log(e);
       }
@@ -24,6 +32,9 @@ export const useLocations = () => {
   }, [SIZE_BY_PAGE, pageNumber]);
 
   return {
+    page,
     locations,
+    numberPages,
+    handleChangePage,
   };
 };

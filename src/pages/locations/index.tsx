@@ -4,14 +4,15 @@ import { Container, Pagination, RichText } from '@gamiui/standard';
 import { LayoutWrapper } from '../../common/layouts';
 import { StoresList } from '../../common/components/StoresList';
 import { messages } from '../../common/constants';
-import { useLocations } from '../../common/hooks/useLocations';
+import { useFetchLocations } from '../../common/hooks/useFetchLocations';
 import PaginationProvider from '../../context/PaginationContext';
 import * as S from './styles';
 
 const { pageLocations } = messages;
 
 export default function Locations() {
-  const { locations } = useLocations();
+  const { page, locations, numberPages, handleChangePage } =
+    useFetchLocations();
 
   return (
     <Container height="full" className={classNames('locations')}>
