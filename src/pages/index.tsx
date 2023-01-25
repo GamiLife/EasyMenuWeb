@@ -9,6 +9,7 @@ import { lightTheme } from '../../styles/design-system/theme';
 import { ProductList } from '../common/components/ProductList';
 import { messages } from '../common/constants';
 import { useFetchDishes } from '../common/hooks/useFetchDishes';
+import { Spinner } from '../common/components/Spinner';
 import HomeProvider from '../context/HomeContext';
 import PaginationProvider from '../context/PaginationContext';
 
@@ -37,23 +38,7 @@ export default function Home() {
       <Container padding="20px 30px">
         <ProductList isLoading={isLoading} productsByPage={productsByPage} />
 
-        <Container>
-          {isLoading && (
-            <Loader.Wrapper
-              minHeight="800px"
-              isLoading={isLoading}
-              loaderNode={
-                <Loader
-                  type="spinner"
-                  background={`${lightTheme.primary.first}`}
-                ></Loader>
-              }
-              className={classNames('flex', 'items-center')}
-            >
-              {''}
-            </Loader.Wrapper>
-          )}
-        </Container>
+        <Spinner isLoading={isLoading} />
 
         <Container>
           {showMessage && <Empty text={pageHome.emptyComponentText} />}

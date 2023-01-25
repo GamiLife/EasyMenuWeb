@@ -4,13 +4,13 @@ import { IProduct, Product } from '../Product';
 import * as S from './styles';
 
 interface IProductList {
-  isLoading: boolean;
   productsByPage: IProduct[];
+  isLoading: boolean;
 }
 
-export const ProductList = ({ isLoading, productsByPage }: IProductList) => {
+export const ProductList = ({ productsByPage, isLoading }: IProductList) => {
   return (
-    <S.ProductList className={classNames('productlist')}>
+    <S.ProductList className={classNames('product-list')}>
       {!isLoading &&
         productsByPage?.map(
           ({ description, id, imageUrl, price, title, slug }: IProduct) => (

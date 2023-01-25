@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { usePagination } from './usePagination';
 import { ILocation } from '../components/Location';
+import { useToggle } from './useToggle';
 import { get } from '../../config/api';
 
 export const useFetchLocations = () => {
@@ -15,6 +16,9 @@ export const useFetchLocations = () => {
     setTotalItems,
     handleChangePage,
   } = usePagination(4);
+  const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
+    defaultVisible: true,
+  });
 
   useEffect(() => {
     async function locationsFetch() {
@@ -24,6 +28,7 @@ export const useFetchLocations = () => {
         );
         setLocations(data);
         setTotalItems(metaData.pagination.totalItems);
+        setIsLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -35,6 +40,7 @@ export const useFetchLocations = () => {
     page,
     locations,
     numberPages,
+    isLoading,
     handleChangePage,
   };
 };

@@ -5,13 +5,14 @@ import { LayoutWrapper } from '../../common/layouts';
 import { StoresList } from '../../common/components/StoresList';
 import { messages } from '../../common/constants';
 import { useFetchLocations } from '../../common/hooks/useFetchLocations';
+import { Spinner } from '../../common/components/Spinner';
 import PaginationProvider from '../../context/PaginationContext';
 import * as S from './styles';
 
 const { pageLocations } = messages;
 
 export default function Locations() {
-  const { page, locations, numberPages, handleChangePage } =
+  const { page, locations, numberPages, isLoading, handleChangePage } =
     useFetchLocations();
 
   return (
@@ -22,7 +23,10 @@ export default function Locations() {
           <RichText text={pageLocations.description} />
         </S.TitleContainer>
         <S.StoresContainer>
-          <StoresList locations={locations} />
+          <Spinner isLoading={isLoading} />
+
+          <StoresList locations={locations} isLoading={isLoading} />
+
           <Container margin="0 0 1rem">
             {numberPages >= 1 && (
               <Pagination
