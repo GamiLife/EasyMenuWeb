@@ -11,7 +11,6 @@ export const LayoutHeader = styled(Layout.Header)`
 export const Content = styled(Layout.Content)`
   background-color: ${lightTheme.primary.second};
   width: 100vw;
-  /* max-width: 99.1vw; */
 `;
 
 export const LayoutFooter = styled(Layout.Footer)`

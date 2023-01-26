@@ -14,6 +14,12 @@ export interface IPaginationProvider {
   children: React.ReactNode;
 }
 
+export const defaultPaginationValues = {
+  search: '',
+  page: 0,
+  totalItems: 0,
+};
+
 export const defaultPaginationSetter = {
   setSearch: () => {
     return;
@@ -26,15 +32,9 @@ export const defaultPaginationSetter = {
   },
 };
 
-export const defaultPaginationValues = {
-  search: '',
-  page: 0,
-  totalItems: 0,
-};
-
 export const defaultPaginationContext = {
-  ...defaultPaginationSetter,
   ...defaultPaginationValues,
+  ...defaultPaginationSetter,
 };
 
 export const PaginationContext = createContext<IPaginationContext>({

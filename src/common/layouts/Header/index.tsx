@@ -30,8 +30,10 @@ export const Header = () => {
       </S.HeaderLeft>
       <Container className={classNames('flex', 'items-center')}>
         <Input
-          placeholder="Search you are thinking..."
-          prefix={<Icon name="setting" color={lightTheme.neutral[300]} />}
+          placeholder="Buscar"
+          prefix={
+            <S.SearchIcon name="setting" color={lightTheme.neutral[300]} />
+          }
           positionPrefix="right"
           value={search}
           onChangeFormItem={handleChangeSearch}

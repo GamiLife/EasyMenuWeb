@@ -1,11 +1,10 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { Container, Pagination, Empty, Loader } from '@gamiui/standard';
+import { Container, Pagination, Empty } from '@gamiui/standard';
 
 import { Categories } from '../common/components/Categories';
 import { News } from '../common/components/News';
 import { LayoutWrapper } from '../common/layouts';
-import { lightTheme } from '../../styles/design-system/theme';
 import { ProductList } from '../common/components/ProductList';
 import { messages } from '../common/constants';
 import { useFetchDishes } from '../common/hooks/useFetchDishes';

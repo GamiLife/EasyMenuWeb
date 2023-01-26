@@ -16,30 +16,28 @@ export default function Locations() {
     useFetchLocations();
 
   return (
-    <Container height="full" className={classNames('locations')}>
-      <S.ContentWrapper>
-        <S.TitleContainer>
-          <S.LocationsTitle level="h2">{pageLocations.title}</S.LocationsTitle>
-          <RichText text={pageLocations.description} />
-        </S.TitleContainer>
-        <S.StoresContainer>
-          <Spinner isLoading={isLoading} />
+    <S.ContentWrapper height="full" className={classNames('locations', 'flex')}>
+      <S.TitleContainer>
+        <S.LocationsTitle level="h2">{pageLocations.title}</S.LocationsTitle>
+        <RichText text={pageLocations.description} />
+      </S.TitleContainer>
+      <S.StoresContainer>
+        <Spinner isLoading={isLoading} />
 
-          <StoresList locations={locations} isLoading={isLoading} />
+        <StoresList locations={locations} isLoading={isLoading} />
 
-          <Container margin="0 0 1rem">
-            {numberPages >= 1 && (
-              <Pagination
-                numberPages={numberPages}
-                initialPage={0}
-                onChangePage={(page) => handleChangePage(page)}
-                page={page}
-              />
-            )}
-          </Container>
-        </S.StoresContainer>
-      </S.ContentWrapper>
-    </Container>
+        <Container margin="0 0 1rem">
+          {numberPages >= 1 && (
+            <Pagination
+              numberPages={numberPages}
+              initialPage={0}
+              onChangePage={(page) => handleChangePage(page)}
+              page={page}
+            />
+          )}
+        </Container>
+      </S.StoresContainer>
+    </S.ContentWrapper>
   );
 }
 

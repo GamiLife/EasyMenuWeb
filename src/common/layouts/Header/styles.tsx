@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Container, Title } from '@gamiui/standard';
+import { Container, Icon, Title } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 
@@ -19,4 +19,8 @@ export const HeaderLeft = styled(Container)`
 
 export const TitleBrand = styled(Title)`
   color: ${lightTheme.primary.black};
+`;
+
+export const SearchIcon = styled(Icon)`
+  margin-bottom: 4px;
 `;

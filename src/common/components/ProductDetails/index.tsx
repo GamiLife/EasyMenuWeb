@@ -31,10 +31,10 @@ export const ProductDetails = () => {
         const { dishSauces, dishDishes, dishInfo } = data;
         const { description, imageUrl, price, title } = dishInfo;
         setDishInfo({
-          description: description,
-          imageUrl: imageUrl,
-          price: price,
-          title: title,
+          description,
+          imageUrl,
+          price,
+          title,
         });
         setDishSauces(dishSauces);
         setDishDishes(dishDishes);

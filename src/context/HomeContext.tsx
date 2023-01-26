@@ -12,6 +12,11 @@ export interface IHomeProvider {
   children: React.ReactNode;
 }
 
+export const defaultHomeValues = {
+  categoryName: 'seafoods',
+  idCategory: 1,
+};
+
 export const defaultHomeSetter = {
   setCategoryName: () => {
     return;
@@ -21,14 +26,9 @@ export const defaultHomeSetter = {
   },
 };
 
-export const defaultHomeValues = {
-  categoryName: 'seafoods',
-  idCategory: 1,
-};
-
 export const defaultHomeContext = {
-  ...defaultHomeSetter,
   ...defaultHomeValues,
+  ...defaultHomeSetter,
 };
 
 export const HomeContext = createContext<IHomeContext>({
