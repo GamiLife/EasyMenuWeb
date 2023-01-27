@@ -1,19 +1,17 @@
+import { useContext } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
-import {
-  Avatar,
-  Container,
-  Icon,
-  Input,
-  RichText,
-  Spacer,
-} from '@gamiui/standard';
+import { Avatar, Container, Input, RichText, Spacer } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { useSearch } from '../../hooks/useSearch';
+import { NextImage } from '../../components/NextImage';
+import { CompanyContext } from '../../../context';
 import * as S from './styles';
 
 export const Header = () => {
+  const { logos } = useContext(CompanyContext);
+  // console.log(logos);
   const { search, handleChangeSearch } = useSearch();
 
   return (
@@ -23,9 +21,11 @@ export const Header = () => {
         className={classNames('header__title__wrapper')}
       >
         <Link href="/">
-          <S.TitleBrand className={classNames('header__title')} level="h2">
+          {logos.find((logo) => logo.type === 'primary')}
+          {/* <NextImage alt="" imageUrl="" /> */}
+          {/* <S.TitleBrand className={classNames('header__title')} level="h2">
             Logo
-          </S.TitleBrand>
+          </S.TitleBrand> */}
         </Link>
       </S.HeaderLeft>
       <Container className={classNames('flex', 'items-center')}>

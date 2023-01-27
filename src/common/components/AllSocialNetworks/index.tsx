@@ -1,5 +1,5 @@
-import { SocialNetworks } from '@gamiui/standard';
 import { useContext } from 'react';
+import { SocialNetworks } from '@gamiui/standard';
 
 import { CompanyContext, ISocialNetworks } from '../../../context';
 import * as S from './styles';

@@ -4,10 +4,12 @@ import * as React from 'react';
 import { get } from '../config/api';
 
 export interface ICompanyContext {
-  logos: ILogos[];
-  socialNetworks: ISocialNetworks[];
   brand: IBrand;
   company: ICompany;
+  logos: ILogos[];
+  socialNetworks: ISocialNetworks[];
+  staticPages: IStaticPages[];
+  theme: ITheme[];
   setBrand: (brand: IBrand) => void;
   setCompany: (company: ICompany) => void;
 }
@@ -16,16 +18,6 @@ export interface ICompanyProvider {
   children: React.ReactNode;
 }
 
-export interface ILogos {
-  alt: string;
-  src: string;
-}
-
-export interface IDetails {
-  countryCode: string;
-  phone: string;
-  user: string;
-}
 export interface IBrand {
   companyId: number;
   id: number;
@@ -40,6 +32,14 @@ export interface ICompany {
   slugUrl: string;
 }
 
+export interface ILogos {
+  alt: string;
+  brandId: number;
+  id: number;
+  src: string;
+  type: string;
+}
+
 export interface ISocialNetworks {
   description: string;
   details: IDetails;
@@ -47,9 +47,26 @@ export interface ISocialNetworks {
   name: string;
 }
 
+export interface IDetails {
+  countryCode: string;
+  phone: string;
+  user: string;
+}
+
+export interface IStaticPages {
+  id: number;
+  url: string;
+}
+
+export interface ITheme {
+  brandId: number;
+  id: number;
+  themeMode: string;
+  type: string;
+  value: string;
+}
+
 export const defaultCompanyValues = {
-  logos: [],
-  socialNetworks: [],
   brand: {
     companyId: 0,
     id: 0,
@@ -62,6 +79,10 @@ export const defaultCompanyValues = {
     name: '',
     slugUrl: '',
   },
+  logos: [],
+  socialNetworks: [],
+  staticPages: [],
+  theme: [],
 };
 
 export const defaultCompanySetter = {
@@ -91,23 +112,28 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
   });
   const [company, setCompany] = useState({
     description: '',
-    id: 1,
+    id: 0,
     name: '',
     slugUrl: '',
   });
   const [logos, setLogos] = useState<ILogos[]>([]);
   const [socialNetworks, setSocialNetworks] = useState<ISocialNetworks[]>([]);
+  const [staticPages, setStaticPages] = useState<IStaticPages[]>([]);
+  const [theme, setTheme] = useState<ITheme[]>([]);
 
   useEffect(() => {
     async function companyFetch() {
-      const result = await get(`companies/slug/sea-fast-food`);
-      // console.log(result);
-      const { brand, logos, company, socialNetworks } = result.data;
+      const { data } = await get(`companies/slug/sea-fast-food`);
+      // console.log(data);
+      const { brand, company, logos, socialNetworks, staticPages, theme } =
+        data;
 
       setBrand(brand);
       setCompany(company);
       setLogos(logos);
       setSocialNetworks(socialNetworks);
+      setStaticPages(staticPages);
+      setTheme(theme);
     }
     companyFetch();
   }, [logos, socialNetworks]);
@@ -119,6 +145,8 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
         company,
         logos,
         socialNetworks,
+        staticPages,
+        theme,
         setBrand,
         setCompany,
       }}

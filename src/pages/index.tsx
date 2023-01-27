@@ -17,6 +17,7 @@ const { pageHome } = messages;
 
 export default function Home() {
   const { idCategory } = useContext(HomeContext);
+
   const {
     page,
     numberPages,
