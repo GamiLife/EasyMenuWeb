@@ -3,6 +3,7 @@ import { NextComponentType, NextPageContext } from 'next';
 import type { AppProps } from 'next/app';
 import { ThemeGamification } from '@gamiui/standard';
 
+import CompanyProvider from '../context/CompanyContext';
 import '../../styles/globals.css';
 
 type TComponent = NextComponentType<NextPageContext, any, any> & {
@@ -16,7 +17,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeGamification>
-      {getLayout(<Component {...pageProps} />)}
+      <CompanyProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </CompanyProvider>
     </ThemeGamification>
   );
 }

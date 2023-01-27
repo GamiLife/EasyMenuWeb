@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty } from '@gamiui/standard';
 
@@ -9,12 +10,13 @@ import { ProductList } from '../common/components/ProductList';
 import { messages } from '../common/constants';
 import { useFetchDishes } from '../common/hooks/useFetchDishes';
 import { Spinner } from '../common/components/Spinner';
-import HomeProvider from '../context/HomeContext';
+import HomeProvider, { HomeContext } from '../context/HomeContext';
 import PaginationProvider from '../context/PaginationContext';
 
 const { pageHome } = messages;
 
 export default function Home() {
+  const { idCategory } = useContext(HomeContext);
   const {
     page,
     numberPages,
@@ -22,7 +24,7 @@ export default function Home() {
     isLoading,
     showMessage,
     handleChangePage,
-  } = useFetchDishes();
+  } = useFetchDishes({ idCategory });
 
   return (
     <React.Fragment>

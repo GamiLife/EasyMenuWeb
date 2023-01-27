@@ -34,7 +34,7 @@ export const useFetchLocations = () => {
       }
     }
     locationsFetch();
-  }, [SIZE_BY_PAGE, pageNumber]);
+  }, [SIZE_BY_PAGE, pageNumber, setIsLoading, setTotalItems]);
 
   return {
     page,

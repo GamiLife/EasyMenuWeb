@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { HomeContext } from '../../context';
 import { usePagination } from './usePagination';
 import { IProduct } from '../components/Product';
 import { useToggle } from './useToggle';
@@ -8,9 +7,12 @@ import { useDebounce } from './useDebounce';
 import { useSearch } from './useSearch';
 import { get } from '../../config/api';
 
-export const useFetchDishes = () => {
+interface IUseFetchDishes {
+  idCategory: number;
+}
+
+export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
-  const { idCategory } = useContext(HomeContext);
 
   const {
     page,

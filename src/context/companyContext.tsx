@@ -4,9 +4,12 @@ import * as React from 'react';
 import { get } from '../config/api';
 
 export interface ICompanyContext {
-  metaDescription: string;
-  metaTitle: string;
   logos: ILogos[];
+  socialNetworks: ISocialNetworks[];
+  brand: IBrand;
+  company: ICompany;
+  setBrand: (brand: IBrand) => void;
+  setCompany: (company: ICompany) => void;
 }
 
 export interface ICompanyProvider {
@@ -18,13 +21,57 @@ export interface ILogos {
   src: string;
 }
 
+export interface IDetails {
+  countryCode: string;
+  phone: string;
+  user: string;
+}
+export interface IBrand {
+  companyId: number;
+  id: number;
+  metaDescription: string;
+  metaTitle: string;
+}
+
+export interface ICompany {
+  description: string;
+  id: number;
+  name: string;
+  slugUrl: string;
+}
+
+export interface ISocialNetworks {
+  description: string;
+  details: IDetails;
+  id: number;
+  name: string;
+}
+
 export const defaultCompanyValues = {
-  metaDescription: '',
-  metaTitle: '',
   logos: [],
+  socialNetworks: [],
+  brand: {
+    companyId: 0,
+    id: 0,
+    metaDescription: '',
+    metaTitle: '',
+  },
+  company: {
+    description: '',
+    id: 0,
+    name: '',
+    slugUrl: '',
+  },
 };
 
-export const defaultCompanySetter = {};
+export const defaultCompanySetter = {
+  setBrand: () => {
+    return;
+  },
+  setCompany: () => {
+    return;
+  },
+};
 
 export const defaultCompanyContext = {
   ...defaultCompanyValues,
@@ -37,6 +84,8 @@ export const CompanyContext = createContext<ICompanyContext>({
 
 const CompanyProvider = ({ children }: ICompanyProvider) => {
   const [brand, setBrand] = useState({
+    companyId: 0,
+    id: 0,
     metaDescription: '',
     metaTitle: '',
   });
@@ -47,40 +96,31 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
     slugUrl: '',
   });
   const [logos, setLogos] = useState<ILogos[]>([]);
-  const [socialNetworks, setSocialNetworks] = useState([]);
-
-  const { metaDescription, metaTitle } = brand;
+  const [socialNetworks, setSocialNetworks] = useState<ISocialNetworks[]>([]);
 
   useEffect(() => {
     async function companyFetch() {
-      const { data } = await get(`companies/slug/sea-fast-food`);
-      console.log(data);
-      const { brand, company, logos, socialNetworks } = data;
-      const { metaDescription, metaTitle } = brand;
-      const { description, id, name, slugUrl } = company;
+      const result = await get(`companies/slug/sea-fast-food`);
+      // console.log(result);
+      const { brand, logos, company, socialNetworks } = result.data;
 
-      setBrand({
-        metaDescription,
-        metaTitle,
-      });
-      setCompany({
-        description,
-        id,
-        name,
-        slugUrl,
-      });
+      setBrand(brand);
+      setCompany(company);
       setLogos(logos);
       setSocialNetworks(socialNetworks);
     }
     companyFetch();
-  }, []);
+  }, [logos, socialNetworks]);
 
   return (
     <CompanyContext.Provider
       value={{
-        metaDescription,
-        metaTitle,
+        brand,
+        company,
         logos,
+        socialNetworks,
+        setBrand,
+        setCompany,
       }}
     >
       {children}
