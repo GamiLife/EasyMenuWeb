@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import Link from 'next/link';
 import classNames from 'classnames';
 import { Avatar, Container, Input, RichText, Spacer } from '@gamiui/standard';
 
@@ -11,8 +10,12 @@ import * as S from './styles';
 
 export const Header = () => {
   const { logos } = useContext(CompanyContext);
-  // console.log(logos);
+
   const { search, handleChangeSearch } = useSearch();
+
+  const logo = logos.find(({ type }) => type === 'primary');
+  if (!logo) return;
+  const { alt, src } = logo;
 
   return (
     <S.Header className={classNames('header')}>
@@ -20,13 +23,9 @@ export const Header = () => {
         padding="1rem"
         className={classNames('header__title__wrapper')}
       >
-        <Link href="/">
-          {logos.find((logo) => logo.type === 'primary')}
-          {/* <NextImage alt="" imageUrl="" /> */}
-          {/* <S.TitleBrand className={classNames('header__title')} level="h2">
-            Logo
-          </S.TitleBrand> */}
-        </Link>
+        <S.HeaderLink href="/">
+          <NextImage alt={alt} imageUrl={src} />
+        </S.HeaderLink>
       </S.HeaderLeft>
       <Container className={classNames('flex', 'items-center')}>
         <Input

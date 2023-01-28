@@ -22,13 +22,6 @@ export const FooterText = styled(Container)`
 
 export const FooterLogo = styled(Container)``;
 
-export const BrandTitle = styled(Container)`
-  color: ${lightTheme.primary.white};
-  font-size: 1.5rem;
-  text-align: center;
-  text-transform: uppercase;
-`;
-
 export const FooterMenu = styled(Container)`
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
   flex-direction: column;

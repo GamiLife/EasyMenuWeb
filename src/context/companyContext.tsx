@@ -124,7 +124,6 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
   useEffect(() => {
     async function companyFetch() {
       const { data } = await get(`companies/slug/sea-fast-food`);
-      // console.log(data);
       const { brand, company, logos, socialNetworks, staticPages, theme } =
         data;
 

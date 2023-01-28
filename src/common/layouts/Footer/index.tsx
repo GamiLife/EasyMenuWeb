@@ -1,10 +1,12 @@
-import * as React from 'react';
+import { useContext } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 import { Icon } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
+import { NextImage } from '../../components/NextImage';
+import { CompanyContext } from '../../../context';
 import * as S from './styles';
 
 const TestSocialNetworks = dynamic(
@@ -15,6 +17,16 @@ const TestSocialNetworks = dynamic(
 );
 
 export const Footer = () => {
+  const { logos, staticPages } = useContext(CompanyContext);
+
+  const termsConditions = staticPages[0]?.url;
+  const policiesPrivacy = staticPages[1]?.url;
+  const about = staticPages[2]?.url;
+
+  const logo = logos.find(({ type }) => type === 'footer');
+  if (!logo) return;
+  const { alt, src } = logo;
+
   const date = new Date();
   const year = date.getFullYear();
 
@@ -24,7 +36,7 @@ export const Footer = () => {
         <S.FooterText>
           <S.FooterLogo padding="1rem">
             <Link href="/">
-              <S.BrandTitle>Logo</S.BrandTitle>
+              <NextImage alt={alt} imageUrl={src} height="20px" />
             </Link>
           </S.FooterLogo>
         </S.FooterText>
@@ -33,16 +45,16 @@ export const Footer = () => {
           <S.LinkContainer className={classNames('flex')}>
             <S.PageLink href="/">Carta</S.PageLink>
             <S.PageLink href="/locations">Locales</S.PageLink>
-            <S.PageLink href="/about">Nosotros</S.PageLink>
+            <S.PageLink href={about}>Nosotros</S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.FooterMenu className={classNames('flex')}>
           <S.Legal level="h3">Legal</S.Legal>
           <S.LinkContainer className={classNames('flex')}>
-            <S.PageLink href="/terms-conditions">
+            <S.PageLink href={termsConditions}>
               Términos y condiciones
             </S.PageLink>
-            <S.PageLink href="/policies-privacy">
+            <S.PageLink href={policiesPrivacy}>
               Políticas de privacidad
             </S.PageLink>
           </S.LinkContainer>
