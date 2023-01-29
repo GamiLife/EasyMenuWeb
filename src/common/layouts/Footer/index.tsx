@@ -30,6 +30,16 @@ export const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
 
+  function scrollUp() {
+    const currentScroll =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (currentScroll > 0) {
+      window.requestAnimationFrame(scrollUp);
+      window.scrollTo(0, currentScroll - currentScroll / 5);
+      // window.scrollTo(0, 0);
+    }
+  }
+
   return (
     <S.Footer>
       <S.FooterSection className={classNames('flex')}>
@@ -63,7 +73,7 @@ export const Footer = () => {
           <S.SocialFollow level="h3">Síguenos en:</S.SocialFollow>
           <TestSocialNetworks />
         </S.SocialBlock>
-        <S.ScrollButtonContainer>
+        <S.ScrollButtonContainer onClick={scrollUp}>
           <S.ScrollButton
             preffix={
               <Icon
