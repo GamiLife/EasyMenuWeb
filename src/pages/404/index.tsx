@@ -27,5 +27,7 @@ export default function Custom404() {
 }
 
 Custom404.getLayout = (children: React.ReactNode) => (
-  <LayoutWrapper>{children}</LayoutWrapper>
+  <LayoutWrapper title="Pagina de error 404 | Fridays" description="">
+    {children}
+  </LayoutWrapper>
 );

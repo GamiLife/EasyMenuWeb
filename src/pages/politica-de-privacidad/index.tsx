@@ -16,5 +16,10 @@ export default function PoliciesPrivacy() {
 }
 
 PoliciesPrivacy.getLayout = (children: React.ReactNode) => (
-  <LayoutWrapper>{children}</LayoutWrapper>
+  <LayoutWrapper
+    title="Políticas de privacidad | Fridays"
+    description="Las políticas de privacidad de datos se aplica al procedimiento de datos personales recopilados por GRUPO ROKYS SOCIEDAD ANONIMA CERRADA "
+  >
+    {children}
+  </LayoutWrapper>
 );

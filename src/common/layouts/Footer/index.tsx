@@ -1,13 +1,12 @@
 import { useContext } from 'react';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 import { Icon } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
-import { NextImage } from '../../components/NextImage';
 import { CompanyContext } from '../../../context';
 import * as S from './styles';
+import { Logo } from '../../components/Logo';
 
 const TestSocialNetworks = dynamic(
   () => import('../../components/AllSocialNetworks'),
@@ -17,24 +16,20 @@ const TestSocialNetworks = dynamic(
 );
 
 export const Footer = () => {
-  const { logos, staticPages } = useContext(CompanyContext);
+  const { staticPages } = useContext(CompanyContext);
 
   const termsConditions = staticPages[0]?.url;
   const policiesPrivacy = staticPages[1]?.url;
   const about = staticPages[2]?.url;
 
-  const logo = logos.find(({ type }) => type === 'footer');
-  if (!logo) return;
-  const { alt, src } = logo;
-
   const date = new Date();
   const year = date.getFullYear();
 
-  function scrollUp() {
+  function handleScrollUp() {
     const currentScroll =
       document.documentElement.scrollTop || document.body.scrollTop;
     if (currentScroll > 0) {
-      window.requestAnimationFrame(scrollUp);
+      window.requestAnimationFrame(handleScrollUp);
       window.scrollTo(0, currentScroll - currentScroll / 5);
       // window.scrollTo(0, 0);
     }
@@ -45,9 +40,7 @@ export const Footer = () => {
       <S.FooterSection className={classNames('flex')}>
         <S.FooterText>
           <S.FooterLogo padding="1rem">
-            <Link href="/">
-              <NextImage alt={alt} imageUrl={src} height="20px" />
-            </Link>
+            <Logo typeLogo="footer" />
           </S.FooterLogo>
         </S.FooterText>
         <S.FooterMenu className={classNames('flex', 'items-center')}>
@@ -73,7 +66,7 @@ export const Footer = () => {
           <S.SocialFollow level="h3">Síguenos en:</S.SocialFollow>
           <TestSocialNetworks />
         </S.SocialBlock>
-        <S.ScrollButtonContainer onClick={scrollUp}>
+        <S.ScrollButtonContainer onClick={handleScrollUp}>
           <S.ScrollButton
             preffix={
               <Icon

@@ -16,5 +16,10 @@ export default function TermsConditions() {
 }
 
 TermsConditions.getLayout = (children: React.ReactNode) => (
-  <LayoutWrapper>{children}</LayoutWrapper>
+  <LayoutWrapper
+    title="Términos y condiciones | Fridays"
+    description="¿Dudas sobre pedidos, promociones y el delivery de nuestros productos? Conoce nuestros términos y condiciones, aquí "
+  >
+    {children}
+  </LayoutWrapper>
 );

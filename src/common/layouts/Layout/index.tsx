@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Head from 'next/head';
 import { Layout } from '@gamiui/standard';
 
 import { Header, Footer } from '..';
@@ -6,11 +7,31 @@ import * as S from './styles';
 
 export interface ILayoutWrapper {
   children: React.ReactNode;
+  description: string;
+  title: string;
+  jsonLd?: string;
 }
 
-export const LayoutWrapper = ({ children }: ILayoutWrapper) => {
+export const LayoutWrapper = ({
+  children,
+  description,
+  jsonLd,
+  title,
+}: ILayoutWrapper) => {
   return (
     <Layout>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} key="desc" />
+        {jsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: jsonLd }}
+            // dangerouslySetInnerHTML={addProductJsonLd()}
+            key="product-jsonld"
+          />
+        )}
+      </Head>
       <S.LayoutHeader>
         <Header />
       </S.LayoutHeader>

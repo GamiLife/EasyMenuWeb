@@ -43,6 +43,11 @@ export default function Locations() {
 
 Locations.getLayout = (children: React.ReactNode) => (
   <PaginationProvider>
-    <LayoutWrapper>{children}</LayoutWrapper>
+    <LayoutWrapper
+      title="Nuestros Locales | Fridays"
+      description="Hay uno de nuestros restaurantes muy cerca de donde estás. Ubícalo aquí ¡Te esperamos!"
+    >
+      {children}
+    </LayoutWrapper>
   </PaginationProvider>
 );

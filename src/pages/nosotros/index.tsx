@@ -16,5 +16,10 @@ export default function About() {
 }
 
 About.getLayout = (children: React.ReactNode) => (
-  <LayoutWrapper>{children}</LayoutWrapper>
+  <LayoutWrapper
+    title="Nosotros | Fridays"
+    description="Somos una empresa peruana orgullosa de brindarles el mejor sabor desde 1985"
+  >
+    {children}
+  </LayoutWrapper>
 );

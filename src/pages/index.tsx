@@ -64,7 +64,12 @@ export default function Home() {
 Home.getLayout = (children: React.ReactNode) => (
   <HomeProvider>
     <PaginationProvider>
-      <LayoutWrapper>{children}</LayoutWrapper>
+      <LayoutWrapper
+        title="Platters | Fridays"
+        description="TGI Fridays sirve sus platos favoritos de comida estadounidense directamente de la parrilla. Más de 931 bar restaurante y parrillas en más de 60 países. ¡Encuentre una ubicación cerca de usted!"
+      >
+        {children}
+      </LayoutWrapper>
     </PaginationProvider>
   </HomeProvider>
 );

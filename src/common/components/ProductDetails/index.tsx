@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
 
@@ -7,7 +6,11 @@ import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';
 import * as S from './styles';
 
-export const ProductDetails = () => {
+export interface IProductDetails {
+  pslug: string;
+}
+
+export const ProductDetails = ({ pslug }: IProductDetails) => {
   const [dishInfo, setDishInfo] = useState({
     description: '',
     imageUrl: '',
@@ -19,8 +22,30 @@ export const ProductDetails = () => {
 
   const { description, imageUrl, price, title } = dishInfo;
 
-  const router = useRouter();
-  const { pslug } = router.query;
+  // function addProductJsonLd() {
+  //   return {
+  //     __html: `{
+  //     "@context": "https://schema.org/",
+  //     "@type": "Product",
+  //     "name": ${title},
+  //     "image": [
+  //       ${imageUrl}
+  //      ],
+  //     "description": ${description},
+  //     "sku": "0446310786",
+  //     "offers": {
+  //       "@type": "Offer",
+  //       "url": "https://example.com/anvil",
+  //       "priceCurrency": "SOL",
+  //       "price": ${price},
+  //       "priceValidUntil": "2023-01-30",
+  //       "itemCondition": "https://schema.org/UsedCondition",
+  //       "availability": "https://schema.org/InStock"
+  //     }
+  //   }
+  // `,
+  //   };
+  // }
 
   useEffect(() => {
     if (!pslug) return;
