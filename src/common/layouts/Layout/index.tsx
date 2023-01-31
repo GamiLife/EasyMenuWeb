@@ -15,8 +15,8 @@ export interface ILayoutWrapper {
 export const LayoutWrapper = ({
   children,
   description,
-  jsonLd,
   title,
+  jsonLd,
 }: ILayoutWrapper) => {
   return (
     <Layout>

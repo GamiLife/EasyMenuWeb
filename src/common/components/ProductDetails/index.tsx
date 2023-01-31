@@ -22,31 +22,6 @@ export const ProductDetails = ({ pslug }: IProductDetails) => {
 
   const { description, imageUrl, price, title } = dishInfo;
 
-  // function addProductJsonLd() {
-  //   return {
-  //     __html: `{
-  //     "@context": "https://schema.org/",
-  //     "@type": "Product",
-  //     "name": ${title},
-  //     "image": [
-  //       ${imageUrl}
-  //      ],
-  //     "description": ${description},
-  //     "sku": "0446310786",
-  //     "offers": {
-  //       "@type": "Offer",
-  //       "url": "https://example.com/anvil",
-  //       "priceCurrency": "SOL",
-  //       "price": ${price},
-  //       "priceValidUntil": "2023-01-30",
-  //       "itemCondition": "https://schema.org/UsedCondition",
-  //       "availability": "https://schema.org/InStock"
-  //     }
-  //   }
-  // `,
-  //   };
-  // }
-
   useEffect(() => {
     if (!pslug) return;
 

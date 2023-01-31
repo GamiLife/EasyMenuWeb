@@ -5,8 +5,8 @@ import { Icon } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { CompanyContext } from '../../../context';
-import * as S from './styles';
 import { Logo } from '../../components/Logo';
+import * as S from './styles';
 
 const TestSocialNetworks = dynamic(
   () => import('../../components/AllSocialNetworks'),
