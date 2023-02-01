@@ -1,3 +1,5 @@
+import { NextApiResponse } from 'next';
+
 //pages/sitemap.xml.js
 const EXTERNAL_DATA_URL = 'http://localhost:3000/';
 
@@ -6,10 +8,25 @@ function generateSiteMap() {
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <!--We manually set the two URLs we know already-->
      <url>
-       <loc>https://jsonplaceholder.typicode.com</loc>
+       <loc>http://localhost:3000/</loc>
      </url>
      <url>
-       <loc>https://jsonplaceholder.typicode.com/guide</loc>
+       <loc>http://localhost:3000/[categoryDynamic]/product</loc>
+     </url>
+     <url>
+       <loc>http://localhost:3000/404</loc>
+     </url>
+     <url>
+       <loc>http://localhost:3000/locations</loc>
+     </url>
+     <url>
+       <loc>http://localhost:3000/nosotros</loc>
+     </url>
+     <url>
+       <loc>http://localhost:3000/politica-de-privacidad</loc>
+     </url>
+     <url>
+       <loc>http://localhost:3000/terminos-y-condiciones</loc>
      </url>
    </urlset>
  `;
@@ -19,7 +36,7 @@ function SiteMap() {
   // getServerSideProps will do the heavy lifting
 }
 
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({ res }: { res: NextApiResponse }) {
   // We make an API call to gather the URLs for our site
   const request = await fetch(EXTERNAL_DATA_URL);
   const posts = await request.json();

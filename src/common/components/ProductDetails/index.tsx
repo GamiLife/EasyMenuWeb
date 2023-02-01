@@ -1,49 +1,14 @@
-import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
 
 import { NextImage } from '../NextImage';
-import { get } from '../../../config/api';
+import { useFetchDishesId } from '../../hooks';
 import * as S from './styles';
 
-export interface IProductDetails {
-  pslug: string;
-}
-
-export const ProductDetails = ({ pslug }: IProductDetails) => {
-  const [dishInfo, setDishInfo] = useState({
-    description: '',
-    imageUrl: '',
-    price: 0,
-    title: '',
-  });
-  const [dishSauces, setDishSauces] = useState([]);
-  const [dishDishes, setDishDishes] = useState([]);
+export const ProductDetails = () => {
+  const { dishInfo, dishSauces, dishDishes } = useFetchDishesId();
 
   const { description, imageUrl, price, title } = dishInfo;
-
-  useEffect(() => {
-    if (!pslug) return;
-
-    async function dishesIdfetch() {
-      try {
-        const { data } = await get(`dishes/slug/${pslug}`);
-        const { dishSauces, dishDishes, dishInfo } = data;
-        const { description, imageUrl, price, title } = dishInfo;
-        setDishInfo({
-          description,
-          imageUrl,
-          price,
-          title,
-        });
-        setDishSauces(dishSauces);
-        setDishDishes(dishDishes);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    dishesIdfetch();
-  }, [pslug]);
 
   return (
     <S.ProductDetails>
