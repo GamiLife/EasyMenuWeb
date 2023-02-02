@@ -38,11 +38,9 @@ function SiteMap() {
 
 export async function getServerSideProps({ res }: { res: NextApiResponse }) {
   // We make an API call to gather the URLs for our site
-  const request = await fetch(EXTERNAL_DATA_URL);
-  const posts = await request.json();
 
   // We generate the XML sitemap with the posts data
-  const sitemap = generateSiteMap(posts);
+  const sitemap = generateSiteMap();
 
   res.setHeader('Content-Type', 'text/xml');
   // we send the XML to the browser

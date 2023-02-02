@@ -3,15 +3,15 @@ import { useContext } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty } from '@gamiui/standard';
 
-import { Categories } from '../common/components/Categories';
-import { News } from '../common/components/News';
-import { LayoutWrapper } from '../common/layouts';
-import { ProductList } from '../common/components/ProductList';
-import { messages } from '../common/constants';
-import { useFetchDishes } from '../common/hooks/useFetchDishes';
-import { Spinner } from '../common/components/Spinner';
-import HomeProvider, { HomeContext } from '../context/HomeContext';
-import PaginationProvider from '../context/PaginationContext';
+import { Categories } from '../../common/components/Categories';
+import { News } from '../../common/components/News';
+import { LayoutWrapper } from '../../common/layouts';
+import { ProductList } from '../../common/components/ProductList';
+import { messages } from '../../common/constants';
+import { useFetchDishes } from '../../common/hooks/useFetchDishes';
+import { Spinner } from '../../common/components/Spinner';
+import HomeProvider, { HomeContext } from '../../context/HomeContext';
+import PaginationProvider from '../../context/PaginationContext';
 
 const { pageHome } = messages;
 

@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import * as React from 'react';
 
 import { get } from '../config/api';
+import { useRouter } from 'next/router';
 
 export interface ICompanyContext {
   brand: IBrand;
@@ -104,26 +105,24 @@ export const CompanyContext = createContext<ICompanyContext>({
 });
 
 const CompanyProvider = ({ children }: ICompanyProvider) => {
-  const [brand, setBrand] = useState({
-    companyId: 0,
-    id: 0,
-    metaDescription: '',
-    metaTitle: '',
-  });
-  const [company, setCompany] = useState({
-    description: '',
-    id: 0,
-    name: '',
-    slugUrl: '',
-  });
-  const [logos, setLogos] = useState<ILogos[]>([]);
-  const [socialNetworks, setSocialNetworks] = useState<ISocialNetworks[]>([]);
-  const [staticPages, setStaticPages] = useState<IStaticPages[]>([]);
-  const [theme, setTheme] = useState<ITheme[]>([]);
+  const router = useRouter();
+  const { slugCompany } = router.query;
+
+  const [brand, setBrand] = useState(defaultCompanyValues.brand);
+  const [company, setCompany] = useState(defaultCompanyValues.company);
+  const [logos, setLogos] = useState<ILogos[]>(defaultCompanyValues.logos);
+  const [socialNetworks, setSocialNetworks] = useState<ISocialNetworks[]>(
+    defaultCompanyValues.socialNetworks
+  );
+  const [staticPages, setStaticPages] = useState<IStaticPages[]>(
+    defaultCompanyValues.staticPages
+  );
+  const [theme, setTheme] = useState<ITheme[]>(defaultCompanyValues.theme);
 
   useEffect(() => {
+    if (!slugCompany) return;
     async function companyFetch() {
-      const { data } = await get(`companies/slug/sea-fast-food`);
+      const { data } = await get(`companies/slug/${slugCompany}`);
       const { brand, company, logos, socialNetworks, staticPages, theme } =
         data;
 
@@ -135,7 +134,7 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
       setTheme(theme);
     }
     companyFetch();
-  }, [logos, socialNetworks]);
+  }, [logos, socialNetworks, slugCompany]);
 
   return (
     <CompanyContext.Provider

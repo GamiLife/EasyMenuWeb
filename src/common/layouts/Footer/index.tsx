@@ -18,9 +18,9 @@ const TestSocialNetworks = dynamic(
 export const Footer = () => {
   const { staticPages } = useContext(CompanyContext);
 
-  const termsConditions = staticPages[0]?.url;
-  const policiesPrivacy = staticPages[1]?.url;
-  const about = staticPages[2]?.url;
+  const termsConditions = staticPages[0]?.url ?? '/';
+  const policiesPrivacy = staticPages[1]?.url ?? '/';
+  const about = staticPages[2]?.url ?? '/';
 
   const date = new Date();
   const year = date.getFullYear();

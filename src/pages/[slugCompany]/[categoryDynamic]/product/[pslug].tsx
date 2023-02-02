@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { Container } from '@gamiui/standard';
 
-import { ProductDetails } from '../../../common/components/ProductDetails';
-import { LayoutWrapper } from '../../../common/layouts';
-import { useFetchDishesId } from '../../../common/hooks';
+import { ProductDetails } from '../../../../common/components/ProductDetails';
+import { LayoutWrapper } from '../../../../common/layouts';
+import { useFetchDishesId } from '../../../../common/hooks';
 
 const Product = () => {
   return (
@@ -30,7 +30,7 @@ Product.getLayout = (children: React.ReactNode) => {
       "sku": "0446310786",
       "offers": {
         "@type": "Offer",
-        "url": "https://example.com/anvil",
+        "url": "http://localhost:3000/",
         "priceCurrency": "SOL",
         "price": ${price},
         "priceValidUntil": "2023-01-30",
