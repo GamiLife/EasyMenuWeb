@@ -9,6 +9,7 @@ export const Footer = styled(Container)`
   color: ${lightTheme.primary.white};
   margin: auto;
   max-width: 100%;
+  overflow-y: hidden;
   padding-inline: 100px;
   width: 1472px;
 `;
@@ -20,7 +21,12 @@ export const FooterText = styled(Container)`
   width: 27%;
 `;
 
-export const FooterLogo = styled(Container)``;
+export const FooterLogoContainer = styled(Container)`
+  height: 20px;
+  img {
+    height: 20px !important;
+  }
+`;
 
 export const FooterMenu = styled(Container)`
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);

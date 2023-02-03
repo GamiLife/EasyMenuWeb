@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 
-import { get } from '../../../config/api';
+import { CompanyContext } from '../../../context';
 import { NewsSlider } from './NewsSlider';
+import { get } from '../../../config/api';
 
 export interface INews {
   id: number;
@@ -14,14 +15,19 @@ export interface INews {
 
 export const News = () => {
   const [news, setNews] = useState<INews[] | undefined>(undefined);
+  const {
+    company: { id },
+  } = useContext(CompanyContext);
+
   const date = new Date();
   const toISOString = date.toISOString();
 
   useEffect(() => {
+    if (!id) return;
     async function newsFetch() {
       try {
         const { data } = await get(
-          `news/companies/1?page=1&sizeByPage=3&byDate=2023-01-15T00:00:00Z&sort=[ "startDate", "ASC" ] , [ "id", "DESC" ]`
+          `news/companies/${id}?page=1&sizeByPage=3&byDate=2023-01-15T00:00:00Z&sort=[ "startDate", "ASC" ] , [ "id", "DESC" ]`
         );
         setNews(data);
       } catch (e) {
@@ -29,7 +35,7 @@ export const News = () => {
       }
     }
     newsFetch();
-  }, []);
+  }, [id]);
 
   return <Fragment>{!!news?.length && <NewsSlider news={news} />}</Fragment>;
 };

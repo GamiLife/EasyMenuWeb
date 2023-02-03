@@ -39,9 +39,9 @@ export const Footer = () => {
     <S.Footer>
       <S.FooterSection className={classNames('flex')}>
         <S.FooterText>
-          <S.FooterLogo padding="1rem">
+          <S.FooterLogoContainer padding="1rem">
             <Logo typeLogo="footer" />
-          </S.FooterLogo>
+          </S.FooterLogoContainer>
         </S.FooterText>
         <S.FooterMenu className={classNames('flex', 'items-center')}>
           <S.Information level="h3">Información</S.Information>
