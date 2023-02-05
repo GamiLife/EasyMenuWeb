@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 import { Icon } from '@gamiui/standard';
@@ -21,6 +22,9 @@ export const Footer = () => {
   const termsConditions = staticPages[0]?.url ?? '/';
   const policiesPrivacy = staticPages[1]?.url ?? '/';
   const about = staticPages[2]?.url ?? '/';
+
+  const router = useRouter();
+  const { slugCompany } = router.query;
 
   const date = new Date();
   const year = date.getFullYear();
@@ -46,18 +50,22 @@ export const Footer = () => {
         <S.FooterMenu className={classNames('flex', 'items-center')}>
           <S.Information level="h3">Información</S.Information>
           <S.LinkContainer className={classNames('flex')}>
-            <S.PageLink href="/">Carta</S.PageLink>
-            <S.PageLink href="/locations">Locales</S.PageLink>
-            <S.PageLink href={about}>Nosotros</S.PageLink>
+            <S.PageLink href={`${slugCompany}`}>Carta</S.PageLink>
+            <S.PageLink href={`${slugCompany}/locations`}>Locales</S.PageLink>
+            <S.PageLink
+              href={{ pathname: `${slugCompany}${about}`, query: {} }}
+            >
+              Nosotros
+            </S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.FooterMenu className={classNames('flex')}>
           <S.Legal level="h3">Legal</S.Legal>
           <S.LinkContainer className={classNames('flex')}>
-            <S.PageLink href={termsConditions}>
+            <S.PageLink href={`${slugCompany}${termsConditions}`}>
               Términos y condiciones
             </S.PageLink>
-            <S.PageLink href={policiesPrivacy}>
+            <S.PageLink href={`${slugCompany}${policiesPrivacy}`}>
               Políticas de privacidad
             </S.PageLink>
           </S.LinkContainer>

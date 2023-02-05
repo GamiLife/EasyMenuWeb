@@ -32,34 +32,33 @@ export const Categories = () => {
 
   return (
     <S.Categories>
-      {categories &&
-        categories.map(({ id, title, iconId, imageCategory }) => (
-          <S.Category
-            className={id === idCategory ? 'active' : ''}
-            key={id}
-            onClick={() => {
-              setPage(0);
-              setIdCategory(id);
-              setCategoryName(title);
-            }}
-          >
-            {imageCategory ? (
-              <NextImage imageUrl={imageCategory} alt={title} height="50px" />
-            ) : (
-              <Icon
-                name={iconId}
-                color={
-                  id === idCategory ? lightTheme.extended.oceanStrong : 'black'
-                }
-                size="50px"
-              />
-            )}
-            <S.CategoryTitle
-              text={title}
-              color={id === idCategory ? lightTheme.extended.oceanStrong : ''}
+      {categories.map(({ id, title, iconId, imageCategory }) => (
+        <S.Category
+          className={id === idCategory ? 'active' : ''}
+          key={id}
+          onClick={() => {
+            setPage(0);
+            setIdCategory(id);
+            setCategoryName(title);
+          }}
+        >
+          {imageCategory ? (
+            <NextImage imageUrl={imageCategory} alt={title} height="50px" />
+          ) : (
+            <Icon
+              name={iconId}
+              color={
+                id === idCategory ? lightTheme.extended.oceanStrong : 'black'
+              }
+              size="50px"
             />
-          </S.Category>
-        ))}
+          )}
+          <S.CategoryTitle
+            text={title}
+            color={id === idCategory ? lightTheme.extended.oceanStrong : ''}
+          />
+        </S.Category>
+      ))}
     </S.Categories>
   );
 };

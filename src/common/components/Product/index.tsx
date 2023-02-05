@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { Card, Container, RichText, Title } from '@gamiui/standard';
@@ -24,11 +25,14 @@ export const Product = ({
 }: IProduct) => {
   const { categoryName } = useContext(HomeContext);
 
+  const router = useRouter();
+  const { slugCompany } = router.query;
+
   return (
     <S.Product>
       <Card width="full" shadow="xs" rounded="md">
         <Link
-          href={`/${categoryName
+          href={`${slugCompany}/${categoryName
             .toLowerCase()
             .replace(' ', '-')}/product/${slug}`}
         >
@@ -58,7 +62,7 @@ export const Product = ({
           </Container>
           <Container>
             <Link
-              href={`/${categoryName
+              href={`${slugCompany}/${categoryName
                 .toLowerCase()
                 .replace(' ', '-')}/product/${slug}`}
             >
