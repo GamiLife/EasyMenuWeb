@@ -3,20 +3,27 @@ import { useContext } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty } from '@gamiui/standard';
 
-import { Categories } from '../../common/components/Categories';
-import { News } from '../../common/components/News';
-import { LayoutWrapper } from '../../common/layouts';
-import { ProductList } from '../../common/components/ProductList';
-import { messages } from '../../common/constants';
-import { useFetchDishes } from '../../common/hooks/useFetchDishes';
-import { Spinner } from '../../common/components/Spinner';
 import HomeProvider, { HomeContext } from '../../context/HomeContext';
 import PaginationProvider from '../../context/PaginationContext';
+import { useFetchDishes } from '../../common/hooks/useFetchDishes';
+import { CompanyContext } from '../../context';
+import { LayoutWrapper } from '../../common/layouts';
+import { ProductList } from '../../common/components/ProductList';
+import { Categories } from '../../common/components/Categories';
+import { messages } from '../../common/constants';
+import Custom404 from '../404';
+import { Spinner } from '../../common/components/Spinner';
+import { News } from '../../common/components/News';
 
 const { pageHome } = messages;
 
 export default function Home() {
   const { idCategory } = useContext(HomeContext);
+  const { isEnabledCompany } = useContext(CompanyContext);
+
+  if (isEnabledCompany === false) {
+    return <Custom404 />;
+  }
 
   const {
     page,

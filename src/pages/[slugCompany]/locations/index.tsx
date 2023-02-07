@@ -1,17 +1,26 @@
+import { useContext } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, RichText } from '@gamiui/standard';
 
+import { useFetchLocations } from '../../../common/hooks/useFetchLocations';
+import PaginationProvider from '../../../context/PaginationContext';
+import { CompanyContext } from '../../../context';
 import { LayoutWrapper } from '../../../common/layouts';
 import { StoresList } from '../../../common/components/StoresList';
 import { messages } from '../../../common/constants';
-import { useFetchLocations } from '../../../common/hooks/useFetchLocations';
 import { Spinner } from '../../../common/components/Spinner';
-import PaginationProvider from '../../../context/PaginationContext';
+import Custom404 from '../../404';
 import * as S from './styles';
 
 const { pageLocations } = messages;
 
 export default function Locations() {
+  const { isEnabledCompany } = useContext(CompanyContext);
+
+  if (isEnabledCompany === false) {
+    return <Custom404 />;
+  }
+
   const { page, locations, numberPages, isLoading, handleChangePage } =
     useFetchLocations();
 

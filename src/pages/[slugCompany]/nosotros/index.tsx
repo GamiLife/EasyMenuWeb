@@ -6,10 +6,16 @@ import { useFetchStaticPages } from '../../../common/hooks/useFetchStaticPages';
 import { CompanyContext } from '../../../context';
 import { LayoutWrapper } from '../../../common/layouts';
 import * as GlobalS from '../../../../styles/design-system/commons';
+import Custom404 from '../../404';
 // import { LongRichText } from '../../../common/components/LongRichText';
 
 export default function About() {
-  const { staticPages } = useContext(CompanyContext);
+  const { staticPages, isEnabledCompany } = useContext(CompanyContext);
+
+  if (isEnabledCompany === false) {
+    return <Custom404 />;
+  }
+
   const { htmlContent } = useFetchStaticPages(staticPages[2]?.id);
 
   return (

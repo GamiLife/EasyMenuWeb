@@ -50,22 +50,18 @@ export const Footer = () => {
         <S.FooterMenu className={classNames('flex', 'items-center')}>
           <S.Information level="h3">Información</S.Information>
           <S.LinkContainer className={classNames('flex')}>
-            <S.PageLink href={`${slugCompany}`}>Carta</S.PageLink>
-            <S.PageLink href={`${slugCompany}/locations`}>Locales</S.PageLink>
-            <S.PageLink
-              href={{ pathname: `${slugCompany}${about}`, query: {} }}
-            >
-              Nosotros
-            </S.PageLink>
+            <S.PageLink href={`/${slugCompany}`}>Carta</S.PageLink>
+            <S.PageLink href={`/${slugCompany}/locations`}>Locales</S.PageLink>
+            <S.PageLink href={`/${slugCompany}${about}`}>Nosotros</S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.FooterMenu className={classNames('flex')}>
           <S.Legal level="h3">Legal</S.Legal>
           <S.LinkContainer className={classNames('flex')}>
-            <S.PageLink href={`${slugCompany}${termsConditions}`}>
+            <S.PageLink href={`/${slugCompany}${termsConditions}`}>
               Términos y condiciones
             </S.PageLink>
-            <S.PageLink href={`${slugCompany}${policiesPrivacy}`}>
+            <S.PageLink href={`/${slugCompany}${policiesPrivacy}`}>
               Políticas de privacidad
             </S.PageLink>
           </S.LinkContainer>

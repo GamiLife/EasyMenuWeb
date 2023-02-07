@@ -1,11 +1,20 @@
+import { useContext } from 'react';
 import classNames from 'classnames';
 import { Container } from '@gamiui/standard';
 
-import { ProductDetails } from '../../../../common/components/ProductDetails';
-import { LayoutWrapper } from '../../../../common/layouts';
 import { useFetchDishesId } from '../../../../common/hooks';
+import { ProductDetails } from '../../../../common/components/ProductDetails';
+import { CompanyContext } from '../../../../context';
+import { LayoutWrapper } from '../../../../common/layouts';
+import Custom404 from '../../../404';
 
 const Product = () => {
+  const { isEnabledCompany } = useContext(CompanyContext);
+
+  if (isEnabledCompany === false) {
+    return <Custom404 />;
+  }
+
   return (
     <Container height="full" className={classNames('products')}>
       <ProductDetails />

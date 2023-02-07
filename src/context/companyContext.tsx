@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import * as React from 'react';
+import { useRouter } from 'next/router';
 
 import { get } from '../config/api';
-import { useRouter } from 'next/router';
 
 export interface ICompanyContext {
   brand: IBrand;
@@ -11,6 +11,7 @@ export interface ICompanyContext {
   socialNetworks: ISocialNetworks[];
   staticPages: IStaticPages[];
   theme: ITheme[];
+  isEnabledCompany: boolean;
   setBrand: (brand: IBrand) => void;
   setCompany: (company: ICompany) => void;
 }
@@ -84,6 +85,7 @@ export const defaultCompanyValues = {
   socialNetworks: [],
   staticPages: [],
   theme: [],
+  isEnabledCompany: false,
 };
 
 export const defaultCompanySetter = {
@@ -118,11 +120,18 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
     defaultCompanyValues.staticPages
   );
   const [theme, setTheme] = useState<ITheme[]>(defaultCompanyValues.theme);
+  const [isEnabledCompany, setIsEnabledCompany] = useState(false);
 
   useEffect(() => {
     if (!slugCompany) return;
     async function companyFetch() {
-      const { data } = await get(`companies/slug/${slugCompany}`);
+      const { data, statusCode } = await get(`companies/slug/${slugCompany}`);
+
+      if (statusCode === 404) return;
+      if (statusCode !== 404) {
+        setIsEnabledCompany(true);
+      }
+
       const { brand, company, logos, socialNetworks, staticPages, theme } =
         data;
 
@@ -132,6 +141,7 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
       setSocialNetworks(socialNetworks);
       setStaticPages(staticPages);
       setTheme(theme);
+      setIsEnabledCompany(true);
     }
     companyFetch();
   }, [logos, socialNetworks, slugCompany]);
@@ -145,6 +155,7 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
         socialNetworks,
         staticPages,
         theme,
+        isEnabledCompany,
         setBrand,
         setCompany,
       }}
