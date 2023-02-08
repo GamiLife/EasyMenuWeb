@@ -1,10 +1,5 @@
-import * as S from './styles';
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 export const Breadcrumb = () => {
-  return (
-    <>
-      <p>Breadcrumb</p>
-      <p>Breadcrumb</p>
-    </>
-  );
+  return <Breadcrumbs useDefaultStyle rootLabel="Home" />;
 };
