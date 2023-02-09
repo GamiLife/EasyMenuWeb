@@ -21,10 +21,6 @@ export default function Home() {
   const { idCategory } = useContext(HomeContext);
   const { isEnabledCompany } = useContext(CompanyContext);
 
-  if (isEnabledCompany === false) {
-    return <Custom404 />;
-  }
-
   const {
     page,
     numberPages,
@@ -33,6 +29,10 @@ export default function Home() {
     showMessage,
     handleChangePage,
   } = useFetchDishes({ idCategory });
+
+  if (isEnabledCompany === false) {
+    return <Custom404 />;
+  }
 
   return (
     <React.Fragment>

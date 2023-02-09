@@ -17,12 +17,12 @@ const { pageLocations } = messages;
 export default function Locations() {
   const { isEnabledCompany } = useContext(CompanyContext);
 
+  const { page, locations, numberPages, isLoading, handleChangePage } =
+    useFetchLocations();
+
   if (isEnabledCompany === false) {
     return <Custom404 />;
   }
-
-  const { page, locations, numberPages, isLoading, handleChangePage } =
-    useFetchLocations();
 
   return (
     <S.ContentWrapper height="full" className={classNames('locations', 'flex')}>

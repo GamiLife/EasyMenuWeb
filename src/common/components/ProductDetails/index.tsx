@@ -1,20 +1,20 @@
 import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
 
-import { NextImage } from '../NextImage';
 import { useFetchDishesId } from '../../hooks';
-import { Breadcrumb } from '../Breadcrumb';
+import { NextImage } from '../NextImage';
 import * as S from './styles';
+
+import NextBreadcrumbs from '../NextBreadcrumbs';
 
 export const ProductDetails = () => {
   const { dishInfo, dishSauces, dishDishes } = useFetchDishesId();
-
   const { description, imageUrl, price, title } = dishInfo;
 
   return (
     <S.ProductDetails>
       <S.ContentContainer>
-        <Breadcrumb />
+        <NextBreadcrumbs />
         <S.BackLink href="/">
           <S.BackIcon name="setting" />
           Atrás
