@@ -73,6 +73,18 @@ function Crumb({ text: defaultText, textGenerator, href, last = false }) {
     setText(finalText);
   }, [textGenerator]);
 
+  //   useEffect(() => {
+  //     if ( !Boolean(textGenerator) ) return setText(defaultText)
+
+  //     async function fetchData() {
+  //         const currText = await textGenerator()
+  //         setText(currText)
+  //     }
+
+  //     fetchData()
+
+  // }, [defaultText, textGenerator])
+
   if (last) {
     return <Typography color="text.primary">{text}</Typography>;
   }

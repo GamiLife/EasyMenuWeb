@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app';
 import { ThemeGamification } from '@gamiui/standard';
 
 import CompanyProvider from '../context/CompanyContext';
-import 'nextjs-breadcrumbs/dist/index.css';
 import '../../styles/globals.css';
 
 type TComponent = NextComponentType<NextPageContext, any, any> & {

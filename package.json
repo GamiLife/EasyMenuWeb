@@ -16,11 +16,13 @@
     "@types/classnames": "^2.3.1",
     "babel-plugin-emotion": "^11.0.0",
     "classnames": "^2.3.2",
+    "i18next": "^22.4.9",
+    "i18next-browser-languagedetector": "^7.0.1",
     "keen-slider": "^6.8.5",
     "next": "13.0.0",
-    "nextjs-breadcrumbs": "^1.1.9",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-i18next": "^12.1.5"
   },
   "devDependencies": {
     "@types/node": "18.11.6",
