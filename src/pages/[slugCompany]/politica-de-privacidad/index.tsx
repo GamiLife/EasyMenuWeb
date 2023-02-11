@@ -12,11 +12,11 @@ import Custom404 from '../../404';
 export default function PoliciesPrivacy() {
   const { staticPages, isEnabledCompany } = useContext(CompanyContext);
 
+  const { htmlContent } = useFetchStaticPages(staticPages[1]?.id);
+
   if (isEnabledCompany === false) {
     return <Custom404 />;
   }
-
-  const { htmlContent } = useFetchStaticPages(staticPages[1]?.id);
 
   return (
     <Container height="full" className={classNames('policies_privacy')}>

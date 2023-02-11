@@ -12,11 +12,11 @@ import Custom404 from '../../404';
 export default function About() {
   const { staticPages, isEnabledCompany } = useContext(CompanyContext);
 
+  const { htmlContent } = useFetchStaticPages(staticPages[2]?.id);
+
   if (isEnabledCompany === false) {
     return <Custom404 />;
   }
-
-  const { htmlContent } = useFetchStaticPages(staticPages[2]?.id);
 
   return (
     <Container height="full" className={classNames('about')}>

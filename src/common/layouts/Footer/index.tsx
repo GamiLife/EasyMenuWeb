@@ -7,7 +7,10 @@ import { Icon } from '@gamiui/standard';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { CompanyContext } from '../../../context';
 import { Logo } from '../../components/Logo';
+import { messages } from '../../constants';
 import * as S from './styles';
+
+const { pageHome } = messages;
 
 const TestSocialNetworks = dynamic(
   () => import('../../components/AllSocialNetworks'),
@@ -20,7 +23,7 @@ export const Footer = () => {
   const { staticPages } = useContext(CompanyContext);
 
   const termsConditions = staticPages[0]?.url ?? '/';
-  const policiesPrivacy = staticPages[1]?.url ?? '/';
+  const privacyPolicies = staticPages[1]?.url ?? '/';
   const about = staticPages[2]?.url ?? '/';
 
   const router = useRouter();
@@ -48,26 +51,34 @@ export const Footer = () => {
           </S.FooterLogoContainer>
         </S.FooterText>
         <S.FooterMenu className={classNames('flex', 'items-center')}>
-          <S.Information level="h3">Información</S.Information>
+          <S.Information level="h3">
+            {pageHome.informationSection.title}
+          </S.Information>
           <S.LinkContainer className={classNames('flex')}>
-            <S.PageLink href={`/${slugCompany}`}>Carta</S.PageLink>
-            <S.PageLink href={`/${slugCompany}/locations`}>Locales</S.PageLink>
-            <S.PageLink href={`/${slugCompany}${about}`}>Nosotros</S.PageLink>
+            <S.PageLink href={`/${slugCompany}`}>
+              {pageHome.informationSection.letter}
+            </S.PageLink>
+            <S.PageLink href={`/${slugCompany}/locations`}>
+              {pageHome.informationSection.local}
+            </S.PageLink>
+            <S.PageLink href={`/${slugCompany}${about}`}>
+              {pageHome.informationSection.about}
+            </S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.FooterMenu className={classNames('flex')}>
-          <S.Legal level="h3">Legal</S.Legal>
+          <S.Legal level="h3">{pageHome.legalSection.title}</S.Legal>
           <S.LinkContainer className={classNames('flex')}>
             <S.PageLink href={`/${slugCompany}${termsConditions}`}>
-              Términos y condiciones
+              {pageHome.legalSection.termsConditions}
             </S.PageLink>
-            <S.PageLink href={`/${slugCompany}${policiesPrivacy}`}>
-              Políticas de privacidad
+            <S.PageLink href={`/${slugCompany}${privacyPolicies}`}>
+              {pageHome.legalSection.privacyPolicies}
             </S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.SocialBlock className={classNames('flex')}>
-          <S.SocialFollow level="h3">Síguenos en:</S.SocialFollow>
+          <S.SocialFollow level="h3">{pageHome.followTitle}</S.SocialFollow>
           <TestSocialNetworks />
         </S.SocialBlock>
         <S.ScrollButtonContainer onClick={handleScrollUp}>

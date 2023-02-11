@@ -12,11 +12,11 @@ import Custom404 from '../../404';
 export default function TermsConditions() {
   const { staticPages, isEnabledCompany } = useContext(CompanyContext);
 
+  const { htmlContent } = useFetchStaticPages(staticPages[0]?.id);
+
   if (isEnabledCompany === false) {
     return <Custom404 />;
   }
-
-  const { htmlContent } = useFetchStaticPages(staticPages[0]?.id);
 
   return (
     <Container height="full" className={classNames('terms_condition')}>

@@ -36,8 +36,10 @@ export const HomeContext = createContext<IHomeContext>({
 });
 
 const HomeProvider = ({ children }: IHomeProvider) => {
-  const [categoryName, setCategoryName] = useState('seafoods');
-  const [idCategory, setIdCategory] = useState(1);
+  const [categoryName, setCategoryName] = useState(
+    defaultHomeValues.categoryName
+  );
+  const [idCategory, setIdCategory] = useState(defaultHomeValues.idCategory);
 
   return (
     <HomeContext.Provider
