@@ -12,6 +12,8 @@ import { Spinner } from '../../../common/components/Spinner';
 import Custom404 from '../../404';
 import * as S from './styles';
 
+import { useTranslation } from 'react-i18next';
+
 const { pageLocations } = messages;
 
 export default function Locations() {
@@ -20,6 +22,8 @@ export default function Locations() {
   const { page, locations, numberPages, isLoading, handleChangePage } =
     useFetchLocations();
 
+  const { t } = useTranslation();
+
   if (isEnabledCompany === false) {
     return <Custom404 />;
   }
@@ -27,7 +31,8 @@ export default function Locations() {
   return (
     <S.ContentWrapper height="full" className={classNames('locations', 'flex')}>
       <S.TitleContainer>
-        <S.LocationsTitle level="h2">{pageLocations.title}</S.LocationsTitle>
+        {/* <S.LocationsTitle level="h2">{pageLocations.title}</S.LocationsTitle> */}
+        <S.LocationsTitle level="h2">{t(pageLocations.title)}</S.LocationsTitle>
         <RichText text={pageLocations.description} />
       </S.TitleContainer>
       <S.StoresContainer>

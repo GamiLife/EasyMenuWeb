@@ -24,7 +24,7 @@ export const messages = {
     alt: '',
   },
   pageLocations: {
-    title: 'Nuestros Locales',
+    title: 'Nuestros locales',
     description:
       'Cuéntanos donde estás para que podamos presentarte el menú y las ofertas disponibles en la <br> tienda más cercana. Incluye la dirección para entrega a delivery.',
   },

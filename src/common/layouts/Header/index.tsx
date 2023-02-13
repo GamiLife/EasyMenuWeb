@@ -7,9 +7,19 @@ import { Logo } from '../../components/Logo';
 import { messages } from '../../constants';
 import * as S from './styles';
 
+import { useTranslation } from 'react-i18next';
+import i18n from '../../../pages/[slugCompany]/i18n';
+
 const { pageHome } = messages;
 
+// const lngs = {
+//   sp: {},
+//   en: { nativeName: 'English' },
+// };
+
 export const Header = () => {
+  const { i18n } = useTranslation();
+
   const { search, handleChangeSearch } = useSearch();
 
   return (
@@ -39,6 +49,7 @@ export const Header = () => {
           'justify-end',
           'items-center'
         )}
+        onClick={() => i18n.changeLanguage('en')}
       >
         <Avatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/200px-Flag_of_the_United_Kingdom_%283-5%29.svg.png" />
         <Spacer customSize="8px" direction="right" />
