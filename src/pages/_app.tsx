@@ -3,7 +3,9 @@ import { NextComponentType, NextPageContext } from 'next';
 import type { AppProps } from 'next/app';
 import { ThemeGamification } from '@gamiui/standard';
 
+import { I18nextProvider } from 'react-i18next';
 import CompanyProvider from '../context/CompanyContext';
+import i18n from './[slugCompany]/i18n';
 import '../../styles/globals.css';
 
 type TComponent = NextComponentType<NextPageContext, any, any> & {
@@ -18,7 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeGamification>
       <CompanyProvider>
-        {getLayout(<Component {...pageProps} />)}
+        <I18nextProvider i18n={i18n}>
+          {getLayout(<Component {...pageProps} />)}
+        </I18nextProvider>
       </CompanyProvider>
     </ThemeGamification>
   );

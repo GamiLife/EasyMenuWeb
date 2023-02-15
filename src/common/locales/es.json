@@ -1,0 +1,30 @@
+{
+    "header": {
+        "searchText": "Buscar"
+    },
+    "footer": {
+        "informationSection": {
+            "title": "Información",
+            "letter": "Carta",
+            "local": "Locales",
+            "about": "Nosotros"
+        },
+        "legalSection": {
+            "title": "Legal",
+            "termsConditions": "Términos y condiciones",
+            "privacyPolicies": "Políticas de privacidad"
+        },
+        "followTitle": "Síguenos en:",
+        "copyright": "Todos los derechos reservados"
+    },
+    "pageHome": {
+        "emptyComponentText": "No encontramos ningún producto para la búsqueda, intente con otro nombre."
+    },
+    "pageLocations": {
+        "title": "Nuestros locales",
+        "description": "Cuéntanos donde estás para que podamos presentarte el menú y las ofertas disponibles en la <br> tienda más cercana. Incluye la dirección para entrega a delivery."
+    },
+    "pageAbout": {},
+    "pageTermsConditions": {},
+    "pagePrivacyPolicies": {}
+}

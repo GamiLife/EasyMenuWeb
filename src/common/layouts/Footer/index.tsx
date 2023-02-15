@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
@@ -7,10 +8,7 @@ import { Icon } from '@gamiui/standard';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { CompanyContext } from '../../../context';
 import { Logo } from '../../components/Logo';
-import { messages } from '../../constants';
 import * as S from './styles';
-
-const { pageHome } = messages;
 
 const TestSocialNetworks = dynamic(
   () => import('../../components/AllSocialNetworks'),
@@ -20,6 +18,8 @@ const TestSocialNetworks = dynamic(
 );
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   const { staticPages } = useContext(CompanyContext);
 
   const termsConditions = staticPages[0]?.url ?? '/';
@@ -52,33 +52,33 @@ export const Footer = () => {
         </S.FooterText>
         <S.FooterMenu className={classNames('flex', 'items-center')}>
           <S.Information level="h3">
-            {pageHome.informationSection.title}
+            {t('footer.informationSection.title')}
           </S.Information>
           <S.LinkContainer className={classNames('flex')}>
             <S.PageLink href={`/${slugCompany}`}>
-              {pageHome.informationSection.letter}
+              {t('footer.informationSection.letter')}
             </S.PageLink>
             <S.PageLink href={`/${slugCompany}/locations`}>
-              {pageHome.informationSection.local}
+              {t('footer.informationSection.local')}
             </S.PageLink>
             <S.PageLink href={`/${slugCompany}${about}`}>
-              {pageHome.informationSection.about}
+              {t('footer.informationSection.about')}
             </S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.FooterMenu className={classNames('flex')}>
-          <S.Legal level="h3">{pageHome.legalSection.title}</S.Legal>
+          <S.Legal level="h3">{t('footer.legalSection.title')}</S.Legal>
           <S.LinkContainer className={classNames('flex')}>
             <S.PageLink href={`/${slugCompany}${termsConditions}`}>
-              {pageHome.legalSection.termsConditions}
+              {t('footer.legalSection.termsConditions')}
             </S.PageLink>
             <S.PageLink href={`/${slugCompany}${privacyPolicies}`}>
-              {pageHome.legalSection.privacyPolicies}
+              {t('footer.legalSection.privacyPolicies')}
             </S.PageLink>
           </S.LinkContainer>
         </S.FooterMenu>
         <S.SocialBlock className={classNames('flex')}>
-          <S.SocialFollow level="h3">{pageHome.followTitle}</S.SocialFollow>
+          <S.SocialFollow level="h3">{t('footer.followTitle')}</S.SocialFollow>
           <TestSocialNetworks />
         </S.SocialBlock>
         <S.ScrollButtonContainer onClick={handleScrollUp}>

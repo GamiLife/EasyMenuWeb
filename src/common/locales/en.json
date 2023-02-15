@@ -1,0 +1,30 @@
+{
+    "header": {
+        "searchText": "Search"
+    },
+    "footer": {
+        "informationSection": {
+            "title": "Information",
+            "letter": "Letter",
+            "local": "Local",
+            "about": "About"
+        },
+        "legalSection": {
+            "title": "Legal",
+            "termsConditions": "Terms and conditions",
+            "privacyPolicies": "Privacy policies"
+        },
+        "followTitle": "Follow us on:",
+        "copyright": "All rights reserved"
+    },
+    "pageHome": {
+        "emptyComponentText": "We did not find any product for the search, try another name."
+    },
+    "pageLocations": {
+        "title": "Our locations",
+        "description": "Tell us where you are so that we can present you with the menu and offers available at the <br> nearest store. Includes the address for delivery."
+    },
+    "pageAbout": {},
+    "pageTermsConditions": {},
+    "pagePrivacyPolicies": {}
+}

@@ -67,7 +67,7 @@ export const Product = ({
                 .replace(' ', '-')}/product/${slug}`}
             >
               <S.ProductButton type="button" rounded="sm">
-                Ver
+                Comprar
               </S.ProductButton>
             </Link>
           </Container>

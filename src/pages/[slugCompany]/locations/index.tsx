@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import classNames from 'classnames';
 import { Container, Pagination, RichText } from '@gamiui/standard';
 
@@ -7,14 +8,9 @@ import PaginationProvider from '../../../context/PaginationContext';
 import { CompanyContext } from '../../../context';
 import { LayoutWrapper } from '../../../common/layouts';
 import { StoresList } from '../../../common/components/StoresList';
-import { messages } from '../../../common/constants';
 import { Spinner } from '../../../common/components/Spinner';
 import Custom404 from '../../404';
 import * as S from './styles';
-
-import { useTranslation } from 'react-i18next';
-
-const { pageLocations } = messages;
 
 export default function Locations() {
   const { isEnabledCompany } = useContext(CompanyContext);
@@ -31,9 +27,13 @@ export default function Locations() {
   return (
     <S.ContentWrapper height="full" className={classNames('locations', 'flex')}>
       <S.TitleContainer>
-        {/* <S.LocationsTitle level="h2">{pageLocations.title}</S.LocationsTitle> */}
-        <S.LocationsTitle level="h2">{t(pageLocations.title)}</S.LocationsTitle>
-        <RichText text={pageLocations.description} />
+        <S.LocationsTitle level="h2">
+          {t('pageLocations.title')}
+        </S.LocationsTitle>
+        <Trans i18nKey="pageLocations.description">
+          <RichText text="Cuéntanos donde estás para que podamos presentarte el menú y las ofertas disponibles en la <br> tienda más cercana. Incluye la dirección para entrega a delivery." />
+          {/* <RichText text={t('pageLocations.description')} /> */}
+        </Trans>
       </S.TitleContainer>
       <S.StoresContainer>
         <Spinner isLoading={isLoading} />

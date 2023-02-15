@@ -2,8 +2,6 @@ import * as React from 'react';
 import Head from 'next/head';
 import { Layout } from '@gamiui/standard';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import i18n from '../../../pages/[slugCompany]/i18n';
 import { Header, Footer } from '..';
 import * as S from './styles';
 
