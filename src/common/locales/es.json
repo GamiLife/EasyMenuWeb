@@ -15,7 +15,7 @@
             "privacyPolicies": "Políticas de privacidad"
         },
         "followTitle": "Síguenos en:",
-        "copyright": "Todos los derechos reservados"
+        "copyright": "EasyMenuWeb {{val, year}} - Todos los derechos reservados"
     },
     "pageHome": {
         "emptyComponentText": "No encontramos ningún producto para la búsqueda, intente con otro nombre."
@@ -26,5 +26,10 @@
     },
     "pageAbout": {},
     "pageTermsConditions": {},
-    "pagePrivacyPolicies": {}
+    "pagePrivacyPolicies": {},
+    "pageProductDetails": {
+        "back": "Atrás",
+        "saucesTitle": "Elige tus salsas",
+        "dishesTitle": "Elige otros platos"
+    }
 }

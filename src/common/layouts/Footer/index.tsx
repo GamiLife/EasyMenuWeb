@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 import { Icon } from '@gamiui/standard';
 
-import { lightTheme } from '../../../../styles/design-system/theme';
+import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { CompanyContext } from '../../../context';
+import { lightTheme } from '../../../../styles/design-system/theme';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';
 
@@ -18,7 +18,7 @@ const TestSocialNetworks = dynamic(
 );
 
 export const Footer = () => {
-  const { t } = useTranslation();
+  const { t } = useCustomTranslation();
 
   const { staticPages } = useContext(CompanyContext);
 
@@ -94,7 +94,9 @@ export const Footer = () => {
         </S.ScrollButtonContainer>
       </S.FooterSection>
       <S.RightReserved
-        text={`EasyMenuWeb ${year} - Todos los derechos reservados`}
+        text={t('footer.copyright', {
+          val: year,
+        })}
       ></S.RightReserved>
     </S.Footer>
   );

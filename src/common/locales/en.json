@@ -15,7 +15,7 @@
             "privacyPolicies": "Privacy policies"
         },
         "followTitle": "Follow us on:",
-        "copyright": "All rights reserved"
+        "copyright": "EasyMenuWeb {{val, year}} - All rights reserved"
     },
     "pageHome": {
         "emptyComponentText": "We did not find any product for the search, try another name."
@@ -26,5 +26,10 @@
     },
     "pageAbout": {},
     "pageTermsConditions": {},
-    "pagePrivacyPolicies": {}
+    "pagePrivacyPolicies": {},
+    "pageProductDetails": {
+        "back": "Back",
+        "saucesTitle": "Choose your sauces",
+        "dishesTitle": "Choose other dishes"
+    }
 }

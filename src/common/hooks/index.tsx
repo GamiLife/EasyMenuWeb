@@ -1,3 +1,4 @@
+export * from './useCustomTranslation';
 export * from './useDebounce';
 export * from './useFetchDishes';
 export * from './useFetchDishesId';

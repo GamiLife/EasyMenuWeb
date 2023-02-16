@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
 import classNames from 'classnames';
 import { Container, Pagination, RichText } from '@gamiui/standard';
 
+import { useCustomTranslation } from '../../../common/hooks';
 import { useFetchLocations } from '../../../common/hooks/useFetchLocations';
 import PaginationProvider from '../../../context/PaginationContext';
 import { CompanyContext } from '../../../context';
@@ -17,8 +17,7 @@ export default function Locations() {
 
   const { page, locations, numberPages, isLoading, handleChangePage } =
     useFetchLocations();
-
-  const { t } = useTranslation();
+  const { t } = useCustomTranslation();
 
   if (isEnabledCompany === false) {
     return <Custom404 />;
@@ -30,10 +29,7 @@ export default function Locations() {
         <S.LocationsTitle level="h2">
           {t('pageLocations.title')}
         </S.LocationsTitle>
-        <Trans i18nKey="pageLocations.description">
-          <RichText text="Cuéntanos donde estás para que podamos presentarte el menú y las ofertas disponibles en la <br> tienda más cercana. Incluye la dirección para entrega a delivery." />
-          {/* <RichText text={t('pageLocations.description')} /> */}
-        </Trans>
+        <RichText text={t('pageLocations.description')} />
       </S.TitleContainer>
       <S.StoresContainer>
         <Spinner isLoading={isLoading} />

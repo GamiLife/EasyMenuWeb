@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
 
@@ -9,6 +10,8 @@ import * as S from './styles';
 // import NextBreadcrumbs from '../NextBreadcrumbs';
 
 export const ProductDetails = () => {
+  const { t } = useTranslation();
+
   const { dishInfo, dishSauces, dishDishes } = useFetchDishesId();
   const { description, imageUrl, price, title } = dishInfo;
 
@@ -23,7 +26,7 @@ export const ProductDetails = () => {
         /> */}
         <S.BackLink href="/">
           <S.BackIcon name="setting" />
-          Atrás
+          {t('pageProductDetails.back')}
         </S.BackLink>
         <S.ProductTitle level="h1">{title}</S.ProductTitle>
         <RichText text={description} margin="0 0 1.7rem" />
@@ -31,7 +34,7 @@ export const ProductDetails = () => {
           <Container>
             <S.SaucesArea>
               <S.SaucesTitle level="h5" margin="0 0 1rem">
-                Elige tus salsas
+                {t('pageProductDetails.saucesTitle')}
               </S.SaucesTitle>
               {dishSauces?.map(({ sauce }) => {
                 const { id, price, title } = sauce[0];
@@ -47,7 +50,7 @@ export const ProductDetails = () => {
           <Container>
             <S.DishesArea>
               <S.DishesTitle level="h5" margin="0 0 1rem">
-                Elige otros platos
+                {t('pageProductDetails.dishesTitle')}
               </S.DishesTitle>
               {dishDishes.map(({ dishSecond }) => {
                 const { id, price, title } = dishSecond[0];

@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Avatar, Container, Input, RichText, Spacer } from '@gamiui/standard';
 
+import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
@@ -9,8 +9,7 @@ import { Logo } from '../../components/Logo';
 import * as S from './styles';
 
 export const Header = () => {
-  const { i18n, t } = useTranslation();
-
+  const { i18n, t } = useCustomTranslation();
   const { search, handleChangeSearch } = useSearch();
   const { isVisible: changeLanguage, handleToggle: setChangeLanguage } =
     useToggle({
