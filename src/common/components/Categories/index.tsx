@@ -2,8 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Icon } from '@gamiui/standard';
 
 import { CompanyContext, PaginationContext } from '../../../context';
-import { useFetchDishes, useLocalStorage } from '../../hooks';
-import { HomeContext } from '../../../context/HomeContext';
+import { HomeContext } from '../../../context';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';

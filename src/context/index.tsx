@@ -1,3 +1,3 @@
+export * from './home';
 export * from './CompanyContext';
-export * from './HomeContext';
 export * from './PaginationContext';

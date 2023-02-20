@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty } from '@gamiui/standard';
 
-import { HomeContext } from '../../context/HomeContext';
+import { HomeContext } from '../../context';
 import PaginationProvider from '../../context/PaginationContext';
 import { useFetchDishes } from '../../common/hooks/useFetchDishes';
 import { CompanyContext } from '../../context';

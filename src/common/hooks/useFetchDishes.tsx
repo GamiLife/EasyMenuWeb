@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { usePagination } from './usePagination';
 import { IProduct } from '../components/Product';
@@ -6,8 +6,6 @@ import { useToggle } from './useToggle';
 import { useDebounce } from './useDebounce';
 import { useSearch } from './useSearch';
 import { get } from '../../config/api';
-import { useLocalStorage } from './useLocalStorage';
-import { HomeContext } from '../../context';
 
 interface IUseFetchDishes {
   idCategory: number;
@@ -15,7 +13,6 @@ interface IUseFetchDishes {
 
 export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
-  // const { idCategory } = useContext(HomeContext);
 
   const {
     page,
@@ -33,13 +30,6 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   });
   const { search } = useSearch();
   const debouncedValue = useDebounce(search, 500);
-  // const [storedValue, setValue] = useLocalStorage(
-  //   'categorySelectedId',
-  //   idCategory
-  // );
-
-  console.log(idCategory);
-  // console.log(storedValue);
 
   useEffect(() => {
     async function dishesFetch() {

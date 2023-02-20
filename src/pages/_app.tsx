@@ -5,7 +5,7 @@ import { ThemeGamification } from '@gamiui/standard';
 
 import { I18nextProvider } from 'react-i18next';
 import CompanyProvider from '../context/CompanyContext';
-import HomeProvider from '../context/HomeContext';
+import HomeProvider from '../context/home/provider';
 import i18n from './[slugCompany]/i18n';
 import '../../styles/globals.css';
 

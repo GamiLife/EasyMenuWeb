@@ -4,7 +4,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { Card, Container, RichText, Title } from '@gamiui/standard';
 
-import { HomeContext } from '../../../context/HomeContext';
+import { HomeContext } from '../../../context';
 import * as S from './styles';
 
 export interface IProduct {
