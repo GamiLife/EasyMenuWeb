@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { Icon } from '@gamiui/standard';
 
-import { lightTheme } from '../../../../styles/design-system/theme';
-import { HomeContext } from '../../../context/HomeContext';
 import { CompanyContext, PaginationContext } from '../../../context';
+import { useFetchDishes, useLocalStorage } from '../../hooks';
+import { HomeContext } from '../../../context/HomeContext';
+import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';
 import * as S from './styles';
@@ -22,6 +23,7 @@ export const Categories = () => {
     async function categoriesFetch() {
       try {
         const { data } = await get(`categories/companies/${id}`);
+        console.log(id);
         setCategories(data);
       } catch (e) {
         console.log(e);
@@ -32,7 +34,7 @@ export const Categories = () => {
 
   return (
     <S.Categories>
-      {categories.map(({ id, title, iconId, imageCategory }) => (
+      {categories?.map(({ id, title, iconId, imageCategory }) => (
         <S.Category
           className={id === idCategory ? 'active' : ''}
           key={id}

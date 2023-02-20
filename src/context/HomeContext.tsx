@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import * as React from 'react';
+import { useLocalStorage } from '../common/hooks';
 
 export interface IHomeContext {
   categoryName: string;
@@ -36,10 +37,30 @@ export const HomeContext = createContext<IHomeContext>({
 });
 
 const HomeProvider = ({ children }: IHomeProvider) => {
+  const [idCategory, setIdCategory] = useLocalStorage<number>(
+    'categorySelectedId',
+    defaultHomeValues.idCategory
+  );
   const [categoryName, setCategoryName] = useState(
     defaultHomeValues.categoryName
   );
-  const [idCategory, setIdCategory] = useState(defaultHomeValues.idCategory);
+  // const [idCategory, setIdCategory] = useState(1);
+
+  // React.useEffect(() => {
+  //   (() => {
+  //     if (typeof window === 'undefined') {
+  //       return;
+  //     }
+
+  //     try {
+  //       const item = window.localStorage.getItem('categorySelectedId');
+  //       const value = item ? JSON.parse(item) : 1;
+  //       setIdCategory(value);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <HomeContext.Provider

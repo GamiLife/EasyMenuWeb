@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { usePagination } from './usePagination';
 import { IProduct } from '../components/Product';
@@ -6,6 +6,8 @@ import { useToggle } from './useToggle';
 import { useDebounce } from './useDebounce';
 import { useSearch } from './useSearch';
 import { get } from '../../config/api';
+import { useLocalStorage } from './useLocalStorage';
+import { HomeContext } from '../../context';
 
 interface IUseFetchDishes {
   idCategory: number;
@@ -13,6 +15,7 @@ interface IUseFetchDishes {
 
 export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
+  // const { idCategory } = useContext(HomeContext);
 
   const {
     page,
@@ -30,6 +33,13 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   });
   const { search } = useSearch();
   const debouncedValue = useDebounce(search, 500);
+  // const [storedValue, setValue] = useLocalStorage(
+  //   'categorySelectedId',
+  //   idCategory
+  // );
+
+  console.log(idCategory);
+  // console.log(storedValue);
 
   useEffect(() => {
     async function dishesFetch() {
@@ -41,6 +51,7 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
         setTotalItems(metaData.pagination.totalItems);
         setIsLoading(false);
         setShowMessage(false);
+        // setValue(idCategory);
         !data.length && setShowMessage(true);
       } catch (e) {
         console.log(e);
@@ -50,11 +61,13 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   }, [
     SIZE_BY_PAGE,
     debouncedValue,
-    idCategory,
+    // idCategory,
     pageNumber,
     setIsLoading,
     setShowMessage,
     setTotalItems,
+    // setValue,
+    // storedValue,
   ]);
 
   return {
@@ -63,6 +76,8 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
     productsByPage,
     isLoading,
     showMessage,
+    // storedValue,
     handleChangePage,
+    // setValue,
   };
 };
