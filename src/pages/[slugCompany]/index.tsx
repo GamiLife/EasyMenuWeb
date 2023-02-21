@@ -3,12 +3,13 @@ import { useContext } from 'react';
 import classNames from 'classnames';
 import { Container, Pagination, Empty } from '@gamiui/standard';
 
-import { HomeContext } from '../../context';
-import PaginationProvider from '../../context/PaginationContext';
+import PaginationProvider from '../../context/pagination/provider';
+import { CompanyContext } from '../../context/company';
 import { useFetchDishes } from '../../common/hooks/useFetchDishes';
-import { CompanyContext } from '../../context';
+import { usePagination } from '../../common/hooks';
 import { LayoutWrapper } from '../../common/layouts';
 import { ProductList } from '../../common/components/ProductList';
+import { HomeContext } from '../../context/home';
 import { Categories } from '../../common/components/Categories';
 import { messages } from '../../common/constants';
 import Custom404 from '../404';
@@ -21,14 +22,10 @@ export default function Home() {
   const { idCategory } = useContext(HomeContext);
   const { isEnabledCompany } = useContext(CompanyContext);
 
-  const {
-    page,
-    numberPages,
-    productsByPage,
-    isLoading,
-    showMessage,
-    handleChangePage,
-  } = useFetchDishes({ idCategory });
+  const { productsByPage, isLoading, showMessage } = useFetchDishes({
+    idCategory,
+  });
+  const { page, numberPages, handleChangePage } = usePagination(5);
 
   if (isEnabledCompany === false) {
     return <Custom404 />;

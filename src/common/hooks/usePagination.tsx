@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { PaginationContext } from '../../context';
+import { PaginationContext } from '../../context/pagination';
 
 export const usePagination = (size_by_page: number) => {
   const { page, totalItems, setPage, setTotalItems } =

@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 
-import { CompanyContext } from '../../../context';
+import { CompanyContext } from '../../../context/company';
 import { NewsSlider } from './NewsSlider';
 import { get } from '../../../config/api';
 

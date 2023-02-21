@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 
-import { CompanyContext } from '../../../context';
+import { CompanyContext } from '../../../context/company';
 import { NextImage } from '../NextImage';
 import * as S from './styles';
 

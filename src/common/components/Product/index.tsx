@@ -4,7 +4,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { Card, Container, RichText, Title } from '@gamiui/standard';
 
-import { HomeContext } from '../../../context';
+import { HomeContext } from '../../../context/home';
 import * as S from './styles';
 
 export interface IProduct {
@@ -26,6 +26,7 @@ export const Product = ({
   const { categoryName } = useContext(HomeContext);
 
   const router = useRouter();
+  // console.log(router);
   const { slugCompany } = router.query;
 
   return (

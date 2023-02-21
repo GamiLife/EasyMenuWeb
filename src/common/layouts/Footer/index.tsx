@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Icon } from '@gamiui/standard';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
-import { CompanyContext } from '../../../context';
+import { CompanyContext } from '../../../context/company';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';

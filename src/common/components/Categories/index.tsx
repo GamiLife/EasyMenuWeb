@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { Icon } from '@gamiui/standard';
 
-import { CompanyContext, PaginationContext } from '../../../context';
-import { HomeContext } from '../../../context';
+import { PaginationContext } from '../../../context/pagination';
+import { CompanyContext } from '../../../context/company';
+import { HomeContext } from '../../../context/home';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';
@@ -22,7 +23,6 @@ export const Categories = () => {
     async function categoriesFetch() {
       try {
         const { data } = await get(`categories/companies/${id}`);
-        console.log(id);
         setCategories(data);
       } catch (e) {
         console.log(e);

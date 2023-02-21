@@ -7,8 +7,6 @@ import { useFetchDishesId } from '../../hooks';
 import { NextImage } from '../NextImage';
 import * as S from './styles';
 
-// import NextBreadcrumbs from '../NextBreadcrumbs';
-
 export const ProductDetails = () => {
   const { t } = useTranslation();
 
@@ -18,12 +16,6 @@ export const ProductDetails = () => {
   return (
     <S.ProductDetails>
       <S.ContentContainer>
-        {/* <NextBreadcrumbs /> */}
-        {/* <NextBreadcrumbs getDefaultTextGenerator={(path) => titleize(path)} /> */}
-        {/* <NextBreadcrumbs
-          getDefaultTextGenerator={getDefaultTextGenerator}
-          getTextGenerator={getTextGenerator}
-        /> */}
         <S.BackLink href="/">
           <S.BackIcon name="setting" />
           {t('pageProductDetails.back')}
