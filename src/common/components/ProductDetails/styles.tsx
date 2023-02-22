@@ -11,11 +11,26 @@ export const ProductDetails = styled(Container)`
   margin: auto;
   padding-bottom: 40px;
   width: 90%;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 40px auto;
+`;
+
+export const BreadcrumbContainer = styled(Container)`
+  padding: 0 100px;
+  grid-column: 1/3;
+
+  display: flex;
+  align-items: center;
 `;
 
 export const ContentContainer = styled(Container)`
   padding: 32px 100px 0;
   width: 50%;
+
+  width: 100%;
+  grid-column: 1/2;
 `;
 
 export const BackLink = styled(Link)`
@@ -77,6 +92,9 @@ export const PriceImageContainer = styled(Container)`
   padding: 32px 100px 0;
   row-gap: 2rem;
   width: 50%;
+
+  width: 100%;
+  grid-column: 2/3;
 `;
 
 export const ProductPriceDetails = styled.label`

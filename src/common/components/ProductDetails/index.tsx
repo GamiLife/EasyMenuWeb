@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
 
 import { useFetchDishesId } from '../../hooks';
+import NextBreadcrumbs from '../NextBreadcrumbs';
 import { NextImage } from '../NextImage';
 import * as S from './styles';
 
@@ -15,6 +16,9 @@ export const ProductDetails = () => {
 
   return (
     <S.ProductDetails>
+      <S.BreadcrumbContainer>
+        <NextBreadcrumbs />
+      </S.BreadcrumbContainer>
       <S.ContentContainer>
         <S.BackLink href="/">
           <S.BackIcon name="setting" />

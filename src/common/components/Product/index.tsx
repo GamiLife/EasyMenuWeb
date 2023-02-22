@@ -26,7 +26,6 @@ export const Product = ({
   const { categoryName } = useContext(HomeContext);
 
   const router = useRouter();
-  // console.log(router);
   const { slugCompany } = router.query;
 
   return (

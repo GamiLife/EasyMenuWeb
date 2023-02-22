@@ -6,6 +6,7 @@ import { Container, Pagination, Empty } from '@gamiui/standard';
 import PaginationProvider from '../../context/pagination/provider';
 import { CompanyContext } from '../../context/company';
 import { useFetchDishes } from '../../common/hooks/useFetchDishes';
+import NextBreadcrumbs from '../../common/components/NextBreadcrumbs';
 import { usePagination } from '../../common/hooks';
 import { LayoutWrapper } from '../../common/layouts';
 import { ProductList } from '../../common/components/ProductList';
@@ -34,6 +35,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <Container padding="20px 30px" className={classNames('topics')}>
+        <NextBreadcrumbs />
         <Container>
           <Categories />
         </Container>
