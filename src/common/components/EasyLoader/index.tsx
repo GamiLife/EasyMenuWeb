@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
-import classNames from 'classnames';
+import React from 'react';
 import { Loader, Title } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import * as S from './styles';
 
@@ -11,7 +11,7 @@ export interface IEasyLoader {
 
 export const EasyLoader = ({ children, isLoading }: IEasyLoader) => {
   return (
-    <Fragment>
+    <React.Fragment>
       <S.EasyLoader
         className={classNames({
           hide: !isLoading,
@@ -24,6 +24,6 @@ export const EasyLoader = ({ children, isLoading }: IEasyLoader) => {
       </S.EasyLoader>
 
       {children}
-    </Fragment>
+    </React.Fragment>
   );
 };

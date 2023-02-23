@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Container } from '@gamiui/standard';
+
 import { PageTitle } from '../../../../styles/design-system/commons';
 
 export const ContentWrapper = styled(Container)`

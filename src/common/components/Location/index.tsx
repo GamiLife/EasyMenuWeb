@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { Card, RichText } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import * as S from './styles';
 

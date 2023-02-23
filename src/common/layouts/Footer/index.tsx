@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import classNames from 'classnames';
 import { Icon } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { CompanyContext } from '../../../context/company';

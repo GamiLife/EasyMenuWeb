@@ -5,32 +5,27 @@ import { Container, Icon, Title } from '@gamiui/standard';
 import { lightTheme } from '../../../../styles/design-system/theme';
 
 export const ProductDetails = styled(Container)`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 39px auto;
   height: 100%;
   justify-content: space-between;
   margin: auto;
   padding-bottom: 40px;
   width: 90%;
-
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 40px auto;
 `;
 
 export const BreadcrumbContainer = styled(Container)`
-  padding: 0 100px;
-  grid-column: 1/3;
-
-  display: flex;
   align-items: center;
+  display: flex;
+  grid-column: 1/3;
+  padding: 0 100px;
 `;
 
 export const ContentContainer = styled(Container)`
-  padding: 32px 100px 0;
-  width: 50%;
-
-  width: 100%;
   grid-column: 1/2;
+  padding: 25px 100px 0;
+  width: 100%;
 `;
 
 export const BackLink = styled(Link)`
@@ -89,12 +84,10 @@ export const DishesTitle = styled(Title)`
 
 export const PriceImageContainer = styled(Container)`
   flex-direction: column;
-  padding: 32px 100px 0;
-  row-gap: 2rem;
-  width: 50%;
-
-  width: 100%;
   grid-column: 2/3;
+  padding: 25px 100px 0;
+  row-gap: 2rem;
+  width: 100%;
 `;
 
 export const ProductPriceDetails = styled.label`

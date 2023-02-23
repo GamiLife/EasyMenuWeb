@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { Container, Loader } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { lightTheme } from '../../../../styles/design-system';
 import * as S from './styles';

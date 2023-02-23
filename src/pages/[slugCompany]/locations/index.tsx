@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import classNames from 'classnames';
 import { Container, Pagination, RichText } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../../common/hooks';
 import { useFetchLocations } from '../../../common/hooks/useFetchLocations';

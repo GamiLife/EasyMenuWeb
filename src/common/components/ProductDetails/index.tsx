@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useFetchDishesId } from '../../hooks';
 import NextBreadcrumbs from '../NextBreadcrumbs';

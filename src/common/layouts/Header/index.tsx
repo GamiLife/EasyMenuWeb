@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { Avatar, Container, Input, RichText, Spacer } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { lightTheme } from '../../../../styles/design-system/theme';

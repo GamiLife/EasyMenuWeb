@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { RichText } from '@gamiui/standard';
-
 import * as React from 'react';
+import { useRouter } from 'next/router';
+import { Icon } from '@gamiui/standard';
+
+import { lightTheme } from '../../../../styles/design-system';
 import * as S from './styles';
 
 interface ICrumb {
@@ -14,49 +14,64 @@ interface ICrumb {
 export default function NextBreadcrumbs() {
   const router = useRouter();
   const { slugCompany } = router.query;
-  // router.asPath -> '/sea-fast-food'
+
   const breadcrumbs = React.useMemo(
     function generateBreadcrumbs() {
-      const asPathWithoutQuery = router.asPath.split('?')[0]; // '/sea-fast-food'
+      const asPathWithoutQuery = router.asPath.split('?')[0];
       const asPathNestedRoutes = asPathWithoutQuery
-        .split('/') // ['', 'sea-fast-food']
-        .filter((v) => v.length > 0); // ['sea-fast-food']
+        .split('/')
+        .filter((v) => v.length > 0);
 
       const crumblist = asPathNestedRoutes.map((subpath) => {
-        // const href = '/' + asPathNestedRoutes.slice(0, idx + 1).join('/'); // '/sea-fast-food'
         const href = `/${slugCompany}`;
-        const text = subpath; // 'sea-fast-food'
+        const text = subpath;
         return { href, text };
       });
 
-      return [{ href: `/${slugCompany}`, text: 'Home' }, ...crumblist]; // [{ href: '/', text: 'Home' }, {href, text}]
+      return [{ href: `/${slugCompany}`, text: 'Home' }, ...crumblist];
     },
     [router.asPath, slugCompany]
   );
 
-  // const breadcrumbs = generateBreadcrumbs();
-
   return (
-    <S.NextBreadcrumbs aria-label="breadcrumb">
-      {breadcrumbs.map((crumb, idx) => (
-        <Crumb {...crumb} key={idx} last={idx === breadcrumbs.length - 1} />
-      ))}
+    <S.NextBreadcrumbs>
+      <S.CrumbList aria-label="breadcrumb">
+        {breadcrumbs.map((crumb, idx) => (
+          <Crumb {...crumb} key={idx} last={idx === breadcrumbs.length - 1} />
+        ))}
+      </S.CrumbList>
     </S.NextBreadcrumbs>
   );
 }
-// Each individual "crumb" in the breadcrumbs list
-function Crumb({ text, href, last = false }: ICrumb) {
-  // The last crumb is rendered as normal text since we are already on the page
-  if (last) {
-    // return <S.LastCrumb text={text} />;
-    return <S.LastCrumb>{text}</S.LastCrumb>;
-  }
 
-  // All other crumbs will be rendered as links that can be visited
+function Crumb({ text, href, last = false }: ICrumb) {
+  const deleteHyphen = (text: string) => {
+    do {
+      text = text.replace('-', ' ');
+    } while (text.includes('-'));
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
+
   return (
-    <>
-      <S.BreadcrumbLink href={href}>{text}</S.BreadcrumbLink>
-      <S.BreadcrumbDivisor>{'>'}</S.BreadcrumbDivisor>
-    </>
+    <React.Fragment>
+      {last ? (
+        <li>
+          <S.LastCrumb>{deleteHyphen(text)}</S.LastCrumb>
+        </li>
+      ) : (
+        <React.Fragment>
+          <li>
+            <S.BreadcrumbLink href={href}>
+              {deleteHyphen(text)}
+            </S.BreadcrumbLink>
+          </li>
+          <S.LastItemListCrumbs>
+            <S.BreadcrumbDivisor>
+              <Icon name="arrow__right" color={lightTheme.neutral[300]} />
+            </S.BreadcrumbDivisor>
+          </S.LastItemListCrumbs>
+        </React.Fragment>
+      )}
+    </React.Fragment>
   );
 }
