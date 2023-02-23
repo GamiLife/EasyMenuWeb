@@ -38,7 +38,7 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
     if (!slugCompany) return;
     async function companyFetch() {
       const { data, statusCode } = await get(`companies/slug/${slugCompany}`);
-
+      console.log(data);
       if (statusCode === 404) return;
       if (statusCode !== 404) {
         setIsEnabledCompany(true);
