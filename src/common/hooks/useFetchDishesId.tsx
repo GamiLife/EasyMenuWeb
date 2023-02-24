@@ -22,6 +22,7 @@ export const useFetchDishesId = () => {
     async function dishesIdfetch() {
       try {
         const { data } = await get(`dishes/slug/${pslug}`);
+        // console.log(data);
         const { dishSauces, dishDishes, dishInfo } = data;
         const { description, imageUrl, price, title } = dishInfo;
         setDishInfo({
