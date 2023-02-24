@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import React from 'react';
-=======
-/* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect } from 'react';
->>>>>>> fedf0b70926c7fcc39ba9c047aa6b4b148860c7c
 import { NextComponentType, NextPageContext } from 'next';
 import type { AppProps } from 'next/app';
 import { ThemeGamification } from '@gamiui/standard';
