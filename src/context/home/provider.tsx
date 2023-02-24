@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocalStorage } from '../../common/hooks';
+import { useLocalStorage } from '../../common/hooks/useLocalStorage';
 import { IHomeProvider, defaultHomeValues, HomeContext } from './context';
 
 const HomeProvider = ({ children }: IHomeProvider) => {

@@ -7,7 +7,7 @@ import { HomeContext } from '../../context';
 import PaginationProvider from '../../context/PaginationContext';
 import { useFetchDishes } from '../../common/hooks/useFetchDishes';
 import { CompanyContext } from '../../context';
-import { LayoutWrapper } from '../../common/layouts';
+import { Block, LayoutWrapper } from '../../common/layouts';
 import { ProductList } from '../../common/components/ProductList';
 import { Categories } from '../../common/components/Categories';
 import { messages } from '../../common/constants';
@@ -36,11 +36,14 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <Container padding="20px 30px" className={classNames('topics')}>
-        <Container>
-          <Categories />
-        </Container>
-      </Container>
+      <Block
+        component={Container}
+        padding="20px 30px"
+        className={classNames('topics')}
+        blockId="categories-container"
+      >
+        <Categories />
+      </Block>
 
       <News />
 

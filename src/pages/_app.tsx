@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 import type { AppProps } from 'next/app';
 import { ThemeGamification } from '@gamiui/standard';
@@ -17,6 +17,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const getLayout =
     (Component as TComponent).getLayout ||
     ((children: React.ReactNode) => children);
+
+  useEffect(() => {
+    window.addEventListener('message', (event) => {
+      if (event.origin === 'http://localhost:3000') {
+        console.log(event.data, 'Data from parent container');
+      }
+    });
+  }, []);
 
   return (
     <ThemeGamification>
