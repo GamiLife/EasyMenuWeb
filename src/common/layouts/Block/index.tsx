@@ -17,6 +17,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   const basePathSiteEditor = 'http://localhost:3000';
 
   const sendMessage = () => {
+    if (typeof window === undefined) return;
     window.parent.postMessage(
       {
         type: 'block-selection',
