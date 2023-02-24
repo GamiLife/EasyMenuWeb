@@ -15,7 +15,6 @@ import { get } from '../../config/api';
 const CompanyProvider = ({ children }: ICompanyProvider) => {
   const router = useRouter();
   const { slugCompany } = router.query;
-  console.log(slugCompany);
 
   const [brand, setBrand] = React.useState(defaultCompanyValues.brand);
   const [company, setCompany] = React.useState(defaultCompanyValues.company);
@@ -34,6 +33,16 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
   const [isEnabledCompany, setIsEnabledCompany] = React.useState(
     defaultCompanyValues.isEnabledCompany
   );
+
+  React.useEffect(() => {
+    if (typeof window === undefined) return;
+
+    window.addEventListener('message', (event) => {
+      if (event.origin === 'http://localhost:3000') {
+        console.log(event.data, 'Data from parent container');
+      }
+    });
+  }, []);
 
   React.useEffect(() => {
     if (!slugCompany) return;

@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Container, Pagination, Empty } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import { Block, LayoutWrapper } from '../../common/layouts';
 import PaginationProvider from '../../context/pagination/provider';
 import { CompanyContext } from '../../context/company';
 import { useFetchDishes } from '../../common/hooks/useFetchDishes';
 import NextBreadcrumbs from '../../common/components/NextBreadcrumbs';
-import { Block, LayoutWrapper } from '../../common/layouts';
 import { usePagination } from '../../common/hooks';
 import { ProductList } from '../../common/components/ProductList';
 import { HomeContext } from '../../context/home';
@@ -14,6 +14,7 @@ import { Categories } from '../../common/components/Categories';
 import { messages } from '../../common/constants';
 import Custom404 from '../404';
 import { Spinner } from '../../common/components/Spinner';
+import homeBlock from '../../common/blocks/home-block.json';
 import { News } from '../../common/components/News';
 
 const { pageHome } = messages;
@@ -37,7 +38,7 @@ export default function Home() {
         component={Container}
         padding="0 30px 20px"
         className={classNames('topics')}
-        blockId="categories-container"
+        blockId={homeBlock.CATEGORIES_CONTAINER}
       >
         <NextBreadcrumbs />
         <Categories />

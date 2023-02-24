@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Icon } from '@gamiui/standard';
+import { Container, Icon } from '@gamiui/standard';
 
 import { PaginationContext } from '../../../context/pagination';
 import { CompanyContext } from '../../../context/company';
@@ -8,6 +8,9 @@ import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';
 import * as S from './styles';
+import { Block } from '../../layouts';
+
+import homeBlock from '../../blocks/home-block.json';
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -34,6 +37,7 @@ export const Categories = () => {
   return (
     <S.Categories>
       {categories?.map(({ id, title, iconId, imageCategory }) => (
+        // <Block key={id} component={Container} blockId={homeBlock.CATEGORY_ITEM}>
         <S.Category
           className={id === idCategory ? 'active' : ''}
           key={id}
@@ -59,6 +63,7 @@ export const Categories = () => {
             color={id === idCategory ? lightTheme.extended.oceanStrong : ''}
           />
         </S.Category>
+        // </Block>
       ))}
     </S.Categories>
   );

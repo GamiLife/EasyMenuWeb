@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 
 type TBlock<P> = P & {
   component: React.FC<P>;
@@ -14,9 +14,11 @@ interface IBlock {
  * @returns
  */
 export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
+  // const {setBlockIdActive} = useContext(Theme);
   const basePathSiteEditor = 'http://localhost:3000';
 
   const sendMessage = () => {
+    if (typeof window === undefined) return;
     window.parent.postMessage(
       {
         type: 'block-selection',
@@ -31,6 +33,8 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
     const iframeParent = window.parent;
     if (!iframeParent) return;
 
+    // Add validation
+    //Comment
     iframeParent.postMessage(
       {
         type: 'block-hover',
@@ -39,6 +43,9 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
       },
       basePathSiteEditor
     );
+    // Comment
+
+    // setBlockIdActive(props.blockId)
   };
 
   return (
