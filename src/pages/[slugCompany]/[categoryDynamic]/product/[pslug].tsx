@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import { Container } from '@gamiui/standard';
 
 import { useFetchDishesId } from '../../../../common/hooks';
+import { CompanyContext } from '../../../../context/company';
 import { ProductDetails } from '../../../../common/components/ProductDetails';
-import { CompanyContext } from '../../../../context';
 import { LayoutWrapper } from '../../../../common/layouts';
 import Custom404 from '../../../404';
 

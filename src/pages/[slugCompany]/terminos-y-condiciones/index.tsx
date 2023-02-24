@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import classNames from 'classnames';
 import { Container } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useFetchStaticPages } from '../../../common/hooks/useFetchStaticPages';
 import { CompanyContext } from '../../../context';

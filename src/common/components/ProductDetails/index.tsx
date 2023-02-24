@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useFetchDishesId } from '../../hooks';
+import NextBreadcrumbs from '../NextBreadcrumbs';
 import { NextImage } from '../NextImage';
 import * as S from './styles';
-
-// import NextBreadcrumbs from '../NextBreadcrumbs';
 
 export const ProductDetails = () => {
   const { t } = useTranslation();
@@ -17,13 +16,10 @@ export const ProductDetails = () => {
 
   return (
     <S.ProductDetails>
+      <S.BreadcrumbContainer>
+        <NextBreadcrumbs />
+      </S.BreadcrumbContainer>
       <S.ContentContainer>
-        {/* <NextBreadcrumbs /> */}
-        {/* <NextBreadcrumbs getDefaultTextGenerator={(path) => titleize(path)} /> */}
-        {/* <NextBreadcrumbs
-          getDefaultTextGenerator={getDefaultTextGenerator}
-          getTextGenerator={getTextGenerator}
-        /> */}
         <S.BackLink href="/">
           <S.BackIcon name="setting" />
           {t('pageProductDetails.back')}

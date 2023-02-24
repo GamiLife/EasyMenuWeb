@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import classNames from 'classnames';
 import { Card, Container, RichText, Title } from '@gamiui/standard';
+import classNames from 'classnames';
 
-import { HomeContext } from '../../../context';
+import { HomeContext } from '../../../context/home';
 import * as S from './styles';
 
 export interface IProduct {

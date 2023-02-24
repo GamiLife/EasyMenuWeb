@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import { ThemeGamification } from '@gamiui/standard';
 
 import { I18nextProvider } from 'react-i18next';
-import CompanyProvider from '../context/CompanyContext';
+import CompanyProvider from '../context/company/provider';
 import HomeProvider from '../context/home/provider';
 import i18n from './[slugCompany]/i18n';
 import '../../styles/globals.css';

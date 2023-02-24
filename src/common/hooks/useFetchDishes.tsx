@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { usePagination } from './usePagination';
-import { IProduct } from '../components/Product';
-import { useToggle } from './useToggle';
 import { useDebounce } from './useDebounce';
+import { useToggle } from './useToggle';
 import { useSearch } from './useSearch';
+import { IProduct } from '../components/Product';
 import { get } from '../../config/api';
 
 interface IUseFetchDishes {
@@ -14,14 +14,7 @@ interface IUseFetchDishes {
 export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   const [productsByPage, setProductsByPage] = useState<IProduct[]>([]);
 
-  const {
-    page,
-    numberPages,
-    pageNumber,
-    SIZE_BY_PAGE,
-    setTotalItems,
-    handleChangePage,
-  } = usePagination(5);
+  const { pageNumber, SIZE_BY_PAGE, setTotalItems } = usePagination(5);
   const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
     defaultVisible: true,
   });
@@ -41,7 +34,6 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
         setTotalItems(metaData.pagination.totalItems);
         setIsLoading(false);
         setShowMessage(false);
-        // setValue(idCategory);
         !data.length && setShowMessage(true);
       } catch (e) {
         console.log(e);
@@ -51,23 +43,16 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   }, [
     SIZE_BY_PAGE,
     debouncedValue,
-    // idCategory,
+    idCategory,
     pageNumber,
     setIsLoading,
     setShowMessage,
     setTotalItems,
-    // setValue,
-    // storedValue,
   ]);
 
   return {
-    page,
-    numberPages,
     productsByPage,
     isLoading,
     showMessage,
-    // storedValue,
-    handleChangePage,
-    // setValue,
   };
 };

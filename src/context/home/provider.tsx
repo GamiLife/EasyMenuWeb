@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { useLocalStorage } from '../../common/hooks/useLocalStorage';
+
+import { useLocalStorage } from '../../common/hooks';
 import { IHomeProvider, defaultHomeValues, HomeContext } from './context';
 
 const HomeProvider = ({ children }: IHomeProvider) => {
   const [idCategory, setIdCategory] = useLocalStorage<number>(
-    'categorySelectedId',
+    'categorySelectedById',
     defaultHomeValues.idCategory
   );
-  const [categoryName, setCategoryName] = React.useState(
+  const [categoryName, setCategoryName] = useLocalStorage<string>(
+    'categorySelectedByName',
     defaultHomeValues.categoryName
   );
 

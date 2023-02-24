@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { Container, RichText } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { LayoutWrapper } from '../../common/layouts';
 import { NextImage } from '../../common/components/NextImage';

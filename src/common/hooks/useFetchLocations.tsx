@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { CompanyContext } from '../../context';
+import { CompanyContext } from '../../context/company';
 import { usePagination } from './usePagination';
 import { ILocation } from '../components/Location';
 import { useToggle } from './useToggle';
@@ -25,7 +25,6 @@ export const useFetchLocations = () => {
   });
 
   useEffect(() => {
-    // if(!id) return;
     async function locationsFetch() {
       try {
         const { data, metaData } = await get(

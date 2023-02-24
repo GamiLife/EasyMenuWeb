@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import classNames from 'classnames';
 import { Container, Pagination, RichText } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../../common/hooks';
 import { useFetchLocations } from '../../../common/hooks/useFetchLocations';
-import PaginationProvider from '../../../context/PaginationContext';
+import PaginationProvider from '../../../context/pagination/provider';
 import { CompanyContext } from '../../../context';
 import { LayoutWrapper } from '../../../common/layouts';
 import { StoresList } from '../../../common/components/StoresList';

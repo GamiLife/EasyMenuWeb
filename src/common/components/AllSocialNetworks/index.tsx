@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { SocialNetworks } from '@gamiui/standard';
 
-import { CompanyContext, ISocialNetworks } from '../../../context';
+import { CompanyContext, ISocialNetworks } from '../../../context/company';
 import * as S from './styles';
 
 type TSocialNetworks = 'Instagram' | 'Whatsapp' | 'Facebook' | 'Tiktok';

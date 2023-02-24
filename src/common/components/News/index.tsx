@@ -1,6 +1,6 @@
-import { Fragment, useContext, useEffect, useState } from 'react';
+import React from 'react';
 
-import { CompanyContext } from '../../../context';
+import { CompanyContext } from '../../../context/company';
 import { NewsSlider } from './NewsSlider';
 import { get } from '../../../config/api';
 
@@ -14,15 +14,15 @@ export interface INews {
 }
 
 export const News = () => {
-  const [news, setNews] = useState<INews[] | undefined>(undefined);
+  const [news, setNews] = React.useState<INews[] | undefined>(undefined);
   const {
     company: { id },
-  } = useContext(CompanyContext);
+  } = React.useContext(CompanyContext);
 
   const date = new Date();
   const toISOString = date.toISOString();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!id) return;
     async function newsFetch() {
       try {
@@ -37,5 +37,9 @@ export const News = () => {
     newsFetch();
   }, [id]);
 
-  return <Fragment>{!!news?.length && <NewsSlider news={news} />}</Fragment>;
+  return (
+    <React.Fragment>
+      {!!news?.length && <NewsSlider news={news} />}
+    </React.Fragment>
+  );
 };
