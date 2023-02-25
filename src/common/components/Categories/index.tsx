@@ -8,7 +8,6 @@ import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
 import { get } from '../../../config/api';
 import * as S from './styles';
-import { Block } from '../../layouts';
 
 import homeBlock from '../../blocks/home-block.json';
 
@@ -35,7 +34,10 @@ export const Categories = () => {
   }, [id]);
 
   return (
-    <S.Categories component={Container} blockId="categories-container">
+    <S.Categories
+      component={Container}
+      blockId={homeBlock.CATEGORIES_CONTAINER}
+    >
       {categories?.map(({ id, title, iconId, imageCategory }) => (
         // <Block key={id} component={Container} blockId={homeBlock.CATEGORY_ITEM}>
         <S.Category
