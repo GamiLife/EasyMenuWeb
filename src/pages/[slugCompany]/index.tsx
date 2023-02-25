@@ -6,7 +6,7 @@ import PaginationProvider from '../../context/pagination/provider';
 import { CompanyContext } from '../../context/company';
 import { useFetchDishes } from '../../common/hooks/useFetchDishes';
 import NextBreadcrumbs from '../../common/components/NextBreadcrumbs';
-import { Block, LayoutWrapper } from '../../common/layouts';
+import { LayoutWrapper } from '../../common/layouts';
 import { usePagination } from '../../common/hooks';
 import { ProductList } from '../../common/components/ProductList';
 import { HomeContext } from '../../context/home';
@@ -33,15 +33,10 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <Block
-        component={Container}
-        padding="0 30px 20px"
-        className={classNames('topics')}
-        blockId="categories-container"
-      >
+      <Container padding="0 30px 20px" className={classNames('topics')}>
         <NextBreadcrumbs />
         <Categories />
-      </Block>
+      </Container>
 
       <News />
 

@@ -15,7 +15,6 @@ import { get } from '../../config/api';
 const CompanyProvider = ({ children }: ICompanyProvider) => {
   const router = useRouter();
   const { slugCompany } = router.query;
-  console.log(slugCompany);
 
   const [brand, setBrand] = React.useState(defaultCompanyValues.brand);
   const [company, setCompany] = React.useState(defaultCompanyValues.company);

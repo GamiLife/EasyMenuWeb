@@ -3,8 +3,10 @@ import styled from '@emotion/styled';
 import { Container, Icon } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
+import { Block } from '../Block';
+import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
-export const Header = styled(Container)`
+export const Header = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.white};
   display: flex;
   justify-content: space-between;

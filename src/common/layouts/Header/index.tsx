@@ -7,6 +7,7 @@ import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';
+import { Block } from '../Block';
 
 export const Header = () => {
   const { i18n, t } = useCustomTranslation();
@@ -22,7 +23,11 @@ export const Header = () => {
   }
 
   return (
-    <S.Header className={classNames('header')}>
+    <S.Header
+      component={Container}
+      className={classNames('header')}
+      blockId="header-container"
+    >
       <S.HeaderLeft
         padding="1rem"
         className={classNames('header__title__wrapper')}

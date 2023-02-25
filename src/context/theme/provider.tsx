@@ -7,7 +7,6 @@
 // const ThemeProvider = ({ children }: IThemeProvider) => {
 //   const router = useRouter();
 //   const { slugCompany } = router.query;
-
 //   const [theme, setTheme] = React.useState();
 
 //   // React.useEffect(() => {

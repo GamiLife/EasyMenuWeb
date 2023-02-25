@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Icon } from '@gamiui/standard';
+import { Container, Icon } from '@gamiui/standard';
 
 import { PaginationContext } from '../../../context/pagination';
 import { CompanyContext } from '../../../context/company';
@@ -32,7 +32,7 @@ export const Categories = () => {
   }, [id]);
 
   return (
-    <S.Categories>
+    <S.Categories component={Container} blockId="categories-container">
       {categories?.map(({ id, title, iconId, imageCategory }) => (
         <S.Category
           className={id === idCategory ? 'active' : ''}

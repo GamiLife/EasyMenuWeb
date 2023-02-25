@@ -1,0 +1,8 @@
+{
+    "CATEGORIES_CONTAINER": "categories-container",
+    "HEADER_CONTAINER": "header-container",
+    "WRAPPER_PAGE": "wrapper-page",
+    "CARD_PRODUCT": "card-product",
+    "SHIPPING_BUTTON": "shipping-button",
+    "FOOTER_CONTAINER": "footer-container"
+}
