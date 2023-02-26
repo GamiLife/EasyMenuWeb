@@ -49,8 +49,9 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
       window.parent.postMessage(
         {
           type: 'block-selection',
-          blockId: props.blockId,
-          message: 'click',
+          message: {
+            blockId: props.blockId,
+          },
         },
         getTargetOrigin()
       );

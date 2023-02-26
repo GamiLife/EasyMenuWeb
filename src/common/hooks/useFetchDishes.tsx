@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 
 import { usePagination } from './usePagination';
@@ -40,15 +41,7 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
       }
     }
     dishesFetch();
-  }, [
-    SIZE_BY_PAGE,
-    debouncedValue,
-    idCategory,
-    pageNumber,
-    setIsLoading,
-    setShowMessage,
-    setTotalItems,
-  ]);
+  }, [idCategory, pageNumber, debouncedValue]);
 
   return {
     productsByPage,
