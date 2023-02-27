@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Layout } from '@gamiui/standard';
 
 import { Header, Footer } from '..';
+import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
 
 export interface ILayoutWrapper {
@@ -35,6 +36,9 @@ export const LayoutWrapper = ({
       <S.LayoutHeader>
         <Header />
       </S.LayoutHeader>
+      {/* <S.Content component={Layout.Content} blockId={homeBlock.WRAPPER_PAGE}>
+        {children}
+      </S.Content> */}
       <S.Content>{children}</S.Content>
       <S.LayoutFooter>
         <Footer />

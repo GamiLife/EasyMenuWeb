@@ -6,10 +6,9 @@ import { CompanyContext } from '../../../context/company';
 import { HomeContext } from '../../../context/home';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
+import homeBlock from '../../blocks/home-block.json';
 import { get } from '../../../config/api';
 import * as S from './styles';
-
-import homeBlock from '../../blocks/home-block.json';
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);

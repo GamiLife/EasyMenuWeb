@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Card, Container, RichText, Title } from '@gamiui/standard';
+import { Button, Card, Container, RichText, Title } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { HomeContext } from '../../../context/home';
+import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
 
 export interface IProduct {
@@ -29,7 +30,7 @@ export const Product = ({
   const { slugCompany } = router.query;
 
   return (
-    <S.Product>
+    <S.Product component={Container} blockId={homeBlock.PRODUCT_CARD}>
       <Card width="full" shadow="xs" rounded="md">
         <Link
           href={`${slugCompany}/${categoryName
@@ -66,7 +67,12 @@ export const Product = ({
                 .toLowerCase()
                 .replace(' ', '-')}/product/${slug}`}
             >
-              <S.ProductButton type="button" rounded="sm">
+              <S.ProductButton
+                component={Button}
+                blockId={homeBlock.SHIPPING_BUTTON}
+                type="button"
+                rounded="sm"
+              >
                 Comprar
               </S.ProductButton>
             </Link>

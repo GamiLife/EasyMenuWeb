@@ -1,6 +1,7 @@
 import { Card, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import locationsBlock from '../../blocks/locations-block.json';
 import * as S from './styles';
 
 export interface ILocation {
@@ -12,7 +13,13 @@ export interface ILocation {
 
 export const Location = ({ address, name, phone }: ILocation) => {
   return (
-    <S.StoreItem width="full" shadow="xs" rounded="md">
+    <S.StoreItem
+      component={Card}
+      blockId={locationsBlock.LOCATION_CARD}
+      width="full"
+      shadow="xs"
+      rounded="md"
+    >
       <Card.Content
         title={<S.StoreItemTitle level="h3">{name}</S.StoreItemTitle>}
         description={

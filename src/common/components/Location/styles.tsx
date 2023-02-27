@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
-import { Card, Container, Icon, RichText, Title } from '@gamiui/standard';
+import { Container, Icon, RichText, Title } from '@gamiui/standard';
+import { ICard } from '@gamiui/standard/lib/types/designSystem/molecules/Card/Card';
 
 import { lightTheme, tokens } from '../../../../styles/design-system';
+import { Block } from '../../layouts';
 
-export const StoreItem = styled(Card)``;
+export const StoreItem = styled(Block<ICard>)``;
 
 export const StoreItemTitle = styled(Title)`
   font-size: 18px;

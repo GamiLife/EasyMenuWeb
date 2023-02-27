@@ -5,9 +5,9 @@ import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
+import homeBlock from '../../blocks/home-block.json';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';
-import { Block } from '../Block';
 
 export const Header = () => {
   const { i18n, t } = useCustomTranslation();
@@ -26,7 +26,7 @@ export const Header = () => {
     <S.Header
       component={Container}
       className={classNames('header')}
-      blockId="header-container"
+      blockId={homeBlock.HEADER_CONTAINER}
     >
       <S.HeaderLeft
         padding="1rem"

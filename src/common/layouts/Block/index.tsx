@@ -1,7 +1,7 @@
 /* eslint-disable no-empty */
+import { Fragment } from 'react';
 import { Theme } from '@emotion/react';
 import { StyledComponent } from '@emotion/styled';
-import { Fragment } from 'react';
 
 export interface IBlock {
   blockId: string;
@@ -76,11 +76,17 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
     } catch (error) {}
   };
 
+  const handleClick = (e: any) => {
+    sendMessage();
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
   return (
     <Fragment>
       <props.component
         {...props}
-        onClick={sendMessage}
+        onClick={handleClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={props.className}

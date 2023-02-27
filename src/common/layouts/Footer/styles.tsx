@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { Button, Container, Icon, RichText, Title } from '@gamiui/standard';
+import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
+import { Block } from '../Block';
 
-export const Footer = styled(Container)`
+export const Footer = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.first};
   color: ${lightTheme.primary.white};
   margin: auto;
