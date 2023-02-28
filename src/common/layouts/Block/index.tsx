@@ -1,7 +1,9 @@
 /* eslint-disable no-empty */
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import { Theme } from '@emotion/react';
 import { StyledComponent } from '@emotion/styled';
+
+import { ThemeContext } from '../../../context/theme';
 
 export interface IBlock {
   blockId: string;
@@ -27,6 +29,8 @@ export type TBlockStyle<P> = StyledComponent<
  */
 export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   const basePathSiteEditor = 'http://localhost:3000';
+  const { blockIdActive } = useContext(ThemeContext);
+  // console.log(blockIdActive);
 
   const getTargetOrigin = () => {
     try {
@@ -90,6 +94,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={props.className}
+        border={props.blockId === blockIdActive ? 'blue' : ''}
       />
     </Fragment>
   );

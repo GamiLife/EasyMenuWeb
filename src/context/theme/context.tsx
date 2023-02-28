@@ -1,32 +1,20 @@
 import React from 'react';
 
 export interface IThemeContext {
-  theme: ITheme[];
+  blockIdActive: string;
+  setBlockIdActive: (value: string) => void;
 }
 
 export interface IThemeProvider {
   children: React.ReactNode;
 }
 
-export interface ITheme {
-  id: number;
-  themeMode: string;
-  type: string;
-  value: string;
-}
-
 export const defaultThemeValues = {
-  //   theme: {
-  //     id: 0,
-  //     themeMode: '',
-  //     type: '',
-  //     value: '',
-  //   },
-  theme: [],
+  blockIdActive: 'blue',
 };
 
 export const defaultThemeSetter = {
-  setTheme: () => {
+  setBlockIdActive: () => {
     return;
   },
 };

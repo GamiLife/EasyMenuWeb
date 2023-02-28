@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { Container, Icon } from '@gamiui/standard';
+import { Button, Container, Icon } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
@@ -84,6 +84,8 @@ export const Footer = () => {
         </S.SocialBlock>
         <S.ScrollButtonContainer onClick={handleScrollUp}>
           <S.ScrollButton
+            // component={Button}
+            // blockId={homeBlock.SCROLL_BUTTON}
             preffix={
               <Icon
                 color={`${lightTheme.primary.white}`}

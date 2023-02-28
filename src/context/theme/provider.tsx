@@ -1,26 +1,33 @@
-// import * as React from 'react';
-// import { useRouter } from 'next/router';
+import * as React from 'react';
 
-// import { IThemeProvider, ThemeContext } from './context';
-// import { get } from '../../config/api';
+import { defaultThemeValues, IThemeProvider, ThemeContext } from './context';
 
-// const ThemeProvider = ({ children }: IThemeProvider) => {
-//   const router = useRouter();
-//   const { slugCompany } = router.query;
-//   const [theme, setTheme] = React.useState();
+const ThemeProvider = ({ children }: IThemeProvider) => {
+  const [blockIdActive, setBlockIdActive] = React.useState(
+    defaultThemeValues.blockIdActive
+  );
 
-//   // React.useEffect(() => {
-//   //   async function companyFetch() {
-//   //     const { data } = await get(`companies/slug/${slugCompany}`);
-//   //     //   Probar result la línea de arriba
-//   //     // console.log(data);
-//   //   }
-//   //   companyFetch();
-//   // }, []);
+  React.useEffect(() => {
+    if (typeof window === undefined) return;
 
-//   return <ThemeContext.Provider value={{}}>{children}</ThemeContext.Provider>;
-// };
+    window.addEventListener('message', (event) => {
+      if (event.origin !== 'http://localhost:3000') return;
+      const { type } = event.data;
 
-// export default ThemeProvider;
+      if (!type) return;
+      if (type === 'block-edit') {
+        console.log(event.data, type);
+        setBlockIdActive(event.data.message.blockId);
+        return;
+      }
+    });
+  }, []);
 
-// const [blockIdActive, setBlockIdActive] = React.useState();
+  return (
+    <ThemeContext.Provider value={{ blockIdActive, setBlockIdActive }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export default ThemeProvider;

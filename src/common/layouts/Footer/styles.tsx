@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 import { Button, Container, Icon, RichText, Title } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
+import { IButton } from '@gamiui/standard/lib/types/designSystem/atoms/Button/Button';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { Block } from '../Block';
@@ -85,6 +86,13 @@ export const ScrollButtonContainer = styled(Container)`
   right: 4%;
   top: 3%;
 `;
+
+// export const ScrollButton = styled(Block<IButton>)`
+//   background-color: ${lightTheme.primary.mediumPurple};
+//   box-shadow: none;
+//   display: inline-block;
+//   padding: 1px 6px;
+// `;
 
 export const ScrollButton = styled(Button)`
   background-color: ${lightTheme.primary.mediumPurple};
