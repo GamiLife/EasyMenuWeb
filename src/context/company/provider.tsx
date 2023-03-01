@@ -35,21 +35,6 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
   );
 
   React.useEffect(() => {
-    if (typeof window === undefined) return;
-
-    window.addEventListener('message', (event) => {
-      if (event.origin !== 'http://localhost:3000') return;
-      const { type } = event.data;
-
-      if (!type) return;
-      if (type === 'block-edit') {
-        console.log(event.data, type);
-        return;
-      }
-    });
-  }, []);
-
-  React.useEffect(() => {
     if (!slugCompany) return;
     async function companyFetch() {
       const { data, statusCode } = await get(`companies/slug/${slugCompany}`);

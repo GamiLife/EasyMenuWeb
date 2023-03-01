@@ -10,7 +10,7 @@ export interface IThemeProvider {
 }
 
 export const defaultThemeValues = {
-  blockIdActive: 'blue',
+  blockIdActive: '',
 };
 
 export const defaultThemeSetter = {

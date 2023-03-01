@@ -17,7 +17,6 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
       if (!type) return;
       if (type === 'block-edit') {
         console.log(event.data, type);
-        setBlockIdActive(event.data.message.blockId);
         return;
       }
     });

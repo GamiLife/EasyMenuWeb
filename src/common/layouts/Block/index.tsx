@@ -1,5 +1,5 @@
 /* eslint-disable no-empty */
-import { Fragment, useContext } from 'react';
+import * as React from 'react';
 import { Theme } from '@emotion/react';
 import { StyledComponent } from '@emotion/styled';
 
@@ -29,8 +29,7 @@ export type TBlockStyle<P> = StyledComponent<
  */
 export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   const basePathSiteEditor = 'http://localhost:3000';
-  const { blockIdActive } = useContext(ThemeContext);
-  // console.log(blockIdActive);
+  const { blockIdActive, setBlockIdActive } = React.useContext(ThemeContext);
 
   const getTargetOrigin = () => {
     try {
@@ -66,6 +65,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
     if (typeof window === undefined) return;
 
     try {
+      setBlockIdActive(props.blockId);
       getTargetOrigin();
       console.log('hover');
     } catch (error) {}
@@ -87,15 +87,17 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   };
 
   return (
-    <Fragment>
+    <React.Fragment>
       <props.component
         {...props}
         onClick={handleClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={props.className}
-        border={props.blockId === blockIdActive ? 'blue' : ''}
+        style={{
+          border: props.blockId === blockIdActive ? '1px solid blue' : '',
+        }}
       />
-    </Fragment>
+    </React.Fragment>
   );
 };
