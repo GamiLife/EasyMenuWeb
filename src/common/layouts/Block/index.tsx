@@ -29,7 +29,19 @@ export type TBlockStyle<P> = StyledComponent<
  */
 export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   const basePathSiteEditor = 'http://localhost:3000';
-  const { blockIdActive, setBlockIdActive } = React.useContext(ThemeContext);
+  const { blockIdActive, setBlockIdActive, blocks } =
+    React.useContext(ThemeContext);
+
+  const get = () => {
+    const currentBlock = Object.entries(blocks).find(
+      ([key]) => props.blockId === key
+    );
+    if (!currentBlock) return {};
+    const [_, value] = currentBlock;
+    const { background, color } = value;
+
+    return { background, color };
+  };
 
   const getTargetOrigin = () => {
     try {
@@ -96,6 +108,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
         className={props.className}
         style={{
           border: props.blockId === blockIdActive ? '1px solid blue' : '',
+          ...get(),
         }}
       />
     </React.Fragment>
