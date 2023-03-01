@@ -4,6 +4,7 @@ import { Theme } from '@emotion/react';
 import { StyledComponent } from '@emotion/styled';
 
 import { ThemeContext } from '../../../context/theme';
+import { lightTheme } from '../../../../styles/design-system';
 
 export interface IBlock {
   blockId: string;
@@ -107,7 +108,10 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
         onMouseLeave={onMouseLeave}
         className={props.className}
         style={{
-          border: props.blockId === blockIdActive ? '1px solid blue' : '',
+          border:
+            props.blockId === blockIdActive
+              ? `1px solid ${lightTheme.primary.jordyBlue}`
+              : '',
           ...get(),
         }}
       />

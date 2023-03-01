@@ -13,7 +13,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     defaultThemeValues.blockIdActive
   );
   //CURRENT THEME BLOCKS
-  const [updatedThemeBlocks, setUpdatedThemeBlocks] = React.useState<IBlocks>(
+  const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<IBlocks>(
     defaultThemeValues.blocks
   );
   //PREVIEW THEME BLOCKS
@@ -22,12 +22,13 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   );
 
   //Cuando le da en regresar;
-  // blocks = updatedThemeBlocks
-  // setBlocks(updatedThemeBlocks)
+  // blocks = currentThemeBlocks
+  // setBlocks(currentThemeBlocks)
 
   const handleOnBlockEdit = (eventData: TBlockEditData) => {
     console.log(eventData);
     const { color, background, blockId } = eventData;
+    console.log(background);
   };
 
   React.useEffect(() => {
@@ -36,7 +37,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     window.addEventListener('message', (event) => {
       if (event.origin !== 'http://localhost:3000') return;
       const { type, message } = event.data;
-
+      console.log(message);
       if (!type) return;
       // Tienes que setearle al defaultBlocks lo que esta en blocks
       if (type === 'block-edit-submit') {
@@ -50,6 +51,12 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
       }
       if (type === 'block-edit') {
         handleOnBlockEdit(message);
+        setCurrentThemeBlocks({
+          [message.blockId]: {
+            background: message.background,
+            color: '',
+          },
+        });
         return;
       }
     });
@@ -57,7 +64,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
 
   return (
     <ThemeContext.Provider
-      value={{ blockIdActive, setBlockIdActive, blocks, setBlocks }}
+      value={{ blockIdActive, blocks, setBlockIdActive, setBlocks }}
     >
       {children}
     </ThemeContext.Provider>
