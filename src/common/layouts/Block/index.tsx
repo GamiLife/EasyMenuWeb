@@ -10,9 +10,11 @@ export interface IBlock {
   blockId: string;
   className?: string;
 }
+
 export type TBlock<P> = P & {
   component: React.FC<P>;
 };
+
 export type TBlockStyle<P> = StyledComponent<
   P & {
     component: React.FC<P>;
@@ -30,16 +32,22 @@ export type TBlockStyle<P> = StyledComponent<
  */
 export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   const basePathSiteEditor = 'http://localhost:3000';
-  const { blockIdActive, setBlockIdActive, blocks } =
+  const { blockIdActive, setBlockIdActive, blocks, setInitialStyles } =
     React.useContext(ThemeContext);
 
   const get = () => {
     const currentBlock = Object.entries(blocks).find(
       ([key]) => props.blockId === key
     );
+    // console.log(props.blockId);
     if (!currentBlock) return {};
     const [_, value] = currentBlock;
     const { background, color } = value;
+    // console.log(props.blockId);
+    if (props.blockId === blockIdActive) {
+      setInitialStyles(value);
+      // console.log(value);
+    }
 
     return { background, color };
   };
@@ -78,7 +86,9 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
     if (typeof window === undefined) return;
 
     try {
+      // console.log(props.blockId);
       setBlockIdActive(props.blockId);
+      // setInitialStyles({background, color})
       getTargetOrigin();
       console.log('hover');
     } catch (error) {}

@@ -5,8 +5,10 @@ import { lightTheme } from '../../../styles/design-system';
 export interface IThemeContext {
   blockIdActive: string;
   blocks: IBlocks;
+  initialStyles: IBlockItem;
   setBlockIdActive: (value: string) => void;
   setBlocks: (value: IBlocks) => void;
+  setInitialStyles: (value: IBlockItem) => void;
 }
 
 export interface IBlockItem {
@@ -73,6 +75,10 @@ const mockBlocks = {
 export const defaultThemeValues = {
   blockIdActive: '',
   blocks: mockBlocks,
+  initialStyles: {
+    background: '',
+    color: '',
+  },
 };
 
 export const defaultThemeSetter = {
@@ -80,6 +86,9 @@ export const defaultThemeSetter = {
     return;
   },
   setBlocks: () => {
+    return;
+  },
+  setInitialStyles: () => {
     return;
   },
 };

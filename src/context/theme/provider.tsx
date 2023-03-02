@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 
 import {
@@ -20,15 +21,43 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   const [blocks, setBlocks] = React.useState<IBlocks>(
     defaultThemeValues.blocks
   );
+  // console.log(blocks);
+
+  //Jueves
+  const [initialStyles, setInitialStyles] = React.useState(
+    defaultThemeValues.initialStyles
+  );
+  console.log(initialStyles);
+  //Jueves
 
   //Cuando le da en regresar;
   // blocks = currentThemeBlocks
   // setBlocks(currentThemeBlocks)
 
   const handleOnBlockEdit = (eventData: TBlockEditData) => {
-    console.log(eventData);
     const { color, background, blockId } = eventData;
-    console.log(background);
+    // console.log(eventData);
+
+    // console.log(eventData);
+    // const { blockId } = eventData;
+
+    // const {
+    //   [blockId]: { background, color },
+    // } = blocks;
+    setInitialStyles({
+      background: background ?? initialStyles.background,
+      color: color ?? initialStyles.color,
+    });
+    // console.log(background);
+    // console.log(color);
+
+    // setBlocks({
+    //   ...blocks,
+    //   [blockId]: {
+    //     background: background ?? initialStyles.background,
+    //     color: color ?? initialStyles.color,
+    //   },
+    // });
   };
 
   React.useEffect(() => {
@@ -37,7 +66,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     window.addEventListener('message', (event) => {
       if (event.origin !== 'http://localhost:3000') return;
       const { type, message } = event.data;
-      console.log(message);
+      // console.log(message, type);
       if (!type) return;
       // Tienes que setearle al defaultBlocks lo que esta en blocks
       if (type === 'block-edit-submit') {
@@ -51,20 +80,21 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
       }
       if (type === 'block-edit') {
         handleOnBlockEdit(message);
-        setCurrentThemeBlocks({
-          [message.blockId]: {
-            background: message.background,
-            color: '',
-          },
-        });
         return;
       }
     });
-  }, []);
+  }, [handleOnBlockEdit]);
 
   return (
     <ThemeContext.Provider
-      value={{ blockIdActive, blocks, setBlockIdActive, setBlocks }}
+      value={{
+        blockIdActive,
+        blocks,
+        setBlockIdActive,
+        initialStyles,
+        setBlocks,
+        setInitialStyles,
+      }}
     >
       {children}
     </ThemeContext.Provider>
