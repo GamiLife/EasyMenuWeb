@@ -6,6 +6,8 @@ export interface IThemeContext {
   blockIdActive: string;
   blocks: IBlocks;
   initialStyles: IBlockItem;
+  isEnableHover: boolean;
+  setIsEnableHover: (value: boolean) => void;
   setBlockIdActive: (value: string) => void;
   setBlocks: (value: IBlocks) => void;
   setInitialStyles: (value: IBlockItem) => void;
@@ -75,6 +77,7 @@ const mockBlocks = {
 export const defaultThemeValues = {
   blockIdActive: '',
   blocks: mockBlocks,
+  isEnableHover: false,
   initialStyles: {
     background: '',
     color: '',
@@ -89,6 +92,9 @@ export const defaultThemeSetter = {
     return;
   },
   setInitialStyles: () => {
+    return;
+  },
+  setIsEnableHover: () => {
     return;
   },
 };

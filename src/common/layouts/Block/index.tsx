@@ -32,8 +32,13 @@ export type TBlockStyle<P> = StyledComponent<
  */
 export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   const basePathSiteEditor = 'http://localhost:3000';
-  const { blockIdActive, setBlockIdActive, blocks, setInitialStyles } =
-    React.useContext(ThemeContext);
+  const {
+    isEnableHover,
+    blockIdActive,
+    setBlockIdActive,
+    blocks,
+    setInitialStyles,
+  } = React.useContext(ThemeContext);
 
   const get = () => {
     const currentBlock = Object.entries(blocks).find(
@@ -84,6 +89,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
 
   const onMouseEnter = () => {
     if (typeof window === undefined) return;
+    if (!isEnableHover) return;
 
     try {
       // console.log(props.blockId);
@@ -96,6 +102,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
 
   const onMouseLeave = () => {
     if (typeof window === undefined) return;
+    if (!isEnableHover) return;
 
     try {
       getTargetOrigin();
@@ -119,7 +126,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
         className={props.className}
         style={{
           border:
-            props.blockId === blockIdActive
+            props.blockId === blockIdActive && isEnableHover
               ? `1px solid ${lightTheme.primary.jordyBlue}`
               : '',
           ...get(),

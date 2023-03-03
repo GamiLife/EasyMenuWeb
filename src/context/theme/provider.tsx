@@ -10,6 +10,9 @@ import {
 } from './context';
 
 const ThemeProvider = ({ children }: IThemeProvider) => {
+  const [isEnableHover, setIsEnableHover] = React.useState(
+    defaultThemeValues.isEnableHover
+  );
   const [blockIdActive, setBlockIdActive] = React.useState(
     defaultThemeValues.blockIdActive
   );
@@ -82,18 +85,24 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
         handleOnBlockEdit(message);
         return;
       }
+      if (type === 'enable-hover') {
+        setIsEnableHover(message);
+        return;
+      }
     });
   }, [handleOnBlockEdit]);
 
   return (
     <ThemeContext.Provider
       value={{
+        isEnableHover,
         blockIdActive,
         blocks,
         setBlockIdActive,
         initialStyles,
         setBlocks,
         setInitialStyles,
+        setIsEnableHover,
       }}
     >
       {children}
