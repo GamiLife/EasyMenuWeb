@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { Container, Icon, Title } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
+import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
+import { Block } from '../../layouts';
 
 export const ProductDetails = styled(Container)`
   display: grid;
@@ -54,7 +56,7 @@ export const Selections = styled(Container)`
   row-gap: 1rem;
 `;
 
-export const SaucesArea = styled(Container)`
+export const SaucesArea = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.white};
   border: 1px solid ${lightTheme.neutral[400]};
   border-radius: 20px;
@@ -70,7 +72,7 @@ export const Label = styled.label`
   margin-right: 2rem;
 `;
 
-export const DishesArea = styled(Container)`
+export const DishesArea = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.white};
   border: 1px solid ${lightTheme.neutral[400]};
   border-radius: 20px;

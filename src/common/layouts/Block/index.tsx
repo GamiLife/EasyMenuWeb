@@ -35,23 +35,21 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   const {
     isEnableHover,
     blockIdActive,
-    setBlockIdActive,
     blocks,
+    setBlockIdActive,
     setInitialStyles,
+    setIsEnableHover,
   } = React.useContext(ThemeContext);
 
   const get = () => {
     const currentBlock = Object.entries(blocks).find(
       ([key]) => props.blockId === key
     );
-    // console.log(props.blockId);
     if (!currentBlock) return {};
     const [_, value] = currentBlock;
     const { background, color } = value;
-    // console.log(props.blockId);
     if (props.blockId === blockIdActive) {
       setInitialStyles(value);
-      // console.log(value);
     }
 
     return { background, color };
@@ -89,12 +87,10 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
 
   const onMouseEnter = () => {
     if (typeof window === undefined) return;
-    if (!isEnableHover) return;
-
+    setIsEnableHover(true);
+    setBlockIdActive(props.blockId);
+    // if (!isEnableHover) return;
     try {
-      // console.log(props.blockId);
-      setBlockIdActive(props.blockId);
-      // setInitialStyles({background, color})
       getTargetOrigin();
       console.log('hover');
     } catch (error) {}
@@ -102,8 +98,8 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
 
   const onMouseLeave = () => {
     if (typeof window === undefined) return;
-    if (!isEnableHover) return;
-
+    setIsEnableHover(false);
+    // if (!isEnableHover) return;
     try {
       getTargetOrigin();
       console.log('leave');

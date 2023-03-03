@@ -8,6 +8,8 @@ import NextBreadcrumbs from '../NextBreadcrumbs';
 import { NextImage } from '../NextImage';
 import * as S from './styles';
 
+import productDetailsBlock from '../../blocks/productDetails-block.json';
+
 export const ProductDetails = () => {
   const { t } = useTranslation();
 
@@ -28,7 +30,10 @@ export const ProductDetails = () => {
         <RichText text={description} margin="0 0 1.7rem" />
         <S.Selections>
           <Container>
-            <S.SaucesArea>
+            <S.SaucesArea
+              component={Container}
+              blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
+            >
               <S.SaucesTitle level="h5" margin="0 0 1rem">
                 {t('pageProductDetails.saucesTitle')}
               </S.SaucesTitle>
@@ -44,7 +49,10 @@ export const ProductDetails = () => {
             </S.SaucesArea>
           </Container>
           <Container>
-            <S.DishesArea>
+            <S.DishesArea
+              component={Container}
+              blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
+            >
               <S.DishesTitle level="h5" margin="0 0 1rem">
                 {t('pageProductDetails.dishesTitle')}
               </S.DishesTitle>

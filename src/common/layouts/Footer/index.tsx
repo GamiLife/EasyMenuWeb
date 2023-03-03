@@ -83,17 +83,13 @@ export const Footer = () => {
           <TestSocialNetworks />
         </S.SocialBlock>
         <S.ScrollButtonContainer onClick={handleScrollUp}>
-          <S.ScrollButton
-            // component={Button}
-            // blockId={homeBlock.SCROLL_BUTTON}
-            preffix={
-              <Icon
-                color={`${lightTheme.primary.white}`}
-                name="arrow__right"
-                size="30px"
-              />
-            }
-          ></S.ScrollButton>
+          <S.ScrollButton component={Button} blockId={homeBlock.SCROLL_BUTTON}>
+            <Icon
+              color={`${lightTheme.primary.white}`}
+              name="arrow__right"
+              size="30px"
+            />
+          </S.ScrollButton>
         </S.ScrollButtonContainer>
       </S.FooterSection>
       <S.RightReserved

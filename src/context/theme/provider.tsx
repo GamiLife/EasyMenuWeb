@@ -16,51 +16,26 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   const [blockIdActive, setBlockIdActive] = React.useState(
     defaultThemeValues.blockIdActive
   );
-  //CURRENT THEME BLOCKS
   const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<IBlocks>(
     defaultThemeValues.blocks
   );
-  //PREVIEW THEME BLOCKS
   const [blocks, setBlocks] = React.useState<IBlocks>(
     defaultThemeValues.blocks
   );
-  // console.log(blocks);
-
-  //Jueves
   const [initialStyles, setInitialStyles] = React.useState(
     defaultThemeValues.initialStyles
   );
-  console.log(initialStyles);
-  //Jueves
-
-  //Cuando le da en regresar;
-  // blocks = currentThemeBlocks
-  // setBlocks(currentThemeBlocks)
 
   const handleOnBlockEdit = (eventData: TBlockEditData) => {
     const { color, background, blockId } = eventData;
-    // console.log(eventData);
 
-    // console.log(eventData);
-    // const { blockId } = eventData;
-
-    // const {
-    //   [blockId]: { background, color },
-    // } = blocks;
-    setInitialStyles({
-      background: background ?? initialStyles.background,
-      color: color ?? initialStyles.color,
+    setBlocks({
+      ...blocks,
+      [blockId]: {
+        background: background ?? initialStyles.background,
+        color: color ?? initialStyles.color,
+      },
     });
-    // console.log(background);
-    // console.log(color);
-
-    // setBlocks({
-    //   ...blocks,
-    //   [blockId]: {
-    //     background: background ?? initialStyles.background,
-    //     color: color ?? initialStyles.color,
-    //   },
-    // });
   };
 
   React.useEffect(() => {
@@ -69,16 +44,16 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     window.addEventListener('message', (event) => {
       if (event.origin !== 'http://localhost:3000') return;
       const { type, message } = event.data;
-      // console.log(message, type);
+
       if (!type) return;
-      // Tienes que setearle al defaultBlocks lo que esta en blocks
       if (type === 'block-edit-submit') {
         console.log('submit');
+        setCurrentThemeBlocks(blocks);
         return;
       }
-      // Tienes que setearle al blocks lo que esta en defaultBlocks
       if (type === 'block-edit-rollback') {
         console.log('rollback');
+        setBlocks(currentThemeBlocks);
         return;
       }
       if (type === 'block-edit') {
@@ -90,7 +65,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
         return;
       }
     });
-  }, [handleOnBlockEdit]);
+  }, [initialStyles]);
 
   return (
     <ThemeContext.Provider

@@ -4,13 +4,13 @@ import { lightTheme } from '../../../styles/design-system';
 
 export interface IThemeContext {
   blockIdActive: string;
-  blocks: IBlocks;
   initialStyles: IBlockItem;
   isEnableHover: boolean;
-  setIsEnableHover: (value: boolean) => void;
+  blocks: IBlocks;
   setBlockIdActive: (value: string) => void;
-  setBlocks: (value: IBlocks) => void;
   setInitialStyles: (value: IBlockItem) => void;
+  setIsEnableHover: (value: boolean) => void;
+  setBlocks: (value: IBlocks) => void;
 }
 
 export interface IBlockItem {
@@ -60,11 +60,7 @@ const mockBlocks = {
     background: `${lightTheme.primary.mediumPurple}`,
     color: `${lightTheme.primary.white}`,
   },
-  'sauces-area': {
-    background: `${lightTheme.primary.white}`,
-    color: `${lightTheme.primary.black}`,
-  },
-  'dishes-area': {
+  'container-selection-area': {
     background: `${lightTheme.primary.white}`,
     color: `${lightTheme.primary.black}`,
   },
