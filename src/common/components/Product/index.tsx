@@ -1,7 +1,14 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Button, Card, Container, RichText, Title } from '@gamiui/standard';
+import {
+  Button,
+  Card,
+  Container,
+  Icon,
+  RichText,
+  Title,
+} from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { HomeContext } from '../../../context/home';
@@ -30,8 +37,14 @@ export const Product = ({
   const { slugCompany } = router.query;
 
   return (
-    <S.Product component={Container} blockId={homeBlock.PRODUCT_CARD}>
-      <Card width="full" shadow="xs" rounded="md">
+    <S.Product>
+      <S.ProductCard
+        component={Card}
+        blockId={homeBlock.PRODUCT_CARD}
+        width="full"
+        shadow="xs"
+        rounded="md"
+      >
         <Link
           href={`${slugCompany}/${categoryName
             .toLowerCase()
@@ -46,11 +59,20 @@ export const Product = ({
           </Card.Cover>
         </Link>
         <Card.Content
-          title={<S.ProductName text={title} />}
+          title={
+            <S.ProductName
+              component={RichText}
+              blockId={homeBlock.PRODUCT_CARD}
+              text={title}
+            />
+          }
           description={
-            <Container>
+            <S.DescriptionCardContent
+              component={Container}
+              blockId={homeBlock.PRODUCT_CARD}
+            >
               <RichText text={description} />
-            </Container>
+            </S.DescriptionCardContent>
           }
         />
         <S.CardFooter>
@@ -58,7 +80,11 @@ export const Product = ({
             className={classNames('flex', 'justify-between')}
             margin="0 0 1rem"
           >
-            <S.WishListIcon name="heart" />
+            <S.WishListIcon
+              component={Icon}
+              blockId={homeBlock.WISH_LIST_ICON}
+              name="heart"
+            />
             <Title level="h3">S/{price}</Title>
           </Container>
           <Container>
@@ -78,7 +104,7 @@ export const Product = ({
             </Link>
           </Container>
         </S.CardFooter>
-      </Card>
+      </S.ProductCard>
     </S.Product>
   );
 };
