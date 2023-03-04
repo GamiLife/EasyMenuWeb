@@ -8,6 +8,7 @@ import { useToggle } from '../../hooks';
 import homeBlock from '../../blocks/home-block.json';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';
+import { Block } from '../Block';
 
 export const Header = () => {
   const { i18n, t } = useCustomTranslation();
@@ -28,6 +29,7 @@ export const Header = () => {
       className={classNames('header')}
       blockId={homeBlock.HEADER_CONTAINER}
     >
+      <Block.Tooltip blockId={homeBlock.HEADER_CONTAINER} />
       <S.HeaderLeft
         padding="1rem"
         className={classNames('header__title__wrapper')}

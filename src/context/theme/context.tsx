@@ -4,13 +4,15 @@ import { lightTheme } from '../../../styles/design-system';
 
 export interface IThemeContext {
   blockIdActive: string;
-  initialStyles: IBlockItem;
+  blockIdActiveFromSidebar: string;
   isEnableHover: boolean;
-  blocks: IBlocks;
+  currentThemeBlocks: IBlocks;
+  previewThemeBlocks: IBlocks;
   setBlockIdActive: (value: string) => void;
-  setInitialStyles: (value: IBlockItem) => void;
+  setBlockIdActiveFromSidebar: (value: string) => void;
   setIsEnableHover: (value: boolean) => void;
-  setBlocks: (value: IBlocks) => void;
+  setPreviewThemeBlocks: (value: IBlocks) => void;
+  setCurrentThemeBlocks: (value: IBlocks) => void;
 }
 
 export interface IBlockItem {
@@ -72,25 +74,26 @@ const mockBlocks = {
 
 export const defaultThemeValues = {
   blockIdActive: '',
-  blocks: mockBlocks,
+  blockIdActiveFromSidebar: '',
+  currentThemeBlocks: mockBlocks,
+  previewThemeBlocks: mockBlocks,
   isEnableHover: false,
-  initialStyles: {
-    background: '',
-    color: '',
-  },
 };
 
 export const defaultThemeSetter = {
   setBlockIdActive: () => {
     return;
   },
-  setBlocks: () => {
-    return;
-  },
-  setInitialStyles: () => {
-    return;
-  },
   setIsEnableHover: () => {
+    return;
+  },
+  setPreviewThemeBlocks: () => {
+    return;
+  },
+  setCurrentThemeBlocks: () => {
+    return;
+  },
+  setBlockIdActiveFromSidebar: () => {
     return;
   },
 };

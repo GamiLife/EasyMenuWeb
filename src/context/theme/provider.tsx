@@ -13,27 +13,29 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   const [isEnableHover, setIsEnableHover] = React.useState(
     defaultThemeValues.isEnableHover
   );
+  const [blockIdActiveFromSidebar, setBlockIdActiveFromSidebar] =
+    React.useState(defaultThemeValues.blockIdActiveFromSidebar);
   const [blockIdActive, setBlockIdActive] = React.useState(
     defaultThemeValues.blockIdActive
   );
   const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<IBlocks>(
-    defaultThemeValues.blocks
+    defaultThemeValues.currentThemeBlocks
   );
-  const [blocks, setBlocks] = React.useState<IBlocks>(
-    defaultThemeValues.blocks
-  );
-  const [initialStyles, setInitialStyles] = React.useState(
-    defaultThemeValues.initialStyles
+  const [previewThemeBlocks, setPreviewThemeBlocks] = React.useState<IBlocks>(
+    defaultThemeValues.currentThemeBlocks
   );
 
   const handleOnBlockEdit = (eventData: TBlockEditData) => {
     const { color, background, blockId } = eventData;
+    const blockFound = previewThemeBlocks[blockId];
 
-    setBlocks({
-      ...blocks,
+    if (!blockFound) return;
+
+    setPreviewThemeBlocks({
+      ...previewThemeBlocks,
       [blockId]: {
-        background: background ?? initialStyles.background,
-        color: color ?? initialStyles.color,
+        background: background ?? blockFound.background,
+        color: color ?? blockFound.color,
       },
     });
   };
@@ -47,17 +49,19 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
 
       if (!type) return;
       if (type === 'block-edit-submit') {
-        console.log('submit');
-        setCurrentThemeBlocks(blocks);
+        setCurrentThemeBlocks(previewThemeBlocks);
         return;
       }
       if (type === 'block-edit-rollback') {
-        console.log('rollback');
-        setBlocks(currentThemeBlocks);
+        setPreviewThemeBlocks(currentThemeBlocks);
         return;
       }
       if (type === 'block-edit') {
         handleOnBlockEdit(message);
+        return;
+      }
+      if (type === 'hover-block-from-sidebar') {
+        setBlockIdActiveFromSidebar(message);
         return;
       }
       if (type === 'enable-hover') {
@@ -65,18 +69,25 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
         return;
       }
     });
-  }, [initialStyles]);
+  }, [
+    previewThemeBlocks,
+    isEnableHover,
+    currentThemeBlocks,
+    blockIdActiveFromSidebar,
+  ]);
 
   return (
     <ThemeContext.Provider
       value={{
         isEnableHover,
         blockIdActive,
-        blocks,
+        blockIdActiveFromSidebar,
+        previewThemeBlocks,
+        currentThemeBlocks,
         setBlockIdActive,
-        initialStyles,
-        setBlocks,
-        setInitialStyles,
+        setBlockIdActiveFromSidebar,
+        setPreviewThemeBlocks,
+        setCurrentThemeBlocks,
         setIsEnableHover,
       }}
     >

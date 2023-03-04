@@ -10,6 +10,7 @@ import { lightTheme } from '../../../../styles/design-system/theme';
 import homeBlock from '../../blocks/home-block.json';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';
+import { Block } from '../Block';
 
 const TestSocialNetworks = dynamic(
   () => import('../../components/AllSocialNetworks'),
@@ -45,6 +46,7 @@ export const Footer = () => {
 
   return (
     <S.Footer component={Container} blockId={homeBlock.FOOTER_CONTAINER}>
+      <Block.Tooltip blockId={homeBlock.FOOTER_CONTAINER} />
       <S.FooterSection className={classNames('flex')}>
         <S.FooterText>
           <S.FooterLogoContainer padding="1rem">

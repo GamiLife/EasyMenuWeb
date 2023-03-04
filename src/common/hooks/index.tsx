@@ -8,3 +8,4 @@ export * from './useLocalStorage';
 export * from './usePagination';
 export * from './useSearch';
 export * from './useToggle';
+export * from './useBlock';

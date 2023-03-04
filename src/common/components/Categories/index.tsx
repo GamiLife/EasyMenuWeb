@@ -9,6 +9,7 @@ import { NextImage } from '../NextImage';
 import homeBlock from '../../blocks/home-block.json';
 import { get } from '../../../config/api';
 import * as S from './styles';
+import { Block } from '../../layouts';
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -37,6 +38,7 @@ export const Categories = () => {
       component={Container}
       blockId={homeBlock.CATEGORIES_CONTAINER}
     >
+      <Block.Tooltip blockId={homeBlock.CATEGORIES_CONTAINER} />
       {categories?.map(({ id, title, iconId, imageCategory }) => (
         // <Block key={id} component={Container} blockId={homeBlock.CATEGORY_ITEM}>
         <S.Category

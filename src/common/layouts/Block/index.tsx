@@ -5,6 +5,8 @@ import { StyledComponent } from '@emotion/styled';
 
 import { ThemeContext } from '../../../context/theme';
 import { lightTheme } from '../../../../styles/design-system';
+import { Tooltip } from './Tooltip';
+import { useBlock } from '../../hooks/useBlock';
 
 export interface IBlock {
   blockId: string;
@@ -31,86 +33,35 @@ export type TBlockStyle<P> = StyledComponent<
  * @returns
  */
 export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
-  const basePathSiteEditor = 'http://localhost:3000';
   const {
     isEnableHover,
     blockIdActive,
-    blocks,
-    setBlockIdActive,
-    setInitialStyles,
-    setIsEnableHover,
+    blockIdActiveFromSidebar,
+    previewThemeBlocks,
   } = React.useContext(ThemeContext);
+  const { onMouseEnter, onMouseLeave, handleClick } = useBlock({
+    blockId: props.blockId,
+  });
 
   const get = () => {
-    const currentBlock = Object.entries(blocks).find(
-      ([key]) => props.blockId === key
-    );
+    const currentBlock = previewThemeBlocks[props.blockId];
     if (!currentBlock) return {};
-    const [_, value] = currentBlock;
-    const { background, color } = value;
-    if (props.blockId === blockIdActive) {
-      setInitialStyles(value);
-    }
+    const { background, color } = currentBlock;
 
     return { background, color };
   };
 
-  const getTargetOrigin = () => {
-    try {
-      const url =
-        window.location != window.parent.location
-          ? document.referrer
-          : document.location.href;
+  const hasBorder =
+    (props.blockId === blockIdActive && isEnableHover) ||
+    blockIdActiveFromSidebar === props.blockId;
 
-      if (url !== `${basePathSiteEditor}/`) throw new Error('Error');
-
-      return basePathSiteEditor;
-    } catch (error) {
-      throw new Error('Incorret Origin parent');
-    }
-  };
-
-  const sendMessage = () => {
-    if (typeof window === undefined) return;
-    try {
-      window.parent.postMessage(
-        {
-          type: 'block-selection',
-          message: {
-            blockId: props.blockId,
-          },
-        },
-        getTargetOrigin()
-      );
-    } catch (error) {}
-  };
-
-  const onMouseEnter = () => {
-    if (typeof window === undefined) return;
-    setIsEnableHover(true);
-    setBlockIdActive(props.blockId);
-    // if (!isEnableHover) return;
-    try {
-      getTargetOrigin();
-      console.log('hover');
-    } catch (error) {}
-  };
-
-  const onMouseLeave = () => {
-    if (typeof window === undefined) return;
-    setIsEnableHover(false);
-    // if (!isEnableHover) return;
-    try {
-      getTargetOrigin();
-      console.log('leave');
-    } catch (error) {}
-  };
-
-  const handleClick = (e: any) => {
-    sendMessage();
-    e.stopPropagation();
-    e.preventDefault();
-  };
+  const borderStyles = hasBorder
+    ? {
+        border: `2px solid ${lightTheme.primary.jordyBlue}`,
+        position: 'relative',
+        cursor: 'pointer',
+      }
+    : {};
 
   return (
     <React.Fragment>
@@ -121,13 +72,12 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
         onMouseLeave={onMouseLeave}
         className={props.className}
         style={{
-          border:
-            props.blockId === blockIdActive && isEnableHover
-              ? `1px solid ${lightTheme.primary.jordyBlue}`
-              : '',
+          ...borderStyles,
           ...get(),
         }}
       />
     </React.Fragment>
   );
 };
+
+Block.Tooltip = Tooltip;

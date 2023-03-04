@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { HomeContext } from '../../../context/home';
 import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
+import { Block } from '../../layouts';
 
 export interface IProduct {
   description: string;
@@ -31,6 +32,7 @@ export const Product = ({
 
   return (
     <S.Product component={Container} blockId={homeBlock.PRODUCT_CARD}>
+      <Block.Tooltip blockId={homeBlock.PRODUCT_CARD} />
       <Card width="full" shadow="xs" rounded="md">
         <Link
           href={`${slugCompany}/${categoryName
@@ -73,6 +75,7 @@ export const Product = ({
                 type="button"
                 rounded="sm"
               >
+                {' '}
                 Comprar
               </S.ProductButton>
             </Link>
