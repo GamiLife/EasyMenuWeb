@@ -50,6 +50,10 @@ const mockBlocks = {
     background: `${lightTheme.primary.white}`,
     color: `${lightTheme.primary.black}`,
   },
+  'wish-list-icon': {
+    background: `${lightTheme.primary.white}`,
+    color: `${lightTheme.primary.first}`,
+  },
   'shipping-button': {
     background: `${lightTheme.primary.first}`,
     color: `${lightTheme.primary.white}`,

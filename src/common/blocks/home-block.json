@@ -3,7 +3,8 @@
     "CATEGORY_ITEM": "category-item", 
     "HEADER_CONTAINER": "header-container", 
     "WRAPPER_PAGE": "wrapper-page", 
-    "PRODUCT_CARD": "product-card", 
+    "PRODUCT_CARD": "product-card",
+    "WISH_LIST_ICON": "wish-list-icon", 
     "SHIPPING_BUTTON": "shipping-button", 
     "FOOTER_CONTAINER": "footer-container",
     "SCROLL_BUTTON": "scroll-button" 
