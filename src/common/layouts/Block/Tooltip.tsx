@@ -1,5 +1,6 @@
-import { RichText } from '@gamiui/standard';
 import React, { Fragment } from 'react';
+import { RichText } from '@gamiui/standard';
+
 import { ThemeContext } from '../../../context/theme';
 import { useBlock } from '../../hooks/useBlock';
 import * as S from './styles';

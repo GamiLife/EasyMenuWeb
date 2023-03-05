@@ -6,9 +6,9 @@ import { lightTheme } from '../../../../styles/design-system/theme';
 import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
 import homeBlock from '../../blocks/home-block.json';
+import { Block } from '../Block';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';
-import { Block } from '../Block';
 
 export const Header = () => {
   const { i18n, t } = useCustomTranslation();

@@ -1,20 +1,13 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {
-  Button,
-  Card,
-  Container,
-  Icon,
-  RichText,
-  Title,
-} from '@gamiui/standard';
+import { Button, Card, Container, RichText, Title } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { HomeContext } from '../../../context/home';
 import homeBlock from '../../blocks/home-block.json';
-import * as S from './styles';
 import { Block } from '../../layouts';
+import * as S from './styles';
 
 export interface IProduct {
   description: string;
@@ -82,11 +75,7 @@ export const Product = ({
             className={classNames('flex', 'justify-between')}
             margin="0 0 1rem"
           >
-            <S.WishListIcon
-              component={Icon}
-              blockId={homeBlock.WISH_LIST_ICON}
-              name="heart"
-            />
+            <S.WishListIcon name="heart" />
             <Title level="h3">S/{price}</Title>
           </Container>
           <Container>

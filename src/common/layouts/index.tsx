@@ -1,4 +1,4 @@
 export * from './Header';
 export * from './Footer';
 export * from './Layout';
-export * from './Block'
+export * from './Block';

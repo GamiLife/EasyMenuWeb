@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { Layout } from '@gamiui/standard';
 
 import { Header, Footer } from '..';
-import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
 
 export interface ILayoutWrapper {

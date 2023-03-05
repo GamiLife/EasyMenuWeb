@@ -8,9 +8,9 @@ import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { CompanyContext } from '../../../context/company';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import homeBlock from '../../blocks/home-block.json';
+import { Block } from '../Block';
 import { Logo } from '../../components/Logo';
 import * as S from './styles';
-import { Block } from '../Block';
 
 const TestSocialNetworks = dynamic(
   () => import('../../components/AllSocialNetworks'),

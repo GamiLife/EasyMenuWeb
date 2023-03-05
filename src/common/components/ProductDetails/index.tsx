@@ -3,12 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Container, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import productDetailsBlock from '../../blocks/productDetails-block.json';
 import { useFetchDishesId } from '../../hooks';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { NextImage } from '../NextImage';
 import * as S from './styles';
-
-import productDetailsBlock from '../../blocks/productDetails-block.json';
 
 export const ProductDetails = () => {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { useLocalStorage } from '../../common/hooks';
 import { IHomeProvider, defaultHomeValues, HomeContext } from './context';
+import { useLocalStorage } from '../../common/hooks';
 
 const HomeProvider = ({ children }: IHomeProvider) => {
   const [idCategory, setIdCategory] = useLocalStorage<number>(

@@ -7,9 +7,9 @@ import { HomeContext } from '../../../context/home';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
 import homeBlock from '../../blocks/home-block.json';
-import { get } from '../../../config/api';
-import * as S from './styles';
 import { Block } from '../../layouts';
+import * as S from './styles';
+import { get } from '../../../config/api';
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);

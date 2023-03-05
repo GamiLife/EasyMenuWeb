@@ -1,5 +1,6 @@
 /* eslint-disable no-empty */
 import React from 'react';
+
 import { ThemeContext } from '../../context/theme';
 
 export interface IUseBlock {

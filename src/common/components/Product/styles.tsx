@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
-import { Card, Container } from '@gamiui/standard';
+import { Card, Container, Icon } from '@gamiui/standard';
 import { IGenericEvents } from '@gamiui/standard/lib/types/core/domain/interfaces/IGeneralProps';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 import { IRichText } from '@gamiui/standard/lib/types/designSystem/atoms/RichText/RichText';
 import { IContent } from '@gamiui/standard/lib/types/designSystem/molecules/Card/Content';
 import { IButton } from '@gamiui/standard/lib/types/designSystem/atoms/Button/Button';
 import { ICard } from '@gamiui/standard/lib/types/designSystem/molecules/Card/Card';
-import { IIcon } from '@gamiui/standard/lib/types/designSystem/atoms/Icon/Icon';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { NextImage } from '../NextImage';
@@ -41,10 +40,7 @@ export const DescriptionCardContent = styled(Block<IContainer>)``;
 
 export const CardFooter = styled(Card.Footer)``;
 
-export const WishListIcon = styled(Block<IIcon>)`
-  background: transparent;
-  color: ${lightTheme.primary.first};
-`;
+export const WishListIcon = styled(Icon)``;
 
 export const ProductButton = styled(Block<IButton>)`
   background-color: ${lightTheme.primary.first};

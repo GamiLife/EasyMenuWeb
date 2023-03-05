@@ -5,8 +5,8 @@ import { StyledComponent } from '@emotion/styled';
 
 import { ThemeContext } from '../../../context/theme';
 import { lightTheme } from '../../../../styles/design-system';
-import { Tooltip } from './Tooltip';
 import { useBlock } from '../../hooks/useBlock';
+import { Tooltip } from './Tooltip';
 
 export interface IBlock {
   blockId: string;
