@@ -58,6 +58,7 @@ export const Product = ({
             <S.ProductName
               component={RichText}
               blockId={homeBlock.PRODUCT_CARD}
+              allowBorder={false}
               text={title}
             />
           }
@@ -65,6 +66,7 @@ export const Product = ({
             <S.DescriptionCardContent
               component={Container}
               blockId={homeBlock.PRODUCT_CARD}
+              allowBorder={false}
             >
               <RichText text={description} />
             </S.DescriptionCardContent>

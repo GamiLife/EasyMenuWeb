@@ -38,7 +38,9 @@ export const ProductName = styled(Block<IRichText>)`
 
 export const DescriptionCardContent = styled(Block<IContainer>)``;
 
-export const CardFooter = styled(Card.Footer)``;
+export const CardFooter = styled(Card.Footer)`
+  border: 0;
+`;
 
 export const WishListIcon = styled(Icon)``;
 

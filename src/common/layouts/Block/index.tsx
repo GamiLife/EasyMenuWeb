@@ -11,6 +11,7 @@ import { Tooltip } from './Tooltip';
 export interface IBlock {
   blockId: string;
   className?: string;
+  allowBorder?: boolean;
 }
 
 export type TBlock<P> = P & {
@@ -52,8 +53,9 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   };
 
   const hasBorder =
-    (props.blockId === blockIdActive && isEnableHover) ||
-    blockIdActiveFromSidebar === props.blockId;
+    props.allowBorder != false &&
+    ((props.blockId === blockIdActive && isEnableHover) ||
+      blockIdActiveFromSidebar === props.blockId);
 
   const borderStyles = hasBorder
     ? {

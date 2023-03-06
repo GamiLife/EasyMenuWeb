@@ -86,7 +86,9 @@ export const Footer = () => {
         </S.SocialBlock>
         <S.ScrollButtonContainer onClick={handleScrollUp}>
           <S.ScrollButton component={Button} blockId={homeBlock.SCROLL_BUTTON}>
-            <Icon
+            <Block
+              component={Icon}
+              blockId={homeBlock.SCROLL_BUTTON}
               color={`${lightTheme.primary.white}`}
               name="arrow__right"
               size="30px"

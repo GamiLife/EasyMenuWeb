@@ -40,7 +40,6 @@ export const Categories = () => {
     >
       <Block.Tooltip blockId={homeBlock.CATEGORIES_CONTAINER} />
       {categories?.map(({ id, title, iconId, imageCategory }) => (
-        // <Block key={id} component={Container} blockId={homeBlock.CATEGORY_ITEM}>
         <S.Category
           className={id === idCategory ? 'active' : ''}
           key={id}
@@ -66,7 +65,6 @@ export const Categories = () => {
             color={id === idCategory ? lightTheme.extended.oceanStrong : ''}
           />
         </S.Category>
-        // </Block>
       ))}
     </S.Categories>
   );
