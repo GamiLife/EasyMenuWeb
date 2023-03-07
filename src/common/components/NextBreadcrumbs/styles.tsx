@@ -1,8 +1,9 @@
-import Link from 'next/link';
+import { LinkProps } from 'next/link';
 import styled from '@emotion/styled';
 import { Container } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system';
+import { Block } from '../../layouts';
 
 export const NextBreadcrumbs = styled(Container)`
   align-items: center;
@@ -15,12 +16,23 @@ export const CrumbList = styled.ol`
   list-style: none;
 `;
 
+export const LastCrumbItem = styled.li``;
+
 export const LastCrumb = styled.span`
   color: ${lightTheme.extended.code};
   font-weight: 600;
 `;
 
-export const BreadcrumbLink = styled(Link)`
+export const BreadcrumbLinkElement = styled.li``;
+
+export const BreadcrumbLink = styled(
+  Block<
+    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> &
+      LinkProps & {
+        children?: React.ReactNode;
+      } & React.RefAttributes<HTMLAnchorElement>
+  >
+)`
   color: ${lightTheme.neutral[300]};
   margin-right: 5px;
   padding: 0 3px;

@@ -25,6 +25,7 @@ export const Location = ({ address, name, phone }: ILocation) => {
           <S.StoreItemTitle
             component={Title}
             blockId={locationsBlock.LOCATION_CARD}
+            allowBorder={false}
             level="h3"
           >
             {name}
@@ -34,6 +35,7 @@ export const Location = ({ address, name, phone }: ILocation) => {
           <S.PhoneAddressContainer
             component={Container}
             blockId={locationsBlock.LOCATION_CARD}
+            allowBorder={false}
           >
             <RichText text={address} margin="0 0 10px" />
             <S.PhoneContainer className={classNames('flex')}>
@@ -41,6 +43,7 @@ export const Location = ({ address, name, phone }: ILocation) => {
               <S.PhoneHeader
                 component={Title}
                 blockId={locationsBlock.LOCATION_CARD}
+                allowBorder={false}
                 level="h4"
               >
                 Teléfono

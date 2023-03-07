@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useContext } from 'react';
-import classNames from 'classnames';
 import { Container } from '@gamiui/standard';
+import classNames from 'classnames';
 
 import { useFetchDishesId } from '../../../../common/hooks';
 import { CompanyContext } from '../../../../context/company';

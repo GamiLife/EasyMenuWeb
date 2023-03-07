@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Icon } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system';
+import homeBlock from '../../blocks/home-block.json';
+import { Block } from '../../layouts';
 import * as S from './styles';
 
 interface ICrumb {
@@ -55,16 +58,27 @@ function Crumb({ text, href, last = false }: ICrumb) {
   return (
     <React.Fragment>
       {last ? (
-        <li>
-          <S.LastCrumb>{deleteHyphen(text)}</S.LastCrumb>
-        </li>
+        <S.LastCrumbItem>
+          <Block
+            component={S.LastCrumb}
+            blockId={homeBlock.WRAPPER_PAGE}
+            allowBorder={false}
+          >
+            {deleteHyphen(text)}
+          </Block>
+        </S.LastCrumbItem>
       ) : (
         <React.Fragment>
-          <li>
-            <S.BreadcrumbLink href={href}>
+          <S.BreadcrumbLinkElement>
+            <S.BreadcrumbLink
+              component={Link}
+              blockId={homeBlock.WRAPPER_PAGE}
+              allowBorder={false}
+              href={href}
+            >
               {deleteHyphen(text)}
             </S.BreadcrumbLink>
-          </li>
+          </S.BreadcrumbLinkElement>
           <S.LastItemListCrumbs>
             <S.BreadcrumbDivisor>
               <Icon name="arrow__right" color={lightTheme.neutral[300]} />
