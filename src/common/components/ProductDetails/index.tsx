@@ -7,6 +7,7 @@ import productDetailsBlock from '../../blocks/productDetails-block.json';
 import { useFetchDishesId } from '../../hooks';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { NextImage } from '../NextImage';
+import { Block } from '../../layouts';
 import * as S from './styles';
 
 export const ProductDetails = () => {
@@ -33,6 +34,9 @@ export const ProductDetails = () => {
               component={Container}
               blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
             >
+              <Block.Tooltip
+                blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
+              />
               <S.SaucesTitle level="h5" margin="0 0 1rem">
                 {t('pageProductDetails.saucesTitle')}
               </S.SaucesTitle>
@@ -52,6 +56,9 @@ export const ProductDetails = () => {
               component={Container}
               blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
             >
+              <Block.Tooltip
+                blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
+              />
               <S.DishesTitle level="h5" margin="0 0 1rem">
                 {t('pageProductDetails.dishesTitle')}
               </S.DishesTitle>

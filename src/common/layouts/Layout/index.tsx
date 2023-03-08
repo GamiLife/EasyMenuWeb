@@ -2,7 +2,7 @@ import * as React from 'react';
 import Head from 'next/head';
 import { Container, Layout } from '@gamiui/standard';
 
-import { Header, Footer } from '..';
+import { Header, Footer, Block } from '..';
 import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
 
@@ -41,6 +41,7 @@ export const LayoutWrapper = ({
           component={Container}
           blockId={homeBlock.WRAPPER_PAGE}
         >
+          <Block.Tooltip blockId={homeBlock.WRAPPER_PAGE} />
           {children}
         </S.ContentContainer>
       </S.Content>
