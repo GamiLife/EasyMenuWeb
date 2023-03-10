@@ -1,15 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
+import { useRouter } from 'next/router';
 
 import {
   defaultThemeValues,
-  IBlocks,
+  IBlockItem,
+  // IBlocks,
   IThemeProvider,
   TBlockEditData,
   ThemeContext,
 } from './context';
+import { get } from '../../config/api';
 
 const ThemeProvider = ({ children }: IThemeProvider) => {
+  const router = useRouter();
+  const { slugCompany } = router.query;
+
   const [isEnableHover, setIsEnableHover] = React.useState(
     defaultThemeValues.isEnableHover
   );
@@ -18,26 +24,53 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   const [blockIdActive, setBlockIdActive] = React.useState(
     defaultThemeValues.blockIdActive
   );
-  const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<IBlocks>(
-    defaultThemeValues.currentThemeBlocks
-  );
-  const [previewThemeBlocks, setPreviewThemeBlocks] = React.useState<IBlocks>(
-    defaultThemeValues.currentThemeBlocks
-  );
+
+  // const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<IBlocks>(
+  //   defaultThemeValues.currentThemeBlocks
+  // );
+
+  // const [previewThemeBlocks, setPreviewThemeBlocks] = React.useState<IBlocks>(
+  //   defaultThemeValues.currentThemeBlocks
+  // );
+  const [previewThemeBlocks, setPreviewThemeBlocks] = React.useState<
+    IBlockItem[]
+  >(defaultThemeValues.previewThemeBlocks);
 
   const handleOnBlockEdit = (eventData: TBlockEditData) => {
-    const { color, background, blockId } = eventData;
-    const blockFound = previewThemeBlocks[blockId];
+    const { color, background, blockId: blockIdName } = eventData;
+    const themeMatching = previewThemeBlocks.find(
+      ({ blockId }) => blockId === blockIdName
+    );
+    if (!themeMatching) return;
 
-    if (!blockFound) return;
+    // previewThemeBlocks.filter( ({blockId}) => {if(blockId === blockIdName) {
+    //   {
+    //     background: background ?? themeMatching.background,
 
-    setPreviewThemeBlocks({
-      ...previewThemeBlocks,
-      [blockId]: {
-        background: background ?? blockFound.background,
-        color: color ?? blockFound.color,
-      },
-    });
+    //   }
+    // }})
+    console.log(themeMatching);
+    // const { background, color } = themeMatching;
+    // const blockFound = previewThemeBlocks[blockId];
+    // const blockFound = previewThemeBlocks;
+
+    // if (!blockFound) return;
+    // setPreviewThemeBlocks([
+    //   ...previewThemeBlocks,
+    //   {
+    //     ...themeMatching,
+    //     blockId === blockIdName: blockIdName,
+    //     background: background ?? themeMatching.background,
+    //     color: color ?? themeMatching.color,
+    //   },
+    // ]);
+    //  setPreviewThemeBlocks([
+    //    ...previewThemeBlocks,
+    //    [blockId]: {
+    //      background: background ?? themeMatching.background,
+    //      color: color ?? themeMatching.color,
+    //    },
+    //   ]);
   };
 
   React.useEffect(() => {
@@ -49,11 +82,11 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
 
       if (!type) return;
       if (type === 'block-edit-submit') {
-        setCurrentThemeBlocks(previewThemeBlocks);
+        // setCurrentThemeBlocks(previewThemeBlocks);
         return;
       }
       if (type === 'block-edit-rollback') {
-        setPreviewThemeBlocks(currentThemeBlocks);
+        // setPreviewThemeBlocks(currentThemeBlocks);
         return;
       }
       if (type === 'block-edit') {
@@ -70,11 +103,22 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
       }
     });
   }, [
-    previewThemeBlocks,
+    // previewThemeBlocks,
     isEnableHover,
-    currentThemeBlocks,
+    // currentThemeBlocks,
     blockIdActiveFromSidebar,
   ]);
+
+  React.useEffect(() => {
+    if (!slugCompany) return;
+    async function companyFetch() {
+      const { data } = await get('companies/1');
+      const { theme } = data;
+      // console.log(theme);
+      setPreviewThemeBlocks(theme);
+    }
+    companyFetch();
+  }, [slugCompany]);
 
   return (
     <ThemeContext.Provider
@@ -83,11 +127,11 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
         blockIdActive,
         blockIdActiveFromSidebar,
         previewThemeBlocks,
-        currentThemeBlocks,
+        // currentThemeBlocks,
         setBlockIdActive,
         setBlockIdActiveFromSidebar,
-        setPreviewThemeBlocks,
-        setCurrentThemeBlocks,
+        // setPreviewThemeBlocks,
+        // setCurrentThemeBlocks,
         setIsEnableHover,
       }}
     >
