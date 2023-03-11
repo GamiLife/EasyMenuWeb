@@ -1,11 +1,11 @@
-{ 
+{
+    "HEADER_CONTAINER": "header-container",
+    "WRAPPER_PAGE": "wrapper-page",
     "CATEGORIES_CONTAINER": "categories-container",
-    "CATEGORY_ITEM": "category-item", 
-    "HEADER_CONTAINER": "header-container", 
-    "WRAPPER_PAGE": "wrapper-page", 
+    "CATEGORY_ITEM": "category-item",
     "PRODUCT_CARD": "product-card",
-    "WISH_LIST_ICON": "wish-list-icon", 
-    "SHIPPING_BUTTON": "shipping-button", 
+    "WISH_LIST_ICON": "wish-list-icon",
+    "SHIPPING_BUTTON": "shipping-button",
     "FOOTER_CONTAINER": "footer-container",
-    "SCROLL_BUTTON": "scroll-button" 
+    "SCROLL_BUTTON": "scroll-button"
 }

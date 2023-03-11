@@ -51,10 +51,12 @@ export const Categories = () => {
             setCategoryName(title);
           }}
         >
+          <Block.Tooltip blockId={homeBlock.CATEGORY_ITEM} />
           {imageCategory ? (
             <NextImage imageUrl={imageCategory} alt={title} height="50px" />
           ) : (
             <Block
+              allowBorder={false}
               component={Icon}
               blockId={homeBlock.CATEGORY_ITEM}
               name={iconId}
@@ -62,6 +64,10 @@ export const Categories = () => {
                 id === idCategory ? lightTheme.extended.oceanStrong : 'black'
               }
               size="50px"
+              getCustomProps={({ color }) => ({
+                color:
+                  id === idCategory ? lightTheme.extended.oceanStrong : color,
+              })}
             />
           )}
           <S.CategoryTitle

@@ -12,6 +12,10 @@ export interface IBlock {
   blockId: string;
   className?: string;
   allowBorder?: boolean;
+  getCustomProps?: (themeProps: {
+    background?: string | undefined;
+    color?: string | undefined;
+  }) => Record<string, any>;
 }
 
 export type TBlock<P> = P & {
@@ -53,6 +57,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
     const { background, color } = blockFound;
     return { background, color };
   };
+  const themeProps = get();
 
   const hasBorder =
     props.allowBorder != false &&
@@ -77,8 +82,9 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
         className={props.className}
         style={{
           ...borderStyles,
-          ...get(),
+          ...themeProps,
         }}
+        {...props?.getCustomProps?.(themeProps)}
       />
     </React.Fragment>
   );
