@@ -53,7 +53,12 @@ export const Categories = () => {
         >
           <Block.Tooltip blockId={homeBlock.CATEGORY_ITEM} />
           {imageCategory ? (
-            <NextImage imageUrl={imageCategory} alt={title} height="50px" />
+            <NextImage
+              id={id}
+              imageUrl={imageCategory}
+              alt={title}
+              height="50px"
+            />
           ) : (
             <Block
               allowBorder={false}

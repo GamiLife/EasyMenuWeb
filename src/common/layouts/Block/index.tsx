@@ -53,7 +53,7 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
       ({ blockId }) => blockId === props.blockId
     );
 
-    if (!blockFound) return;
+    if (!blockFound) return {};
     const { background, color } = blockFound;
     return { background, color };
   };
