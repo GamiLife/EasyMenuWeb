@@ -14,7 +14,7 @@ export const Categories = styled(Block<IContainer>)`
   padding-block: 1rem;
 `;
 
-export const Category = styled(Container)`
+export const Category = styled(Block<IContainer>)`
   align-items: center;
   display: flex;
   flex-basis: 141px;
