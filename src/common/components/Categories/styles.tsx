@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Container, RichText } from '@gamiui/standard';
+import { RichText } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
@@ -14,7 +14,7 @@ export const Categories = styled(Block<IContainer>)`
   padding-block: 1rem;
 `;
 
-export const Category = styled(Container)`
+export const Category = styled(Block<IContainer>)`
   align-items: center;
   display: flex;
   flex-basis: 141px;

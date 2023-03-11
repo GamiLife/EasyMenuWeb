@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import {
   defaultThemeValues,
   IBlockItem,
-  // IBlocks,
   IThemeProvider,
   TBlockEditData,
   ThemeContext,
@@ -24,53 +23,31 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   const [blockIdActive, setBlockIdActive] = React.useState(
     defaultThemeValues.blockIdActive
   );
-
-  // const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<IBlocks>(
-  //   defaultThemeValues.currentThemeBlocks
-  // );
-
-  // const [previewThemeBlocks, setPreviewThemeBlocks] = React.useState<IBlocks>(
-  //   defaultThemeValues.currentThemeBlocks
-  // );
+  const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<
+    IBlockItem[]
+  >(defaultThemeValues.previewThemeBlocks);
   const [previewThemeBlocks, setPreviewThemeBlocks] = React.useState<
     IBlockItem[]
   >(defaultThemeValues.previewThemeBlocks);
 
   const handleOnBlockEdit = (eventData: TBlockEditData) => {
     const { color, background, blockId: blockIdName } = eventData;
-    const themeMatching = previewThemeBlocks.find(
+    const themeFound = previewThemeBlocks.find(
       ({ blockId }) => blockId === blockIdName
     );
-    if (!themeMatching) return;
+    if (!themeFound) return;
 
-    // previewThemeBlocks.filter( ({blockId}) => {if(blockId === blockIdName) {
-    //   {
-    //     background: background ?? themeMatching.background,
+    const editedBlockElement = previewThemeBlocks.map((block) => {
+      if (block.blockId === blockIdName) {
+        return {
+          ...block,
+          background: background ?? themeFound.background,
+          color: color ?? themeFound.color,
+        };
+      } else return block;
+    });
 
-    //   }
-    // }})
-    console.log(themeMatching);
-    // const { background, color } = themeMatching;
-    // const blockFound = previewThemeBlocks[blockId];
-    // const blockFound = previewThemeBlocks;
-
-    // if (!blockFound) return;
-    // setPreviewThemeBlocks([
-    //   ...previewThemeBlocks,
-    //   {
-    //     ...themeMatching,
-    //     blockId === blockIdName: blockIdName,
-    //     background: background ?? themeMatching.background,
-    //     color: color ?? themeMatching.color,
-    //   },
-    // ]);
-    //  setPreviewThemeBlocks([
-    //    ...previewThemeBlocks,
-    //    [blockId]: {
-    //      background: background ?? themeMatching.background,
-    //      color: color ?? themeMatching.color,
-    //    },
-    //   ]);
+    setPreviewThemeBlocks(editedBlockElement);
   };
 
   React.useEffect(() => {
@@ -82,11 +59,11 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
 
       if (!type) return;
       if (type === 'block-edit-submit') {
-        // setCurrentThemeBlocks(previewThemeBlocks);
+        setCurrentThemeBlocks(previewThemeBlocks);
         return;
       }
       if (type === 'block-edit-rollback') {
-        // setPreviewThemeBlocks(currentThemeBlocks);
+        setPreviewThemeBlocks(currentThemeBlocks);
         return;
       }
       if (type === 'block-edit') {
@@ -103,7 +80,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
       }
     });
   }, [
-    // previewThemeBlocks,
+    previewThemeBlocks,
     isEnableHover,
     // currentThemeBlocks,
     blockIdActiveFromSidebar,
@@ -114,7 +91,6 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     async function companyFetch() {
       const { data } = await get('companies/1');
       const { theme } = data;
-      // console.log(theme);
       setPreviewThemeBlocks(theme);
     }
     companyFetch();
@@ -127,11 +103,11 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
         blockIdActive,
         blockIdActiveFromSidebar,
         previewThemeBlocks,
-        // currentThemeBlocks,
+        currentThemeBlocks,
         setBlockIdActive,
         setBlockIdActiveFromSidebar,
-        // setPreviewThemeBlocks,
-        // setCurrentThemeBlocks,
+        setPreviewThemeBlocks,
+        setCurrentThemeBlocks,
         setIsEnableHover,
       }}
     >

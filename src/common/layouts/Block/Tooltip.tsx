@@ -21,7 +21,9 @@ export const Tooltip = ({ blockId }: ITooltip) => {
     blockId,
   });
 
-  const blockFound = previewThemeBlocks[blockId];
+  const blockFound = previewThemeBlocks.find(
+    ({ blockId }) => blockId === blockId
+  );
 
   const hasBorder =
     (blockId === blockIdActive && isEnableHover) ||

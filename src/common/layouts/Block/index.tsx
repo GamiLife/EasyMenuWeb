@@ -45,10 +45,12 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
   });
 
   const get = () => {
-    const currentBlock = previewThemeBlocks[props.blockId];
-    if (!currentBlock) return {};
-    const { background, color } = currentBlock;
+    const blockFound = previewThemeBlocks.find(
+      ({ blockId }) => blockId === props.blockId
+    );
 
+    if (!blockFound) return;
+    const { background, color } = blockFound;
     return { background, color };
   };
 

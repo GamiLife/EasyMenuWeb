@@ -38,6 +38,7 @@ export const Header = () => {
       </S.HeaderLeft>
       <Container className={classNames('flex', 'items-center')}>
         <Input
+          style={{ background: 'gold' }}
           placeholder={t('header.searchText')}
           prefix={
             <S.SearchIcon name="setting" color={lightTheme.neutral[300]} />

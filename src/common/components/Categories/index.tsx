@@ -41,6 +41,8 @@ export const Categories = () => {
       <Block.Tooltip blockId={homeBlock.CATEGORIES_CONTAINER} />
       {categories?.map(({ id, title, iconId, imageCategory }) => (
         <S.Category
+          component={Container}
+          blockId={homeBlock.CATEGORY_ITEM}
           className={id === idCategory ? 'active' : ''}
           key={id}
           onClick={() => {
@@ -52,7 +54,9 @@ export const Categories = () => {
           {imageCategory ? (
             <NextImage imageUrl={imageCategory} alt={title} height="50px" />
           ) : (
-            <Icon
+            <Block
+              component={Icon}
+              blockId={homeBlock.CATEGORY_ITEM}
               name={iconId}
               color={
                 id === idCategory ? lightTheme.extended.oceanStrong : 'black'
