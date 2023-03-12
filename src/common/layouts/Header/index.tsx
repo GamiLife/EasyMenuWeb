@@ -34,7 +34,12 @@ export const Header = () => {
         padding="1rem"
         className={classNames('header__title__wrapper')}
       >
-        <Logo typeLogo="primary" />
+        <Block
+          component={Logo}
+          blockId={homeBlock.HEADER_CONTAINER}
+          allowBorder={false}
+          typeLogo="primary"
+        />
       </S.HeaderLeft>
       <Container className={classNames('flex', 'items-center')}>
         <S.SearchInput

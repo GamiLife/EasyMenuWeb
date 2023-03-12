@@ -1,29 +1,27 @@
-import { useContext } from 'react';
 import Image, { ImageLoaderProps } from 'next/image';
-import { Container } from '@gamiui/standard';
-
-import { HomeContext } from '../../../context';
-import { lightTheme } from '../../../../styles/design-system';
-import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
 
-export interface IImage {
-  id: number;
+export type ISharedBlock = {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: (e: any) => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+};
+
+export type IImage = {
+  id?: number;
   imageUrl: string;
   alt: string;
   height?: string;
-  className?: string;
-}
+} & ISharedBlock;
 
 export const NextImage = ({
   imageUrl,
   alt,
-  className,
   height = '300px',
-  id,
+  ...props
 }: IImage) => {
-  const { idCategory } = useContext(HomeContext);
-
   const base = imageUrl.split('/').slice(0, -1).join('/');
   const src = imageUrl.split('/').slice(-1)[0];
 
@@ -32,16 +30,7 @@ export const NextImage = ({
   }
 
   return (
-    <S.NextImage
-      allowBorder={false}
-      component={Container}
-      blockId={homeBlock.CATEGORY_ITEM}
-      $height={height}
-      className={className}
-      getCustomProps={({ color }) => ({
-        color: id === idCategory ? lightTheme.extended.oceanStrong : color,
-      })}
-    >
+    <S.NextImage $height={height} {...props}>
       <Image
         loader={customLoader}
         alt={alt}

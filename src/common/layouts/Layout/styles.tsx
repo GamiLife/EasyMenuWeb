@@ -15,6 +15,7 @@ export const Content = styled(Layout.Content)``;
 export const ContentContainer = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.second};
   width: 100vw;
+  height: 100%;
 `;
 
 export const LayoutFooter = styled(Layout.Footer)`

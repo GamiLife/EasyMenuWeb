@@ -92,8 +92,7 @@ export const Product = ({
                 type="button"
                 rounded="sm"
               >
-                {' '}
-                Comprar
+                Agregar
               </S.ProductButton>
             </Link>
           </Container>

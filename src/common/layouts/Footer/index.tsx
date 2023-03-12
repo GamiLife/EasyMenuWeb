@@ -50,7 +50,12 @@ export const Footer = () => {
       <S.FooterSection className={classNames('flex')}>
         <S.FooterText>
           <S.FooterLogoContainer padding="1rem">
-            <Logo typeLogo="footer" />
+            <Block
+              component={Logo}
+              blockId={homeBlock.FOOTER_CONTAINER}
+              allowBorder={false}
+              typeLogo="footer"
+            />
           </S.FooterLogoContainer>
         </S.FooterText>
         <S.FooterMenu className={classNames('flex', 'items-center')}>

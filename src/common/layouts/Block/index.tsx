@@ -76,7 +76,10 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
     <React.Fragment>
       <props.component
         {...props}
-        onClick={handleClick}
+        onClick={(e: any) => {
+          (props as any)?.onClick?.(e);
+          handleClick(e);
+        }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className={props.className}

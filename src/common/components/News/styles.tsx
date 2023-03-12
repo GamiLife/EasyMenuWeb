@@ -20,7 +20,7 @@ export const KeenSliderSlide = styled(Container)<{
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 100px !important;
+  height: 300px !important;
   justify-content: center;
   min-height: 60px;
   padding: 1rem;
