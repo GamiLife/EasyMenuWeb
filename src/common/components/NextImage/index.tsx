@@ -1,4 +1,5 @@
 import Image, { ImageLoaderProps } from 'next/image';
+
 import * as S from './styles';
 
 export type ISharedBlock = {

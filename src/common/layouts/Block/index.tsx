@@ -7,6 +7,7 @@ import { ThemeContext } from '../../../context/theme';
 import { lightTheme } from '../../../../styles/design-system';
 import { useBlock } from '../../hooks/useBlock';
 import { Tooltip } from './Tooltip';
+import homeBlock from '../../blocks/home-block.json';
 
 export interface IBlock {
   blockId: string;
@@ -52,7 +53,9 @@ export const Block = <P,>({ ...props }: TBlock<P & IBlock>) => {
     const blockFound = previewThemeBlocks.find(
       ({ blockId }) => blockId === props.blockId
     );
-
+    // if (props.blockId === homeBlock.HEADER_CONTAINER) {
+    //   console.log(blockFound);
+    // }
     if (!blockFound) return {};
     const { background, color } = blockFound;
     return { background, color };

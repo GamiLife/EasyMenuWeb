@@ -82,7 +82,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   }, [
     previewThemeBlocks,
     isEnableHover,
-    // currentThemeBlocks,
+    currentThemeBlocks,
     blockIdActiveFromSidebar,
   ]);
 
@@ -92,6 +92,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
       const { data } = await get('companies/1');
       const { theme } = data;
       setPreviewThemeBlocks(theme);
+      setCurrentThemeBlocks(theme);
     }
     companyFetch();
   }, [slugCompany]);
