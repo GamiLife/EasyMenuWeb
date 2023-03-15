@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  env: {
+    MY_MICROSERVICE_URL: process.env.MY_MICROSERVICE_URL,
+    CMS_URL: process.env.CMS_URL,
+  },
   i18n: {
     // These are all the locales you want to support in
     // your application

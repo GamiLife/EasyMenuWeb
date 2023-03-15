@@ -54,7 +54,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     if (typeof window === undefined) return;
 
     window.addEventListener('message', (event) => {
-      if (event.origin !== 'http://localhost:3000') return;
+      if (event.origin !== process.env.CMS_URL) return;
       const { type, message } = event.data;
 
       if (!type) return;

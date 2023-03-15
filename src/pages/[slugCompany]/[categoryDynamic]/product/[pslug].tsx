@@ -40,7 +40,7 @@ Product.getLayout = (children: React.ReactNode) => {
       "sku": "0446310786",
       "offers": {
         "@type": "Offer",
-        "url": "http://localhost:3000/",
+        "url": ${process.env.CMS_URL}/,
         "priceCurrency": "SOL",
         "price": ${price},
         "priceValidUntil": "2023-01-30",

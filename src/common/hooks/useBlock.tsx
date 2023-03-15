@@ -8,7 +8,8 @@ export interface IUseBlock {
 }
 
 export const useBlock = (props: IUseBlock) => {
-  const basePathSiteEditor = 'http://localhost:3000';
+  const basePathSiteEditor = process.env.CMS_URL as string;
+
   const { isEnableHover, setBlockIdActive } = React.useContext(ThemeContext);
 
   const getTargetOrigin = () => {
