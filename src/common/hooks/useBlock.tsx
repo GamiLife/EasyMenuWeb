@@ -1,7 +1,7 @@
 /* eslint-disable no-empty */
 import React from 'react';
 
-import { ThemeContext } from '../../context/theme';
+import { INITIAL_STATE, ThemeContext, themeReducer } from '../../context/theme';
 
 export interface IUseBlock {
   blockId: string;
@@ -10,7 +10,8 @@ export interface IUseBlock {
 export const useBlock = (props: IUseBlock) => {
   const basePathSiteEditor = process.env.CMS_URL as string;
 
-  const { isEnableHover, setBlockIdActive } = React.useContext(ThemeContext);
+  const [_, dispatch] = React.useReducer(themeReducer, INITIAL_STATE);
+  const { isEnableHover } = React.useContext(ThemeContext);
 
   const getTargetOrigin = () => {
     try {
@@ -44,7 +45,7 @@ export const useBlock = (props: IUseBlock) => {
 
   const onMouseEnter = () => {
     if (typeof window === undefined) return;
-    setBlockIdActive(props.blockId);
+    dispatch({ type: 'BLOCK_ID_ACTIVE', payload: props.blockId });
     if (!isEnableHover) return;
     try {
       getTargetOrigin();
@@ -53,7 +54,7 @@ export const useBlock = (props: IUseBlock) => {
 
   const onMouseLeave = () => {
     if (typeof window === undefined) return;
-    setBlockIdActive('');
+    dispatch({ type: 'BLOCK_ID_ACTIVE', payload: '' });
     if (!isEnableHover) return;
     try {
       getTargetOrigin();

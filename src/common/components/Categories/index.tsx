@@ -66,7 +66,9 @@ export const Categories = () => {
               blockId={homeBlock.CATEGORY_ITEM}
               name={iconId}
               color={
-                id === idCategory ? lightTheme.extended.oceanStrong : 'black'
+                id === idCategory
+                  ? lightTheme.extended.oceanStrong
+                  : lightTheme.primary.black
               }
               size="50px"
               getCustomProps={({ color }) => ({
