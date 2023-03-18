@@ -39,6 +39,7 @@ export const useFetchDishesId = () => {
     }
     dishesIdfetch();
   }, [pslug]);
+
   return {
     dishInfo,
     dishSauces,

@@ -46,7 +46,7 @@ export default function Home() {
         <Spinner isLoading={isLoading} />
 
         <Container>
-          {showMessage && <Empty text={pageHome.emptyComponentText} />}
+          {showMessage && <Empty text={pageHome.productsNotFoundText} />}
         </Container>
 
         <Container margin="0 0 1rem">

@@ -1,8 +1,10 @@
 import React from 'react';
+import { Empty } from '@gamiui/standard';
 
 import { CompanyContext } from '../../../context/company';
+import { useQueryData } from '../../hooks/useQueryData';
 import { NewsSlider } from './NewsSlider';
-import { get } from '../../../config/api';
+import { messages } from '../../constants';
 
 export interface INews {
   id: number;
@@ -13,8 +15,9 @@ export interface INews {
   imageUrl: string;
 }
 
+const { pageHome } = messages;
+
 export const News = () => {
-  const [news, setNews] = React.useState<INews[] | undefined>(undefined);
   const {
     company: { id },
   } = React.useContext(CompanyContext);
@@ -22,24 +25,18 @@ export const News = () => {
   const date = new Date();
   const toISOString = date.toISOString();
 
-  React.useEffect(() => {
-    if (!id) return;
-    async function newsFetch() {
-      try {
-        const { data } = await get(
-          `news/companies/${id}?page=1&sizeByPage=3&byDate=2023-01-15T00:00:00Z&sort=[ "startDate", "ASC" ] , [ "id", "DESC" ]`
-        );
-        setNews(data);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    newsFetch();
-  }, [id]);
+  const { data: news } = useQueryData(
+    `news/companies/${id}?page=1&sizeByPage=3&byDate=2023-01-15T00:00:00Z&sort=[ "startDate", "ASC" ] , [ "id", "DESC" ]`,
+    'news'
+  );
 
   return (
     <React.Fragment>
-      {!!news?.length && <NewsSlider news={news} />}
+      {!!news?.length ? (
+        <NewsSlider news={news} />
+      ) : (
+        <Empty text={pageHome.newsNotFoundText} />
+      )}
     </React.Fragment>
   );
 };

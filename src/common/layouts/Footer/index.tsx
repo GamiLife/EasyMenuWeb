@@ -24,9 +24,9 @@ export const Footer = () => {
 
   const { staticPages } = useContext(CompanyContext);
 
-  const termsConditions = staticPages[0]?.url ?? '/';
+  const about = staticPages[0]?.url ?? '/';
   const privacyPolicies = staticPages[1]?.url ?? '/';
-  const about = staticPages[2]?.url ?? '/';
+  const termsConditions = staticPages[2]?.url ?? '/';
 
   const router = useRouter();
   const { slugCompany } = router.query;
