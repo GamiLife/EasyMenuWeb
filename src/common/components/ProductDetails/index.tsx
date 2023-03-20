@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { Container, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
@@ -10,10 +11,48 @@ import { NextImage } from '../NextImage';
 import { Block } from '../../layouts';
 import * as S from './styles';
 
+interface IDishSauce {
+  sauce: ISauce[];
+}
+
+interface ISauce {
+  companyId: string;
+  createdAt: string;
+  description: string;
+  id: string;
+  imageUrl: string;
+  price: number;
+  title: string;
+  updatedAt: string;
+}
+
+interface IDishDishes {
+  dishSecond: IDishSecond[];
+}
+
+interface IDishSecond {
+  categoryId: string;
+  companyId: string;
+  createdAt: string;
+  description: string;
+  id: string;
+  imageUrl: string;
+  price: number;
+  slug: string;
+  title: string;
+  updatedAt: string;
+}
+
 export const ProductDetails = () => {
+  const router = useRouter();
+  const { slugCompany } = router.query;
+
   const { t } = useTranslation();
 
-  const { dishInfo, dishSauces, dishDishes } = useFetchDishesId();
+  const { data, isLoading } = useFetchDishesId();
+
+  if (isLoading) return null;
+  const { dishInfo, dishSauces, dishDishes } = data;
   const { description, imageUrl, price, title } = dishInfo;
 
   return (
@@ -22,7 +61,7 @@ export const ProductDetails = () => {
         <NextBreadcrumbs />
       </S.BreadcrumbContainer>
       <S.ContentContainer>
-        <S.BackLink href="/">
+        <S.BackLink href={`/${slugCompany}`}>
           <S.BackIcon name="setting" />
           {t('pageProductDetails.back')}
         </S.BackLink>
@@ -40,7 +79,7 @@ export const ProductDetails = () => {
               <S.SaucesTitle level="h5" margin="0 0 1rem">
                 {t('pageProductDetails.saucesTitle')}
               </S.SaucesTitle>
-              {dishSauces?.map(({ sauce }) => {
+              {dishSauces?.map(({ sauce }: IDishSauce) => {
                 const { id, price, title } = sauce[0];
                 return (
                   <Container key={id}>
@@ -62,7 +101,7 @@ export const ProductDetails = () => {
               <S.DishesTitle level="h5" margin="0 0 1rem">
                 {t('pageProductDetails.dishesTitle')}
               </S.DishesTitle>
-              {dishDishes.map(({ dishSecond }) => {
+              {dishDishes.map(({ dishSecond }: IDishDishes) => {
                 const { id, price, title } = dishSecond[0];
                 return (
                   <Container key={id}>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Empty } from '@gamiui/standard';
 
+import { ConditionalRendering } from '../ConditionalRendering';
 import { CompanyContext } from '../../../context/company';
 import { useQueryData } from '../../hooks/useQueryData';
 import { NewsSlider } from './NewsSlider';
@@ -27,16 +27,14 @@ export const News = () => {
 
   const { data: news } = useQueryData(
     `news/companies/${id}?page=1&sizeByPage=3&byDate=2023-01-15T00:00:00Z&sort=[ "startDate", "ASC" ] , [ "id", "DESC" ]`,
-    'news'
+    ['news']
   );
 
   return (
-    <React.Fragment>
-      {!!news?.length ? (
-        <NewsSlider news={news} />
-      ) : (
-        <Empty text={pageHome.newsNotFoundText} />
-      )}
-    </React.Fragment>
+    <ConditionalRendering
+      data={news}
+      component={<NewsSlider news={news} />}
+      text={pageHome.newsNotFoundText}
+    />
   );
 };

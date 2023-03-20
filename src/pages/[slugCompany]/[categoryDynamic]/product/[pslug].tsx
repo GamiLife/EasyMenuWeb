@@ -24,38 +24,40 @@ const Product = () => {
 };
 
 Product.getLayout = (children: React.ReactNode) => {
-  const { dishInfo, pslug } = useFetchDishesId();
+  // const { data, pslug } = useFetchDishesId();
 
-  const { description, imageUrl, price, title } = dishInfo;
+  // const { description, imageUrl, price, title } = data.dishInfo;
 
-  function addProductJsonLd() {
-    return `{
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": ${title},
-      "image": [
-        ${imageUrl}
-       ],
-      "description": ${description},
-      "sku": "0446310786",
-      "offers": {
-        "@type": "Offer",
-        "url": ${process.env.CMS_URL}/,
-        "priceCurrency": "SOL",
-        "price": ${price},
-        "priceValidUntil": "2023-01-30",
-        "itemCondition": "https://schema.org/UsedCondition",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-  `;
-  }
+  // function addProductJsonLd() {
+  //   return `{
+  //     "@context": "https://schema.org/",
+  //     "@type": "Product",
+  //     "name": ${title},
+  //     "image": [
+  //       ${imageUrl}
+  //      ],
+  //     "description": ${description},
+  //     "sku": "0446310786",
+  //     "offers": {
+  //       "@type": "Offer",
+  //       "url": ${process.env.CMS_URL}/,
+  //       "priceCurrency": "SOL",
+  //       "price": ${price},
+  //       "priceValidUntil": "2023-01-30",
+  //       "itemCondition": "https://schema.org/UsedCondition",
+  //       "availability": "https://schema.org/InStock"
+  //     }
+  //   }
+  // `;
+  // }
 
   return (
     <LayoutWrapper
-      title={`${pslug} | Fridays`}
+      title={''}
       description=""
-      jsonLd={addProductJsonLd()}
+      jsonLd={''}
+      // title={`${pslug} | Fridays`}
+      // jsonLd={addProductJsonLd()}
     >
       {children}
     </LayoutWrapper>
