@@ -2,8 +2,10 @@ export const messages = {
   pageHome: {
     searchText: 'Buscar',
     languageText: 'IN',
-    emptyComponentText:
+    productsNotFoundText:
       'No encontramos ningún producto para la búsqueda, intente con otro nombre.',
+    categoriesNotFoundText: 'No encontramos ninguna categoría para mostrar.',
+    newsNotFoundText: 'No encontramos ninguna noticia para mostrar.',
     informationSection: {
       title: 'Información',
       letter: 'Carta',

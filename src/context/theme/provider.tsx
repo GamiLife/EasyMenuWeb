@@ -2,33 +2,23 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  defaultThemeValues,
-  IBlockItem,
-  IThemeProvider,
-  TBlockEditData,
-  ThemeContext,
-} from './context';
+import { IThemeProvider, TBlockEditData, ThemeContext } from './context';
+import { INITIAL_STATE, themeReducer } from './reducer';
 import { get } from '../../config/api';
 
 const ThemeProvider = ({ children }: IThemeProvider) => {
   const router = useRouter();
   const { slugCompany } = router.query;
 
-  const [isEnableHover, setIsEnableHover] = React.useState(
-    defaultThemeValues.isEnableHover
-  );
-  const [blockIdActiveFromSidebar, setBlockIdActiveFromSidebar] =
-    React.useState(defaultThemeValues.blockIdActiveFromSidebar);
-  const [blockIdActive, setBlockIdActive] = React.useState(
-    defaultThemeValues.blockIdActive
-  );
-  const [currentThemeBlocks, setCurrentThemeBlocks] = React.useState<
-    IBlockItem[]
-  >(defaultThemeValues.previewThemeBlocks);
-  const [previewThemeBlocks, setPreviewThemeBlocks] = React.useState<
-    IBlockItem[]
-  >(defaultThemeValues.previewThemeBlocks);
+  const [state, dispatch] = React.useReducer(themeReducer, INITIAL_STATE);
+
+  const {
+    blockIdActive,
+    blockIdActiveFromSidebar,
+    currentThemeBlocks,
+    previewThemeBlocks,
+    isEnableHover,
+  } = state;
 
   const handleOnBlockEdit = (eventData: TBlockEditData) => {
     const { color, background, blockId: blockIdName } = eventData;
@@ -44,26 +34,27 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
           background: background ?? themeFound.background,
           color: color ?? themeFound.color,
         };
-      } else return block;
+      }
+      return block;
     });
 
-    setPreviewThemeBlocks(editedBlockElement);
+    dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: editedBlockElement });
   };
 
   React.useEffect(() => {
     if (typeof window === undefined) return;
 
     window.addEventListener('message', (event) => {
-      if (event.origin !== 'http://localhost:3000') return;
+      if (event.origin !== process.env.CMS_URL) return;
       const { type, message } = event.data;
 
       if (!type) return;
       if (type === 'block-edit-submit') {
-        setCurrentThemeBlocks(previewThemeBlocks);
+        dispatch({ type: 'CURRENT_THEME_BLOCKS', payload: previewThemeBlocks });
         return;
       }
       if (type === 'block-edit-rollback') {
-        setPreviewThemeBlocks(currentThemeBlocks);
+        dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: currentThemeBlocks });
         return;
       }
       if (type === 'block-edit') {
@@ -71,18 +62,18 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
         return;
       }
       if (type === 'hover-block-from-sidebar') {
-        setBlockIdActiveFromSidebar(message);
+        dispatch({ type: 'BLOCK_ID_ACTIVE_FROM_SIDEBAR', payload: message });
         return;
       }
       if (type === 'enable-hover') {
-        setIsEnableHover(message);
+        dispatch({ type: 'IS_ENABLE_HOVER', payload: message });
         return;
       }
     });
   }, [
     previewThemeBlocks,
     isEnableHover,
-    // currentThemeBlocks,
+    currentThemeBlocks,
     blockIdActiveFromSidebar,
   ]);
 
@@ -91,7 +82,8 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     async function companyFetch() {
       const { data } = await get('companies/1');
       const { theme } = data;
-      setPreviewThemeBlocks(theme);
+      dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: theme });
+      dispatch({ type: 'CURRENT_THEME_BLOCKS', payload: theme });
     }
     companyFetch();
   }, [slugCompany]);
@@ -104,11 +96,6 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
         blockIdActiveFromSidebar,
         previewThemeBlocks,
         currentThemeBlocks,
-        setBlockIdActive,
-        setBlockIdActiveFromSidebar,
-        setPreviewThemeBlocks,
-        setCurrentThemeBlocks,
-        setIsEnableHover,
       }}
     >
       {children}

@@ -12,7 +12,7 @@ import Custom404 from '../../404';
 export default function TermsConditions() {
   const { staticPages, isEnabledCompany } = useContext(CompanyContext);
 
-  const { htmlContent } = useFetchStaticPages(staticPages[0]?.id);
+  const { data } = useFetchStaticPages(staticPages[0]?.id);
 
   if (isEnabledCompany === false) {
     return <Custom404 />;
@@ -21,7 +21,7 @@ export default function TermsConditions() {
   return (
     <Container height="full" className={classNames('terms_condition')}>
       <GlobalS.DynamicPage>
-        {htmlContent}
+        {data?.htmlContent}
         {/* <LongRichText /> */}
       </GlobalS.DynamicPage>
     </Container>

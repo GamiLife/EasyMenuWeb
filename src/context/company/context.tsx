@@ -6,10 +6,7 @@ export interface ICompanyContext {
   logos: ILogos[];
   socialNetworks: ISocialNetworks[];
   staticPages: IStaticPages[];
-  theme: ITheme[];
   isEnabledCompany: boolean;
-  setBrand: (brand: IBrand) => void;
-  setCompany: (company: ICompany) => void;
 }
 
 export interface ICompanyProvider {
@@ -17,7 +14,6 @@ export interface ICompanyProvider {
 }
 
 export interface IBrand {
-  companyId: number;
   id: number;
   metaDescription: string;
   metaTitle: string;
@@ -46,6 +42,7 @@ export interface ISocialNetworks {
 }
 
 export interface IDetails {
+  id: number;
   countryCode: string;
   phone: string;
   user: string;
@@ -56,17 +53,8 @@ export interface IStaticPages {
   url: string;
 }
 
-export interface ITheme {
-  brandId: number;
-  id: number;
-  themeMode: string;
-  type: string;
-  value: string;
-}
-
 export const defaultCompanyValues = {
   brand: {
-    companyId: 0,
     id: 0,
     metaDescription: '',
     metaTitle: '',
@@ -80,18 +68,10 @@ export const defaultCompanyValues = {
   logos: [],
   socialNetworks: [],
   staticPages: [],
-  theme: [],
   isEnabledCompany: false,
 };
 
-export const defaultCompanySetter = {
-  setBrand: () => {
-    return;
-  },
-  setCompany: () => {
-    return;
-  },
-};
+export const defaultCompanySetter = {};
 
 export const defaultCompanyContext = {
   ...defaultCompanyValues,

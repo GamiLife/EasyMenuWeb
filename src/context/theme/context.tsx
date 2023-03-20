@@ -6,11 +6,11 @@ export interface IThemeContext {
   isEnableHover: boolean;
   previewThemeBlocks: IBlockItem[];
   currentThemeBlocks: IBlockItem[];
-  setBlockIdActive: (value: string) => void;
-  setBlockIdActiveFromSidebar: (value: string) => void;
-  setIsEnableHover: (value: boolean) => void;
-  setPreviewThemeBlocks: (value: IBlockItem[]) => void;
-  setCurrentThemeBlocks: (value: IBlockItem[]) => void;
+  // setBlockIdActive: (value: string) => void;
+  // setBlockIdActiveFromSidebar: (value: string) => void;
+  // setIsEnableHover: (value: boolean) => void;
+  // setPreviewThemeBlocks: (value: IBlockItem[]) => void;
+  // setCurrentThemeBlocks: (value: IBlockItem[]) => void;
 }
 
 export interface IBlockItem {

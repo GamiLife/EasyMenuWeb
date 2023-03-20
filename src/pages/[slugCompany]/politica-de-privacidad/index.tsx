@@ -12,7 +12,7 @@ import Custom404 from '../../404';
 export default function PoliciesPrivacy() {
   const { staticPages, isEnabledCompany } = useContext(CompanyContext);
 
-  const { htmlContent } = useFetchStaticPages(staticPages[1]?.id);
+  const { data } = useFetchStaticPages(staticPages[1]?.id);
 
   if (isEnabledCompany === false) {
     return <Custom404 />;
@@ -21,7 +21,7 @@ export default function PoliciesPrivacy() {
   return (
     <Container height="full" className={classNames('policies_privacy')}>
       <GlobalS.DynamicPage>
-        {htmlContent}
+        {data?.htmlContent}
         {/* <LongRichText /> */}
       </GlobalS.DynamicPage>
     </Container>
