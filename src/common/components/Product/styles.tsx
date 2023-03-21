@@ -46,6 +46,8 @@ export const WishListIcon = styled(Icon)``;
 
 export const ProductButton = styled(Block<IButton>)`
   background-color: ${lightTheme.primary.first};
+  font-size: 20px;
+  font-weight: 600;
   height: auto;
   text-transform: uppercase;
   width: 100%;

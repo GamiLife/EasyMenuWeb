@@ -24,17 +24,17 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeGamification>
-      <CompanyProvider>
-        <HomeProvider>
-          <ThemeProvider>
-            <I18nextProvider i18n={i18n}>
-              <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <CompanyProvider>
+          <HomeProvider>
+            <ThemeProvider>
+              <I18nextProvider i18n={i18n}>
                 {getLayout(<Component {...pageProps} />)}
-              </QueryClientProvider>
-            </I18nextProvider>
-          </ThemeProvider>
-        </HomeProvider>
-      </CompanyProvider>
+              </I18nextProvider>
+            </ThemeProvider>
+          </HomeProvider>
+        </CompanyProvider>
+      </QueryClientProvider>
     </ThemeGamification>
   );
 }

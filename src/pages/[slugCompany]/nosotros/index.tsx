@@ -7,7 +7,6 @@ import { CompanyContext } from '../../../context';
 import { LayoutWrapper } from '../../../common/layouts';
 import * as GlobalS from '../../../../styles/design-system/commons';
 import Custom404 from '../../404';
-// import { LongRichText } from '../../../common/components/LongRichText';
 
 export default function About() {
   const { staticPages, isEnabledCompany } = useContext(CompanyContext);
@@ -19,10 +18,7 @@ export default function About() {
 
   return (
     <Container height="full" className={classNames('about')}>
-      <GlobalS.DynamicPage>
-        {data?.htmlContent}
-        {/* <LongRichText /> */}
-      </GlobalS.DynamicPage>
+      <GlobalS.DynamicPage>{data?.htmlContent}</GlobalS.DynamicPage>
     </Container>
   );
 }

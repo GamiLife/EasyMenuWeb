@@ -20,10 +20,42 @@ export const HeaderLeft = styled(Container)`
   width: 160px;
 `;
 
+export const SearchInput = styled(Input)`
+  background-color: ${lightTheme.neutral[600]};
+`;
+
 export const SearchIcon = styled(Icon)`
   margin-bottom: 4px;
 `;
 
-export const SearchInput = styled(Input)`
-  background-color: ${lightTheme.neutral[600]};
+export const HeaderRight = styled(Container)`
+  align-items: center;
+  column-gap: 1rem;
+  display: flex;
+  padding: 1rem;
+`;
+
+export const LanguageSwitch = styled(Container)`
+  cursor: pointer;
+`;
+
+export const CartCountContainer = styled(Container)`
+  position: relative;
+`;
+
+export const CartCount = styled.span`
+  align-items: center;
+  background-color: ${lightTheme.primary.first};
+  border-radius: 50px;
+  color: ${lightTheme.primary.white};
+  cursor: pointer;
+  display: flex;
+  font-size: 11px;
+  height: 19px;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  right: -8px;
+  top: -5px;
+  width: 20px;
 `;

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button, Card, Container, RichText, Title } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import { useCustomTranslation } from '../../hooks';
 import { HomeContext } from '../../../context/home';
 import homeBlock from '../../blocks/home-block.json';
 import { Block } from '../../layouts';
@@ -29,6 +30,8 @@ export const Product = ({
 
   const router = useRouter();
   const { slugCompany } = router.query;
+
+  const { t } = useCustomTranslation();
 
   return (
     <S.Product>
@@ -92,7 +95,7 @@ export const Product = ({
                 type="button"
                 rounded="sm"
               >
-                Agregar
+                {t('pageHome.productLinkText')}
               </S.ProductButton>
             </Link>
           </Container>

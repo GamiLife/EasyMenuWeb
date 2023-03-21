@@ -1,49 +1,33 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { get } from '../../config/api';
+import { useQueryData } from './useQueryData';
 
 export const useFetchDishesId = () => {
-  const [dishInfo, setDishInfo] = useState({
-    description: '',
-    imageUrl: '',
-    price: 0,
-    title: '',
-  });
-  const [dishSauces, setDishSauces] = useState([]);
-  const [dishDishes, setDishDishes] = useState([]);
-
   const router = useRouter();
   const { pslug } = router.query;
 
-  useEffect(() => {
-    if (!pslug) return;
-
-    async function dishesIdfetch() {
-      try {
-        const { data } = await get(`dishes/slug/${pslug}`);
-
-        const { dishSauces, dishDishes, dishInfo } = data;
-        const { description, imageUrl, price, title } = dishInfo;
-        setDishInfo({
+  const { data, isLoading } = useQueryData(
+    `dishes/slug/${pslug}`,
+    ['dishes', pslug as string],
+    (data) => {
+      const { dishSauces, dishDishes, dishInfo } = data;
+      const { description, imageUrl, price, title } = dishInfo;
+      return {
+        dishInfo: {
           description,
           imageUrl,
           price,
           title,
-        });
-        setDishSauces(dishSauces);
-        setDishDishes(dishDishes);
-      } catch (e) {
-        console.log(e);
-      }
+        },
+        dishSauces,
+        dishDishes,
+      };
     }
-    dishesIdfetch();
-  }, [pslug]);
+  );
 
   return {
-    dishInfo,
-    dishSauces,
-    dishDishes,
+    data,
     pslug,
+    isLoading,
   };
 };

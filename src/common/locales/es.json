@@ -18,6 +18,7 @@
         "copyright": "EasyMenuWeb {{val, year}} - Todos los derechos reservados"
     },
     "pageHome": {
+        "productLinkText": "Comprar",
         "emptyComponentText": "No encontramos ningún producto para la búsqueda, intente con otro nombre."
     },
     "pageLocations": {
@@ -30,6 +31,7 @@
     "pageProductDetails": {
         "back": "Atrás",
         "saucesTitle": "Elige tus salsas",
-        "dishesTitle": "Elige otros platos"
+        "dishesTitle": "Elige otros platos",
+        "addButtonText": "Agregar"
     }
 }
