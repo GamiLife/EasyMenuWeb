@@ -18,6 +18,7 @@
         "copyright": "EasyMenuWeb {{val, year}} - All rights reserved"
     },
     "pageHome": {
+        "productLinkText": "Buy",
         "emptyComponentText": "We did not find any product for the search, try another name."
     },
     "pageLocations": {
@@ -30,6 +31,7 @@
     "pageProductDetails": {
         "back": "Back",
         "saucesTitle": "Choose your sauces",
-        "dishesTitle": "Choose other dishes"
+        "dishesTitle": "Choose other dishes",
+        "addButtonText": "Add"
     }
 }

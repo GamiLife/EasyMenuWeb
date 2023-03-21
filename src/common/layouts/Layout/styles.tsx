@@ -10,7 +10,9 @@ export const LayoutHeader = styled(Layout.Header)`
   z-index: 1;
 `;
 
-export const Content = styled(Layout.Content)``;
+export const Content = styled(Layout.Content)`
+  /* position: relative; */
+`;
 
 export const ContentContainer = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.second};

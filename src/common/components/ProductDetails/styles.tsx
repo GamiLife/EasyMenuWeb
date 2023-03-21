@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
-import { Container, Icon, Title } from '@gamiui/standard';
+import { Button, Container, Icon, Title } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
@@ -54,6 +54,8 @@ export const Selections = styled(Container)`
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+
+  margin-block: 0 1.7rem;
 `;
 
 export const SaucesArea = styled(Block<IContainer>)`
@@ -82,6 +84,20 @@ export const DishesArea = styled(Block<IContainer>)`
 
 export const DishesTitle = styled(Title)`
   font-size: 19px;
+`;
+
+export const AddButtonContainer = styled(Container)``;
+
+export const AddButton = styled(Button)`
+  background-color: ${lightTheme.primary.first};
+  border-radius: 15px;
+  color: ${lightTheme.primary.white};
+  cursor: pointer;
+  font-size: 20px;
+  margin: auto;
+  padding: 8px 19px 3px;
+  text-transform: uppercase;
+  width: 90%;
 `;
 
 export const PriceImageContainer = styled(Container)`
