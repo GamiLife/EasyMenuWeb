@@ -1,10 +1,15 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
-import { Button, Container, Icon, Title } from '@gamiui/standard';
+import { Button, Container, Drawer, Icon, Title } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { Block } from '../../layouts';
+
+export const CartContentDrawer = styled(Drawer)`
+  border-top-left-radius: 0 !important;
+  margin-top: 100px;
+`;
 
 export const ProductDetails = styled(Container)`
   display: grid;

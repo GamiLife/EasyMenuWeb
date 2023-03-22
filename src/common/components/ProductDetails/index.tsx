@@ -57,14 +57,14 @@ export const ProductDetails = () => {
 
   return (
     <React.Fragment>
-      <Drawer style={{ marginTop: '100px' }} open={true} placement={'right'}>
+      <S.CartContentDrawer width={410} open={true} placement={'right'}>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugit
           possimus hic delectus a accusantium, rem tempore explicabo
           reprehenderit. Officia ipsam temporibus accusantium neque iste.
           Maiores quae libero laborum minus.
         </p>
-      </Drawer>
+      </S.CartContentDrawer>
       <S.ProductDetails>
         <S.BreadcrumbContainer>
           <NextBreadcrumbs />
