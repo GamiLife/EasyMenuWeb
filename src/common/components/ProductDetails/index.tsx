@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { Container, Drawer, RichText } from '@gamiui/standard';
+import { Container, Drawer, Icon, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import productDetailsBlock from '../../blocks/productDetails-block.json';
@@ -10,6 +10,8 @@ import NextBreadcrumbs from '../NextBreadcrumbs';
 import { NextImage } from '../NextImage';
 import { Block } from '../../layouts';
 import * as S from './styles';
+import { HomeContext } from '../../../context';
+import { Spinner } from '../Spinner';
 
 interface IDishSauce {
   sauce: ISauce[];
@@ -45,19 +47,38 @@ interface IDishSecond {
 
 export const ProductDetails = () => {
   const router = useRouter();
-  const { slugCompany } = router.query;
+  const { slugCompany, pslug } = router.query;
+  const [open, setOpen] = React.useState(false);
+
+  const { categoryName } = React.useContext(HomeContext);
 
   const { t } = useTranslation();
 
   const { data, isLoading } = useFetchDishesId();
 
-  if (isLoading) return null;
+  // function hnaldeClick(){
+
+  // }
+
+  if (isLoading) return <Spinner isLoading={isLoading}></Spinner>;
   const { dishInfo, dishSauces, dishDishes } = data;
   const { description, imageUrl, price, title } = dishInfo;
 
   return (
     <React.Fragment>
       <S.CartContentDrawer width={410} open={true} placement={'right'}>
+        <S.SidebarLightNavyBlueBar>
+          {/* <S.CloseLink
+            href={`${slugCompany}/${categoryName
+              .toLowerCase()
+              .replace(' ', '-')}/product/${pslug}`}
+          ></S.CloseLink> */}
+          <S.CloseLink
+            href={`/${slugCompany}/${categoryName
+              .toLowerCase()
+              .replace(' ', '-')}/product/${pslug}`}
+          ></S.CloseLink>
+        </S.SidebarLightNavyBlueBar>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugit
           possimus hic delectus a accusantium, rem tempore explicabo
