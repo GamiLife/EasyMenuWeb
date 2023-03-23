@@ -55,7 +55,7 @@ export const ProductDetails = () => {
   const { t } = useTranslation();
 
   const { data, isLoading } = useFetchDishesId();
-
+  console.log(data);
   // function hnaldeClick(){
 
   // }

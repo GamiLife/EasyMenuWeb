@@ -22,11 +22,11 @@ export default function Home() {
   const { idCategory } = React.useContext(HomeContext);
   const { isEnabledCompany } = React.useContext(CompanyContext);
 
-  const { productsByPage, isLoading, showMessage } = useFetchDishes({
+  const { isLoading, showMessage, data } = useFetchDishes({
     idCategory,
   });
-  const { page, numberPages, handleChangePage } = usePagination(5);
 
+  const { page, numberPages, handleChangePage } = usePagination(5);
   if (isEnabledCompany === false) {
     return <Custom404 />;
   }
@@ -41,9 +41,9 @@ export default function Home() {
       <News />
 
       <Container padding="20px 30px">
-        <ProductList isLoading={isLoading} productsByPage={productsByPage} />
+        <ProductList isLoading={false} productsByPage={data.productsByPage} />
 
-        <Spinner isLoading={isLoading} />
+        {isLoading && <Spinner isLoading={isLoading} />}
 
         <Container>
           {showMessage && <Empty text={pageHome.productsNotFoundText} />}

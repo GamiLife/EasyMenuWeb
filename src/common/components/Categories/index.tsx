@@ -9,6 +9,7 @@ import { messages } from '../../constants';
 import homeBlock from '../../blocks/home-block.json';
 import { Block } from '../../layouts';
 import * as S from './styles';
+import { Spinner } from '../Spinner';
 
 const { pageHome } = messages;
 
@@ -17,9 +18,9 @@ export const Categories = () => {
     company: { id },
   } = React.useContext(CompanyContext);
 
-  const { data: categories } = useQueryData(`categories/companies/${id}`, [
-    'categories',
-  ]);
+  const { data } = useQueryData(`categories/companies/${id}`, ['categories']);
+  if (!data) return <Spinner isLoading={true} />;
+  const categories = data.data;
 
   return (
     <React.Fragment>
