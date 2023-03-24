@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { usePagination } from './usePagination';
+import { useQueryData } from './useQueryData';
 import { useDebounce } from './useDebounce';
 import { useToggle } from './useToggle';
 import { useSearch } from './useSearch';
 import { IProduct } from '../components/Product';
-import { get } from '../../config/api';
-import { useQueryData } from './useQueryData';
 
 interface IUseFetchDishes {
   idCategory: number;
@@ -33,9 +32,6 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
   //       const { data, metaData } = await get(
   //         `dishes/categories/${idCategory}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}&search=${debouncedValue}`
   //       );
-  //       // const result = await get(
-  //       //   `dishes/categories/${idCategory}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}&search=${debouncedValue}`
-  //       // );
   //       // console.log(result);
   //       setProductsByPage(data);
   //       setTotalItems(metaData.pagination.totalItems);
@@ -64,14 +60,11 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
       setIsLoading(false);
       setShowMessage(false);
       !data.length && setShowMessage(true);
-      setProductsByPage(data);
-      // return {
-      //   data,
-      //   // productsByPage: data,
-      //   // totalItems: totalItems,
-      //   // isLoading: false,
-      //   // showMessage: false,
-      // };
+      // setProductsByPage(data);
+      return {
+        data,
+        // productsByPage: data,
+      };
     }
   );
 
@@ -79,6 +72,5 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
     data,
     isLoading,
     showMessage,
-    // productsByPage,
   };
 };

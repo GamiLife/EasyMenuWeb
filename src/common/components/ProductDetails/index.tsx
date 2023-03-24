@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { Container, Drawer, Icon, RichText } from '@gamiui/standard';
+import { Container, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import productDetailsBlock from '../../blocks/productDetails-block.json';

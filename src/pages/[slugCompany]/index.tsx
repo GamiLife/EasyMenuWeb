@@ -22,7 +22,7 @@ export default function Home() {
   const { idCategory } = React.useContext(HomeContext);
   const { isEnabledCompany } = React.useContext(CompanyContext);
 
-  const { isLoading, showMessage, data } = useFetchDishes({
+  const { data, isLoading, showMessage } = useFetchDishes({
     idCategory,
   });
 
