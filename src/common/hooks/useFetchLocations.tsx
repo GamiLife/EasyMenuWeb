@@ -1,50 +1,77 @@
-import { useContext, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react';
 
 import { CompanyContext } from '../../context/company';
 import { usePagination } from './usePagination';
+import { useQueryData } from './useQueryData';
 import { ILocation } from '../components/Location';
 import { useToggle } from './useToggle';
 import { get } from '../../config/api';
 
 export const useFetchLocations = () => {
-  const [locations, setLocations] = useState<ILocation[]>([]);
+  // const [locations, setLocations] = React.useState<ILocation[]>([]);
   const {
     company: { id },
-  } = useContext(CompanyContext);
+  } = React.useContext(CompanyContext);
 
   const {
-    page,
-    numberPages,
     pageNumber,
     SIZE_BY_PAGE,
     setTotalItems,
-    handleChangePage,
+    // page,
+    // numberPages,
+    // handleChangePage,
   } = usePagination(4);
-  const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
-    defaultVisible: true,
-  });
+  // const { handleToggle: setIsLoading } = useToggle({
+  //   defaultVisible: true,
+  // });
+  // const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
+  //   defaultVisible: true,
+  // });
 
-  useEffect(() => {
-    async function locationsFetch() {
-      try {
-        const { data, metaData } = await get(
-          `locations/companies/${id}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}`
-        );
-        setLocations(data);
-        setTotalItems(metaData.pagination.totalItems);
-        setIsLoading(false);
-      } catch (e) {
-        console.log(e);
-      }
+  // React.useEffect(() => {
+  //   async function locationsFetch() {
+  //     try {
+  //       const { data, metaData } = await get(
+  //         `locations/companies/${id}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}`
+  //       );
+  //       setLocations(data);
+  //       setTotalItems(metaData.pagination.totalItems);
+  //       setIsLoading(false);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   }
+  //   locationsFetch();
+  // }, [SIZE_BY_PAGE, pageNumber, setIsLoading, setTotalItems, id]);
+
+  const { data, isLoading, isError } = useQueryData(
+    `locations/companies/${id}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}`,
+    ['locations', SIZE_BY_PAGE, pageNumber, id],
+    // ['locations', SIZE_BY_PAGE, pageNumber, setIsLoading, setTotalItems, id],
+    ({ data, metaData }) => {
+      return {
+        response: data,
+        metaData,
+      };
     }
-    locationsFetch();
-  }, [SIZE_BY_PAGE, pageNumber, setIsLoading, setTotalItems, id]);
+  );
+
+  React.useEffect(() => {
+    if (!data?.response?.length) return;
+    const {
+      pagination: { totalItems },
+    } = data.metaData;
+    setTotalItems(totalItems);
+  }, [JSON.stringify(data)]);
 
   return {
-    page,
-    locations,
-    numberPages,
+    data: data?.response,
     isLoading,
-    handleChangePage,
+    isError,
+    // page,
+    // handleChangePage,
+    // locations,
+    // numberPages,
   };
 };

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Container, Pagination, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
-import { useCustomTranslation } from '../../../common/hooks';
+import { useCustomTranslation, usePagination } from '../../../common/hooks';
 import { useFetchLocations } from '../../../common/hooks/useFetchLocations';
 import PaginationProvider from '../../../context/pagination/provider';
 import { CompanyContext } from '../../../context';
@@ -15,8 +15,8 @@ import * as S from './styles';
 export default function Locations() {
   const { isEnabledCompany } = useContext(CompanyContext);
 
-  const { page, locations, numberPages, isLoading, handleChangePage } =
-    useFetchLocations();
+  // const { data, locations, isLoading } = useFetchLocations();
+  const { page, numberPages, handleChangePage } = usePagination(4);
   const { t } = useCustomTranslation();
 
   if (isEnabledCompany === false) {
@@ -32,9 +32,10 @@ export default function Locations() {
         <RichText text={t('pageLocations.description')} />
       </S.TitleContainer>
       <S.StoresContainer>
-        <Spinner isLoading={isLoading} />
+        {/* <Spinner isLoading={isLoading} /> */}
 
-        <StoresList locations={locations} isLoading={isLoading} />
+        <StoresList />
+        {/* <StoresList locations={locations} isLoading={isLoading} /> */}
 
         <Container margin="0 0 1rem">
           {numberPages >= 1 && (

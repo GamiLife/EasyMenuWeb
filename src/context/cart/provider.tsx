@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 
-import { get } from '../../config/api';
-
 import { CartContext, ICartProvider } from './context';
+import { get } from '../../config/api';
 
 const CartProvider = ({ children }: ICartProvider) => {
   const router = useRouter();

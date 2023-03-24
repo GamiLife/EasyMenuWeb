@@ -1,6 +1,10 @@
 import React from 'react';
 
 export interface ICartContext {
+  // id:
+  description: string;
+  imageUrl: string;
+  price: number;
   title: string;
 }
 

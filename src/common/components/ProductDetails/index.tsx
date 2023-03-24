@@ -5,15 +5,15 @@ import { Container, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import productDetailsBlock from '../../blocks/productDetails-block.json';
-import { useFetchDishesId } from '../../hooks';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { NextImage } from '../NextImage';
 import { Block } from '../../layouts';
 import * as S from './styles';
 import { HomeContext } from '../../../context';
 import { Spinner } from '../Spinner';
+import { useFetchDishById } from '../../hooks/useFetchDishById';
 
-interface IDishSauce {
+interface ICombosSauce {
   sauce: ISauce[];
 }
 
@@ -48,21 +48,19 @@ interface IDishSecond {
 export const ProductDetails = () => {
   const router = useRouter();
   const { slugCompany, pslug } = router.query;
-  // const [open, setOpen] = React.useState(false);
 
   const { categoryName } = React.useContext(HomeContext);
 
   const { t } = useTranslation();
 
-  const { data, isLoading } = useFetchDishesId();
+  // const { data, isLoading } = useFetchDishesId();
+  const { data, isLoading } = useFetchDishById();
   console.log(data);
-  // function hnaldeClick(){
-
-  // }
-
   if (isLoading) return <Spinner isLoading={isLoading} />;
-  const { dishInfo, dishSauces, dishDishes } = data;
-  const { description, imageUrl, price, title } = dishInfo;
+  const { title, slug, description, price, imageUrl, combosSauce, combosDish } =
+    data;
+  // const { dishInfo, dishSauces, dishDishes } = data;
+  // const { description, imageUrl, price, title } = dishInfo;
 
   return (
     <React.Fragment>
@@ -109,12 +107,22 @@ export const ProductDetails = () => {
                 <S.SaucesTitle level="h5" margin="0 0 1rem">
                   {t('pageProductDetails.saucesTitle')}
                 </S.SaucesTitle>
-                {dishSauces?.map(({ sauce }: IDishSauce) => {
+                {/* {combosSauce?.map(({ sauce }: IDishSauce) => {
                   const { id, price, title } = sauce[0];
                   return (
                     <Container key={id}>
                       <S.Label>{title}</S.Label>
                       <label>{price}</label>
+                    </Container>
+                  );
+                })} */}
+
+                {combosSauce?.map(({ sauce }: ICombosSauce) => {
+                  const { title, description, id } = sauce[0];
+                  return (
+                    <Container key={id}>
+                      <h3>{title}</h3>
+                      <p>{description}</p>
                     </Container>
                   );
                 })}
@@ -131,7 +139,7 @@ export const ProductDetails = () => {
                 <S.DishesTitle level="h5" margin="0 0 1rem">
                   {t('pageProductDetails.dishesTitle')}
                 </S.DishesTitle>
-                {dishDishes.map(({ dishSecond }: IDishDishes) => {
+                {/* {combosDish?.map(({ dishSecond }: IDishDishes) => {
                   const { id, price, title } = dishSecond[0];
                   return (
                     <Container key={id}>
@@ -139,7 +147,7 @@ export const ProductDetails = () => {
                       <label>{price}</label>
                     </Container>
                   );
-                })}
+                })} */}
               </S.DishesArea>
             </Container>
           </S.Selections>

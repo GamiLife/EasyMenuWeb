@@ -1,17 +1,28 @@
+import React from 'react';
+import { Container, Empty } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { IProduct, Product } from '../Product';
+import { useFetchHomeDishes } from '../../hooks';
+import { HomeContext } from '../../../context';
+import { messages } from '../../constants';
+import { Spinner } from '../Spinner';
 import * as S from './styles';
 
-interface IProductList {
-  productsByPage: IProduct[];
-  // isLoading: boolean;
-}
-// !isLoading &&
-export const ProductList = ({ productsByPage }: IProductList) => {
+const { pageHome } = messages;
+
+export const ProductList = () => {
+  const { idCategory } = React.useContext(HomeContext);
+
+  const { data, isLoading, showMessage } = useFetchHomeDishes({
+    idCategory,
+  });
+
+  if (isLoading) return <Spinner isLoading={isLoading} minHeight="800px" />;
+
   return (
     <S.ProductList className={classNames('product-list')}>
-      {productsByPage?.map(
+      {data?.map(
         ({ description, id, imageUrl, price, title, slug }: IProduct) => (
           <Product
             key={id}
@@ -24,6 +35,9 @@ export const ProductList = ({ productsByPage }: IProductList) => {
           />
         )
       )}
+      <Container>
+        {showMessage && <Empty text={pageHome.productsNotFoundText} />}
+      </Container>
     </S.ProductList>
   );
 };
