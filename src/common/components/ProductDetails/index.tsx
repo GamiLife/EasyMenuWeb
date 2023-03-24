@@ -48,7 +48,7 @@ interface IDishSecond {
 export const ProductDetails = () => {
   const router = useRouter();
   const { slugCompany, pslug } = router.query;
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   const { categoryName } = React.useContext(HomeContext);
 
@@ -60,7 +60,7 @@ export const ProductDetails = () => {
 
   // }
 
-  if (isLoading) return <Spinner isLoading={isLoading}></Spinner>;
+  if (isLoading) return <Spinner isLoading={isLoading} />;
   const { dishInfo, dishSauces, dishDishes } = data;
   const { description, imageUrl, price, title } = dishInfo;
 

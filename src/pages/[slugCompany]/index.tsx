@@ -27,9 +27,14 @@ export default function Home() {
   });
 
   const { page, numberPages, handleChangePage } = usePagination(5);
+  // console.log(numberPages);
+
   if (isEnabledCompany === false) {
     return <Custom404 />;
   }
+
+  // if (!data) return <Spinner isLoading={true} minHeight={'800px'} />;
+  if (isLoading) return <Spinner isLoading={isLoading} minHeight="800px" />;
 
   return (
     <React.Fragment>
@@ -41,9 +46,8 @@ export default function Home() {
       <News />
 
       <Container padding="20px 30px">
-        <ProductList isLoading={false} productsByPage={data.productsByPage} />
-
-        {isLoading && <Spinner isLoading={isLoading} />}
+        <ProductList productsByPage={data} />
+        {/* <ProductList isLoading={false} productsByPage={data?.productsByPage} /> */}
 
         <Container>
           {showMessage && <Empty text={pageHome.productsNotFoundText} />}

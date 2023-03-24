@@ -18,8 +18,10 @@ export const Categories = () => {
     company: { id },
   } = React.useContext(CompanyContext);
 
-  const { data } = useQueryData(`categories/companies/${id}`, ['categories']);
-  if (!data) return <Spinner isLoading={true} />;
+  const { data, isLoading } = useQueryData(`categories/companies/${id}`, [
+    'categories',
+  ]);
+  if (isLoading) return <Spinner isLoading={isLoading} />;
   const categories = data.data;
 
   return (

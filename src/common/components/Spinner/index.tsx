@@ -3,17 +3,20 @@ import classNames from 'classnames';
 
 import { lightTheme } from '../../../../styles/design-system';
 import * as S from './styles';
+import { HeaderRight } from '../../layouts/Header/styles';
 
 export interface ISpinner {
   isLoading: boolean;
+  minHeight?: string;
 }
 
-export const Spinner = ({ isLoading }: ISpinner) => {
+export const Spinner = ({ isLoading, minHeight = 'auto' }: ISpinner) => {
   return (
     <Container>
       {isLoading && (
         <S.LoaderWrapper
-          minHeight="800px"
+          // minHeight="800px"
+          minHeight={minHeight}
           isLoading={isLoading}
           loaderNode={
             <Loader

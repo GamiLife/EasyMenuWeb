@@ -5,26 +5,25 @@ import * as S from './styles';
 
 interface IProductList {
   productsByPage: IProduct[];
-  isLoading: boolean;
+  // isLoading: boolean;
 }
-
-export const ProductList = ({ productsByPage, isLoading }: IProductList) => {
+// !isLoading &&
+export const ProductList = ({ productsByPage }: IProductList) => {
   return (
     <S.ProductList className={classNames('product-list')}>
-      {!isLoading &&
-        productsByPage?.map(
-          ({ description, id, imageUrl, price, title, slug }: IProduct) => (
-            <Product
-              key={id}
-              id={id}
-              description={description}
-              imageUrl={imageUrl}
-              price={price}
-              title={title}
-              slug={slug}
-            />
-          )
-        )}
+      {productsByPage?.map(
+        ({ description, id, imageUrl, price, title, slug }: IProduct) => (
+          <Product
+            key={id}
+            id={id}
+            description={description}
+            imageUrl={imageUrl}
+            price={price}
+            title={title}
+            slug={slug}
+          />
+        )
+      )}
     </S.ProductList>
   );
 };

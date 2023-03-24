@@ -26,11 +26,11 @@ export const News = () => {
   const date = new Date();
   const toISOString = date.toISOString();
 
-  const { data } = useQueryData(
+  const { data, isLoading } = useQueryData(
     `news/companies/${id}?page=1&sizeByPage=3&byDate=2023-01-15T00:00:00Z&sort=[ "startDate", "ASC" ] , [ "id", "DESC" ]`,
     ['news']
   );
-  if (!data) return <Spinner isLoading={true} />;
+  if (isLoading) return <Spinner isLoading={isLoading} />;
   const news = data.data;
 
   return (

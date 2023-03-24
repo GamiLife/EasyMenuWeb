@@ -57,22 +57,28 @@ export const useFetchDishes = ({ idCategory }: IUseFetchDishes) => {
       //   setIsLoading(false),
       //   setShowMessage(false),
       // !data.length && setShowMessage(true);
-      // !data.length && showMessage = true;
-      const { pagination: totalItems } = metaData;
-      if (!data.length) setShowMessage(true);
-      return {
-        productsByPage: data,
-        totalItems: 16,
-        // isLoading: false,
-        showMessage: false,
-      };
+      const {
+        pagination: { totalItems },
+      } = metaData;
+      setTotalItems(totalItems);
+      setIsLoading(false);
+      setShowMessage(false);
+      !data.length && setShowMessage(true);
+      setProductsByPage(data);
+      // return {
+      //   data,
+      //   // productsByPage: data,
+      //   // totalItems: totalItems,
+      //   // isLoading: false,
+      //   // showMessage: false,
+      // };
     }
   );
 
   return {
     data,
-    productsByPage,
     isLoading,
     showMessage,
+    // productsByPage,
   };
 };
