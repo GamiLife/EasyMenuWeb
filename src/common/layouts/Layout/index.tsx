@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { Container, Layout } from '@gamiui/standard';
+import { Container } from '@gamiui/standard';
 
 import { Header, Footer, Block } from '..';
 import homeBlock from '../../blocks/home-block.json';
@@ -24,7 +24,7 @@ export const LayoutWrapper = ({
   jsonLd,
 }: ILayoutWrapper) => {
   return (
-    <Layout>
+    <S.LayoutWrapper>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} key="desc" />
@@ -53,6 +53,6 @@ export const LayoutWrapper = ({
       <S.LayoutFooter>
         <Footer />
       </S.LayoutFooter>
-    </Layout>
+    </S.LayoutWrapper>
   );
 };

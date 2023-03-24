@@ -10,8 +10,8 @@ export const useQueryData = (
   select?: (data: any) => any
 ) => {
   const getData = async () => {
-    const { data } = await get(path);
-    return data;
+    const result = await get(path);
+    return result;
   };
 
   const { data, isError, isLoading } = useQuery({

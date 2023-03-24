@@ -5,6 +5,7 @@ import { CompanyContext } from '../../../context/company';
 import { useQueryData } from '../../hooks/useQueryData';
 import { NewsSlider } from './NewsSlider';
 import { messages } from '../../constants';
+import { Spinner } from '../Spinner';
 
 export interface INews {
   id: number;
@@ -25,10 +26,12 @@ export const News = () => {
   const date = new Date();
   const toISOString = date.toISOString();
 
-  const { data: news } = useQueryData(
+  const { data } = useQueryData(
     `news/companies/${id}?page=1&sizeByPage=3&byDate=2023-01-15T00:00:00Z&sort=[ "startDate", "ASC" ] , [ "id", "DESC" ]`,
     ['news']
   );
+  if (!data) return <Spinner isLoading={true} />;
+  const news = data.data;
 
   return (
     <ConditionalRendering

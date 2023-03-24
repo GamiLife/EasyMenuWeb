@@ -18,5 +18,6 @@ export const usePagination = (size_by_page: number) => {
     numberPages,
     handleChangePage,
     setTotalItems,
+    totalItems,
   };
 };
