@@ -108,14 +108,6 @@ export const Selections = styled(Container)`
 //   margin-right: 2rem;
 // `;
 
-export const DishesArea = styled(Block<IContainer>)`
-  background-color: ${lightTheme.primary.white};
-  border: 1px solid ${lightTheme.neutral[400]};
-  border-radius: 20px;
-  padding: 10px 20px;
-  width: 100%;
-`;
-
 // export const DishesTitle = styled(Title)`
 //   font-size: 19px;
 // `;

@@ -13,6 +13,23 @@ import { HomeContext } from '../../../context';
 import { Spinner } from '../Spinner';
 import { useFetchDishById } from '../../hooks/useFetchDishById';
 import { SaucesArea } from '../SaucesArea';
+import { DishesArea } from '../DishesArea';
+
+export interface IComboAreas {
+  id: number;
+  title: string;
+  description: string;
+  sauces?: IComboProducts[];
+  secondaryDishes?: IComboProducts[];
+}
+
+export interface IComboProducts {
+  description: string;
+  id: string;
+  imageUrl: string;
+  price: number;
+  title: string;
+}
 
 export const ProductDetails = () => {
   const router = useRouter();
@@ -76,26 +93,7 @@ export const ProductDetails = () => {
               <SaucesArea />
             </Container>
             <Container>
-              <S.DishesArea
-                component={Container}
-                blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
-              >
-                <Block.Tooltip
-                  blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
-                />
-                {/* <S.DishesTitle level="h5" margin="0 0 1rem">
-                  {t('pageProductDetails.dishesTitle')}
-                </S.DishesTitle> */}
-                {/* {combosDish?.map(({ dishSecond }: IDishDishes) => {
-                  const { id, price, title } = dishSecond[0];
-                  return (
-                    <Container key={id}>
-                      <S.Label>{title}</S.Label>
-                      <label>{price}</label>
-                    </Container>
-                  );
-                })} */}
-              </S.DishesArea>
+              <DishesArea />
             </Container>
           </S.Selections>
           <S.AddButtonContainer>
