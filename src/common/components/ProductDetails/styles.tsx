@@ -100,21 +100,13 @@ export const Selections = styled(Container)`
   margin-block: 0 1.7rem;
 `;
 
-export const SaucesArea = styled(Block<IContainer>)`
-  background-color: ${lightTheme.primary.white};
-  border: 1px solid ${lightTheme.neutral[400]};
-  border-radius: 20px;
-  padding: 10px 20px;
-  width: 100%;
-`;
+// export const SaucesTitle = styled(Title)`
+//   font-size: 19px;
+// `;
 
-export const SaucesTitle = styled(Title)`
-  font-size: 19px;
-`;
-
-export const Label = styled.label`
-  margin-right: 2rem;
-`;
+// export const Label = styled.label`
+//   margin-right: 2rem;
+// `;
 
 export const DishesArea = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.white};
@@ -124,9 +116,9 @@ export const DishesArea = styled(Block<IContainer>)`
   width: 100%;
 `;
 
-export const DishesTitle = styled(Title)`
-  font-size: 19px;
-`;
+// export const DishesTitle = styled(Title)`
+//   font-size: 19px;
+// `;
 
 export const AddButtonContainer = styled(Container)``;
 

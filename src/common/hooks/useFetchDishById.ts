@@ -8,7 +8,13 @@ export const useFetchDishById = () => {
 
   const { data, isLoading } = useQueryData(
     `dishes/slug/${pslug}`,
-    ['dishById', pslug as string]
+    ['dishById', pslug as string],
+    (data) => {
+      return {
+        response: data,
+        // metaData,
+      };
+    }
     // ({ data }) => {
     //   const { dishSauces, dishDishes, dishInfo } = data;
     //   const { description, imageUrl, price, title } = dishInfo;
@@ -26,7 +32,7 @@ export const useFetchDishById = () => {
   );
 
   return {
-    data,
+    response: data?.response,
     pslug,
     isLoading,
   };

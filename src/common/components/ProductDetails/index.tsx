@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { Container, RichText } from '@gamiui/standard';
+import { Button, Container, RichText, Title } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import productDetailsBlock from '../../blocks/productDetails-block.json';
@@ -12,38 +12,7 @@ import * as S from './styles';
 import { HomeContext } from '../../../context';
 import { Spinner } from '../Spinner';
 import { useFetchDishById } from '../../hooks/useFetchDishById';
-
-interface ICombosSauce {
-  sauce: ISauce[];
-}
-
-interface ISauce {
-  companyId: string;
-  createdAt: string;
-  description: string;
-  id: string;
-  imageUrl: string;
-  price: number;
-  title: string;
-  updatedAt: string;
-}
-
-interface IDishDishes {
-  dishSecond: IDishSecond[];
-}
-
-interface IDishSecond {
-  categoryId: string;
-  companyId: string;
-  createdAt: string;
-  description: string;
-  id: string;
-  imageUrl: string;
-  price: number;
-  slug: string;
-  title: string;
-  updatedAt: string;
-}
+import { SaucesArea } from '../SaucesArea';
 
 export const ProductDetails = () => {
   const router = useRouter();
@@ -53,24 +22,31 @@ export const ProductDetails = () => {
 
   const { t } = useTranslation();
 
-  // const { data, isLoading } = useFetchDishesId();
-  const { data, isLoading } = useFetchDishById();
-  console.log(data);
+  const { response, isLoading } = useFetchDishById();
+
   if (isLoading) return <Spinner isLoading={isLoading} />;
-  const { title, slug, description, price, imageUrl, combosSauce, combosDish } =
-    data;
-  // const { dishInfo, dishSauces, dishDishes } = data;
-  // const { description, imageUrl, price, title } = dishInfo;
+  const {
+    data: {
+      combosDish,
+      combosSauce,
+      description,
+      id,
+      imageUrl,
+      price,
+      slug,
+      title,
+    },
+  } = response;
 
   return (
     <React.Fragment>
-      <S.CartContentDrawer width={410} open={true} placement={'right'}>
+      {/* <S.CartContentDrawer width={410} open={true} placement={'right'}>
         <S.SidebarLightNavyBlueBar>
-          {/* <S.CloseLink
+          <S.CloseLink
             href={`${slugCompany}/${categoryName
               .toLowerCase()
               .replace(' ', '-')}/product/${pslug}`}
-          ></S.CloseLink> */}
+          ></S.CloseLink>
           <S.CloseLink
             href={`/${slugCompany}/${categoryName
               .toLowerCase()
@@ -83,7 +59,7 @@ export const ProductDetails = () => {
           reprehenderit. Officia ipsam temporibus accusantium neque iste.
           Maiores quae libero laborum minus.
         </p>
-      </S.CartContentDrawer>
+      </S.CartContentDrawer> */}
       <S.ProductDetails>
         <S.BreadcrumbContainer>
           <NextBreadcrumbs />
@@ -97,36 +73,7 @@ export const ProductDetails = () => {
           <RichText text={description} margin="0 0 1.7rem" />
           <S.Selections>
             <Container>
-              <S.SaucesArea
-                component={Container}
-                blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
-              >
-                <Block.Tooltip
-                  blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
-                />
-                <S.SaucesTitle level="h5" margin="0 0 1rem">
-                  {t('pageProductDetails.saucesTitle')}
-                </S.SaucesTitle>
-                {/* {combosSauce?.map(({ sauce }: IDishSauce) => {
-                  const { id, price, title } = sauce[0];
-                  return (
-                    <Container key={id}>
-                      <S.Label>{title}</S.Label>
-                      <label>{price}</label>
-                    </Container>
-                  );
-                })} */}
-
-                {combosSauce?.map(({ sauce }: ICombosSauce) => {
-                  const { title, description, id } = sauce[0];
-                  return (
-                    <Container key={id}>
-                      <h3>{title}</h3>
-                      <p>{description}</p>
-                    </Container>
-                  );
-                })}
-              </S.SaucesArea>
+              <SaucesArea />
             </Container>
             <Container>
               <S.DishesArea
@@ -136,9 +83,9 @@ export const ProductDetails = () => {
                 <Block.Tooltip
                   blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
                 />
-                <S.DishesTitle level="h5" margin="0 0 1rem">
+                {/* <S.DishesTitle level="h5" margin="0 0 1rem">
                   {t('pageProductDetails.dishesTitle')}
-                </S.DishesTitle>
+                </S.DishesTitle> */}
                 {/* {combosDish?.map(({ dishSecond }: IDishDishes) => {
                   const { id, price, title } = dishSecond[0];
                   return (
