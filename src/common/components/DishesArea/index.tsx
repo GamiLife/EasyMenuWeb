@@ -1,9 +1,9 @@
 import { Container, RichText, Title } from '@gamiui/standard';
 
+import { IComboAreas, IComboProducts } from '../ProductDetails';
 import productDetailsBlock from '../../blocks/productDetails-block.json';
 import { useFetchDishById } from '../../hooks';
 import { Block } from '../../layouts';
-import { IComboAreas, IComboProducts } from '../ProductDetails';
 import * as S from './styles';
 
 export const DishesArea = () => {

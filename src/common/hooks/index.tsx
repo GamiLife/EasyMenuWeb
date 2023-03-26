@@ -6,6 +6,7 @@ export * from './useFetchLocations';
 export * from './useFetchStaticPages';
 export * from './useLocalStorage';
 export * from './usePagination';
+export * from './useProductComboCounter';
 export * from './useQueryData';
 export * from './useSearch';
 export * from './useToggle';
