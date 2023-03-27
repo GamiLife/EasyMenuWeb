@@ -2,12 +2,21 @@ import React from 'react';
 import { Container, Empty } from '@gamiui/standard';
 import classNames from 'classnames';
 
-import { IProduct, Product } from '../Product';
+import { Product } from '../Product';
 import { useFetchHomeDishes } from '../../hooks';
 import { HomeContext } from '../../../context';
 import { messages } from '../../constants';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
+
+export interface IProduct {
+  id?: string;
+  title: string;
+  description: string;
+  priceByUnit: number;
+  imageUrl: string;
+  slug: string;
+}
 
 const { pageHome } = messages;
 
@@ -23,14 +32,13 @@ export const ProductList = () => {
   return (
     <S.ProductList className={classNames('product-list')}>
       {data?.map(
-        ({ description, id, imageUrl, price, title, slug }: IProduct) => (
+        ({ id, title, description, priceByUnit, imageUrl, slug }: IProduct) => (
           <Product
             key={id}
-            id={id}
-            description={description}
-            imageUrl={imageUrl}
-            price={price}
             title={title}
+            description={description}
+            priceByUnit={priceByUnit}
+            imageUrl={imageUrl}
             slug={slug}
           />
         )

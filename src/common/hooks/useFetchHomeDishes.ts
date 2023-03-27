@@ -21,12 +21,12 @@ export const useFetchHomeDishes = ({ idCategory }: IUseFetchDishes) => {
   const debouncedValue = useDebounce(search, 500);
 
   const { data, isLoading, isError } = useQueryData(
-    `dishes/byPagination?categoryId=${idCategory}&companyId=${id}&page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}&search=${debouncedValue}`,
+    `dishes/byPagination?categoryId=${idCategory}&companyId=${id}&page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}&searchBy=[ "title", ${debouncedValue} ] , ["description",${debouncedValue}]&searchOp=OR`,
     ['homeDishes', idCategory, pageNumber, debouncedValue],
-    ({ data, metaData }) => {
+    ({ data, metadata }) => {
       return {
         response: data,
-        metaData,
+        metadata,
       };
     }
   );
@@ -35,7 +35,7 @@ export const useFetchHomeDishes = ({ idCategory }: IUseFetchDishes) => {
     if (!data?.response?.length) return;
     const {
       pagination: { totalItems },
-    } = data.metaData;
+    } = data.metadata;
     setTotalItems(totalItems);
   }, [JSON.stringify(data)]);
 

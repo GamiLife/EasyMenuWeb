@@ -40,16 +40,17 @@ export const ProductDetails = () => {
   const { t } = useTranslation();
 
   const { response, isLoading } = useFetchDishById();
+  // console.log(response);
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
   const {
     data: {
-      combosDish,
-      combosSauce,
+      combos,
       description,
       id,
       imageUrl,
-      price,
+      maxItems,
+      priceByUnit,
       slug,
       title,
     },
@@ -102,7 +103,7 @@ export const ProductDetails = () => {
         </S.ContentContainer>
         <S.PriceImageContainer className={classNames('flex', 'items-center')}>
           {imageUrl && <NextImage imageUrl={imageUrl} alt={title} />}
-          <S.ProductPriceDetails>S/ {price}</S.ProductPriceDetails>
+          <S.ProductPriceDetails>S/ {priceByUnit}</S.ProductPriceDetails>
         </S.PriceImageContainer>
       </S.ProductDetails>
     </React.Fragment>

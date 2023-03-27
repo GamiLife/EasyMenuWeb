@@ -34,6 +34,12 @@ export const SaucePrice = styled.strong`
   color: gray;
 `;
 
+export const OperatorsImageContainer = styled(Container)`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+`;
+
 export const ProductInlineOperators = styled(Container)`
   margin: auto;
   width: 40%;

@@ -1,34 +1,25 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 
+import { CompanyContext } from '../../context';
 import { useQueryData } from './useQueryData';
 
 export const useFetchDishById = () => {
   const router = useRouter();
   const { pslug } = router.query;
 
+  const {
+    company: { id },
+  } = React.useContext(CompanyContext);
+
   const { data, isLoading } = useQueryData(
-    `dishes/slug/${pslug}`,
+    `dishes/slug/${pslug}?companyId=${id}`,
     ['dishById', pslug as string],
     (data) => {
       return {
         response: data,
-        // metaData,
       };
     }
-    // ({ data }) => {
-    //   const { dishSauces, dishDishes, dishInfo } = data;
-    //   const { description, imageUrl, price, title } = dishInfo;
-    //   return {
-    //     dishInfo: {
-    //       description,
-    //       imageUrl,
-    //       price,
-    //       title,
-    //     },
-    //     dishSauces,
-    //     dishDishes,
-    //   };
-    // }
   );
 
   return {

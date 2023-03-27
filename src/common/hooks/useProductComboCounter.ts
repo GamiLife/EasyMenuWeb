@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const useProductComboCounter = () => {
+export const useProductComboCounter = (maxItemsByRow) => {
   const [quantity, setQuantity] = React.useState(0);
   const [disableAdd, setDisableAdd] = React.useState(false);
   const [disableSubtract, setDisableSubtract] = React.useState(true);

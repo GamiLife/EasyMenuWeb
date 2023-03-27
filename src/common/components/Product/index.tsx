@@ -6,32 +6,31 @@ import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks';
 import { HomeContext } from '../../../context/home';
+import { IProduct } from '../ProductList';
 import homeBlock from '../../blocks/home-block.json';
 import { Block } from '../../layouts';
 import * as S from './styles';
 
-export interface IProduct {
-  description: string;
-  id?: number;
-  imageUrl: string;
-  price: number;
-  title: string;
-  slug: string;
-}
-
 export const Product = ({
-  description,
-  imageUrl,
-  price,
   title,
+  description,
+  priceByUnit,
+  imageUrl,
   slug,
 }: IProduct) => {
-  const { categoryName } = useContext(HomeContext);
-
   const router = useRouter();
   const { slugCompany } = router.query;
 
+  const { categoryName } = useContext(HomeContext);
+
   const { t } = useCustomTranslation();
+
+  const removeWhiteSpace = (text: string) => {
+    do {
+      text = text.replace(' ', '-');
+    } while (text.includes(' '));
+    return (text.charAt(0) + text.slice(1)).toLowerCase();
+  };
 
   return (
     <S.Product>
@@ -44,9 +43,9 @@ export const Product = ({
       >
         <Block.Tooltip blockId={homeBlock.PRODUCT_CARD} />
         <Link
-          href={`${slugCompany}/${categoryName
-            .toLowerCase()
-            .replace(' ', '-')}/product/${slug}`}
+          href={`${slugCompany}/${removeWhiteSpace(
+            categoryName
+          )}/product/${slug}`}
         >
           <Card.Cover>
             <S.ProductImage
@@ -81,13 +80,13 @@ export const Product = ({
             margin="0 0 1rem"
           >
             <S.WishListIcon name="heart" />
-            <Title level="h3">S/{price}</Title>
+            <Title level="h3">S/{priceByUnit}</Title>
           </Container>
           <Container>
             <Link
-              href={`${slugCompany}/${categoryName
-                .toLowerCase()
-                .replace(' ', '-')}/product/${slug}`}
+              href={`${slugCompany}/${removeWhiteSpace(
+                categoryName
+              )}/product/${slug}`}
             >
               <S.ProductButton
                 component={Button}
