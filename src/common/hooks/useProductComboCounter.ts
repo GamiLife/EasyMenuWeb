@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const useProductComboCounter = (maxItemsByRow) => {
+export const useProductComboCounter = (maxItemsByRow: number) => {
   const [quantity, setQuantity] = React.useState(0);
   const [disableAdd, setDisableAdd] = React.useState(false);
   const [disableSubtract, setDisableSubtract] = React.useState(true);
@@ -18,6 +18,8 @@ export const useProductComboCounter = (maxItemsByRow) => {
   function handleAdd() {
     if (quantity < maxItemsByRow) {
       setQuantity(quantity + 1);
+    }
+    if (quantity === 0) {
       setDisableSubtract(false);
     }
     if (quantity === maxItemsByRow - 1) {
@@ -25,5 +27,11 @@ export const useProductComboCounter = (maxItemsByRow) => {
     }
   }
 
-  return {};
+  return {
+    quantity,
+    disableAdd,
+    disableSubtract,
+    handleSubtract,
+    handleAdd,
+  };
 };

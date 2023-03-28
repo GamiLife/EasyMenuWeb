@@ -8,8 +8,8 @@ export const Sauce = styled(Container)`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   width: 100%;
+  /* align-items: flex-start; */
 `;
 
 export const SauceName = styled.label`
@@ -20,7 +20,7 @@ export const SaucePrice = styled.strong`
   color: gray;
 `;
 
-export const OperatorsImageContainer = styled(Container)`
+export const OperatorsImageWrapper = styled(Container)`
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -30,7 +30,7 @@ export const SauceImage = styled(NextImage)`
   flex-basis: 50px;
 `;
 
-export const ProductInlineOperators = styled(Container)`
+export const ProductOperators = styled(Container)`
   margin: auto;
   width: 50%;
   display: flex;

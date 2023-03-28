@@ -15,21 +15,21 @@ import { useFetchDishById } from '../../hooks/useFetchDishById';
 import { SaucesArea } from '../SaucesArea';
 import { DishesArea } from '../DishesArea';
 
-export interface IComboAreas {
-  id: number;
-  title: string;
-  description: string;
-  sauces?: IComboProducts[];
-  secondaryDishes?: IComboProducts[];
-}
+// export interface IComboAreas {
+//   id: number;
+//   title: string;
+//   description: string;
+//   sauces?: IComboProducts[];
+//   secondaryDishes?: IComboProducts[];
+// }
 
-export interface IComboProducts {
-  description: string;
-  id: string;
-  imageUrl: string;
-  price: number;
-  title: string;
-}
+// export interface IComboProducts {
+//   description: string;
+//   id: string;
+//   imageUrl: string;
+//   price: number;
+//   title: string;
+// }
 
 export const ProductDetails = () => {
   const router = useRouter();

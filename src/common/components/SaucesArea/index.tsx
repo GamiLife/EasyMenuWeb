@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Title, RichText } from '@gamiui/standard';
 
-import { IComboAreas, IComboProducts } from '../ProductDetails';
+// import { IComboAreas, IComboProducts } from '../ProductDetails';
 import productDetailsBlock from '../../blocks/productDetails-block.json';
 import { useFetchDishById, useProductComboCounter } from '../../hooks';
 import { Block } from '../../layouts';
@@ -18,7 +18,9 @@ export const SaucesArea = () => {
     },
   } = useFetchDishById();
 
-  const { title, description, maxItems, sauces } = combos[0];
+  // const { title, description, maxItems, sauces } = combos[0];
+  const { title, description, sauces } = combos[0];
+  const maxItems = 20;
   // if (!combosSauce.length) return;
   // const {
   //   restriction: { maxItemsByRow },
@@ -37,7 +39,7 @@ export const SaucesArea = () => {
           {title}
         </Title>
         <RichText margin="0 0 24px" text={description}></RichText>
-        <SauceContainer sauces={sauces} />
+        <SauceContainer sauces={sauces} maxItems={maxItems} />
       </Container>
     </S.SaucesArea>
   );
