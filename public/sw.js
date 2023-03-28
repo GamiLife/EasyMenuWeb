@@ -31,7 +31,7 @@ function processIndexDBCaching(key, event, matchUrl) {
           console.log('Test SW', 'Not Found from cache');
           resolve(
             fetch(event.request.clone()).then((response) => {
-              response.json().then((responseJson) => {
+              return response.json().then((responseJson) => {
                 const transactionPut = db.transaction([storeName], 'readwrite');
                 const storeForSetting = transactionPut.objectStore(storeName);
                 storeForSetting.put({
@@ -39,8 +39,9 @@ function processIndexDBCaching(key, event, matchUrl) {
                   data: responseJson,
                   timestamp: Date.now(),
                 });
+                const jsonData = JSON.stringify(responseJson.data);
+                return new Response(jsonData);
               });
-              return response;
             })
           );
           return;
