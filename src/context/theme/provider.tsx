@@ -80,6 +80,7 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   React.useEffect(() => {
     if (!slugCompany) return;
     async function companyFetch() {
+      console.log('test component');
       const { data } = await get('companies/1');
       const { theme } = data;
       dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: theme });

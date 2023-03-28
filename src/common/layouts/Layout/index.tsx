@@ -6,6 +6,10 @@ import { Header, Footer, Block } from '..';
 import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
 
+import { gamiavatar } from './styles';
+import classNames from 'classnames';
+import { cx } from '@emotion/css';
+
 export interface ILayoutWrapper {
   children: React.ReactNode;
   description: string;
@@ -42,6 +46,7 @@ export const LayoutWrapper = ({
           blockId={homeBlock.WRAPPER_PAGE}
         >
           <Block.Tooltip blockId={homeBlock.WRAPPER_PAGE} />
+          <div className={cx(gamiavatar)}>Test</div>
           {children}
         </S.ContentContainer>
       </S.Content>

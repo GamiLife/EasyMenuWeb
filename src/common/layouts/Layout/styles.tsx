@@ -1,9 +1,30 @@
+import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 import { Layout } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { Block } from '../Block';
+interface IZoom {
+  time: number;
+  scale: number;
+}
+
+export const flex = css`
+  display: flex;
+`;
+
+export const zoom = ({ time, scale }: IZoom) => css`
+  transition: transform ${`${time}s`};
+  &:hover {
+    transform: scale(${scale});
+  }
+  ${flex}
+`;
+
+export const gamiavatar = css`
+  ${zoom({ time: 0.2, scale: 0.8 })}
+`;
 
 export const LayoutWrapper = styled(Layout)`
   padding-top: 99px;
