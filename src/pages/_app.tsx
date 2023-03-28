@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 import type { AppProps } from 'next/app';
 import { I18nextProvider } from 'react-i18next';
@@ -21,6 +21,22 @@ export default function App({ Component, pageProps }: AppProps) {
   const getLayout =
     (Component as TComponent).getLayout ||
     ((children: React.ReactNode) => children);
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(
+        function (registration) {
+          console.log(
+            'Service Worker registration successful with scope: ',
+            registration.scope
+          );
+        },
+        function (err) {
+          console.log('Service Worker registration failed: ', err);
+        }
+      );
+    }
+  }, []);
 
   return (
     <ThemeGamification>
