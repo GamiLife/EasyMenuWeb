@@ -13,6 +13,7 @@ import { DishesArea } from '../DishesArea';
 import { NextImage } from '../NextImage';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
+import { ProductForm } from '../ProductForm';
 
 export const ProductDetails = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ export const ProductDetails = () => {
 
   const { response, isLoading } = useFetchDishById();
 
+  if (!response?.data) return null;
   const {
     data: {
       combos,
@@ -36,9 +38,6 @@ export const ProductDetails = () => {
       title,
     },
   } = response;
-
-  const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
-    useProductComboCounter(maxItems);
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
 
@@ -75,38 +74,7 @@ export const ProductDetails = () => {
           </S.BackLink>
           <S.ProductTitle level="h1">{title}</S.ProductTitle>
           <RichText text={description} margin="0 0 1.7rem" />
-          <S.Selections>
-            <Container>
-              <SaucesArea />
-            </Container>
-            <Container>
-              <DishesArea />
-            </Container>
-          </S.Selections>
-          <S.ProductInlineBlock>
-            <S.ProductQuantityTitle level="h3">Cantidad</S.ProductQuantityTitle>
-            <S.ProductOperators>
-              <S.QuantityOperator
-                onClick={handleSubtract}
-                disable={disableSubtract}
-              >
-                -
-              </S.QuantityOperator>
-              <S.ProductQuantity>{quantity}</S.ProductQuantity>
-              <S.QuantityOperator
-                onClick={handleAdd}
-                disable={disableAdd}
-                className={disableAdd ? 'disabled' : ''}
-              >
-                +
-              </S.QuantityOperator>
-            </S.ProductOperators>
-          </S.ProductInlineBlock>
-          <S.ProductSingleFixBottom>
-            <S.ProductPriceDetails level="h4">
-              S/ {priceByUnit}
-            </S.ProductPriceDetails>
-          </S.ProductSingleFixBottom>
+          <ProductForm priceByUnit={priceByUnit} />
           {/* <S.AddButtonContainer>
             <S.AddButton>{t('pageProductDetails.addButtonText')}</S.AddButton>
           </S.AddButtonContainer> */}
