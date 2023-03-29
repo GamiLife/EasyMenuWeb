@@ -69,7 +69,11 @@ export const ProductDetails = () => {
           </S.BackLink>
           <S.ProductTitle level="h1">{title}</S.ProductTitle>
           <RichText text={description} margin="0 0 1.7rem" />
-          <ProductForm priceByUnit={priceByUnit} combos={combos} />
+          <ProductForm
+            priceByUnit={priceByUnit}
+            combos={combos}
+            maxItems={maxItems}
+          />
           {/* <S.AddButtonContainer>
             <S.AddButton>{t('pageProductDetails.addButtonText')}</S.AddButton>
           </S.AddButtonContainer> */}

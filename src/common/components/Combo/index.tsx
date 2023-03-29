@@ -1,10 +1,11 @@
 import React from 'react';
 import { Container, Title, RichText } from '@gamiui/standard';
+
+import { GetDishResponseDTO } from '../../types/getDish.type';
 import productDetailsBlock from '../../blocks/productDetails-block.json';
 import { Block } from '../../layouts';
-import { GetDishResponseDTO } from '../../types/getDish.type';
 import * as S from './styles';
-import { Rows } from './Rows';
+import { ProductSetWrapper } from './ProductSetWrapper';
 
 export const Combo = ({
   title,
@@ -13,10 +14,8 @@ export const Combo = ({
   sauces,
   maxItems,
 }: GetDishResponseDTO.Combo) => {
-  // useProductComboCounter(maxItemsByRow);
-
   return (
-    <S.Area
+    <S.ComboArea
       component={Container}
       blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
     >
@@ -26,8 +25,12 @@ export const Combo = ({
           {title}
         </Title>
         <RichText margin="0 0 24px" text={description}></RichText>
-        <Rows sauces={sauces} dishes={dishes} maxItems={maxItems} />
+        <ProductSetWrapper
+          sauces={sauces}
+          dishes={dishes}
+          maxItems={maxItems}
+        />
       </Container>
-    </S.Area>
+    </S.ComboArea>
   );
 };

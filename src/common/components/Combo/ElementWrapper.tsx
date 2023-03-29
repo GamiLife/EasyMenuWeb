@@ -1,5 +1,3 @@
-import { RichText } from '@gamiui/standard';
-
 import { useProductComboCounter } from '../../hooks';
 import * as S from './styles';
 
@@ -14,7 +12,7 @@ interface IRow {
   handlerSubstractCombo: () => void;
 }
 
-export const Row = ({
+export const ElementWrapper = ({
   title,
   description,
   priceByUnit,
@@ -30,14 +28,14 @@ export const Row = ({
   const isDisableAdd = disableAdd || !isEnableComboRow;
 
   return (
-    <S.Dish>
-      <S.DishName>
+    <S.ElementWrapper>
+      <S.ProductName>
         {title}
-        <S.DishPrice> + {priceByUnit}</S.DishPrice>
-      </S.DishName>
-      <RichText text={description} margin="0 0 10px" />
+        <S.ProductPrice> + {priceByUnit}</S.ProductPrice>
+      </S.ProductName>
+      {/* <RichText text={description} margin="0 0 10px" /> */}
       <S.OperatorsImageWrapper>
-        <S.DishImage imageUrl={imageUrl} alt={title} height="42px" />
+        <S.ProductImage imageUrl={imageUrl} alt={title} height="42px" />
         <S.ProductOperators>
           <S.QuantityOperator
             onClick={() => {
@@ -61,6 +59,6 @@ export const Row = ({
           </S.QuantityOperator>
         </S.ProductOperators>
       </S.OperatorsImageWrapper>
-    </S.Dish>
+    </S.ElementWrapper>
   );
 };

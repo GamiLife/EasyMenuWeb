@@ -3,15 +3,10 @@ import { Button, Container } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
-import { Block } from '../../layouts';
 import { NextImage } from '../NextImage';
+import { Block } from '../../layouts';
 
-export const Row = styled(Container)`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-export const Area = styled(Block<IContainer>)`
+export const ComboArea = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.white};
   border: 1px solid ${lightTheme.neutral[400]};
   border-radius: 20px;
@@ -20,12 +15,12 @@ export const Area = styled(Block<IContainer>)`
   margin: 0 auto 15px;
 `;
 
-export const Wrapper = styled(Container)`
+export const ProductSetWrapper = styled(Container)`
   display: flex;
   flex-wrap: wrap;
 `;
 
-export const Combo = styled(Container)`
+export const ElementWrapper = styled(Container)`
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
@@ -33,39 +28,12 @@ export const Combo = styled(Container)`
   width: 100%;
 `;
 
-export const Name = styled.label`
+export const ProductName = styled.label`
   color: #2e2e2e;
+  margin-bottom: 5px;
 `;
 
-export const Price = styled.strong`
-  color: gray;
-`;
-
-export const ProductInlineOperators = styled(Container)`
-  margin: auto;
-  width: 40%;
-  display: flex;
-  border: 1px solid #ccc;
-  padding: 5px 15px;
-  border-radius: 25px;
-  align-items: center;
-  background-color: #fff;
-  justify-content: space-between;
-`;
-
-export const Dish = styled(Container)`
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-`;
-
-export const DishName = styled.label`
-  color: #2e2e2e;
-`;
-
-export const DishPrice = styled.strong`
+export const ProductPrice = styled.strong`
   color: gray;
 `;
 
@@ -75,13 +43,14 @@ export const OperatorsImageWrapper = styled(Container)`
   justify-content: space-around;
 `;
 
-export const DishImage = styled(NextImage)`
+export const ProductImage = styled(NextImage)`
   flex-basis: 50px;
 `;
 
+// Estilos en otro componente
 export const ProductOperators = styled(Container)`
   margin: auto;
-  width: 50%;
+  width: 45%;
   display: flex;
   border: 1px solid #ccc;
   padding: 5px 15px;
@@ -105,6 +74,7 @@ export const QuantityOperator = styled(Button)`
 
   &.disabled {
     color: #b7b7b7;
+    pointer-events: none;
   }
 `;
 

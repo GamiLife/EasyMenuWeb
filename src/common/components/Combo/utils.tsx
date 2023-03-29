@@ -1,5 +1,5 @@
 import { GetDishResponseDTO } from '../../types/getDish.type';
-import { IComboRow } from './Rows';
+import { IComboRow } from './ProductSetWrapper';
 
 export const merge = (
   dishes: GetDishResponseDTO.DishInCombo[],

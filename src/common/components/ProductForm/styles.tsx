@@ -46,6 +46,7 @@ export const QuantityOperator = styled(Button)`
 
   &.disabled {
     color: #b7b7b7;
+    pointer-events: none;
   }
 `;
 

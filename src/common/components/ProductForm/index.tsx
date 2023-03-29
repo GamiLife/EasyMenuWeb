@@ -1,19 +1,25 @@
 import React from 'react';
 import { Container } from '@gamiui/standard';
 
-import * as S from './styles';
 import { useProductComboCounter } from '../../hooks';
 import { GetDishResponseDTO } from '../../types/getDish.type';
+import { ProductOperators } from '../ProductOperators';
 import { Combo } from '../Combo';
+import * as S from './styles';
 
 interface IProductForm {
   priceByUnit: number;
   combos: GetDishResponseDTO.Combo[];
+  maxItems: number;
 }
 
-export const ProductForm = ({ priceByUnit, combos }: IProductForm) => {
+export const ProductForm = ({
+  priceByUnit,
+  combos,
+  maxItems,
+}: IProductForm) => {
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
-    useProductComboCounter(10);
+    useProductComboCounter(maxItems);
 
   return (
     <React.Fragment>
@@ -26,7 +32,8 @@ export const ProductForm = ({ priceByUnit, combos }: IProductForm) => {
       </S.Selections>
       <S.ProductInlineBlock>
         <S.ProductQuantityTitle level="h3">Cantidad</S.ProductQuantityTitle>
-        <S.ProductOperators>
+        <ProductOperators maxItems={maxItems} />
+        {/* <S.ProductOperators>
           <S.QuantityOperator
             onClick={handleSubtract}
             disable={disableSubtract}
@@ -41,7 +48,7 @@ export const ProductForm = ({ priceByUnit, combos }: IProductForm) => {
           >
             +
           </S.QuantityOperator>
-        </S.ProductOperators>
+        </S.ProductOperators> */}
       </S.ProductInlineBlock>
       <S.ProductSingleFixBottom>
         <S.ProductPriceDetails level="h4">
