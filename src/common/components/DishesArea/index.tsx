@@ -1,11 +1,10 @@
 import { Container, RichText, Title } from '@gamiui/standard';
 
-import { IComboAreas, IComboProducts } from '../ProductDetails';
 import productDetailsBlock from '../../blocks/productDetails-block.json';
 import { useFetchDishById } from '../../hooks';
+import { DishContainer } from '../DishContainer';
 import { Block } from '../../layouts';
 import * as S from './styles';
-import { DishContainer } from '../DishContainer';
 
 export const DishesArea = () => {
   const {
@@ -15,6 +14,7 @@ export const DishesArea = () => {
   } = useFetchDishById();
 
   const { title, description, maxItems, dishes } = combos[1];
+  console.log(maxItems);
 
   return (
     <S.DishesArea

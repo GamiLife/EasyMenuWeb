@@ -82,9 +82,9 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
     async function companyFetch() {
       console.log('test component');
       const { data } = await get('companies/1');
-      const { theme } = data;
-      dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: theme });
-      dispatch({ type: 'CURRENT_THEME_BLOCKS', payload: theme });
+      // const { theme } = data;
+      dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: data.theme });
+      dispatch({ type: 'CURRENT_THEME_BLOCKS', payload: data.theme });
     }
     companyFetch();
   }, [slugCompany]);

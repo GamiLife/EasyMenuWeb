@@ -17,11 +17,12 @@ export const DishContainer = ({ dishes }: IDishContainer) => {
           return (
             <Container key={id} width="full">
               <DishInCombo
-                id={id}
+                // id={id}
                 title={title}
                 description={description}
                 priceByUnit={priceByUnit}
                 imageUrl={imageUrl}
+                maxItemsByRow={maxItemsByRow}
               />
             </Container>
           );

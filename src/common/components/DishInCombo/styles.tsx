@@ -20,7 +20,7 @@ export const DishPrice = styled.strong`
   color: gray;
 `;
 
-export const OperatorsImageContainer = styled(Container)`
+export const OperatorsImageWrapper = styled(Container)`
   display: flex;
   width: 100%;
   justify-content: space-around;
@@ -30,7 +30,7 @@ export const DishImage = styled(NextImage)`
   flex-basis: 50px;
 `;
 
-export const ProductInlineOperators = styled(Container)`
+export const ProductOperators = styled(Container)`
   margin: auto;
   width: 50%;
   display: flex;
@@ -53,6 +53,10 @@ export const QuantityOperator = styled(Button)`
   cursor: pointer;
   border: none;
   box-shadow: none;
+
+  &.disabled {
+    color: #b7b7b7;
+  }
 `;
 
 export const ProductQuantity = styled.span`

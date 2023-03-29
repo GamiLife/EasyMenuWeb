@@ -53,6 +53,10 @@ export const QuantityOperator = styled(Button)`
   cursor: pointer;
   border: none;
   box-shadow: none;
+
+  &.disabled {
+    color: #b7b7b7;
+  }
 `;
 
 export const ProductQuantity = styled.span`

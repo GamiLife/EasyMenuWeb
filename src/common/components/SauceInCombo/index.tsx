@@ -44,7 +44,11 @@ ISauceInCombo) => {
             -
           </S.QuantityOperator>
           <S.ProductQuantity>{quantity}</S.ProductQuantity>
-          <S.QuantityOperator onClick={handleAdd} disable={disableAdd}>
+          <S.QuantityOperator
+            onClick={handleAdd}
+            disable={disableAdd}
+            className={disableAdd ? 'disabled' : ''}
+          >
             +
           </S.QuantityOperator>
         </S.ProductOperators>

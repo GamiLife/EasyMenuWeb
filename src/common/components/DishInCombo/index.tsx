@@ -1,13 +1,26 @@
 import { RichText } from '@gamiui/standard';
-import { GetDishResponseDTO } from '../../types/getDish.type';
+
+import { useProductComboCounter } from '../../hooks';
 import * as S from './styles';
+
+interface IDishInCombo {
+  title: string;
+  description: string;
+  priceByUnit: number;
+  imageUrl: string;
+  maxItemsByRow: number;
+}
 
 export const DishInCombo = ({
   title,
   description,
   priceByUnit,
   imageUrl,
-}: GetDishResponseDTO.Dish) => {
+  maxItemsByRow,
+}: IDishInCombo) => {
+  const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
+    useProductComboCounter(maxItemsByRow);
+
   return (
     <S.Dish>
       <S.DishName>
@@ -15,25 +28,25 @@ export const DishInCombo = ({
         <S.DishPrice> + {priceByUnit}</S.DishPrice>
       </S.DishName>
       <RichText text={description} margin="0 0 10px" />
-      <S.OperatorsImageContainer>
+      <S.OperatorsImageWrapper>
         <S.DishImage imageUrl={imageUrl} alt={title} height="42px" />
-        <S.ProductInlineOperators>
+        <S.ProductOperators>
           <S.QuantityOperator
-          // onClick={handleSubtract}
-          // disable={disableSubtract}
+            onClick={handleSubtract}
+            disable={disableSubtract}
           >
             -
           </S.QuantityOperator>
-          <S.ProductQuantity>0</S.ProductQuantity>
-          {/* <S.ProductQuantity>{quantity}</S.ProductQuantity> */}
+          <S.ProductQuantity>{quantity}</S.ProductQuantity>
           <S.QuantityOperator
-          // onClick={handleAdd}
-          // disable={disableAdd}
+            onClick={handleAdd}
+            disable={disableAdd}
+            className={disableAdd ? 'disabled' : ''}
           >
             +
           </S.QuantityOperator>
-        </S.ProductInlineOperators>
-      </S.OperatorsImageContainer>
+        </S.ProductOperators>
+      </S.OperatorsImageWrapper>
     </S.Dish>
   );
 };

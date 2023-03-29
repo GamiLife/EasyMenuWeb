@@ -1,35 +1,19 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { Button, Container, RichText, Title } from '@gamiui/standard';
+import { Container, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import productDetailsBlock from '../../blocks/productDetails-block.json';
-import NextBreadcrumbs from '../NextBreadcrumbs';
-import { NextImage } from '../NextImage';
-import { Block } from '../../layouts';
-import * as S from './styles';
-import { HomeContext } from '../../../context';
-import { Spinner } from '../Spinner';
 import { useFetchDishById } from '../../hooks/useFetchDishById';
+import NextBreadcrumbs from '../NextBreadcrumbs';
+import { HomeContext } from '../../../context';
 import { SaucesArea } from '../SaucesArea';
 import { DishesArea } from '../DishesArea';
-
-// export interface IComboAreas {
-//   id: number;
-//   title: string;
-//   description: string;
-//   sauces?: IComboProducts[];
-//   secondaryDishes?: IComboProducts[];
-// }
-
-// export interface IComboProducts {
-//   description: string;
-//   id: string;
-//   imageUrl: string;
-//   price: number;
-//   title: string;
-// }
+import { NextImage } from '../NextImage';
+import { Spinner } from '../Spinner';
+import { Block } from '../../layouts';
+import * as S from './styles';
 
 export const ProductDetails = () => {
   const router = useRouter();
