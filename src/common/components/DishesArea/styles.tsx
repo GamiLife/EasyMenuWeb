@@ -11,6 +11,7 @@ export const DishesArea = styled(Block<IContainer>)`
   border-radius: 20px;
   padding: 10px 20px;
   width: 100%;
+  margin: 0 auto 15px;
 `;
 
 export const DishContainer = styled(Container)`

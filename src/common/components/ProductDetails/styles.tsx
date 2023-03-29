@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { Button, Container, Drawer, Icon, Title } from '@gamiui/standard';
-import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
-import { Block } from '../../layouts';
 
 export const CartContentDrawer = styled(Drawer)`
   border-top-left-radius: 0 !important;
@@ -43,7 +41,6 @@ export const CloseLink = styled(Link)`
   &::after {
     transform: rotate(-45deg);
   }
-  /* outline: 0; */
 `;
 
 export const SidebarLightNavyBlueBarText = styled(Container)``;
@@ -92,14 +89,80 @@ export const ProductTitle = styled(Title)`
   text-transform: capitalize;
 `;
 
-export const Selections = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
+export const Selections = styled(Container)``;
 
-  margin-block: 0 1.7rem;
+export const ProductInlineBlock = styled(Container)`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 100%;
 `;
 
+export const ProductQuantityTitle = styled(Title)`
+  margin-right: 17px;
+  min-width: 70px;
+  font-size: 19px;
+  color: ${lightTheme.primary.black};
+`;
+
+export const ProductOperators = styled(Container)`
+  width: 30%;
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 5px 15px;
+  border-radius: 25px;
+  align-items: center;
+  background-color: ${lightTheme.primary.white};
+  justify-content: space-between;
+  /* margin: auto; */
+  /* width: 50%; */
+`;
+
+export const QuantityOperator = styled(Button)`
+  padding: 0 10px;
+  background: ${lightTheme.primary.white};
+  text-align: center;
+  line-height: 30px;
+  color: ${lightTheme.primary.black};
+  font-size: 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+
+  &.disabled {
+    color: #b7b7b7;
+  }
+`;
+
+export const ProductQuantity = styled.span`
+  width: 60px;
+  text-align: center;
+  color: ${lightTheme.primary.black};
+  font-size: 17px;
+  border-radius: 2px;
+  line-height: 1;
+`;
+
+export const ProductSingleFixBottom = styled(Container)`
+  margin: 5px 0;
+`;
+
+export const ProductInlineBlockPrice = styled(Container)`
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  text-align: left;
+  justify-content: space-between;
+`;
+
+export const ProductPriceDetails = styled(Title)`
+  margin: 0;
+  flex: 1;
+  font-size: 23px;
+`;
 // export const SaucesTitle = styled(Title)`
 //   font-size: 19px;
 // `;
@@ -112,19 +175,19 @@ export const Selections = styled(Container)`
 //   font-size: 19px;
 // `;
 
-export const AddButtonContainer = styled(Container)``;
+// export const AddButtonContainer = styled(Container)``;
 
-export const AddButton = styled(Button)`
-  background-color: ${lightTheme.primary.first};
-  border-radius: 15px;
-  color: ${lightTheme.primary.white};
-  cursor: pointer;
-  font-size: 20px;
-  margin: auto;
-  padding: 8px 19px 3px;
-  text-transform: uppercase;
-  width: 90%;
-`;
+// export const AddButton = styled(Button)`
+//   background-color: ${lightTheme.primary.first};
+//   border-radius: 15px;
+//   color: ${lightTheme.primary.white};
+//   cursor: pointer;
+//   font-size: 20px;
+//   margin: auto;
+//   padding: 8px 19px 3px;
+//   text-transform: uppercase;
+//   width: 90%;
+// `;
 
 export const PriceImageContainer = styled(Container)`
   flex-direction: column;
@@ -134,7 +197,7 @@ export const PriceImageContainer = styled(Container)`
   width: 100%;
 `;
 
-export const ProductPriceDetails = styled.label`
-  font-weight: bold;
-  text-align: center;
-`;
+// export const ProductPriceDetails = styled.label`
+//   font-weight: bold;
+//   text-align: center;
+// `;
