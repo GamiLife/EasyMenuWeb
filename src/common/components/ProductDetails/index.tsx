@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { Container, RichText, Title } from '@gamiui/standard';
+import { RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
-import { useProductComboCounter } from '../../hooks';
 import { useFetchDishById } from '../../hooks/useFetchDishById';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { HomeContext } from '../../../context';
-import { SaucesArea } from '../SaucesArea';
-import { DishesArea } from '../DishesArea';
 import { NextImage } from '../NextImage';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
@@ -25,18 +22,16 @@ export const ProductDetails = () => {
 
   const { response, isLoading } = useFetchDishById();
 
-  if (!response?.data) return null;
+  if (!response) return null;
   const {
-    data: {
-      combos,
-      description,
-      id,
-      imageUrl,
-      maxItems,
-      priceByUnit,
-      slug,
-      title,
-    },
+    combos,
+    description,
+    id,
+    imageUrl,
+    maxItems,
+    priceByUnit,
+    slug,
+    title,
   } = response;
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
@@ -74,7 +69,7 @@ export const ProductDetails = () => {
           </S.BackLink>
           <S.ProductTitle level="h1">{title}</S.ProductTitle>
           <RichText text={description} margin="0 0 1.7rem" />
-          <ProductForm priceByUnit={priceByUnit} />
+          <ProductForm priceByUnit={priceByUnit} combos={combos} />
           {/* <S.AddButtonContainer>
             <S.AddButton>{t('pageProductDetails.addButtonText')}</S.AddButton>
           </S.AddButtonContainer> */}

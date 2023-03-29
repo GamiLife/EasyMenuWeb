@@ -1,29 +1,28 @@
 import React from 'react';
 import { Container } from '@gamiui/standard';
 
-import { DishesArea } from '../DishesArea';
-import { SaucesArea } from '../SaucesArea';
-
 import * as S from './styles';
 import { useProductComboCounter } from '../../hooks';
+import { GetDishResponseDTO } from '../../types/getDish.type';
+import { Combo } from '../Combo';
 
 interface IProductForm {
   priceByUnit: number;
+  combos: GetDishResponseDTO.Combo[];
 }
 
-export const ProductForm = ({ priceByUnit }: IProductForm) => {
+export const ProductForm = ({ priceByUnit, combos }: IProductForm) => {
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(10);
 
   return (
     <React.Fragment>
       <S.Selections>
-        <Container>
-          <SaucesArea />
-        </Container>
-        <Container>
-          <DishesArea />
-        </Container>
+        {combos.map((combo) => (
+          <Container key={combo.id}>
+            <Combo {...combo} />
+          </Container>
+        ))}
       </S.Selections>
       <S.ProductInlineBlock>
         <S.ProductQuantityTitle level="h3">Cantidad</S.ProductQuantityTitle>

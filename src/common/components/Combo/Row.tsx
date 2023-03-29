@@ -3,56 +3,64 @@ import { RichText } from '@gamiui/standard';
 import { useProductComboCounter } from '../../hooks';
 import * as S from './styles';
 
-interface ISauceInCombo {
+interface IRow {
   title: string;
   description: string;
   priceByUnit: number;
   imageUrl: string;
   maxItemsByRow: number;
-  // maxItems: number;
-  // id: number;
+  isEnableComboRow: boolean;
+  handlerAddCombo: () => void;
+  handlerSubstractCombo: () => void;
 }
 
-export const SauceInCombo = ({
+export const Row = ({
   title,
   description,
   priceByUnit,
   imageUrl,
   maxItemsByRow,
-}: // maxItems,
-// id,
-ISauceInCombo) => {
+  isEnableComboRow,
+  handlerAddCombo,
+  handlerSubstractCombo,
+}: IRow) => {
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItemsByRow);
 
-  // console.log(`ID ${id}:`, quantity);
+  const isDisableAdd = disableAdd || !isEnableComboRow;
 
   return (
-    <S.Sauce>
-      <S.SauceName>
+    <S.Dish>
+      <S.DishName>
         {title}
-        <S.SaucePrice> + {priceByUnit}</S.SaucePrice>
-      </S.SauceName>
+        <S.DishPrice> + {priceByUnit}</S.DishPrice>
+      </S.DishName>
       <RichText text={description} margin="0 0 10px" />
       <S.OperatorsImageWrapper>
-        <S.SauceImage imageUrl={imageUrl} alt={title} height="42px" />
+        <S.DishImage imageUrl={imageUrl} alt={title} height="42px" />
         <S.ProductOperators>
           <S.QuantityOperator
-            onClick={handleSubtract}
+            onClick={() => {
+              handleSubtract();
+              handlerSubstractCombo();
+            }}
             disable={disableSubtract}
           >
             -
           </S.QuantityOperator>
           <S.ProductQuantity>{quantity}</S.ProductQuantity>
           <S.QuantityOperator
-            onClick={handleAdd}
-            disable={disableAdd}
-            className={disableAdd ? 'disabled' : ''}
+            onClick={() => {
+              handleAdd();
+              handlerAddCombo();
+            }}
+            disable={isDisableAdd}
+            className={isDisableAdd ? 'disabled' : ''}
           >
             +
           </S.QuantityOperator>
         </S.ProductOperators>
       </S.OperatorsImageWrapper>
-    </S.Sauce>
+    </S.Dish>
   );
 };

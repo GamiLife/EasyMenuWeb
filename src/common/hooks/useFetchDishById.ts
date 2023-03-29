@@ -3,8 +3,15 @@ import { useRouter } from 'next/router';
 
 import { CompanyContext } from '../../context';
 import { useQueryData } from './useQueryData';
+import { GetDishResponseDTO } from '../types/getDish.type';
 
-export const useFetchDishById = () => {
+export interface IUseFetchDishByIdResponse {
+  response: undefined | GetDishResponseDTO;
+  pslug: string | string[] | undefined;
+  isLoading: boolean;
+}
+
+export const useFetchDishById = (): IUseFetchDishByIdResponse => {
   const router = useRouter();
   const { pslug } = router.query;
 
@@ -23,7 +30,7 @@ export const useFetchDishById = () => {
   );
 
   return {
-    response: data?.response,
+    response: data?.response?.data,
     pslug,
     isLoading,
   };

@@ -1,23 +1,22 @@
-import { Container, RichText, Title } from '@gamiui/standard';
-
+import React from 'react';
+import { Container, Title, RichText } from '@gamiui/standard';
 import productDetailsBlock from '../../blocks/productDetails-block.json';
-import { useFetchDishById } from '../../hooks';
-import { DishContainer } from '../DishContainer';
 import { Block } from '../../layouts';
+import { GetDishResponseDTO } from '../../types/getDish.type';
 import * as S from './styles';
+import { Rows } from './Rows';
 
-export const DishesArea = () => {
-  const {
-    response: {
-      data: { combos },
-    },
-  } = useFetchDishById();
-
-  const { title, description, maxItems, dishes } = combos[1];
-  console.log(maxItems);
+export const Combo = ({
+  title,
+  description,
+  dishes,
+  sauces,
+  maxItems,
+}: GetDishResponseDTO.Combo) => {
+  // useProductComboCounter(maxItemsByRow);
 
   return (
-    <S.DishesArea
+    <S.Area
       component={Container}
       blockId={productDetailsBlock.CONTAINER_SELECTION_AREA}
     >
@@ -27,8 +26,8 @@ export const DishesArea = () => {
           {title}
         </Title>
         <RichText margin="0 0 24px" text={description}></RichText>
-        <DishContainer dishes={dishes} />
+        <Rows sauces={sauces} dishes={dishes} maxItems={maxItems} />
       </Container>
-    </S.DishesArea>
+    </S.Area>
   );
 };
