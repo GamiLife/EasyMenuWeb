@@ -3,9 +3,12 @@ import { Container, Button } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system';
 
-export const ProductOperators = styled(Container)`
-  margin: auto;
-  width: 45%;
+export const ProductOperators = styled(Container)<{
+  $margin: string;
+  $width: string;
+}>`
+  margin: ${({ $margin }) => $margin};
+  width: ${({ $width }) => $width};
   display: flex;
   border: 1px solid #ccc;
   padding: 5px 15px;

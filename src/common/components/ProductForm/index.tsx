@@ -19,7 +19,7 @@ export const ProductForm = ({
   maxItems,
 }: IProductForm) => {
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
-    useProductComboCounter(maxItems);
+    useProductComboCounter(maxItems - 1);
 
   return (
     <React.Fragment>
@@ -32,7 +32,15 @@ export const ProductForm = ({
       </S.Selections>
       <S.ProductInlineBlock>
         <S.ProductQuantityTitle level="h3">Cantidad</S.ProductQuantityTitle>
-        <ProductOperators maxItems={maxItems} />
+        <ProductOperators
+          margin={'0'}
+          width={'30%'}
+          quantity={quantity + 1}
+          disableSubtractButton={disableSubtract}
+          handleClickSubtract={handleSubtract}
+          handleClickAdd={handleAdd}
+          disableAddButton={disableAdd}
+        />
         {/* <S.ProductOperators>
           <S.QuantityOperator
             onClick={handleSubtract}

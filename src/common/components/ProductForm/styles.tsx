@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Container, Title, Button } from '@gamiui/standard';
+
 import { lightTheme } from '../../../../styles/design-system';
 
 export const Selections = styled(Container)``;
@@ -28,8 +29,6 @@ export const ProductOperators = styled(Container)`
   align-items: center;
   background-color: ${lightTheme.primary.white};
   justify-content: space-between;
-  /* margin: auto; */
-  /* width: 50%; */
 `;
 
 export const QuantityOperator = styled(Button)`

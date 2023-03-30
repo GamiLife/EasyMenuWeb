@@ -1,24 +1,37 @@
-import { useProductComboCounter } from '../../hooks';
 import * as S from './styles';
 
 interface IProductOperators {
-  maxItems: number;
+  quantity: number;
+  disableAddButton: boolean;
+  disableSubtractButton: boolean;
+  margin: string;
+  width: string;
+  handleClickSubtract: () => void;
+  handleClickAdd: () => void;
 }
 
-export const ProductOperators = ({ maxItems }: IProductOperators) => {
-  const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
-    useProductComboCounter(maxItems);
-
+export const ProductOperators = ({
+  quantity,
+  disableAddButton,
+  disableSubtractButton,
+  margin,
+  width,
+  handleClickSubtract,
+  handleClickAdd,
+}: IProductOperators) => {
   return (
-    <S.ProductOperators>
-      <S.QuantityOperator onClick={handleSubtract} disable={disableSubtract}>
+    <S.ProductOperators $margin={margin} $width={width}>
+      <S.QuantityOperator
+        onClick={handleClickSubtract}
+        disable={disableSubtractButton}
+      >
         -
       </S.QuantityOperator>
       <S.ProductQuantity>{quantity}</S.ProductQuantity>
       <S.QuantityOperator
-        onClick={handleAdd}
-        disable={disableAdd}
-        className={disableAdd ? 'disabled' : ''}
+        onClick={handleClickAdd}
+        disable={disableAddButton}
+        className={disableAddButton ? 'disabled' : ''}
       >
         +
       </S.QuantityOperator>

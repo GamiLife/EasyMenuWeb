@@ -1,4 +1,5 @@
 import { useProductComboCounter } from '../../hooks';
+import { ProductOperators } from '../ProductOperators';
 import * as S from './styles';
 
 interface IRow {
@@ -14,7 +15,6 @@ interface IRow {
 
 export const ElementWrapper = ({
   title,
-  description,
   priceByUnit,
   imageUrl,
   maxItemsByRow,
@@ -33,31 +33,23 @@ export const ElementWrapper = ({
         {title}
         <S.ProductPrice> + {priceByUnit}</S.ProductPrice>
       </S.ProductName>
-      {/* <RichText text={description} margin="0 0 10px" /> */}
       <S.OperatorsImageWrapper>
         <S.ProductImage imageUrl={imageUrl} alt={title} height="42px" />
-        <S.ProductOperators>
-          <S.QuantityOperator
-            onClick={() => {
-              handleSubtract();
-              handlerSubstractCombo();
-            }}
-            disable={disableSubtract}
-          >
-            -
-          </S.QuantityOperator>
-          <S.ProductQuantity>{quantity}</S.ProductQuantity>
-          <S.QuantityOperator
-            onClick={() => {
-              handleAdd();
-              handlerAddCombo();
-            }}
-            disable={isDisableAdd}
-            className={isDisableAdd ? 'disabled' : ''}
-          >
-            +
-          </S.QuantityOperator>
-        </S.ProductOperators>
+        <ProductOperators
+          margin={'auto'}
+          width={'45%'}
+          quantity={quantity}
+          disableSubtractButton={disableSubtract}
+          handleClickSubtract={() => {
+            handleSubtract();
+            handlerSubstractCombo();
+          }}
+          handleClickAdd={() => {
+            handleAdd();
+            handlerAddCombo();
+          }}
+          disableAddButton={isDisableAdd}
+        />
       </S.OperatorsImageWrapper>
     </S.ElementWrapper>
   );
