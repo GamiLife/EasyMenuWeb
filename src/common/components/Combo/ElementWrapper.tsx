@@ -1,4 +1,8 @@
-import { useProductComboCounter } from '../../hooks';
+import React from 'react';
+import {
+  useCalculateTotalPriceToPay,
+  useProductComboCounter,
+} from '../../hooks';
 import { ProductOperators } from '../ProductOperators';
 import * as S from './styles';
 
@@ -11,6 +15,8 @@ interface IRow {
   isEnableComboRow: boolean;
   handlerAddCombo: () => void;
   handlerSubstractCombo: () => void;
+  // total: number;
+  // setTotal: (arg: number) => void;
 }
 
 export const ElementWrapper = ({
@@ -21,9 +27,14 @@ export const ElementWrapper = ({
   isEnableComboRow,
   handlerAddCombo,
   handlerSubstractCombo,
-}: IRow) => {
+}: // setTotal,
+// total,
+IRow) => {
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItemsByRow);
+
+  // setTotal(total + priceByUnit * quantity);
+  // console.log(priceByUnit * quantity);
 
   const isDisableAdd = disableAdd || !isEnableComboRow;
 
@@ -47,6 +58,8 @@ export const ElementWrapper = ({
           handleClickAdd={() => {
             handleAdd();
             handlerAddCombo();
+
+            // handleAddPriceToUnitPrice();
           }}
           disableAddButton={isDisableAdd}
         />

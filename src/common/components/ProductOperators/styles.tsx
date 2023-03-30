@@ -20,7 +20,7 @@ export const ProductOperators = styled(Container)<{
 
 export const QuantityOperator = styled(Button)`
   padding: 0 10px;
-  background: #fff;
+  background: ${lightTheme.primary.white};
   text-align: center;
   line-height: 30px;
   color: ${lightTheme.primary.black};

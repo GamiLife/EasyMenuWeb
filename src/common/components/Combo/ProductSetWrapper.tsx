@@ -5,6 +5,7 @@ import { ElementWrapper } from './ElementWrapper';
 import { useCombo } from '../../hooks/useCombo';
 import { merge } from './utils';
 import * as S from './styles';
+import React from 'react';
 
 interface IDishContainer {
   dishes: GetDishResponseDTO.DishInCombo[];
@@ -26,6 +27,10 @@ export const ProductSetWrapper = ({
   });
 
   const rows = merge(dishes, sauces);
+
+  // const [total, setTotal] = React.useState(0);
+  // console.log(total);
+
   return (
     <S.ProductSetWrapper>
       {rows.map(
@@ -44,6 +49,8 @@ export const ProductSetWrapper = ({
               priceByUnit={priceByUnit}
               imageUrl={imageUrl}
               maxItemsByRow={maxItemsByRow}
+              // setTotal={setTotal}
+              // total={total}
             />
           </Container>
         )

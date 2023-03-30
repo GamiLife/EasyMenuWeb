@@ -1,3 +1,4 @@
+export * from './useCalculateTotalPriceToPay';
 export * from './useCustomTranslation';
 export * from './useDebounce';
 export * from './useFetchHomeDishes';

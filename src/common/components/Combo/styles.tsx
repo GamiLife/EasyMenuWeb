@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button, Container } from '@gamiui/standard';
+import { Container, Title } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
@@ -13,6 +13,12 @@ export const ComboArea = styled(Block<IContainer>)`
   padding: 10px 20px;
   width: 100%;
   margin: 0 auto 15px;
+`;
+
+export const ComboAreaTitle = styled(Title)`
+  font-size: 19px;
+  color: ${lightTheme.primary.black};
+  /* min-width: 70px; */
 `;
 
 export const ProductSetWrapper = styled(Container)`
@@ -45,44 +51,4 @@ export const OperatorsImageWrapper = styled(Container)`
 
 export const ProductImage = styled(NextImage)`
   flex-basis: 50px;
-`;
-
-// Estilos en otro componente
-export const ProductOperators = styled(Container)`
-  margin: auto;
-  width: 45%;
-  display: flex;
-  border: 1px solid #ccc;
-  padding: 5px 15px;
-  border-radius: 25px;
-  align-items: center;
-  background-color: ${lightTheme.primary.white};
-  justify-content: space-between;
-`;
-
-export const QuantityOperator = styled(Button)`
-  padding: 0 10px;
-  background: #fff;
-  text-align: center;
-  line-height: 30px;
-  color: ${lightTheme.primary.black};
-  font-size: 20px;
-  border-radius: 2px;
-  cursor: pointer;
-  border: none;
-  box-shadow: none;
-
-  &.disabled {
-    color: #b7b7b7;
-    pointer-events: none;
-  }
-`;
-
-export const ProductQuantity = styled.span`
-  width: 60px;
-  text-align: center;
-  color: ${lightTheme.primary.black};
-  font-size: 17px;
-  border-radius: 2px;
-  line-height: 1;
 `;
