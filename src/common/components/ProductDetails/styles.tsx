@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Container, Icon, Title } from '@gamiui/standard';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
+import { NextImage } from '../NextImage';
 
 // export const CartContentDrawer = styled(Drawer)`
 //   border-top-left-radius: 0 !important;
@@ -89,10 +90,22 @@ export const ProductTitle = styled(Title)`
   text-transform: capitalize;
 `;
 
-export const PriceImageContainer = styled(Container)`
-  flex-direction: column;
+export const MainImageContainer = styled(Container)`
   grid-column: 2/3;
   padding: 25px 100px 0;
-  row-gap: 2rem;
   width: 100%;
+
+  background-size: cover;
+  background-position: 50%;
+  position: relative;
+`;
+
+export const MainProductImage = styled(NextImage)`
+  position: fixed;
+  top: 20%;
+  right: 4%;
+  z-index: 2;
+  width: 40%;
+  width: 30%;
+  /* margin: auto; */
 `;

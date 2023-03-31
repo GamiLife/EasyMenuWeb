@@ -3,6 +3,7 @@ import { Container } from '@gamiui/standard';
 
 import {
   useCalculateTotalPriceToPay,
+  useCustomTranslation,
   useProductComboCounter,
 } from '../../hooks';
 import { GetDishResponseDTO } from '../../types/getDish.type';
@@ -23,13 +24,13 @@ export const ProductForm = ({
 }: IProductForm) => {
   // const { totalPrice } = useCalculateTotalPriceToPay({ priceByUnit });
   // const [totalPrice, setTotalPrice] = React.useState(priceByUnit);
+  const [totalPrice, setTotalprice] = React.useState(priceByUnit);
+  console.log(totalPrice);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
+  const { t } = useCustomTranslation();
   console.log(quantity);
-
-  const [totalPrice, setTotalprice] = React.useState(priceByUnit);
-  console.log(totalPrice);
 
   return (
     <React.Fragment>
@@ -41,10 +42,12 @@ export const ProductForm = ({
         ))}
       </S.Selections>
       <S.ProductInlineBlock>
-        <S.ProductQuantityTitle level="h3">Cantidad</S.ProductQuantityTitle>
+        <S.ProductQuantityTitle level="h3">
+          {t('pageProductDetails.productQuantityTitle')}
+        </S.ProductQuantityTitle>
         <ProductOperators
-          margin={'0'}
-          width={'30%'}
+          margin="0"
+          width="34%"
           quantity={quantity + 1}
           disableSubtractButton={disableSubtract}
           handleClickSubtract={handleSubtract}
@@ -53,10 +56,13 @@ export const ProductForm = ({
         />
       </S.ProductInlineBlock>
       <S.ProductSingleFixBottom>
-        <S.ProductPriceDetails level="h4">
-          {/* S/ {priceByUnit} */}
-          S/ {totalPrice}
-        </S.ProductPriceDetails>
+        <S.ProductInlineBlockPrice>
+          <S.TotalPrice level="h4">S/ {priceByUnit}</S.TotalPrice>
+          {/* <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice> */}
+        </S.ProductInlineBlockPrice>
+        <S.AddProductToCart>
+          {t('pageProductDetails.addButtonText')}
+        </S.AddProductToCart>
       </S.ProductSingleFixBottom>
     </React.Fragment>
   );

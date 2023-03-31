@@ -30,8 +30,7 @@
     "pagePrivacyPolicies": {},
     "pageProductDetails": {
         "back": "Back",
-        "saucesTitle": "Choose your sauces",
-        "dishesTitle": "Choose other dishes",
+        "productQuantityTitle": "Quantity",
         "addButtonText": "Add"
     }
 }

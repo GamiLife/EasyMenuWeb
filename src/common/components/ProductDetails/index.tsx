@@ -74,13 +74,11 @@ export const ProductDetails = () => {
             combos={combos}
             maxItems={maxItems}
           />
-          {/* <S.AddButtonContainer>
-            <S.AddButton>{t('pageProductDetails.addButtonText')}</S.AddButton>
-          </S.AddButtonContainer> */}
         </S.ContentContainer>
-        <S.PriceImageContainer className={classNames('flex', 'items-center')}>
-          {imageUrl && <NextImage imageUrl={imageUrl} alt={title} />}
-        </S.PriceImageContainer>
+        <S.MainImageContainer>
+          {/* <S.MainImageContainer className={classNames('flex', 'items-center')}> */}
+          {imageUrl && <S.MainProductImage imageUrl={imageUrl} alt={title} />}
+        </S.MainImageContainer>
       </S.ProductDetails>
     </React.Fragment>
   );

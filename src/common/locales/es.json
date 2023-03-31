@@ -30,8 +30,7 @@
     "pagePrivacyPolicies": {},
     "pageProductDetails": {
         "back": "Atrás",
-        "saucesTitle": "Elige tus salsas",
-        "dishesTitle": "Elige otros platos",
+        "productQuantityTitle": "Cantidad",
         "addButtonText": "Agregar"
     }
 }
