@@ -25,19 +25,19 @@ export const ProductForm = ({
   // const { totalPrice } = useCalculateTotalPriceToPay({ priceByUnit });
   // const [totalPrice, setTotalPrice] = React.useState(priceByUnit);
   const [totalPrice, setTotalprice] = React.useState(priceByUnit);
-  console.log(totalPrice);
+  // console.log(totalPrice);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
   const { t } = useCustomTranslation();
-  console.log(quantity);
+  // console.log(quantity);
 
   return (
     <React.Fragment>
       <S.Selections>
         {combos.map((combo) => (
           <Container key={combo.id}>
-            <Combo {...combo} setTotalPrice={setTotalprice} />
+            <Combo {...combo} setTotalPrice={setTotalprice} minItems={4} />
           </Container>
         ))}
       </S.Selections>
@@ -57,7 +57,7 @@ export const ProductForm = ({
       </S.ProductInlineBlock>
       <S.ProductSingleFixBottom>
         <S.ProductInlineBlockPrice>
-          <S.TotalPrice level="h4">S/ {priceByUnit}</S.TotalPrice>
+          <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice>
           {/* <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice> */}
         </S.ProductInlineBlockPrice>
         <S.AddProductToCart>

@@ -66,6 +66,7 @@ IRow) => {
           handleClickSubtract={() => {
             handleSubtract();
             handlerSubstractCombo();
+            setTotalPrice((prev: number) => prev - priceByUnit);
           }}
           handleClickAdd={() => {
             handleAdd();
@@ -75,9 +76,7 @@ IRow) => {
             handleAddPriceToMainProductPrice(priceByUnit);
             // console.log(quantity * priceByUnit);
 
-            setTotalPrice(
-              (prev: number) => prev + priceByUnit * (quantity + 1)
-            );
+            setTotalPrice((prev: number) => prev + priceByUnit);
           }}
           disableAddButton={isDisableAdd}
         />
