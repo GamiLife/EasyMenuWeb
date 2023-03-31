@@ -26,13 +26,17 @@ export const ProductForm = ({
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
+  console.log(quantity);
+
+  const [totalPrice, setTotalprice] = React.useState(priceByUnit);
+  console.log(totalPrice);
 
   return (
     <React.Fragment>
       <S.Selections>
         {combos.map((combo) => (
           <Container key={combo.id}>
-            <Combo {...combo} />
+            <Combo {...combo} setTotalPrice={setTotalprice} />
           </Container>
         ))}
       </S.Selections>
@@ -51,7 +55,7 @@ export const ProductForm = ({
       <S.ProductSingleFixBottom>
         <S.ProductPriceDetails level="h4">
           {/* S/ {priceByUnit} */}
-          {/* S/ {totalPrice} */}
+          S/ {totalPrice}
         </S.ProductPriceDetails>
       </S.ProductSingleFixBottom>
     </React.Fragment>

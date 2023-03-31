@@ -13,6 +13,7 @@ export const Combo = ({
   dishes,
   sauces,
   maxItems,
+  setTotalPrice,
 }: GetDishResponseDTO.Combo) => {
   return (
     <S.ComboArea
@@ -29,6 +30,7 @@ export const Combo = ({
           sauces={sauces}
           dishes={dishes}
           maxItems={maxItems}
+          setTotalPrice={setTotalPrice}
         />
       </Container>
     </S.ComboArea>

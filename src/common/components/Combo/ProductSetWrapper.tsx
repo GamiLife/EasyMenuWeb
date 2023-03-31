@@ -11,6 +11,7 @@ interface IDishContainer {
   dishes: GetDishResponseDTO.DishInCombo[];
   sauces: GetDishResponseDTO.SauceInCombo[];
   maxItems: number;
+  setTotalPrice: (arg: any) => void;
 }
 
 export type IComboRow = Omit<GetDishResponseDTO.DishInCombo, 'dish'> & {
@@ -21,6 +22,7 @@ export const ProductSetWrapper = ({
   dishes,
   sauces,
   maxItems,
+  setTotalPrice,
 }: IDishContainer) => {
   const { isEnableComboRow, handlerAdd, handlerSubstract } = useCombo({
     maxItems,
@@ -49,6 +51,7 @@ export const ProductSetWrapper = ({
               priceByUnit={priceByUnit}
               imageUrl={imageUrl}
               maxItemsByRow={maxItemsByRow}
+              setTotalPrice={setTotalPrice}
               // setTotal={setTotal}
               // total={total}
             />

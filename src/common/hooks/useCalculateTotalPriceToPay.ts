@@ -12,13 +12,13 @@ export const useCalculateTotalPriceToPay = ({
 }: IUseCalculateTotalPriceToPay) => {
   // const { quantity } = useProductComboCounter();
   const [totalPrice, setTotalPrice] = React.useState(priceByUnit);
-  function handleAddPriceToUnitPrice() {
+  function handleAddPriceToMainProductPrice() {
     setTotalPrice(totalPrice + (quantity + 1) * priceByUnit);
   }
 
   return {
     totalPrice,
     setTotalPrice,
-    handleAddPriceToUnitPrice,
+    handleAddPriceToMainProductPrice,
   };
 };
