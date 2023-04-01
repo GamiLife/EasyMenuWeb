@@ -8,7 +8,6 @@ import { useFetchDishById } from '../../hooks/useFetchDishById';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { ProductForm } from '../ProductForm';
 import { HomeContext } from '../../../context';
-import { NextImage } from '../NextImage';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
 

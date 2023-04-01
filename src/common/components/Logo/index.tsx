@@ -22,7 +22,7 @@ export const Logo = ({ typeLogo, ...props }: ILogo) => {
   return (
     <React.Fragment>
       {type === 'primary' ? (
-        <S.HeaderLink href={`${slugCompany}`}>
+        <S.HeaderLink href={`/${slugCompany}`}>
           <NextImage alt={alt} imageUrl={src} height="68px" {...props} />
         </S.HeaderLink>
       ) : (

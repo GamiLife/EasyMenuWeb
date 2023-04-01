@@ -4,7 +4,6 @@ export const useProductComboCounter = (maxItemsByRow: number) => {
   const [quantity, setQuantity] = React.useState(0);
   const [disableAdd, setDisableAdd] = React.useState(false);
   const [disableSubtract, setDisableSubtract] = React.useState(true);
-  const [price, setPrice] = React.useState(0);
 
   function handleSubtract() {
     if (quantity > 0) {
@@ -28,17 +27,11 @@ export const useProductComboCounter = (maxItemsByRow: number) => {
     }
   }
 
-  function handleAddPriceToMainProductPrice(priceByUnit: number) {
-    setPrice((quantity + 1) * priceByUnit);
-  }
-
   return {
     quantity,
     disableAdd,
     disableSubtract,
     handleSubtract,
     handleAdd,
-    handleAddPriceToMainProductPrice,
-    price,
   };
 };

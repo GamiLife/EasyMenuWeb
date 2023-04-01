@@ -1,11 +1,7 @@
 import React from 'react';
 import { Container } from '@gamiui/standard';
 
-import {
-  useCalculateTotalPriceToPay,
-  useCustomTranslation,
-  useProductComboCounter,
-} from '../../hooks';
+import { useCustomTranslation, useProductComboCounter } from '../../hooks';
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ProductOperators } from '../ProductOperators';
 import { Combo } from '../Combo';
@@ -22,22 +18,19 @@ export const ProductForm = ({
   combos,
   maxItems,
 }: IProductForm) => {
-  // const { totalPrice } = useCalculateTotalPriceToPay({ priceByUnit });
-  // const [totalPrice, setTotalPrice] = React.useState(priceByUnit);
-  const [totalPrice, setTotalprice] = React.useState(priceByUnit);
-  // console.log(totalPrice);
+  const [totalPrice, setTotalPrice] = React.useState(priceByUnit);
+  // const [totalPricePerQuantity, setTotalPricePerQuantity] = React.useState(totalPrice);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
   const { t } = useCustomTranslation();
-  // console.log(quantity);
 
   return (
     <React.Fragment>
       <S.Selections>
         {combos.map((combo) => (
           <Container key={combo.id}>
-            <Combo {...combo} setTotalPrice={setTotalprice} minItems={4} />
+            <Combo {...combo} setTotalPrice={setTotalPrice} minItems={4} />
           </Container>
         ))}
       </S.Selections>
@@ -51,14 +44,19 @@ export const ProductForm = ({
           quantity={quantity + 1}
           disableSubtractButton={disableSubtract}
           handleClickSubtract={handleSubtract}
-          handleClickAdd={handleAdd}
+          // handleClickAdd={handleAdd}
+          handleClickAdd={() => {
+            handleAdd();
+            // console.log(quantity + 2);
+            // setTotalPricePerQuantity((prev) => prev + totalPrice);
+          }}
           disableAddButton={disableAdd}
         />
       </S.ProductInlineBlock>
       <S.ProductSingleFixBottom>
         <S.ProductInlineBlockPrice>
           <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice>
-          {/* <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice> */}
+          {/* <S.TotalPrice level="h4">S/ {test}</S.TotalPrice> */}
         </S.ProductInlineBlockPrice>
         <S.AddProductToCart>
           {t('pageProductDetails.addButtonText')}

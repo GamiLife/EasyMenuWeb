@@ -30,9 +30,6 @@ export const ProductSetWrapper = ({
 
   const rows = merge(dishes, sauces);
 
-  // const [total, setTotal] = React.useState(0);
-  // console.log(total);
-
   return (
     <S.ProductSetWrapper>
       {rows.map(
@@ -52,8 +49,6 @@ export const ProductSetWrapper = ({
               imageUrl={imageUrl}
               maxItemsByRow={maxItemsByRow}
               setTotalPrice={setTotalPrice}
-              // setTotal={setTotal}
-              // total={total}
             />
           </Container>
         )
