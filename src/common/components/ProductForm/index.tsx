@@ -19,7 +19,10 @@ export const ProductForm = ({
   maxItems,
 }: IProductForm) => {
   const [totalPrice, setTotalPrice] = React.useState(priceByUnit);
-  // const [totalPricePerQuantity, setTotalPricePerQuantity] = React.useState(totalPrice);
+  // console.log(totalPrice);
+  // const [totalPricePerQuantity, setTotalPricePerQuantity] =
+  //   React.useState(totalPrice);
+  // console.log(totalPricePerQuantity);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
@@ -43,20 +46,22 @@ export const ProductForm = ({
           width="34%"
           quantity={quantity + 1}
           disableSubtractButton={disableSubtract}
-          handleClickSubtract={handleSubtract}
-          // handleClickAdd={handleAdd}
+          handleClickSubtract={() => {
+            handleSubtract();
+            // setTotalPricePerQuantity(totalPricePerQuantity - totalPrice);
+            setTotalPrice(totalPrice - priceByUnit);
+          }}
           handleClickAdd={() => {
             handleAdd();
-            // console.log(quantity + 2);
-            // setTotalPricePerQuantity((prev) => prev + totalPrice);
+            setTotalPrice((prev) => prev + priceByUnit);
           }}
           disableAddButton={disableAdd}
         />
       </S.ProductInlineBlock>
       <S.ProductSingleFixBottom>
         <S.ProductInlineBlockPrice>
+          {/* <S.TotalPrice level="h4">S/ {totalPricePerQuantity}</S.TotalPrice> */}
           <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice>
-          {/* <S.TotalPrice level="h4">S/ {test}</S.TotalPrice> */}
         </S.ProductInlineBlockPrice>
         <S.AddProductToCart>
           {t('pageProductDetails.addButtonText')}
