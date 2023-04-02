@@ -47,6 +47,7 @@ export namespace GetDishResponseDTO {
     title: string;
     description: string;
     maxItems: number;
+    minItems: number;
 
     dishes: DishInCombo[];
     sauces: SauceInCombo[];

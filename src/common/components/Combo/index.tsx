@@ -13,6 +13,7 @@ export const Combo = ({
   dishes,
   sauces,
   maxItems,
+  minItems,
   setTotalPrice,
 }: GetDishResponseDTO.Combo) => {
   return (

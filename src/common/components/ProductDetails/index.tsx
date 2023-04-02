@@ -8,7 +8,6 @@ import { useFetchDishById } from '../../hooks/useFetchDishById';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { ProductForm } from '../ProductForm';
 import { HomeContext } from '../../../context';
-import { NextImage } from '../NextImage';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
 
@@ -74,13 +73,11 @@ export const ProductDetails = () => {
             combos={combos}
             maxItems={maxItems}
           />
-          {/* <S.AddButtonContainer>
-            <S.AddButton>{t('pageProductDetails.addButtonText')}</S.AddButton>
-          </S.AddButtonContainer> */}
         </S.ContentContainer>
-        <S.PriceImageContainer className={classNames('flex', 'items-center')}>
-          {imageUrl && <NextImage imageUrl={imageUrl} alt={title} />}
-        </S.PriceImageContainer>
+        <S.MainImageContainer>
+          {/* <S.MainImageContainer className={classNames('flex', 'items-center')}> */}
+          {imageUrl && <S.MainProductImage imageUrl={imageUrl} alt={title} />}
+        </S.MainImageContainer>
       </S.ProductDetails>
     </React.Fragment>
   );
