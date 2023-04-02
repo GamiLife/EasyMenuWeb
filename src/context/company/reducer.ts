@@ -20,6 +20,7 @@ export const companyReducer = (
         socialNetworks,
         staticPages,
         isEnabledCompany: true,
+        isFetched: false,
       };
     default:
       return state;

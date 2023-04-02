@@ -38,6 +38,7 @@ export const defaultThemeValues = {
   currentThemeBlocks: [],
   previewThemeBlocks: [],
   isEnableHover: false,
+  isFetched: false,
 };
 
 export const defaultThemeSetter = {

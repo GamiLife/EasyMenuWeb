@@ -1,7 +1,7 @@
 export * from './useCalculateTotalPriceToPay';
 export * from './useCustomTranslation';
 export * from './useDebounce';
-export * from './useFetchHomeDishes';
+export * from './useFetchDishesByCategory';
 export * from './useFetchDishById';
 export * from './useFetchLocations';
 export * from './useFetchStaticPages';
@@ -12,3 +12,4 @@ export * from './useQueryData';
 export * from './useSearch';
 export * from './useToggle';
 export * from './useBlock';
+export * from './useQueryCache';

@@ -1,21 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useContext } from 'react';
 import { Container } from '@gamiui/standard';
 import classNames from 'classnames';
 
-import { useFetchDishesId } from '../../../../common/hooks';
-import { CompanyContext } from '../../../../context/company';
 import { ProductDetails } from '../../../../common/components/ProductDetails';
 import { LayoutWrapper } from '../../../../common/layouts';
-import Custom404 from '../../../404';
+import { WithLayout, WithPagination } from '../../../../common/hocs';
 
 const Product = () => {
-  const { isEnabledCompany } = useContext(CompanyContext);
-
-  if (isEnabledCompany === false) {
-    return <Custom404 />;
-  }
-
   return (
     <Container height="full" className={classNames('products')}>
       <ProductDetails />
@@ -64,4 +55,8 @@ Product.getLayout = (children: React.ReactNode) => {
   );
 };
 
-export default Product;
+export default WithLayout({
+  title: 'Platters | Fridays',
+  description:
+    'TGI Fridays sirve sus platos favoritos de comida estadounidense directamente de la parrilla. Más de 931 bar restaurante y parrillas en más de 60 países. ¡Encuentre una ubicación cerca de usted!',
+})(WithPagination(Product));

@@ -6,12 +6,16 @@ import { usePagination } from './usePagination';
 import { useQueryData } from './useQueryData';
 import { useDebounce } from './useDebounce';
 import { useSearch } from './useSearch';
+import { queryParams } from '../utils/queryParams';
 
-interface IUseFetchDishes {
+interface IUseFetchDishesByCategory {
   idCategory: number;
 }
 
-export const useFetchHomeDishes = ({ idCategory }: IUseFetchDishes) => {
+//TODO: Query Params implemetation on rest of hooks
+export const useFetchDishesByCategory = ({
+  idCategory,
+}: IUseFetchDishesByCategory) => {
   const {
     company: { id },
   } = React.useContext(CompanyContext);
@@ -20,16 +24,22 @@ export const useFetchHomeDishes = ({ idCategory }: IUseFetchDishes) => {
   const { search } = useSearch();
   const debouncedValue = useDebounce(search, 500);
 
-  const { data, isLoading, isError } = useQueryData(
-    `dishes/byPagination?categoryId=${idCategory}&companyId=${id}&page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}&searchBy=[ "title", ${debouncedValue} ] , ["description",${debouncedValue}]&searchOp=OR`,
-    ['homeDishes', idCategory, pageNumber, debouncedValue],
-    ({ data, metadata }) => {
+  const { data, isLoading, isError } = useQueryData({
+    path: `dishes/byPagination?${queryParams({
+      categoryId: `${id}`,
+      page: `${pageNumber}`,
+      sizeByPage: `${SIZE_BY_PAGE}`,
+      searchBy: `[ "title", ${debouncedValue} ] , ["description",${debouncedValue}]`,
+      searchOp: `OR`,
+    })}`,
+    queryKey: ['homeDishes', idCategory, pageNumber, debouncedValue],
+    select: ({ data, metadata }) => {
       return {
         response: data,
         metadata,
       };
-    }
-  );
+    },
+  });
 
   React.useEffect(() => {
     if (!data?.response?.length) return;

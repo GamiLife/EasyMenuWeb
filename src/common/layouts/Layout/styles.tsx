@@ -31,7 +31,6 @@ export const LayoutWrapper = styled(Layout)`
 `;
 
 export const LayoutHeader = styled(Layout.Header)`
-  border-top: 4px solid ${lightTheme.primary.first};
   box-shadow: 0px 2px 8px 0px rgb(0 0 0 / 5%);
   position: fixed;
   top: 0;

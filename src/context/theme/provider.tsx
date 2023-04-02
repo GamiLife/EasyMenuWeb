@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
-import { useRouter } from 'next/router';
 
 import { IThemeProvider, TBlockEditData, ThemeContext } from './context';
 import { INITIAL_STATE, themeReducer } from './reducer';
-import { get } from '../../config/api';
+import { useQueryCache } from '../../common/hooks';
+import { CompanyContext } from '../company';
 
 const ThemeProvider = ({ children }: IThemeProvider) => {
-  const router = useRouter();
-  const { slugCompany } = router.query;
-
+  const { isFetched } = React.useContext(CompanyContext);
   const [state, dispatch] = React.useReducer(themeReducer, INITIAL_STATE);
+
+  const { get } = useQueryCache();
 
   const {
     blockIdActive,
@@ -78,16 +78,11 @@ const ThemeProvider = ({ children }: IThemeProvider) => {
   ]);
 
   React.useEffect(() => {
-    if (!slugCompany) return;
-    async function companyFetch() {
-      console.log('test component');
-      const { data } = await get('companies/1');
-      // const { theme } = data;
-      dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: data.theme });
-      dispatch({ type: 'CURRENT_THEME_BLOCKS', payload: data.theme });
-    }
-    companyFetch();
-  }, [slugCompany]);
+    const companyData = get(['companies']);
+    if (!companyData) return;
+    dispatch({ type: 'PREVIEW_THEME_BLOCKS', payload: companyData.data.theme });
+    dispatch({ type: 'CURRENT_THEME_BLOCKS', payload: companyData.data.theme });
+  }, [isFetched]);
 
   return (
     <ThemeContext.Provider

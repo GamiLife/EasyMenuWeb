@@ -19,15 +19,15 @@ export const useFetchDishById = (): IUseFetchDishByIdResponse => {
     company: { id },
   } = React.useContext(CompanyContext);
 
-  const { data, isLoading } = useQueryData(
-    `dishes/slug/${pslug}?companyId=${id}`,
-    ['dishById', pslug as string],
-    (data) => {
+  const { data, isLoading } = useQueryData({
+    path: `dishes/slug/${pslug}?companyId=${id}`,
+    queryKey: ['dishById', pslug as string],
+    select: (data) => {
       return {
         response: data,
       };
-    }
-  );
+    },
+  });
 
   return {
     response: data?.response?.data,

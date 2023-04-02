@@ -9,7 +9,8 @@ import { messages } from '../../constants';
 import homeBlock from '../../blocks/home-block.json';
 import { Block } from '../../layouts';
 import * as S from './styles';
-import { Spinner } from '../Spinner';
+
+import { CategoriesSkeleton } from './Skeleton';
 
 const { pageHome } = messages;
 
@@ -18,11 +19,10 @@ export const Categories = () => {
     company: { id },
   } = React.useContext(CompanyContext);
 
-  const { data, isLoading } = useQueryData(`categories/companies/${id}`, [
-    'categories',
-  ]);
-  if (isLoading) return <Spinner isLoading={isLoading} />;
-  const categories = data.data;
+  const { data, isLoading } = useQueryData({
+    path: `categories/companies/${id}`,
+    queryKey: ['categories'],
+  });
 
   return (
     <React.Fragment>
@@ -31,11 +31,16 @@ export const Categories = () => {
         blockId={homeBlock.CATEGORIES_CONTAINER}
       >
         <Block.Tooltip blockId={homeBlock.CATEGORIES_CONTAINER} />
-        <ConditionalRendering
-          data={categories}
-          component={<CategoryItem categories={categories} />}
-          text={pageHome.categoriesNotFoundText}
-        />
+
+        {isLoading ? (
+          <CategoriesSkeleton />
+        ) : (
+          <ConditionalRendering
+            data={data.data}
+            component={<CategoryItem categories={data.data} />}
+            text={pageHome.categoriesNotFoundText}
+          />
+        )}
       </S.Categories>
     </React.Fragment>
   );

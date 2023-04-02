@@ -7,6 +7,7 @@ export interface ICompanyContext {
   socialNetworks: ISocialNetworks[];
   staticPages: IStaticPages[];
   isEnabledCompany: boolean;
+  isFetched: boolean;
 }
 
 export interface ICompanyProvider {
@@ -68,7 +69,8 @@ export const defaultCompanyValues = {
   logos: [],
   socialNetworks: [],
   staticPages: [],
-  isEnabledCompany: false,
+  isEnabledCompany: true,
+  isFetched: false,
 };
 
 export const defaultCompanySetter = {};

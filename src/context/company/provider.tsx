@@ -1,14 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useRouter } from 'next/router';
 
 import { CompanyContext, ICompanyProvider } from './context';
 import { companyReducer, INITIAL_STATE } from './reducer';
-import { get } from '../../config/api';
+import { useQueryData } from '../../common/hooks';
 
 const CompanyProvider = ({ children }: ICompanyProvider) => {
   const router = useRouter();
   const { slugCompany } = router.query;
 
+  const { data, isFetched } = useQueryData({
+    path: `companies/slug/${slugCompany}`,
+    queryKey: ['companies'],
+    enabled: !!slugCompany,
+  });
   const [state, dispatch] = React.useReducer(companyReducer, INITIAL_STATE);
 
   const {
@@ -21,18 +27,10 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
   } = state;
 
   React.useEffect(() => {
-    if (!slugCompany) return;
-    async function companyFetch() {
-      try {
-        const { data, statusCode } = await get(`companies/slug/${slugCompany}`);
-        if (statusCode === 404) return;
-        dispatch({ type: 'FETCH_SUCCESS', payload: data });
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    companyFetch();
-  }, [slugCompany]);
+    if (!data?.data) return;
+    if (data?.statusCode === 404) return;
+    dispatch({ type: 'FETCH_SUCCESS', payload: data.data });
+  }, [JSON.stringify(data)]);
 
   return (
     <CompanyContext.Provider
@@ -43,6 +41,7 @@ const CompanyProvider = ({ children }: ICompanyProvider) => {
         socialNetworks,
         staticPages,
         isEnabledCompany,
+        isFetched,
       }}
     >
       {children}

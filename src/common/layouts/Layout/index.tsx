@@ -5,10 +5,7 @@ import { Container } from '@gamiui/standard';
 import { Header, Footer, Block } from '..';
 import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
-
-import { gamiavatar } from './styles';
-import classNames from 'classnames';
-import { cx } from '@emotion/css';
+import { ThemeContext } from '../../../context';
 
 export interface ILayoutWrapper {
   children: React.ReactNode;
@@ -23,6 +20,8 @@ export const LayoutWrapper = ({
   title,
   jsonLd,
 }: ILayoutWrapper) => {
+  const { previewThemeBlocks } = React.useContext(ThemeContext);
+
   return (
     <S.LayoutWrapper>
       <Head>
@@ -46,7 +45,6 @@ export const LayoutWrapper = ({
           blockId={homeBlock.WRAPPER_PAGE}
         >
           <Block.Tooltip blockId={homeBlock.WRAPPER_PAGE} />
-          <div className={cx(gamiavatar)}>Test</div>
           {children}
         </S.ContentContainer>
       </S.Content>

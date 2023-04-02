@@ -4,35 +4,23 @@ import classNames from 'classnames';
 
 import { useFetchStaticPages } from '../../../common/hooks/useFetchStaticPages';
 import { CompanyContext } from '../../../context';
-import { LayoutWrapper } from '../../../common/layouts';
 import * as GlobalS from '../../../../styles/design-system/commons';
-import Custom404 from '../../404';
-// import { LongRichText } from '../../../common/components/LongRichText';
+import { WithLayout, WithPagination } from '../../../common/hocs';
 
-export default function PoliciesPrivacy() {
-  const { staticPages, isEnabledCompany } = useContext(CompanyContext);
+function PoliciesPrivacy() {
+  const { staticPages } = useContext(CompanyContext);
 
   const { data } = useFetchStaticPages(staticPages[1]?.id);
 
-  if (isEnabledCompany === false) {
-    return <Custom404 />;
-  }
-
   return (
     <Container height="full" className={classNames('policies_privacy')}>
-      <GlobalS.DynamicPage>
-        {data?.htmlContent}
-        {/* <LongRichText /> */}
-      </GlobalS.DynamicPage>
+      <GlobalS.DynamicPage>{data?.htmlContent}</GlobalS.DynamicPage>
     </Container>
   );
 }
 
-PoliciesPrivacy.getLayout = (children: React.ReactNode) => (
-  <LayoutWrapper
-    title="Políticas de privacidad | Fridays"
-    description="Las políticas de privacidad de datos se aplica al procedimiento de datos personales recopilados por GRUPO ROKYS SOCIEDAD ANONIMA CERRADA "
-  >
-    {children}
-  </LayoutWrapper>
-);
+export default WithLayout({
+  title: 'Platters | Fridays',
+  description:
+    'TGI Fridays sirve sus platos favoritos de comida estadounidense directamente de la parrilla. Más de 931 bar restaurante y parrillas en más de 60 países. ¡Encuentre una ubicación cerca de usted!',
+})(WithPagination(PoliciesPrivacy));

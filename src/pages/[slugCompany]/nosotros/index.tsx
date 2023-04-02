@@ -4,30 +4,24 @@ import classNames from 'classnames';
 
 import { useFetchStaticPages } from '../../../common/hooks/useFetchStaticPages';
 import { CompanyContext } from '../../../context';
-import { LayoutWrapper } from '../../../common/layouts';
 import * as GlobalS from '../../../../styles/design-system/commons';
-import Custom404 from '../../404';
+import { WithLayout, WithPagination } from '../../../common/hocs';
+import { LongRichText } from '../../../common/components/LongRichText';
 
-export default function About() {
-  const { staticPages, isEnabledCompany } = useContext(CompanyContext);
+function About() {
+  const { staticPages } = useContext(CompanyContext);
   const { data } = useFetchStaticPages(staticPages[2]?.id);
-
-  if (isEnabledCompany === false) {
-    return <Custom404 />;
-  }
 
   return (
     <Container height="full" className={classNames('about')}>
-      <GlobalS.DynamicPage>{data?.htmlContent}</GlobalS.DynamicPage>
+      <LongRichText />
+      <GlobalS.DynamicPage>{data?.data?.htmlContent}</GlobalS.DynamicPage>
     </Container>
   );
 }
 
-About.getLayout = (children: React.ReactNode) => (
-  <LayoutWrapper
-    title="Nosotros | Fridays"
-    description="Somos una empresa peruana orgullosa de brindarles el mejor sabor desde 1985"
-  >
-    {children}
-  </LayoutWrapper>
-);
+export default WithLayout({
+  title: 'Platters | Fridays',
+  description:
+    'TGI Fridays sirve sus platos favoritos de comida estadounidense directamente de la parrilla. Más de 931 bar restaurante y parrillas en más de 60 países. ¡Encuentre una ubicación cerca de usted!',
+})(WithPagination(About));

@@ -1,27 +1,14 @@
-import { useContext } from 'react';
 import { Container, Pagination, RichText } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { useCustomTranslation, usePagination } from '../../../common/hooks';
-import { useFetchLocations } from '../../../common/hooks/useFetchLocations';
-import PaginationProvider from '../../../context/pagination/provider';
-import { CompanyContext } from '../../../context';
-import { LayoutWrapper } from '../../../common/layouts';
 import { StoresList } from '../../../common/components/StoresList';
-import { Spinner } from '../../../common/components/Spinner';
-import Custom404 from '../../404';
 import * as S from './styles';
+import { WithLayout, WithPagination } from '../../../common/hocs';
 
-export default function Locations() {
-  const { isEnabledCompany } = useContext(CompanyContext);
-
-  // const { data, locations, isLoading } = useFetchLocations();
+function Locations() {
   const { page, numberPages, handleChangePage } = usePagination(4);
   const { t } = useCustomTranslation();
-
-  if (isEnabledCompany === false) {
-    return <Custom404 />;
-  }
 
   return (
     <S.ContentWrapper height="full" className={classNames('locations', 'flex')}>
@@ -32,10 +19,7 @@ export default function Locations() {
         <RichText text={t('pageLocations.description')} />
       </S.TitleContainer>
       <S.StoresContainer>
-        {/* <Spinner isLoading={isLoading} /> */}
-
         <StoresList />
-        {/* <StoresList locations={locations} isLoading={isLoading} /> */}
 
         <Container margin="0 0 1rem">
           {numberPages >= 1 && (
@@ -52,13 +36,8 @@ export default function Locations() {
   );
 }
 
-Locations.getLayout = (children: React.ReactNode) => (
-  <PaginationProvider>
-    <LayoutWrapper
-      title="Nuestros Locales | Fridays"
-      description="Hay uno de nuestros restaurantes muy cerca de donde estás. Ubícalo aquí ¡Te esperamos!"
-    >
-      {children}
-    </LayoutWrapper>
-  </PaginationProvider>
-);
+export default WithLayout({
+  title: 'Platters | Fridays',
+  description:
+    'TGI Fridays sirve sus platos favoritos de comida estadounidense directamente de la parrilla. Más de 931 bar restaurante y parrillas en más de 60 países. ¡Encuentre una ubicación cerca de usted!',
+})(WithPagination(Locations));

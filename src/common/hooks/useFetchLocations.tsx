@@ -4,58 +4,24 @@ import React from 'react';
 import { CompanyContext } from '../../context/company';
 import { usePagination } from './usePagination';
 import { useQueryData } from './useQueryData';
-import { ILocation } from '../components/Location';
-import { useToggle } from './useToggle';
-import { get } from '../../config/api';
 
 export const useFetchLocations = () => {
-  // const [locations, setLocations] = React.useState<ILocation[]>([]);
   const {
     company: { id },
   } = React.useContext(CompanyContext);
 
-  const {
-    pageNumber,
-    SIZE_BY_PAGE,
-    setTotalItems,
-    // page,
-    // numberPages,
-    // handleChangePage,
-  } = usePagination(4);
-  // const { handleToggle: setIsLoading } = useToggle({
-  //   defaultVisible: true,
-  // });
-  // const { isVisible: isLoading, handleToggle: setIsLoading } = useToggle({
-  //   defaultVisible: true,
-  // });
+  const { pageNumber, setTotalItems, SIZE_BY_PAGE } = usePagination(4);
 
-  // React.useEffect(() => {
-  //   async function locationsFetch() {
-  //     try {
-  //       const { data, metaData } = await get(
-  //         `locations/companies/${id}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}`
-  //       );
-  //       setLocations(data);
-  //       setTotalItems(metaData.pagination.totalItems);
-  //       setIsLoading(false);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  //   locationsFetch();
-  // }, [SIZE_BY_PAGE, pageNumber, setIsLoading, setTotalItems, id]);
-
-  const { data, isLoading, isError } = useQueryData(
-    `locations/companies/${id}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}`,
-    ['locations', SIZE_BY_PAGE, pageNumber, id],
-    // ['locations', SIZE_BY_PAGE, pageNumber, setIsLoading, setTotalItems, id],
-    ({ data, metaData }) => {
+  const { data, isLoading, isError } = useQueryData({
+    path: `locations/companies/${id}?page=${pageNumber}&sizeByPage=${SIZE_BY_PAGE}`,
+    queryKey: ['locations', SIZE_BY_PAGE, pageNumber, id],
+    select: ({ data, metaData }) => {
       return {
         response: data,
         metaData,
       };
-    }
-  );
+    },
+  });
 
   React.useEffect(() => {
     if (!data?.response?.length) return;

@@ -1,8 +1,4 @@
 import { useState } from 'react';
-//import {useToogle as useToogleGamiUI} from '@gamiui/standard'
-
-//export const useToggle = useToogleGamiUI
-
 interface IUseToggle {
   defaultVisible?: boolean;
 }

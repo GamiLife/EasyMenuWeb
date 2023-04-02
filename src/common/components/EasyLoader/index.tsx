@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import * as S from './styles';
 
 export interface IEasyLoader {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   isLoading: boolean;
 }
 
