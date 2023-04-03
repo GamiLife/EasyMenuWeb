@@ -13,7 +13,8 @@ interface IRow {
   isEnableComboRow: boolean;
   handlerAddCombo: () => void;
   handlerSubstractCombo: () => void;
-  setTotalPrice: (arg: any) => void;
+  setSecondaryProductsTotalPrice: (arg: any) => void;
+  // totalPrice: number;
 }
 
 export const ElementWrapper = ({
@@ -24,8 +25,9 @@ export const ElementWrapper = ({
   isEnableComboRow,
   handlerAddCombo,
   handlerSubstractCombo,
-  setTotalPrice,
-}: IRow) => {
+  setSecondaryProductsTotalPrice,
+}: // totalPrice,
+IRow) => {
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItemsByRow);
 
@@ -45,14 +47,18 @@ export const ElementWrapper = ({
           quantity={quantity}
           disableSubtractButton={disableSubtract}
           handleClickSubtract={() => {
+            setSecondaryProductsTotalPrice(
+              (prev: number) => prev - priceByUnit
+            );
             handleSubtract();
             handlerSubstractCombo();
-            setTotalPrice((prev: number) => prev - priceByUnit);
           }}
           handleClickAdd={() => {
+            setSecondaryProductsTotalPrice(
+              (prev: number) => prev + priceByUnit
+            );
             handleAdd();
             handlerAddCombo();
-            setTotalPrice((prev: number) => prev + priceByUnit);
           }}
           disableAddButton={isDisableAdd}
         />

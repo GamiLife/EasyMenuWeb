@@ -2,11 +2,13 @@ import React from 'react';
 
 export interface IProductFormContext {
   totalPrice: number;
+
   setTotalPrice: (value: number) => void;
 }
 
 export interface IProductFormProvider {
   children: React.ReactNode;
+  // product
 }
 
 export const defaultProductFormValues = {

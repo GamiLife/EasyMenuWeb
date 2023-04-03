@@ -6,12 +6,14 @@ import { useCombo } from '../../hooks/useCombo';
 import { merge } from './utils';
 import * as S from './styles';
 import React from 'react';
+import { TotalPrice } from '../ProductForm/styles';
 
 interface IDishContainer {
   dishes: GetDishResponseDTO.DishInCombo[];
   sauces: GetDishResponseDTO.SauceInCombo[];
   maxItems: number;
-  setTotalPrice: (arg: any) => void;
+  setSecondaryProductsTotalPrice: (arg: any) => void;
+  // totalPrice: number;
 }
 
 export type IComboRow = Omit<GetDishResponseDTO.DishInCombo, 'dish'> & {
@@ -22,8 +24,9 @@ export const ProductSetWrapper = ({
   dishes,
   sauces,
   maxItems,
-  setTotalPrice,
-}: IDishContainer) => {
+  setSecondaryProductsTotalPrice,
+}: // totalPrice,
+IDishContainer) => {
   const { isEnableComboRow, handlerAdd, handlerSubstract } = useCombo({
     maxItems,
   });
@@ -48,7 +51,8 @@ export const ProductSetWrapper = ({
               priceByUnit={priceByUnit}
               imageUrl={imageUrl}
               maxItemsByRow={maxItemsByRow}
-              setTotalPrice={setTotalPrice}
+              setSecondaryProductsTotalPrice={setSecondaryProductsTotalPrice}
+              // totalPrice={totalPrice}
             />
           </Container>
         )

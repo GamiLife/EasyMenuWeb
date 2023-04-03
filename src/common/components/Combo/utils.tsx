@@ -15,3 +15,19 @@ export const merge = (
   }));
   return [...rowsDish, ...rowsSauce];
 };
+
+export const validateQuantity = (quantity: number, maxItemsByRow: number) => {
+  if (quantity < 0 || quantity >= maxItemsByRow) return false;
+  return true;
+};
+
+export const calculateQuantity = (
+  quantity: number,
+  maxItemsByRow: number,
+  operationsType: 'add' | 'substract'
+) => {
+  const isValid = validateQuantity(quantity, maxItemsByRow);
+  if (!isValid) return quantity;
+  if (operationsType === 'add') return quantity + 1;
+  return quantity - 1;
+};

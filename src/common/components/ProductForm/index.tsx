@@ -6,6 +6,7 @@ import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ProductOperators } from '../ProductOperators';
 import { Combo } from '../Combo';
 import * as S from './styles';
+import { TotalPrice } from './styles';
 
 interface IProductForm {
   priceByUnit: number;
@@ -18,11 +19,8 @@ export const ProductForm = ({
   combos,
   maxItems,
 }: IProductForm) => {
-  const [totalPrice, setTotalPrice] = React.useState(priceByUnit);
-  // console.log(totalPrice);
-  // const [totalPricePerQuantity, setTotalPricePerQuantity] =
-  //   React.useState(totalPrice);
-  // console.log(totalPricePerQuantity);
+  const [secondaryProductsTotalPrice, setSecondaryProductsTotalPrice] =
+    React.useState(0);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
@@ -33,7 +31,12 @@ export const ProductForm = ({
       <S.Selections>
         {combos.map((combo) => (
           <Container key={combo.id}>
-            <Combo {...combo} setTotalPrice={setTotalPrice} minItems={4} />
+            <Combo
+              {...combo}
+              setSecondaryProductsTotalPrice={setSecondaryProductsTotalPrice}
+              minItems={4}
+              // totalPrice={quantity + 1}
+            />
           </Container>
         ))}
       </S.Selections>
@@ -49,19 +52,20 @@ export const ProductForm = ({
           handleClickSubtract={() => {
             handleSubtract();
             // setTotalPricePerQuantity(totalPricePerQuantity - totalPrice);
-            setTotalPrice(totalPrice - priceByUnit);
+            // setTotalPrice((prev) => prev - priceByUnit);
           }}
           handleClickAdd={() => {
             handleAdd();
-            setTotalPrice((prev) => prev + priceByUnit);
+            // setTotalPrice((prev) => prev + priceByUnit);
           }}
           disableAddButton={disableAdd}
         />
       </S.ProductInlineBlock>
       <S.ProductSingleFixBottom>
         <S.ProductInlineBlockPrice>
-          {/* <S.TotalPrice level="h4">S/ {totalPricePerQuantity}</S.TotalPrice> */}
-          <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice>
+          <S.TotalPrice level="h4">
+            S/ {(priceByUnit + secondaryProductsTotalPrice) * (quantity + 1)}
+          </S.TotalPrice>
         </S.ProductInlineBlockPrice>
         <S.AddProductToCart>
           {t('pageProductDetails.addButtonText')}

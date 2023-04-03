@@ -51,6 +51,7 @@ export namespace GetDishResponseDTO {
 
     dishes: DishInCombo[];
     sauces: SauceInCombo[];
-    setTotalPrice: (arg: number) => void;
+    setSecondaryProductsTotalPrice: (arg: number) => void;
+    // totalPrice: number;
   }
 }
