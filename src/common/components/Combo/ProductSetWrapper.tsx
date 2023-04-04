@@ -6,14 +6,11 @@ import { useCombo } from '../../hooks/useCombo';
 import { merge } from './utils';
 import * as S from './styles';
 import React from 'react';
-import { TotalPrice } from '../ProductForm/styles';
 
 interface IDishContainer {
   dishes: GetDishResponseDTO.DishInCombo[];
   sauces: GetDishResponseDTO.SauceInCombo[];
   maxItems: number;
-  setSecondaryProductsTotalPrice: (arg: any) => void;
-  // totalPrice: number;
 }
 
 export type IComboRow = Omit<GetDishResponseDTO.DishInCombo, 'dish'> & {
@@ -24,9 +21,7 @@ export const ProductSetWrapper = ({
   dishes,
   sauces,
   maxItems,
-  setSecondaryProductsTotalPrice,
-}: // totalPrice,
-IDishContainer) => {
+}: IDishContainer) => {
   const { isEnableComboRow, handlerAdd, handlerSubstract } = useCombo({
     maxItems,
   });
@@ -42,6 +37,41 @@ IDishContainer) => {
           maxItemsByRow,
         }) => (
           <Container key={id} width="full">
+            {/* {priceByUnit === 0 ? (
+              <ElementWrapper
+                isEnableComboRow={isEnableComboRow}
+                handlerAddCombo={handlerAdd}
+                handlerSubstractCombo={handlerSubstract}
+                title={title}
+                description={description}
+                priceByUnit={priceByUnit}
+                imageUrl={imageUrl}
+                maxItemsByRow={maxItemsByRow}
+              />
+            ) : (
+              <Container
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '9px',
+                }}
+              >
+                <Container
+                  style={{
+                    position: 'relative',
+                    cursor: 'pointer',
+                    width: '51px',
+                  }}
+                >
+                  <input type="checkbox" id="check-product" />
+                  <S.CheckboxLabel
+                    id="check-product"
+                    htmlFor="check-product"
+                  ></S.CheckboxLabel>
+                </Container>
+                <S.ProductNameWithoutPrice>{title}</S.ProductNameWithoutPrice>
+              </Container>
+            )} */}
             <ElementWrapper
               isEnableComboRow={isEnableComboRow}
               handlerAddCombo={handlerAdd}
@@ -51,8 +81,6 @@ IDishContainer) => {
               priceByUnit={priceByUnit}
               imageUrl={imageUrl}
               maxItemsByRow={maxItemsByRow}
-              setSecondaryProductsTotalPrice={setSecondaryProductsTotalPrice}
-              // totalPrice={totalPrice}
             />
           </Container>
         )

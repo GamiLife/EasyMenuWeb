@@ -34,6 +34,43 @@ export const ElementWrapper = styled(Container)`
   width: 100%;
 `;
 
+export const CheckboxLabel = styled.label`
+color: '#2e2e2e' 
+  &:before {
+    content: '';
+    -webkit-appearance: none;
+    /* background-color: transparent; */
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 5px;
+    height: 36px;
+    width: 46px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  &:after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 19px;
+    width: 9px;
+    height: 19px;
+    border: solid ${lightTheme.primary.first};
+    border-width: 0 2px 2px 0;
+    transform: rotate(40deg);
+  }
+`;
+
+export const ProductNameWithoutPrice = styled.label`
+  color: #2e2e2e;
+`;
+
 export const ProductName = styled.label`
   color: #2e2e2e;
   margin-bottom: 5px;

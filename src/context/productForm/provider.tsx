@@ -11,22 +11,25 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
   const router = useRouter();
   const { pslug } = router.query;
 
-  const [state, dispatch] = React.useReducer(productFormReducer, INITIAL_STATE);
+  const [secondaryProductsTotalPrice, setSecondaryProductsTotalPrice] =
+    React.useState(0);
 
-  const {
-    // id,
-    title,
-    description,
-    priceByUnit,
-    maxItems,
-    slug,
-    imageUrl,
-    combos,
-  } = state;
+  // const [state, dispatch] = React.useReducer(productFormReducer, INITIAL_STATE);
 
-  const {
-    company: { id },
-  } = React.useContext(CompanyContext);
+  // const {
+  //   // id,
+  //   title,
+  //   description,
+  //   priceByUnit,
+  //   maxItems,
+  //   slug,
+  //   imageUrl,
+  //   combos,
+  // } = state;
+
+  // const {
+  //   company: { id },
+  // } = React.useContext(CompanyContext);
 
   //   const { response, isLoading } = useFetchDishById();
   //   if (!response) return null;
@@ -43,27 +46,29 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
 
   //   const [totalPrice, setTotalprice] = React.useState(priceByUnit);
 
-  React.useEffect(() => {
-    if (!pslug) return;
-    async function dishByIdFetch() {
-      try {
-        const { data, statusCode } = await get(
-          `dishes/slug/${pslug}?companyId=${id}`
-        );
-        if (statusCode === 404) return;
-        dispatch({ type: 'FETCH_SUCCESS', payload: data });
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    dishByIdFetch();
-  }, [id, pslug]);
+  // Comment Monday
+  // React.useEffect(() => {
+  //   if (!pslug) return;
+  //   async function dishByIdFetch() {
+  //     try {
+  //       const { data, statusCode } = await get(
+  //         `dishes/slug/${pslug}?companyId=${id}`
+  //       );
+  //       if (statusCode === 404) return;
+  //       dispatch({ type: 'FETCH_SUCCESS', payload: data });
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   }
+  //   dishByIdFetch();
+  // }, [id, pslug]);
+  // Comment Monday
 
   return (
     <ProductFormContext.Provider
       value={{
-        totalPrice,
-        setTotalPrice,
+        secondaryProductsTotalPrice,
+        setSecondaryProductsTotalPrice,
       }}
     >
       {children}
@@ -72,4 +77,3 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
 };
 
 export default ProductFormProvider;
-// **

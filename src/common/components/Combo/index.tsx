@@ -6,7 +6,6 @@ import { ProductSetWrapper } from './ProductSetWrapper';
 import productDetailsBlock from '../../blocks/productDetails-block.json';
 import { Block } from '../../layouts';
 import * as S from './styles';
-// import { TotalPrice } from '../ProductForm/styles';
 
 export const Combo = ({
   title,
@@ -15,9 +14,7 @@ export const Combo = ({
   sauces,
   maxItems,
   minItems,
-  setSecondaryProductsTotalPrice,
-}: // totalPrice,
-GetDishResponseDTO.Combo) => {
+}: GetDishResponseDTO.Combo) => {
   return (
     <S.ComboArea
       component={Container}
@@ -33,8 +30,6 @@ GetDishResponseDTO.Combo) => {
           sauces={sauces}
           dishes={dishes}
           maxItems={maxItems}
-          setSecondaryProductsTotalPrice={setSecondaryProductsTotalPrice}
-          // totalPrice={totalPrice}
         />
       </Container>
     </S.ComboArea>

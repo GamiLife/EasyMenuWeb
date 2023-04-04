@@ -2,11 +2,11 @@ import React from 'react';
 import { Container } from '@gamiui/standard';
 
 import { useCustomTranslation, useProductComboCounter } from '../../hooks';
+import { ProductFormContext } from '../../../context/productForm';
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ProductOperators } from '../ProductOperators';
 import { Combo } from '../Combo';
 import * as S from './styles';
-import { TotalPrice } from './styles';
 
 interface IProductForm {
   priceByUnit: number;
@@ -19,8 +19,7 @@ export const ProductForm = ({
   combos,
   maxItems,
 }: IProductForm) => {
-  const [secondaryProductsTotalPrice, setSecondaryProductsTotalPrice] =
-    React.useState(0);
+  const { secondaryProductsTotalPrice } = React.useContext(ProductFormContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
@@ -31,12 +30,7 @@ export const ProductForm = ({
       <S.Selections>
         {combos.map((combo) => (
           <Container key={combo.id}>
-            <Combo
-              {...combo}
-              setSecondaryProductsTotalPrice={setSecondaryProductsTotalPrice}
-              minItems={4}
-              // totalPrice={quantity + 1}
-            />
+            <Combo {...combo} minItems={4} />
           </Container>
         ))}
       </S.Selections>
@@ -51,12 +45,9 @@ export const ProductForm = ({
           disableSubtractButton={disableSubtract}
           handleClickSubtract={() => {
             handleSubtract();
-            // setTotalPricePerQuantity(totalPricePerQuantity - totalPrice);
-            // setTotalPrice((prev) => prev - priceByUnit);
           }}
           handleClickAdd={() => {
             handleAdd();
-            // setTotalPrice((prev) => prev + priceByUnit);
           }}
           disableAddButton={disableAdd}
         />

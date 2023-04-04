@@ -1,9 +1,8 @@
 import React from 'react';
 
 export interface IProductFormContext {
-  totalPrice: number;
-
-  setTotalPrice: (value: number) => void;
+  secondaryProductsTotalPrice: number;
+  setSecondaryProductsTotalPrice: (value: (prev: number) => number) => void;
 }
 
 export interface IProductFormProvider {
@@ -12,11 +11,11 @@ export interface IProductFormProvider {
 }
 
 export const defaultProductFormValues = {
-  totalPrice: 0,
+  secondaryProductsTotalPrice: 0,
 };
 
 export const defaultProductFormSetter = {
-  setTotalPrice: () => {
+  setSecondaryProductsTotalPrice: () => {
     return;
   },
 };

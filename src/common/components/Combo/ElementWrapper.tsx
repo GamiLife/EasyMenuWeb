@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useProductComboCounter } from '../../hooks';
+import { ProductFormContext } from '../../../context/productForm';
 import { ProductOperators } from '../ProductOperators';
 import * as S from './styles';
 
@@ -13,8 +14,6 @@ interface IRow {
   isEnableComboRow: boolean;
   handlerAddCombo: () => void;
   handlerSubstractCombo: () => void;
-  setSecondaryProductsTotalPrice: (arg: any) => void;
-  // totalPrice: number;
 }
 
 export const ElementWrapper = ({
@@ -25,9 +24,10 @@ export const ElementWrapper = ({
   isEnableComboRow,
   handlerAddCombo,
   handlerSubstractCombo,
-  setSecondaryProductsTotalPrice,
-}: // totalPrice,
-IRow) => {
+}: IRow) => {
+  const { setSecondaryProductsTotalPrice } =
+    React.useContext(ProductFormContext);
+
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItemsByRow);
 
@@ -42,8 +42,8 @@ IRow) => {
       <S.OperatorsImageWrapper>
         <S.ProductImage imageUrl={imageUrl} alt={title} height="42px" />
         <ProductOperators
-          margin={'auto'}
-          width={'45%'}
+          margin="auto"
+          width="45%"
           quantity={quantity}
           disableSubtractButton={disableSubtract}
           handleClickSubtract={() => {
