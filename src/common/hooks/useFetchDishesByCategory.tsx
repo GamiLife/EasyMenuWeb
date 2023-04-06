@@ -33,10 +33,10 @@ export const useFetchDishesByCategory = ({
       searchOp: `OR`,
     })}`,
     queryKey: ['homeDishes', idCategory, pageNumber, debouncedValue],
-    select: ({ data, metadata }) => {
+    select: ({ data, metaData }) => {
       return {
         response: data,
-        metadata,
+        metaData,
       };
     },
   });
@@ -45,7 +45,7 @@ export const useFetchDishesByCategory = ({
     if (!data?.response?.length) return;
     const {
       pagination: { totalItems },
-    } = data.metadata;
+    } = data.metaData;
     setTotalItems(totalItems);
   }, [JSON.stringify(data)]);
 
