@@ -2,6 +2,7 @@ import { Container } from '@gamiui/standard';
 
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ElementWrapper } from './ElementWrapper';
+import { useToggle } from '../../hooks';
 import { useCombo } from '../../hooks/useCombo';
 import { merge } from './utils';
 import * as S from './styles';
@@ -25,6 +26,9 @@ export const ProductSetWrapper = ({
   const { isEnableComboRow, handlerAdd, handlerSubstract } = useCombo({
     maxItems,
   });
+  const { isVisible: showCheck, handleToggle: setShowCheck } = useToggle({
+    defaultVisible: false,
+  });
 
   const rows = merge(dishes, sauces);
 
@@ -33,57 +37,45 @@ export const ProductSetWrapper = ({
       {rows.map(
         ({
           id,
-          row: { title, description, priceByUnit, imageUrl },
+          row: { id: idProduct, title, description, priceByUnit, imageUrl },
           maxItemsByRow,
-        }) => (
-          <Container key={id} width="full">
-            {/* {priceByUnit === 0 ? (
-              <ElementWrapper
-                isEnableComboRow={isEnableComboRow}
-                handlerAddCombo={handlerAdd}
-                handlerSubstractCombo={handlerSubstract}
-                title={title}
-                description={description}
-                priceByUnit={priceByUnit}
-                imageUrl={imageUrl}
-                maxItemsByRow={maxItemsByRow}
-              />
-            ) : (
-              <Container
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginBottom: '9px',
-                }}
-              >
-                <Container
-                  style={{
-                    position: 'relative',
-                    cursor: 'pointer',
-                    width: '51px',
-                  }}
-                >
-                  <input type="checkbox" id="check-product" />
-                  <S.CheckboxLabel
-                    id="check-product"
-                    htmlFor="check-product"
-                  ></S.CheckboxLabel>
-                </Container>
-                <S.ProductNameWithoutPrice>{title}</S.ProductNameWithoutPrice>
-              </Container>
-            )} */}
-            <ElementWrapper
-              isEnableComboRow={isEnableComboRow}
-              handlerAddCombo={handlerAdd}
-              handlerSubstractCombo={handlerSubstract}
-              title={title}
-              description={description}
-              priceByUnit={priceByUnit}
-              imageUrl={imageUrl}
-              maxItemsByRow={maxItemsByRow}
-            />
-          </Container>
-        )
+        }) => {
+          priceByUnit = 0;
+          return (
+            <Container key={id} width="full">
+              {priceByUnit ? (
+                <ElementWrapper
+                  isEnableComboRow={isEnableComboRow}
+                  handlerAddCombo={handlerAdd}
+                  handlerSubstractCombo={handlerSubstract}
+                  title={title}
+                  description={description}
+                  priceByUnit={priceByUnit}
+                  imageUrl={imageUrl}
+                  maxItemsByRow={maxItemsByRow}
+                />
+              ) : (
+                <S.SelectionCheck onClick={() => setShowCheck(!showCheck)}>
+                  <S.Check>
+                    <input
+                      type="checkbox"
+                      value={title}
+                      style={{ display: 'none', backgroundColor: 'white' }}
+                    />
+                    <S.CheckboxLabel
+                      id={title}
+                      htmlFor={title}
+                      className={showCheck ? 'check' : ''}
+                    ></S.CheckboxLabel>
+                  </S.Check>
+                  <S.ProductNameWithoutPrice htmlFor={title}>
+                    {title}
+                  </S.ProductNameWithoutPrice>
+                </S.SelectionCheck>
+              )}
+            </Container>
+          );
+        }
       )}
       {/* Add message */}
     </S.ProductSetWrapper>

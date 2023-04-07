@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Container, Title } from '@gamiui/standard';
+import { Container, Input, Title } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
@@ -34,12 +34,26 @@ export const ElementWrapper = styled(Container)`
   width: 100%;
 `;
 
+export const SelectionCheck = styled(Container)`
+  align-items: center;
+  display: flex;
+  margin-bottom: 9px;
+`;
+
+export const Check = styled(Container)`
+  cursor: pointer;
+  position: relative;
+  width: 51px;
+`;
+
+// export const CheckInput = styled(Input)`
+//   display: none;
+//   background-color: ${lightTheme.primary.white};
+// `;
+
 export const CheckboxLabel = styled.label`
-color: '#2e2e2e' 
   &:before {
     content: '';
-    -webkit-appearance: none;
-    /* background-color: transparent; */
     padding: 10px;
     display: inline-block;
     position: relative;
@@ -47,14 +61,14 @@ color: '#2e2e2e'
     margin-right: 5px;
     height: 36px;
     width: 46px;
-    background: #fff;
+    background: ${lightTheme.primary.white};
     border: 1px solid #e8e8e8;
     text-align: center;
     border-radius: 2px;
     cursor: pointer;
   }
-  &:after{
-    content: "";
+  &.check:after {
+    content: '';
     display: block;
     position: absolute;
     top: 6px;
