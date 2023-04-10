@@ -2,11 +2,9 @@ import { Container } from '@gamiui/standard';
 
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ElementWrapper } from './ElementWrapper';
-import { useToggle } from '../../hooks';
 import { useCombo } from '../../hooks/useCombo';
 import { merge } from './utils';
 import * as S from './styles';
-import React from 'react';
 
 interface IDishContainer {
   dishes: GetDishResponseDTO.DishInCombo[];
@@ -26,9 +24,6 @@ export const ProductSetWrapper = ({
   const { isEnableComboRow, handlerAdd, handlerSubstract } = useCombo({
     maxItems,
   });
-  const { isVisible: showCheck, handleToggle: setShowCheck } = useToggle({
-    defaultVisible: false,
-  });
 
   const rows = merge(dishes, sauces);
 
@@ -37,10 +32,10 @@ export const ProductSetWrapper = ({
       {rows.map(
         ({
           id,
-          row: { id: idProduct, title, description, priceByUnit, imageUrl },
+          row: { title, description, priceByUnit, imageUrl },
           maxItemsByRow,
         }) => {
-          priceByUnit = 0;
+          // priceByUnit = 0;
           return (
             <Container key={id} width="full">
               {priceByUnit ? (
@@ -55,18 +50,10 @@ export const ProductSetWrapper = ({
                   maxItemsByRow={maxItemsByRow}
                 />
               ) : (
-                <S.SelectionCheck onClick={() => setShowCheck(!showCheck)}>
+                <S.SelectionCheck>
                   <S.Check>
-                    <input
-                      type="checkbox"
-                      value={title}
-                      style={{ display: 'none', backgroundColor: 'white' }}
-                    />
-                    <S.CheckboxLabel
-                      id={title}
-                      htmlFor={title}
-                      className={showCheck ? 'check' : ''}
-                    ></S.CheckboxLabel>
+                    <S.CheckInput type="checkbox" id={title} name={title} />
+                    <S.CheckboxLabel htmlFor={title}></S.CheckboxLabel>
                   </S.Check>
                   <S.ProductNameWithoutPrice htmlFor={title}>
                     {title}

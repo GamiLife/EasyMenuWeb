@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Container, Input, Title } from '@gamiui/standard';
+import { Container, Title } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
@@ -44,12 +44,24 @@ export const Check = styled(Container)`
   cursor: pointer;
   position: relative;
   width: 51px;
+  & input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 6px;
+    left: 19px;
+    width: 9px;
+    height: 19px;
+    border: solid ${lightTheme.primary.first};
+    border-width: 0 2px 2px 0;
+    transform: rotate(40deg);
+  }
 `;
 
-// export const CheckInput = styled(Input)`
-//   display: none;
-//   background-color: ${lightTheme.primary.white};
-// `;
+export const CheckInput = styled.input`
+  display: none;
+  background-color: ${lightTheme.primary.white};
+`;
 
 export const CheckboxLabel = styled.label`
   &:before {
@@ -61,23 +73,10 @@ export const CheckboxLabel = styled.label`
     margin-right: 5px;
     height: 36px;
     width: 46px;
-    background: ${lightTheme.primary.white};
     border: 1px solid #e8e8e8;
     text-align: center;
     border-radius: 2px;
     cursor: pointer;
-  }
-  &.check:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 6px;
-    left: 19px;
-    width: 9px;
-    height: 19px;
-    border: solid ${lightTheme.primary.first};
-    border-width: 0 2px 2px 0;
-    transform: rotate(40deg);
   }
 `;
 
