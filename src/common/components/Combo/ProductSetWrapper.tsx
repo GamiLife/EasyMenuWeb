@@ -35,7 +35,6 @@ export const ProductSetWrapper = ({
           row: { title, description, priceByUnit, imageUrl },
           maxItemsByRow,
         }) => {
-          // priceByUnit = 0;
           return (
             <Container key={id} width="full">
               {priceByUnit ? (

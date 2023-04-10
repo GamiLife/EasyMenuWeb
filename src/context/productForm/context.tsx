@@ -2,7 +2,10 @@ import React from 'react';
 
 export interface IProductFormContext {
   secondaryProductsTotalPrice: number;
+  isTriggerValidation: boolean;
+  combosInvalid: ICombosInvalid[];
   setSecondaryProductsTotalPrice: (value: (prev: number) => number) => void;
+  setIsTriggerValidation: (value: boolean) => void;
 }
 
 export interface IProductFormProvider {
@@ -10,12 +13,23 @@ export interface IProductFormProvider {
   // product
 }
 
+export interface ICombosInvalid {
+  comboId: number;
+  message: string; //"Debes elegir al menos 4"
+  validationType: string; //'minItems'
+}
+
 export const defaultProductFormValues = {
   secondaryProductsTotalPrice: 0,
+  isTriggerValidation: false,
+  combosInvalid: [],
 };
 
 export const defaultProductFormSetter = {
   setSecondaryProductsTotalPrice: () => {
+    return;
+  },
+  setIsTriggerValidation: () => {
     return;
   },
 };

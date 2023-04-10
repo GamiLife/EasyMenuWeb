@@ -23,14 +23,14 @@ export const ProductDetails = () => {
 
   if (!response) return null;
   const {
-    combos,
-    description,
-    id,
-    imageUrl,
-    maxItems,
-    priceByUnit,
-    slug,
     title,
+    description,
+    imageUrl,
+    priceByUnit,
+    combos,
+    maxItems,
+    id,
+    slug,
   } = response;
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
