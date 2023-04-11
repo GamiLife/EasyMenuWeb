@@ -1,4 +1,5 @@
 export * from './useCalculateTotalPriceToPay';
+export * from './useCombosInvalid';
 export * from './useCustomTranslation';
 export * from './useDebounce';
 export * from './useFetchDishesByCategory';

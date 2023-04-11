@@ -10,6 +10,7 @@ interface IDishContainer {
   dishes: GetDishResponseDTO.DishInCombo[];
   sauces: GetDishResponseDTO.SauceInCombo[];
   maxItems: number;
+  minItems: number;
 }
 
 export type IComboRow = Omit<GetDishResponseDTO.DishInCombo, 'dish'> & {
@@ -20,10 +21,13 @@ export const ProductSetWrapper = ({
   dishes,
   sauces,
   maxItems,
+  minItems,
 }: IDishContainer) => {
   const { isEnableComboRow, handlerAdd, handlerSubstract } = useCombo({
     maxItems,
   });
+
+  // const {isEnableComboRow} = useCombo({ minItems });
 
   const rows = merge(dishes, sauces);
 

@@ -30,6 +30,7 @@ export const Combo = ({
           sauces={sauces}
           dishes={dishes}
           maxItems={maxItems}
+          minItems={minItems}
         />
       </Container>
     </S.ComboArea>

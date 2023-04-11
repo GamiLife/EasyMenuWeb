@@ -25,9 +25,9 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
     defaultProductFormValues.combosInvalid
   );
 
-  // clearFromCombosInvalid(comboId)
-  // addFromCombosInvalid({comboId,message,validationType})
-  // verifyIsComboInvalid(comboId): string
+  function addFromCombosInvalid() {
+    console.log('hola');
+  }
 
   //   ProductSetWrapper:
   //     isTriggerValidation === True -> verifyIsComboInvalid(comboId)
