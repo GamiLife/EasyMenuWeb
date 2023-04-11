@@ -6,6 +6,7 @@ export interface IProductFormContext {
   combosInvalid: ICombosInvalid[];
   setSecondaryProductsTotalPrice: (value: (prev: number) => number) => void;
   setIsTriggerValidation: (value: boolean) => void;
+  setCombosInvalid: (value: []) => void;
 }
 
 export interface IProductFormProvider {
@@ -30,6 +31,9 @@ export const defaultProductFormSetter = {
     return;
   },
   setIsTriggerValidation: () => {
+    return;
+  },
+  setCombosInvalid: () => {
     return;
   },
 };

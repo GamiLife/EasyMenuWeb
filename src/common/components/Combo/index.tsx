@@ -8,6 +8,7 @@ import { Block } from '../../layouts';
 import * as S from './styles';
 
 export const Combo = ({
+  id,
   title,
   description,
   dishes,
@@ -27,6 +28,7 @@ export const Combo = ({
         </S.ComboAreaTitle>
         <RichText margin="0 0 24px" text={description}></RichText>
         <ProductSetWrapper
+          id={id}
           sauces={sauces}
           dishes={dishes}
           maxItems={maxItems}

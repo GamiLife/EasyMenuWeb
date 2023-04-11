@@ -25,10 +25,6 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
     defaultProductFormValues.combosInvalid
   );
 
-  function addFromCombosInvalid() {
-    console.log('hola');
-  }
-
   //   ProductSetWrapper:
   //     isTriggerValidation === True -> verifyIsComboInvalid(comboId)
 
@@ -48,6 +44,7 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
         combosInvalid,
         setSecondaryProductsTotalPrice,
         setIsTriggerValidation,
+        setCombosInvalid,
       }}
     >
       {children}
