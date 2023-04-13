@@ -30,13 +30,11 @@ export const ProductSetWrapper = ({
     useCombo({
       maxItems,
     });
-  const { addFromCombosInvalid } = useCombosInvalid({
+  const { verifyIsComboInvalid } = useCombosInvalid({
     minItems,
     comboCounter,
     id,
   });
-
-  // const {isEnableComboRow} = useCombo({ minItems });
 
   const rows = merge(dishes, sauces);
 
@@ -76,7 +74,7 @@ export const ProductSetWrapper = ({
           );
         }
       )}
-      {/* Add message */}
+      {<S.ErrorText>{verifyIsComboInvalid(id)}</S.ErrorText>}
     </S.ProductSetWrapper>
   );
 };

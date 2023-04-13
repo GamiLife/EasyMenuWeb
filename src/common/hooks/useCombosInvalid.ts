@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { ICombosInvalid, ProductFormContext } from '../../context/productForm';
 
-export interface IUseComboInvalid {
+export interface IUseCombosInvalid {
   minItems: number;
   comboCounter: number;
   id: number;
@@ -12,13 +12,11 @@ export const useCombosInvalid = ({
   minItems,
   comboCounter,
   id,
-}: IUseComboInvalid) => {
+}: IUseCombosInvalid) => {
   const { combosInvalid, setCombosInvalid } =
     React.useContext(ProductFormContext);
 
-  console.log(combosInvalid);
-
-  function addFromCombosInvalid(combosInvalidItem: ICombosInvalid) {
+  function addToCombosInvalid(combosInvalidItem: ICombosInvalid) {
     const uniqueIds = new Set();
 
     const unique = [...combosInvalid, combosInvalidItem].filter(
@@ -33,7 +31,7 @@ export const useCombosInvalid = ({
         return false;
       }
     );
-    console.log(unique);
+
     setCombosInvalid(unique);
   }
 
@@ -55,24 +53,19 @@ export const useCombosInvalid = ({
     }
   }
 
-  useEffect(() => {
-    console.log(id);
+  React.useEffect(() => {
     if (comboCounter === 0) return;
     if (comboCounter < minItems) {
-      // console.log(`Debe elegir al menos ${minItems} elementos`);
-      addFromCombosInvalid({
+      addToCombosInvalid({
         comboId: id,
         message: '',
         validationType: 'minItems',
       });
     } else {
-      console.log('Clear message');
       clearFromCombosInvalid(id);
     }
   }, [comboCounter]);
   return {
-    addFromCombosInvalid,
-    clearFromCombosInvalid,
     verifyIsComboInvalid,
   };
 };

@@ -19,7 +19,8 @@ export const ProductForm = ({
   combos,
   maxItems,
 }: IProductForm) => {
-  const { secondaryProductsTotalPrice } = React.useContext(ProductFormContext);
+  const { combosInvalid, secondaryProductsTotalPrice } =
+    React.useContext(ProductFormContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
@@ -58,7 +59,12 @@ export const ProductForm = ({
             S/ {(priceByUnit + secondaryProductsTotalPrice) * (quantity + 1)}
           </S.TotalPrice>
         </S.ProductInlineBlockPrice>
-        <S.AddProductToCart>
+        <S.AddProductToCart
+          onClick={() => {
+            if (combosInvalid.length === 0)
+              console.log('Completa las opciones requeridas');
+          }}
+        >
           {t('pageProductDetails.addButtonText')}
         </S.AddProductToCart>
       </S.ProductSingleFixBottom>

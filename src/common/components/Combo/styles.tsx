@@ -84,6 +84,14 @@ export const ProductNameWithoutPrice = styled.label`
   color: #2e2e2e;
 `;
 
+export const ErrorText = styled.span`
+  color: ${lightTheme.semantic.danger};
+  display: block;
+  font-size: 93%;
+  font-weight: 100;
+  margin-top: -2px;
+`;
+
 export const ProductName = styled.label`
   color: #2e2e2e;
   margin-bottom: 5px;
