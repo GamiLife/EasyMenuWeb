@@ -43,7 +43,7 @@ export const ElementWrapper = ({
         <S.ProductImage imageUrl={imageUrl} alt={title} height="42px" />
         <ProductOperators
           margin="auto"
-          width="45%"
+          width="40%"
           quantity={quantity}
           disableSubtractButton={disableSubtract}
           handleClickSubtract={() => {

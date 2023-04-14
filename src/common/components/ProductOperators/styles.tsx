@@ -37,10 +37,11 @@ export const QuantityOperator = styled(Button)`
 `;
 
 export const ProductQuantity = styled.span`
-  width: 60px;
-  text-align: center;
+  border-radius: 2px;
   color: ${lightTheme.primary.black};
   font-size: 17px;
-  border-radius: 2px;
+  font-weight: bold;
   line-height: 1;
+  text-align: center;
+  width: 60px;
 `;

@@ -8,6 +8,7 @@ import { useFetchDishById } from '../../hooks/useFetchDishById';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { ProductForm } from '../ProductForm';
 import { HomeContext } from '../../../context';
+import { lightTheme } from '../../../../styles/design-system';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
 
@@ -63,7 +64,7 @@ export const ProductDetails = () => {
         </S.BreadcrumbContainer>
         <S.ContentContainer>
           <S.BackLink href={`/${slugCompany}`}>
-            <S.BackIcon name="setting" />
+            <S.BackIcon name="setting" color={`${lightTheme.primary.black}`} />
             {t('pageProductDetails.back')}
           </S.BackLink>
           <S.ProductTitle level="h1">{title}</S.ProductTitle>
@@ -75,7 +76,6 @@ export const ProductDetails = () => {
           />
         </S.ContentContainer>
         <S.MainImageContainer>
-          {/* <S.MainImageContainer className={classNames('flex', 'items-center')}> */}
           {imageUrl && <S.MainProductImage imageUrl={imageUrl} alt={title} />}
         </S.MainImageContainer>
       </S.ProductDetails>

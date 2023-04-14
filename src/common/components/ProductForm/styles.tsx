@@ -36,7 +36,6 @@ export const ProductInlineBlockPrice = styled(Container)`
 export const TotalPrice = styled(Title)`
   flex: 1;
   font-size: 28px;
-  /* font-size: 26px; */
 `;
 
 export const AddProductToCart = styled(Button)`
@@ -46,8 +45,6 @@ export const AddProductToCart = styled(Button)`
   align-items: center;
   justify-content: center;
   font-size: 22px;
-
-  padding: 11px 21px 6px;
   cursor: pointer;
   border-radius: 15px;
   background: ${lightTheme.primary.first};

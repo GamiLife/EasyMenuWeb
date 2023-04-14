@@ -61,12 +61,12 @@ export const BreadcrumbContainer = styled(Container)`
   align-items: center;
   display: flex;
   grid-column: 1/3;
-  padding: 0 100px;
+  padding-left: 60px;
 `;
 
 export const ContentContainer = styled(Container)`
   grid-column: 1/2;
-  padding: 25px 100px 0;
+  padding: 25px 74px 0 60px;
   width: 100%;
 `;
 
@@ -75,11 +75,10 @@ export const BackLink = styled(Link)`
   display: flex;
   font-size: 19px;
   font-weight: 600;
-  margin-bottom: 1.8rem;
+  margin-bottom: 28px;
 `;
 
 export const BackIcon = styled(Icon)`
-  color: ${lightTheme.neutral[300]};
   display: inline;
 `;
 
@@ -92,20 +91,16 @@ export const ProductTitle = styled(Title)`
 
 export const MainImageContainer = styled(Container)`
   grid-column: 2/3;
-  padding: 25px 100px 0;
   width: 100%;
-
-  background-size: cover;
-  background-position: 50%;
   position: relative;
 `;
 
 export const MainProductImage = styled(NextImage)`
   position: fixed;
-  top: 20%;
-  right: 4%;
+  right: 7%;
   z-index: 2;
-  width: 40%;
-  width: 30%;
-  /* margin: auto; */
+  width: 35%;
+  height: 250px;
+  /* height: 400px; */
+  /* top: 20%; */
 `;

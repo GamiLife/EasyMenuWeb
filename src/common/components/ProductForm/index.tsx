@@ -41,7 +41,7 @@ export const ProductForm = ({
         </S.ProductQuantityTitle>
         <ProductOperators
           margin="0"
-          width="34%"
+          width="30%"
           quantity={quantity + 1}
           disableSubtractButton={disableSubtract}
           handleClickSubtract={() => {
