@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from '@gamiui/standard';
 
 import { ConditionalRendering } from '../ConditionalRendering';
+import { CategoriesSkeleton } from './Skeleton';
 import { CompanyContext } from '../../../context/company';
 import { useQueryData } from '../../hooks/useQueryData';
 import { CategoryItem } from '../CategoryItem';
@@ -9,8 +10,6 @@ import { messages } from '../../constants';
 import homeBlock from '../../blocks/home-block.json';
 import { Block } from '../../layouts';
 import * as S from './styles';
-
-import { CategoriesSkeleton } from './Skeleton';
 
 const { pageHome } = messages;
 

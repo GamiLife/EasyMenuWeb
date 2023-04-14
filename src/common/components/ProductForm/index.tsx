@@ -1,7 +1,11 @@
 import React from 'react';
 import { Container } from '@gamiui/standard';
 
-import { useCustomTranslation, useProductComboCounter } from '../../hooks';
+import {
+  useCustomTranslation,
+  useProductComboCounter,
+  useToggle,
+} from '../../hooks';
 import { ProductFormContext } from '../../../context/productForm';
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ProductOperators } from '../ProductOperators';
@@ -25,6 +29,8 @@ export const ProductForm = ({
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
   const { t } = useCustomTranslation();
+  const { isVisible: showErrorText, handleToggle: setShowErrorText } =
+    useToggle({ defaultVisible: false });
 
   return (
     <React.Fragment>
@@ -59,10 +65,16 @@ export const ProductForm = ({
             S/ {(priceByUnit + secondaryProductsTotalPrice) * (quantity + 1)}
           </S.TotalPrice>
         </S.ProductInlineBlockPrice>
+        <S.ErrorText className={showErrorText ? 'error' : ''}>
+          {showErrorText && 'Completa las opciones requeridas'}
+        </S.ErrorText>
         <S.AddProductToCart
+          className="btn-cart"
           onClick={() => {
-            if (combosInvalid.length === 0)
+            if (combosInvalid.length === 0) {
               console.log('Completa las opciones requeridas');
+              setShowErrorText(!showErrorText);
+            }
           }}
         >
           {t('pageProductDetails.addButtonText')}

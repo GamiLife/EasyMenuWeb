@@ -22,6 +22,9 @@ export const ProductQuantityTitle = styled(Title)`
 
 export const ProductSingleFixBottom = styled(Container)`
   margin: 5px 0;
+  .error + .btn-cart {
+    margin-top: 6px;
+  }
 `;
 
 export const ProductInlineBlockPrice = styled(Container)`
@@ -36,6 +39,14 @@ export const ProductInlineBlockPrice = styled(Container)`
 export const TotalPrice = styled(Title)`
   flex: 1;
   font-size: 28px;
+`;
+
+export const ErrorText = styled.span`
+  &.error {
+    color: ${lightTheme.semantic.danger};
+    font-size: 93%;
+    font-weight: 100;
+  }
 `;
 
 export const AddProductToCart = styled(Button)`

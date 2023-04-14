@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Container, Icon, Input } from '@gamiui/standard';
+import { Container, Floating, Icon, Input } from '@gamiui/standard';
 import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Container/Container';
 
 import { lightTheme } from '../../../../styles/design-system/theme';
@@ -58,4 +58,9 @@ export const CartCount = styled.span`
   right: -8px;
   top: -5px;
   width: 20px;
+`;
+
+export const FloatingMessage = styled(Floating)`
+  background: #40c351;
+  padding: 20px 0 18px;
 `;
