@@ -1,20 +1,23 @@
 import { useContext } from 'react';
-import { Container } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import { WithLayout, WithPagination } from '../../../common/hocs';
 import { useFetchStaticPages } from '../../../common/hooks/useFetchStaticPages';
 import { CompanyContext } from '../../../context';
 import * as GlobalS from '../../../../styles/design-system/commons';
-import { WithLayout, WithPagination } from '../../../common/hocs';
 
 function TermsConditions() {
   const { staticPages } = useContext(CompanyContext);
+
   const { data } = useFetchStaticPages(staticPages[0]?.id);
 
   return (
-    <Container height="full" className={classNames('terms_condition')}>
-      <GlobalS.DynamicPage>{data?.htmlContent}</GlobalS.DynamicPage>
-    </Container>
+    <GlobalS.PageContainer
+      height="full"
+      className={classNames('terms_condition')}
+    >
+      <GlobalS.DynamicPage>{data?.data?.htmlContent}</GlobalS.DynamicPage>
+    </GlobalS.PageContainer>
   );
 }
 

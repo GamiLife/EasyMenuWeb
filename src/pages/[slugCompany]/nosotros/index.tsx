@@ -1,22 +1,23 @@
 import { useContext } from 'react';
-import { Container } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import { WithLayout, WithPagination } from '../../../common/hocs';
 import { useFetchStaticPages } from '../../../common/hooks/useFetchStaticPages';
 import { CompanyContext } from '../../../context';
-import * as GlobalS from '../../../../styles/design-system/commons';
-import { WithLayout, WithPagination } from '../../../common/hocs';
 import { LongRichText } from '../../../common/components/LongRichText';
+import * as GlobalS from '../../../../styles/design-system/commons';
 
 function About() {
   const { staticPages } = useContext(CompanyContext);
   const { data } = useFetchStaticPages(staticPages[2]?.id);
 
+  console.log(data);
+
   return (
-    <Container height="full" className={classNames('about')}>
+    <GlobalS.PageContainer height="full" className={classNames('about')}>
       <LongRichText />
-      <GlobalS.DynamicPage>{data?.data?.htmlContent}</GlobalS.DynamicPage>
-    </Container>
+      {/* <GlobalS.DynamicPage>{data?.data?.htmlContent}</GlobalS.DynamicPage> */}
+    </GlobalS.PageContainer>
   );
 }
 

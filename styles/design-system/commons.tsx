@@ -15,3 +15,9 @@ export const DynamicPage = styled(Container)`
   padding: 40px 15px 78px 15px;
   width: 100%;
 `;
+
+export const PageContainer = styled(Container)`
+  margin: auto;
+  max-width: 890px;
+  padding: 40px 15px 78px;
+`;

@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import { Container } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import { WithLayout, WithPagination } from '../../../common/hocs';
 import { useFetchStaticPages } from '../../../common/hooks/useFetchStaticPages';
 import { CompanyContext } from '../../../context';
 import * as GlobalS from '../../../../styles/design-system/commons';
-import { WithLayout, WithPagination } from '../../../common/hocs';
 
 function PoliciesPrivacy() {
   const { staticPages } = useContext(CompanyContext);
@@ -13,9 +12,12 @@ function PoliciesPrivacy() {
   const { data } = useFetchStaticPages(staticPages[1]?.id);
 
   return (
-    <Container height="full" className={classNames('policies_privacy')}>
-      <GlobalS.DynamicPage>{data?.htmlContent}</GlobalS.DynamicPage>
-    </Container>
+    <GlobalS.PageContainer
+      height="full"
+      className={classNames('policies_privacy')}
+    >
+      <GlobalS.DynamicPage>{data?.data?.htmlContent}</GlobalS.DynamicPage>
+    </GlobalS.PageContainer>
   );
 }
 
