@@ -62,5 +62,24 @@ export const CartCount = styled.span`
 
 export const FloatingMessage = styled(Floating)`
   background: #40c351;
-  padding: 20px 0 18px;
+  padding: 20px 9px 18px;
+  top: 100px !important;
+  right: 0;
+  left: 0 !important;
+  border-radius: 0;
+`;
+
+export const SectionAlert = styled(Container)`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+`;
+
+export const AlertText = styled.strong`
+  color: ${lightTheme.primary.white};
+`;
+
+export const AlertIcon = styled(Icon)`
+  cursor: pointer;
 `;

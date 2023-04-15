@@ -23,7 +23,7 @@ export const ProductForm = ({
   combos,
   maxItems,
 }: IProductForm) => {
-  const { combosInvalid, secondaryProductsTotalPrice } =
+  const { combosInvalid, setIsTriggerValidation, secondaryProductsTotalPrice } =
     React.useContext(ProductFormContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
@@ -74,6 +74,10 @@ export const ProductForm = ({
             if (combosInvalid.length === 0) {
               console.log('Completa las opciones requeridas');
               setShowErrorText(!showErrorText);
+              setIsTriggerValidation(true);
+              setTimeout(() => {
+                setIsTriggerValidation(false);
+              }, 3000);
             }
           }}
         >

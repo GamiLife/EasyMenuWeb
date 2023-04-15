@@ -3,6 +3,7 @@ import { Avatar, Container, RichText, Spacer } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
+import { ProductFormContext } from '../../../context/productForm';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
@@ -12,6 +13,9 @@ import { Logo } from '../../components/Logo';
 import * as S from './styles';
 
 export const Header = () => {
+  const { isTriggerValidation, setIsTriggerValidation } =
+    React.useContext(ProductFormContext);
+
   const { i18n, t } = useCustomTranslation();
   const { search, handleChangeSearch } = useSearch();
   const { isVisible: changeLanguage, handleToggle: setChangeLanguage } =
@@ -89,11 +93,26 @@ export const Header = () => {
           </S.CartCountContainer>
         </S.HeaderRight>
       </S.Header>
-      {/* <S.FloatingMessage direction="right" height="100px">
-        <Container>
-          <strong>Se a agregado a tu carrito exitosamente</strong>
-        </Container>
-      </S.FloatingMessage> */}
+      <S.FloatingMessage
+        direction="top"
+        width="100%"
+        height="63px"
+        open={isTriggerValidation}
+        zIndex={3}
+        hasCloseIcon={false}
+      >
+        <S.SectionAlert>
+          <S.AlertText>Se ha agregado a tu carrito exitosamente</S.AlertText>
+          <S.AlertIcon
+            name="close"
+            color={`${lightTheme.primary.white}`}
+            size="25px"
+            onClick={() => {
+              setIsTriggerValidation(!isTriggerValidation);
+            }}
+          />
+        </S.SectionAlert>
+      </S.FloatingMessage>
     </React.Fragment>
   );
 };
