@@ -32,6 +32,18 @@ export const ProductForm = ({
   const { isVisible: showErrorText, handleToggle: setShowErrorText } =
     useToggle({ defaultVisible: false });
 
+  function handleClick() {
+    if (combosInvalid.length === 0) {
+      console.log('Complete required options');
+      setShowErrorText(!showErrorText);
+    }
+    // pass validation
+    // setIsTriggerValidation(true);
+    // setTimeout(() => {
+    //   setIsTriggerValidation(false);
+    // }, 3000);
+  }
+
   return (
     <React.Fragment>
       <S.Selections>
@@ -68,19 +80,7 @@ export const ProductForm = ({
         <S.ErrorText className={showErrorText ? 'error' : ''}>
           {showErrorText && 'Completa las opciones requeridas'}
         </S.ErrorText>
-        <S.AddProductToCart
-          className="btn-cart"
-          onClick={() => {
-            if (combosInvalid.length === 0) {
-              console.log('Completa las opciones requeridas');
-              setShowErrorText(!showErrorText);
-              setIsTriggerValidation(true);
-              setTimeout(() => {
-                setIsTriggerValidation(false);
-              }, 3000);
-            }
-          }}
-        >
+        <S.AddProductToCart className="btn-cart" onClick={handleClick}>
           {t('pageProductDetails.addButtonText')}
         </S.AddProductToCart>
       </S.ProductSingleFixBottom>
