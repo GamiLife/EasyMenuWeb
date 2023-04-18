@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container } from '@gamiui/standard';
 
 import { GetDishResponseDTO } from '../../types/getDish.type';
@@ -6,6 +7,7 @@ import { ElementWrapper } from './ElementWrapper';
 import { useCombo } from '../../hooks/useCombo';
 import { merge } from './utils';
 import * as S from './styles';
+import { ProductFormContext } from '../../../context/productForm';
 
 interface IDishContainer {
   id: number;
@@ -26,6 +28,8 @@ export const ProductSetWrapper = ({
   maxItems,
   minItems,
 }: IDishContainer) => {
+  const { isTriggerValidation } = React.useContext(ProductFormContext);
+
   const { comboCounter, isEnableComboRow, handlerAdd, handlerSubstract } =
     useCombo({
       maxItems,
@@ -74,7 +78,11 @@ export const ProductSetWrapper = ({
           );
         }
       )}
-      {<S.ErrorText>{verifyIsComboInvalid(id)}</S.ErrorText>}
+      {
+        <S.ErrorText>
+          {isTriggerValidation && verifyIsComboInvalid(id)}
+        </S.ErrorText>
+      }
     </S.ProductSetWrapper>
   );
 };

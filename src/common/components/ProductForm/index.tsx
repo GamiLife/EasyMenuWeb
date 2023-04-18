@@ -23,8 +23,12 @@ export const ProductForm = ({
   combos,
   maxItems,
 }: IProductForm) => {
-  const { combosInvalid, setIsTriggerValidation, secondaryProductsTotalPrice } =
-    React.useContext(ProductFormContext);
+  const {
+    combosInvalid,
+    setCombosInvalid,
+    setIsTriggerValidation,
+    secondaryProductsTotalPrice,
+  } = React.useContext(ProductFormContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
@@ -33,10 +37,12 @@ export const ProductForm = ({
     useToggle({ defaultVisible: false });
 
   function handleClick() {
-    if (combosInvalid.length === 0) {
-      console.log('Complete required options');
-      setShowErrorText(!showErrorText);
+    setIsTriggerValidation(true);
+    if (combosInvalid.length > 0) {
+      setShowErrorText(true);
+      return;
     }
+    setShowErrorText(false);
     // pass validation
     // setIsTriggerValidation(true);
     // setTimeout(() => {
@@ -44,12 +50,28 @@ export const ProductForm = ({
     // }, 3000);
   }
 
+  const verifyCombosInvalidOnInit = (combos: GetDishResponseDTO.Combo[]) => {
+    const invalidCombosResult = combos
+      .filter(({ minItems }) => minItems != undefined && minItems != 0)
+      .map(({ id }) => ({
+        comboId: id,
+        message: '',
+        validationType: 'minItems',
+      }));
+
+    setCombosInvalid(invalidCombosResult);
+  };
+
+  React.useEffect(() => {
+    verifyCombosInvalidOnInit(combos);
+  }, []);
+
   return (
     <React.Fragment>
       <S.Selections>
         {combos.map((combo) => (
           <Container key={combo.id}>
-            <Combo {...combo} minItems={4} />
+            <Combo {...combo} />
           </Container>
         ))}
       </S.Selections>
