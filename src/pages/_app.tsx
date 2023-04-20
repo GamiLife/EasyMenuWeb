@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeGamification } from '@gamiui/standard';
+import { I18nextProvider } from 'react-i18next';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+import NotificationProvider from '../context/notification/provider';
 import ProductFormProvider from '../context/productForm/provider';
 import CompanyProvider from '../context/company/provider';
 import { WithCompany } from '../common/hocs';
@@ -53,9 +54,11 @@ export default function App({ Component, pageProps }: AppProps) {
             <CompanyProvider>
               <ThemeProvider>
                 <ProductFormProvider>
-                  <BasePage>
-                    <Component {...pageProps} />
-                  </BasePage>
+                  <NotificationProvider>
+                    <BasePage>
+                      <Component {...pageProps} />
+                    </BasePage>
+                  </NotificationProvider>
                 </ProductFormProvider>
               </ThemeProvider>
             </CompanyProvider>

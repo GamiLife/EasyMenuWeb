@@ -3,7 +3,8 @@ import { Avatar, Container, RichText, Spacer } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
-import { ProductFormContext } from '../../../context/productForm';
+import { NotificationContext } from '../../../context/notification';
+// import { ProductFormContext } from '../../../context/productForm';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
@@ -13,8 +14,10 @@ import { Logo } from '../../components/Logo';
 import * as S from './styles';
 
 export const Header = () => {
-  const { isTriggerValidation, setIsTriggerValidation } =
-    React.useContext(ProductFormContext);
+  // const { isTriggerValidation, setIsTriggerValidation } =
+  //   React.useContext(ProductFormContext);
+  const { isEnabledFloating, setIsEnabledFloating } =
+    React.useContext(NotificationContext);
 
   const { i18n, t } = useCustomTranslation();
   const { search, handleChangeSearch } = useSearch();
@@ -97,7 +100,8 @@ export const Header = () => {
         direction="top"
         width="100%"
         height="63px"
-        open={isTriggerValidation}
+        open={isEnabledFloating}
+        // open={isTriggerValidation}
         zIndex={3}
         hasCloseIcon={false}
       >
@@ -108,7 +112,7 @@ export const Header = () => {
             color={`${lightTheme.primary.white}`}
             size="25px"
             onClick={() => {
-              setIsTriggerValidation(!isTriggerValidation);
+              setIsEnabledFloating(false);
             }}
           />
         </S.SectionAlert>

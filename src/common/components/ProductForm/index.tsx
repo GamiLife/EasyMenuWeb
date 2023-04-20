@@ -6,6 +6,7 @@ import {
   useProductComboCounter,
   useToggle,
 } from '../../hooks';
+import { NotificationContext } from '../../../context/notification';
 import { ProductFormContext } from '../../../context/productForm';
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ProductOperators } from '../ProductOperators';
@@ -29,6 +30,7 @@ export const ProductForm = ({
     setIsTriggerValidation,
     secondaryProductsTotalPrice,
   } = React.useContext(ProductFormContext);
+  const { setIsEnabledFloating } = React.useContext(NotificationContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
@@ -43,19 +45,15 @@ export const ProductForm = ({
       return;
     }
     setShowErrorText(false);
-    // pass validation
-    // setIsTriggerValidation(true);
-    // setTimeout(() => {
-    //   setIsTriggerValidation(false);
-    // }, 3000);
+    setIsEnabledFloating(true);
   }
 
-  const verifyCombosInvalidOnInit = (combos: GetDishResponseDTO.Combo[]) => {
+  const verifyInvalidCombosOnInitial = (combos: GetDishResponseDTO.Combo[]) => {
     const invalidCombosResult = combos
-      .filter(({ minItems }) => minItems != undefined && minItems != 0)
+      .filter(({ minItems = 4 }) => minItems != undefined && minItems != 0)
       .map(({ id }) => ({
         comboId: id,
-        message: '',
+        // message: '',
         validationType: 'minItems',
       }));
 
@@ -63,7 +61,7 @@ export const ProductForm = ({
   };
 
   React.useEffect(() => {
-    verifyCombosInvalidOnInit(combos);
+    verifyInvalidCombosOnInitial(combos);
   }, []);
 
   return (
@@ -71,7 +69,7 @@ export const ProductForm = ({
       <S.Selections>
         {combos.map((combo) => (
           <Container key={combo.id}>
-            <Combo {...combo} />
+            <Combo {...combo} minItems={4} />
           </Container>
         ))}
       </S.Selections>

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
 import { RichText } from '@gamiui/standard';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
 import { useFetchDishById } from '../../hooks/useFetchDishById';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { ProductForm } from '../ProductForm';
-import { HomeContext } from '../../../context';
+import { CartDrawer } from '../CartDrawer';
 import { lightTheme } from '../../../../styles/design-system';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
@@ -15,8 +15,6 @@ import * as S from './styles';
 export const ProductDetails = () => {
   const router = useRouter();
   const { slugCompany, pslug } = router.query;
-
-  const { categoryName } = React.useContext(HomeContext);
 
   const { t } = useTranslation();
 
@@ -38,26 +36,7 @@ export const ProductDetails = () => {
 
   return (
     <React.Fragment>
-      {/* <S.CartContentDrawer width={410} open={true} placement={'right'}>
-        <S.SidebarLightNavyBlueBar>
-          <S.CloseLink
-            href={`${slugCompany}/${categoryName
-              .toLowerCase()
-              .replace(' ', '-')}/product/${pslug}`}
-          ></S.CloseLink>
-          <S.CloseLink
-            href={`/${slugCompany}/${categoryName
-              .toLowerCase()
-              .replace(' ', '-')}/product/${pslug}`}
-          ></S.CloseLink>
-        </S.SidebarLightNavyBlueBar>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugit
-          possimus hic delectus a accusantium, rem tempore explicabo
-          reprehenderit. Officia ipsam temporibus accusantium neque iste.
-          Maiores quae libero laborum minus.
-        </p>
-      </S.CartContentDrawer> */}
+      <CartDrawer />
       <S.ProductDetails>
         <S.BreadcrumbContainer>
           <NextBreadcrumbs />

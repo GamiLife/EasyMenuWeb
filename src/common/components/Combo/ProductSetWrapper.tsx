@@ -2,12 +2,12 @@ import React from 'react';
 import { Container } from '@gamiui/standard';
 
 import { GetDishResponseDTO } from '../../types/getDish.type';
+import { ProductFormContext } from '../../../context/productForm';
 import { useCombosInvalid } from '../../hooks';
 import { ElementWrapper } from './ElementWrapper';
 import { useCombo } from '../../hooks/useCombo';
 import { merge } from './utils';
 import * as S from './styles';
-import { ProductFormContext } from '../../../context/productForm';
 
 interface IDishContainer {
   id: number;

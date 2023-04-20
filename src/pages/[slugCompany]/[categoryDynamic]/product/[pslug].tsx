@@ -2,9 +2,9 @@
 import { Container } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import { WithLayout, WithPagination } from '../../../../common/hocs';
 import { ProductDetails } from '../../../../common/components/ProductDetails';
 import { LayoutWrapper } from '../../../../common/layouts';
-import { WithLayout, WithPagination } from '../../../../common/hocs';
 
 const Product = () => {
   return (

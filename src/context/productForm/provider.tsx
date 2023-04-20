@@ -25,17 +25,6 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
     defaultProductFormValues.combosInvalid
   );
 
-  //   ProductSetWrapper:
-  //     isTriggerValidation === True -> verifyIsComboInvalid(comboId)
-
-  // UseCombo:
-  //     useEffect() -> [comboCounter] -> validateComboCounter()
-  //         isValid : clearFromCombosInvalid(comboId)
-  //         isNotValid: addFromCombosInvalid({comboId,message,validationType})
-
-  // ProductForm:
-  //     Button Add To Cart: isTriggerValidation -> True
-
   return (
     <ProductFormContext.Provider
       value={{

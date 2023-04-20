@@ -2,15 +2,14 @@ import * as React from 'react';
 import { Container, Pagination } from '@gamiui/standard';
 import classNames from 'classnames';
 
+import { WithPagination } from '../../common/hocs/WithPagination';
 import NextBreadcrumbs from '../../common/components/NextBreadcrumbs';
 import { usePagination } from '../../common/hooks';
 import { ProductList } from '../../common/components/ProductList';
-import { Categories } from '../../common/components/Categories';
-import { News } from '../../common/components/News';
-
 import { WithLayout } from '../../common/hocs/WithLayout';
-import { WithPagination } from '../../common/hocs/WithPagination';
+import { Categories } from '../../common/components/Categories';
 import HomeProvider from '../../context/home/provider';
+import { News } from '../../common/components/News';
 
 const Home = () => {
   const { page, numberPages, handleChangePage } = usePagination(5);

@@ -59,7 +59,7 @@ export const useCombosInvalid = ({
     if (comboCounter < minItems) {
       addToCombosInvalid({
         comboId: id,
-        message: '',
+        // message: '',
         validationType: 'minItems',
       });
       return;
