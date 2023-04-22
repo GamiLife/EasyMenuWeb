@@ -15,7 +15,7 @@ export const useCombosInvalid = ({
 }: IUseCombosInvalid) => {
   const { combosInvalid, setCombosInvalid } =
     React.useContext(ProductFormContext);
-  console.log(combosInvalid);
+  // console.log(combosInvalid);
 
   function addToCombosInvalid(combosInvalidItem: ICombosInvalid) {
     const uniqueIds = new Set();

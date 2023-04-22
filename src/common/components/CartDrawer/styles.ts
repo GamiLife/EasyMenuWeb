@@ -6,10 +6,15 @@ import { lightTheme } from '../../../../styles/design-system';
 
 export const CartDrawer = styled(Drawer)`
   border-top-left-radius: 0 !important;
-  margin-top: 100px;
+  top: 100px !important;
+  height: calc(100% - 100px);
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 100px; */
 `;
 
-export const SidebarLightNavyBlueBar = styled(Container)`
+export const CartDrawerBar = styled(Container)`
   background-color: ${lightTheme.primary.first};
   display: flex;
   align-items: center;

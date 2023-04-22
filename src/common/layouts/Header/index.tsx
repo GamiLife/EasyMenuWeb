@@ -1,10 +1,11 @@
 import React from 'react';
-import { Avatar, Container, RichText, Spacer } from '@gamiui/standard';
+import { Avatar, Container, Icon, RichText, Spacer } from '@gamiui/standard';
 import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { NotificationContext } from '../../../context/notification';
 // import { ProductFormContext } from '../../../context/productForm';
+import { CartContext } from '../../../context/cart';
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
@@ -16,6 +17,7 @@ import * as S from './styles';
 export const Header = () => {
   // const { isTriggerValidation, setIsTriggerValidation } =
   //   React.useContext(ProductFormContext);
+  const { isEnabledCart, setIsEnabledCart } = React.useContext(CartContext);
   const { isEnabledFloating, setIsEnabledFloating } =
     React.useContext(NotificationContext);
 
@@ -86,12 +88,21 @@ export const Header = () => {
             <Spacer customSize="8px" direction="right" />
             <RichText text={changeLanguage ? 'ES' : 'IN'} />
           </S.LanguageSwitch>
-          <S.CartCountContainer>
+          <S.CartCountContainer
+            onClick={() => setIsEnabledCart(!isEnabledCart)}
+          >
             <S.CartCount>0</S.CartCount>
-            <Block
+            {/* <Block
               component={Avatar}
               blockId={homeBlock.HEADER_CONTAINER}
               src="https://upload.wikimedia.org/wikipedia/commons/7/75/Antu_amarok_cart_add.svg"
+            /> */}
+            <Block
+              component={Icon}
+              blockId={homeBlock.HEADER_CONTAINER}
+              name="burger"
+              color={lightTheme.primary.black}
+              size="30px"
             />
           </S.CartCountContainer>
         </S.HeaderRight>

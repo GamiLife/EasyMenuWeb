@@ -57,9 +57,10 @@ export const MainImageContainer = styled(Container)`
 export const MainProductImage = styled(NextImage)`
   position: fixed;
   right: 7%;
-  z-index: 2;
   width: 35%;
   height: 250px;
+  /* z-index: 2; */
+
   /* height: 400px; */
   /* top: 20%; */
 `;

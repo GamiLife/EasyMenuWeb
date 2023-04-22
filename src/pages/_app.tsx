@@ -12,6 +12,7 @@ import ProductFormProvider from '../context/productForm/provider';
 import CompanyProvider from '../context/company/provider';
 import { WithCompany } from '../common/hocs';
 import ThemeProvider from '../context/theme/provider';
+import CartProvider from '../context/cart/provider';
 import i18n from './[slugCompany]/i18n';
 import '../../styles/globals.css';
 
@@ -54,11 +55,13 @@ export default function App({ Component, pageProps }: AppProps) {
             <CompanyProvider>
               <ThemeProvider>
                 <ProductFormProvider>
-                  <NotificationProvider>
-                    <BasePage>
-                      <Component {...pageProps} />
-                    </BasePage>
-                  </NotificationProvider>
+                  <CartProvider>
+                    <NotificationProvider>
+                      <BasePage>
+                        <Component {...pageProps} />
+                      </BasePage>
+                    </NotificationProvider>
+                  </CartProvider>
                 </ProductFormProvider>
               </ThemeProvider>
             </CompanyProvider>
