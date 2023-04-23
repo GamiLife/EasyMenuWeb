@@ -76,7 +76,7 @@ export const CloseLink = styled(Link)`
   }
 `;
 
-export const ProductList = styled(Container)`
+export const EmptyCart = styled(Container)`
   flex: 1;
   display: flex;
   justify-content: center;

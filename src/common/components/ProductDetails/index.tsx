@@ -52,6 +52,7 @@ export const ProductDetails = () => {
             priceByUnit={priceByUnit}
             combos={combos}
             maxItems={maxItems}
+            id={id}
           />
         </S.ContentContainer>
         <S.MainImageContainer>

@@ -17,12 +17,14 @@ interface IProductForm {
   priceByUnit: number;
   combos: GetDishResponseDTO.Combo[];
   maxItems: number;
+  id: number;
 }
 
 export const ProductForm = ({
   priceByUnit,
   combos,
   maxItems,
+  id,
 }: IProductForm) => {
   const {
     combosInvalid,
@@ -38,7 +40,7 @@ export const ProductForm = ({
   const { isVisible: showErrorText, handleToggle: setShowErrorText } =
     useToggle({ defaultVisible: false });
 
-  function handleClick() {
+  function handleClick(id: number) {
     setIsTriggerValidation(true);
     if (combosInvalid.length > 0) {
       setShowErrorText(true);
@@ -46,6 +48,24 @@ export const ProductForm = ({
     }
     setShowErrorText(false);
     setIsEnabledFloating(true);
+    const data = [
+      {
+        id: 1,
+        title: 'Ceviche',
+        description: 'Food with sea food ingredients',
+        imageUrl:
+          'https://frdadmin21.fridaysperu.com/media/catalog/product/w/i/wings-texas-spiced-bbq.jpg',
+      },
+    ];
+    const result = data
+      .filter((product) => product.id == id)
+      .map(({ title, description, imageUrl }) => ({
+        title,
+        description,
+        imageUrl,
+      }));
+    console.log(result);
+    // console.log(id);
   }
 
   const verifyInvalidCombosOnInitial = (combos: GetDishResponseDTO.Combo[]) => {
@@ -100,7 +120,10 @@ export const ProductForm = ({
         <S.ErrorText className={showErrorText ? 'error' : ''}>
           {showErrorText && 'Completa las opciones requeridas'}
         </S.ErrorText>
-        <S.AddProductToCart className="btn-cart" onClick={handleClick}>
+        <S.AddProductToCart
+          className="btn-cart"
+          onClick={() => handleClick(id)}
+        >
           {t('pageProductDetails.addButtonText')}
         </S.AddProductToCart>
       </S.ProductSingleFixBottom>

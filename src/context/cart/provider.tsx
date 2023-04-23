@@ -8,6 +8,9 @@ const CartProvider = ({ children }: ICartProvider) => {
   const [isEnabledCart, setIsEnabledCart] = React.useState(
     defaultCartValues.isEnabledCart
   );
+  const [cartProducts, setCartProducts] = React.useState(
+    defaultCartValues.cartProducts
+  );
   // const router = useRouter();
   // const { pslug } = router.query;
 
@@ -30,7 +33,9 @@ const CartProvider = ({ children }: ICartProvider) => {
     <CartContext.Provider
       value={{
         isEnabledCart,
+        cartProducts,
         setIsEnabledCart,
+        setCartProducts,
         // title,
       }}
     >

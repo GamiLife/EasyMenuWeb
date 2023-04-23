@@ -34,7 +34,7 @@ export const CartDrawer = () => {
             .replace(' ', '-')}/product/${pslug}`}
         ></S.CloseLink>
       </S.CartDrawerBar>
-      <S.ProductList>
+      <S.EmptyCart>
         <RichText
           text={'Agrega algún producto a tu carrito de compras'}
           margin="0 0 14px"
@@ -47,7 +47,7 @@ export const CartDrawer = () => {
         >
           Carta
         </S.LetterButton>
-      </S.ProductList>
+      </S.EmptyCart>
     </S.CartDrawer>
   );
 };

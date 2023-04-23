@@ -16,8 +16,8 @@ export interface IProductFormProvider {
 
 export interface ICombosInvalid {
   comboId: number;
-  // message: string; //"Debes elegir al menos 4"
   validationType: string; //'minItems'
+  // message: string; //"Debes elegir al menos 4"
 }
 
 export const defaultProductFormValues = {

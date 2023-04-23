@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 export interface ICartContext {
   isEnabledCart: boolean;
+  cartProducts: ICartProduct[];
   setIsEnabledCart: (value: boolean) => void;
+  setCartProducts: Dispatch<SetStateAction<ICartProduct[]>>;
+  // setCartProducts: (value: ICartProduct[]) => void;
   // id:
   // description: string;
   // imageUrl: string;
@@ -14,13 +17,25 @@ export interface ICartProvider {
   children: React.ReactNode;
 }
 
+export interface ICartProduct {
+  title: string;
+  description: string;
+  imageurl: string;
+  price: number;
+  quantity: number;
+}
+
 export const defaultCartValues = {
   isEnabledCart: false,
+  cartProducts: [],
   // title: '',
 };
 
 export const defaultCartSetter = {
   setIsEnabledCart: () => {
+    return;
+  },
+  setCartProducts: () => {
     return;
   },
 };
