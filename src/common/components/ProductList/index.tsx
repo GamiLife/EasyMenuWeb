@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Container, Empty } from '@gamiui/standard';
 import classNames from 'classnames';
 
-import { Product } from '../Product';
 import { useFetchDishesByCategory } from '../../hooks';
+import { ProductListSkeleton } from './ProductListSkeleton';
 import { HomeContext } from '../../../context';
 import { messages } from '../../constants';
+import { Product } from '../Product';
 import * as S from './styles';
-import { ProductListSkeleton } from './ProductListSkeleton';
 
 export interface IProduct {
   id?: string;
@@ -28,7 +28,7 @@ export const ProductList = () => {
   });
 
   return (
-    <Fragment>
+    <React.Fragment>
       {isLoading ? (
         <ProductListSkeleton />
       ) : (
@@ -57,6 +57,6 @@ export const ProductList = () => {
           </Container>
         </S.ProductList>
       )}
-    </Fragment>
+    </React.Fragment>
   );
 };

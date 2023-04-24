@@ -48,6 +48,24 @@ export const CartDrawer = () => {
           Carta
         </S.LetterButton>
       </S.EmptyCart>
+      {/* {
+        [].length === 0 ? (
+          <S.EmptyCart>
+        <RichText
+          text={'Agrega algún producto a tu carrito de compras'}
+          margin="0 0 14px"
+        />
+        <S.LetterButton
+          onClick={() => {
+            setIsEnabledCart(false);
+            window.location.pathname = `${slugCompany}`;
+          }}
+        >
+          Carta
+        </S.LetterButton>
+      </S.EmptyCart>
+        ) : ()
+      } */}
     </S.CartDrawer>
   );
 };
