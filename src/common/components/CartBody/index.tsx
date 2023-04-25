@@ -47,6 +47,7 @@ export const CartBody = () => {
           </S.CartCard>
         </S.CartItem>
       </S.CartItemList>
+      {/* cart-recommended */}
     </S.CartBody>
   );
 };

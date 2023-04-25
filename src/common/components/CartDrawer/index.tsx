@@ -50,6 +50,7 @@ export const CartDrawer = () => {
         </S.LetterButton>
       </S.EmptyCart> */}
       <CartBody />
+
       {/* {
         [].length === 0 ? (
           <S.EmptyCart>
