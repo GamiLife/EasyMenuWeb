@@ -6,6 +6,7 @@ import { HomeContext } from '../../../context';
 import { CartContext } from '../../../context/cart';
 import { lightTheme } from '../../../../styles/design-system';
 import * as S from './styles';
+import { CartBody } from '../CartBody';
 
 export const CartDrawer = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ export const CartDrawer = () => {
             .replace(' ', '-')}/product/${pslug}`}
         ></S.CloseLink>
       </S.CartDrawerBar>
-      <S.EmptyCart>
+      {/* <S.EmptyCart>
         <RichText
           text={'Agrega algún producto a tu carrito de compras'}
           margin="0 0 14px"
@@ -47,7 +48,8 @@ export const CartDrawer = () => {
         >
           Carta
         </S.LetterButton>
-      </S.EmptyCart>
+      </S.EmptyCart> */}
+      <CartBody />
       {/* {
         [].length === 0 ? (
           <S.EmptyCart>
