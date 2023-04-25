@@ -20,9 +20,9 @@ export interface ICartProvider {
 export interface ICartProduct {
   title: string;
   description: string;
-  imageurl: string;
-  price: number;
-  quantity: number;
+  imageUrl: string;
+  price?: number;
+  quantity?: number;
 }
 
 export const defaultCartValues = {

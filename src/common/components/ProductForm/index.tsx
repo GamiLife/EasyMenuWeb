@@ -10,6 +10,7 @@ import { NotificationContext } from '../../../context/notification';
 import { ProductFormContext } from '../../../context/productForm';
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ProductOperators } from '../ProductOperators';
+import { CartContext } from '../../../context/cart';
 import { Combo } from '../Combo';
 import * as S from './styles';
 
@@ -18,6 +19,9 @@ interface IProductForm {
   combos: GetDishResponseDTO.Combo[];
   maxItems: number;
   id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
 }
 
 export const ProductForm = ({
@@ -25,6 +29,9 @@ export const ProductForm = ({
   combos,
   maxItems,
   id,
+  title,
+  description,
+  imageUrl,
 }: IProductForm) => {
   const {
     combosInvalid,
@@ -32,6 +39,7 @@ export const ProductForm = ({
     setIsTriggerValidation,
     secondaryProductsTotalPrice,
   } = React.useContext(ProductFormContext);
+  const { cartProducts, setCartProducts } = React.useContext(CartContext);
   const { setIsEnabledFloating } = React.useContext(NotificationContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
@@ -40,7 +48,7 @@ export const ProductForm = ({
   const { isVisible: showErrorText, handleToggle: setShowErrorText } =
     useToggle({ defaultVisible: false });
 
-  function handleClick(id: number) {
+  function handleClick() {
     setIsTriggerValidation(true);
     if (combosInvalid.length > 0) {
       setShowErrorText(true);
@@ -48,24 +56,9 @@ export const ProductForm = ({
     }
     setShowErrorText(false);
     setIsEnabledFloating(true);
-    const data = [
-      {
-        id: 1,
-        title: 'Ceviche',
-        description: 'Food with sea food ingredients',
-        imageUrl:
-          'https://frdadmin21.fridaysperu.com/media/catalog/product/w/i/wings-texas-spiced-bbq.jpg',
-      },
-    ];
-    const result = data
-      .filter((product) => product.id == id)
-      .map(({ title, description, imageUrl }) => ({
-        title,
-        description,
-        imageUrl,
-      }));
+    const result = [...cartProducts, { title, description, imageUrl }];
+    setCartProducts(result);
     console.log(result);
-    // console.log(id);
   }
 
   const verifyInvalidCombosOnInitial = (combos: GetDishResponseDTO.Combo[]) => {
@@ -120,10 +113,7 @@ export const ProductForm = ({
         <S.ErrorText className={showErrorText ? 'error' : ''}>
           {showErrorText && 'Completa las opciones requeridas'}
         </S.ErrorText>
-        <S.AddProductToCart
-          className="btn-cart"
-          onClick={() => handleClick(id)}
-        >
+        <S.AddProductToCart className="btn-cart" onClick={() => handleClick()}>
           {t('pageProductDetails.addButtonText')}
         </S.AddProductToCart>
       </S.ProductSingleFixBottom>

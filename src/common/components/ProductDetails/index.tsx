@@ -53,6 +53,9 @@ export const ProductDetails = () => {
             combos={combos}
             maxItems={maxItems}
             id={id}
+            title={title}
+            description={description}
+            imageUrl={imageUrl}
           />
         </S.ContentContainer>
         <S.MainImageContainer>
