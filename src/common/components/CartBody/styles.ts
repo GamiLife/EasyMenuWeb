@@ -57,7 +57,8 @@ export const CartItemList = styled.ul`
   }
 
   & > li:hover .card__content {
-    transform: translateY(-76px);
+    /* transform: translateY(-76px); */
+    transform: translateY(-84px);
   }
 `;
 
@@ -77,6 +78,7 @@ export const ProductName = styled.b`
   /* font-family: VeneerCleanReg, Helvetica, Arial, sans-serif; */
   color: ${lightTheme.primary.black};
   font-size: 19px;
+  text-transform: uppercase;
 `;
 
 export const ProductDescription = styled(RichText)`
@@ -110,7 +112,7 @@ export const ProductActions = styled(Container)`
   margin-bottom: -54px;
   transition: all 0.5s;
 
-  & .product-actions__transparent {
+  & .product-actions__remove {
     color: ${lightTheme.primary.first};
     background: transparent;
     border-color: transparent;

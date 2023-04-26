@@ -2,19 +2,23 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { RichText } from '@gamiui/standard';
 
-import { HomeContext } from '../../../context';
+import { CartSummaryDetails } from '../CartSummaryDetails';
 import { CartContext } from '../../../context/cart';
 import { lightTheme } from '../../../../styles/design-system';
-import * as S from './styles';
 import { CartBody } from '../CartBody';
+import * as S from './styles';
 
 export const CartDrawer = () => {
   const router = useRouter();
   const { slugCompany, pslug } = router.query;
 
-  const { categoryName } = React.useContext(HomeContext);
-  const { isEnabledCart, setIsEnabledCart } = React.useContext(CartContext);
-  // console.log(isEnabledCart);
+  const { cartProducts, isEnabledCart, setIsEnabledCart } =
+    React.useContext(CartContext);
+
+  let totalToPay = 0;
+  for (let i = 0; i < cartProducts.length; i++) {
+    totalToPay = totalToPay + cartProducts[i].totalPrice;
+  }
 
   return (
     <S.CartDrawer
@@ -29,46 +33,28 @@ export const CartDrawer = () => {
           name="close"
           onClick={() => setIsEnabledCart(false)}
         />
-        <S.CloseLink
-          href={`/${slugCompany}/${categoryName
-            .toLowerCase()
-            .replace(' ', '-')}/product/${pslug}`}
-        ></S.CloseLink>
       </S.CartDrawerBar>
-      {/* <S.EmptyCart>
-        <RichText
-          text={'Agrega algún producto a tu carrito de compras'}
-          margin="0 0 14px"
-        />
-        <S.LetterButton
-          onClick={() => {
-            setIsEnabledCart(false);
-            window.location.pathname = `${slugCompany}`;
-          }}
-        >
-          Carta
-        </S.LetterButton>
-      </S.EmptyCart> */}
-      <CartBody />
-
-      {/* {
-        [].length === 0 ? (
-          <S.EmptyCart>
-        <RichText
-          text={'Agrega algún producto a tu carrito de compras'}
-          margin="0 0 14px"
-        />
-        <S.LetterButton
-          onClick={() => {
-            setIsEnabledCart(false);
-            window.location.pathname = `${slugCompany}`;
-          }}
-        >
-          Carta
-        </S.LetterButton>
-      </S.EmptyCart>
-        ) : ()
-      } */}
+      {cartProducts.length === 0 ? (
+        <S.EmptyCart>
+          <RichText
+            text={'Agrega algún producto a tu carrito de compras'}
+            margin="0 0 14px"
+          />
+          <S.LetterButton
+            onClick={() => {
+              setIsEnabledCart(false);
+              window.location.pathname = `${slugCompany}`;
+            }}
+          >
+            Carta
+          </S.LetterButton>
+        </S.EmptyCart>
+      ) : (
+        <React.Fragment>
+          <CartBody cartProducts={cartProducts} />
+          <CartSummaryDetails totalToPay={totalToPay} />
+        </React.Fragment>
+      )}
     </S.CartDrawer>
   );
 };

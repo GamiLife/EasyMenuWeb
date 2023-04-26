@@ -18,11 +18,12 @@ export interface ICartProvider {
 }
 
 export interface ICartProduct {
+  id: number;
   title: string;
   description: string;
   imageUrl: string;
-  price?: number;
-  quantity?: number;
+  totalPrice: number;
+  quantity: number;
 }
 
 export const defaultCartValues = {

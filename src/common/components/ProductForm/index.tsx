@@ -48,6 +48,11 @@ export const ProductForm = ({
   const { isVisible: showErrorText, handleToggle: setShowErrorText } =
     useToggle({ defaultVisible: false });
 
+  const totalPrice =
+    (priceByUnit + secondaryProductsTotalPrice) * (quantity + 1);
+
+  console.log(cartProducts);
+
   function handleClick() {
     setIsTriggerValidation(true);
     if (combosInvalid.length > 0) {
@@ -56,9 +61,12 @@ export const ProductForm = ({
     }
     setShowErrorText(false);
     setIsEnabledFloating(true);
-    const result = [...cartProducts, { title, description, imageUrl }];
-    setCartProducts(result);
-    console.log(result);
+    const productSet = [
+      ...cartProducts,
+      { id, title, description, imageUrl, totalPrice, quantity: quantity + 1 },
+    ];
+    setCartProducts(productSet);
+    // console.log(productSet);
   }
 
   const verifyInvalidCombosOnInitial = (combos: GetDishResponseDTO.Combo[]) => {
@@ -106,9 +114,7 @@ export const ProductForm = ({
       </S.ProductInlineBlock>
       <S.ProductSingleFixBottom>
         <S.ProductInlineBlockPrice>
-          <S.TotalPrice level="h4">
-            S/ {(priceByUnit + secondaryProductsTotalPrice) * (quantity + 1)}
-          </S.TotalPrice>
+          <S.TotalPrice level="h4">S/ {totalPrice}</S.TotalPrice>
         </S.ProductInlineBlockPrice>
         <S.ErrorText className={showErrorText ? 'error' : ''}>
           {showErrorText && 'Completa las opciones requeridas'}

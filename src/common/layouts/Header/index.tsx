@@ -17,7 +17,8 @@ import * as S from './styles';
 export const Header = () => {
   // const { isTriggerValidation, setIsTriggerValidation } =
   //   React.useContext(ProductFormContext);
-  const { isEnabledCart, setIsEnabledCart } = React.useContext(CartContext);
+  const { cartProducts, isEnabledCart, setIsEnabledCart } =
+    React.useContext(CartContext);
   const { isEnabledFloating, setIsEnabledFloating } =
     React.useContext(NotificationContext);
 
@@ -91,12 +92,7 @@ export const Header = () => {
           <S.CartCountContainer
             onClick={() => setIsEnabledCart(!isEnabledCart)}
           >
-            <S.CartCount>0</S.CartCount>
-            {/* <Block
-              component={Avatar}
-              blockId={homeBlock.HEADER_CONTAINER}
-              src="https://upload.wikimedia.org/wikipedia/commons/7/75/Antu_amarok_cart_add.svg"
-            /> */}
+            <S.CartCount>{cartProducts.length}</S.CartCount>
             <Block
               component={Icon}
               blockId={homeBlock.HEADER_CONTAINER}

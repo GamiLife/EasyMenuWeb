@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styled from '@emotion/styled';
 import { Drawer, Container, Icon, Button } from '@gamiui/standard';
 
@@ -32,33 +31,6 @@ export const CloseIcon = styled(Icon)`
   position: relative;
   margin-right: 10px;
   outline: 0;
-  &::before,
-  &::after {
-    position: absolute;
-    left: 10px;
-    content: ' ';
-    height: 14px;
-    width: 2px;
-    background-color: #fff;
-  }
-  &::before {
-    transform: rotate(45deg);
-  }
-  &::after {
-    transform: rotate(-45deg);
-  }
-`;
-
-export const CloseLink = styled(Link)`
-  width: 25px;
-  min-width: 25px;
-  height: 25px;
-  padding: 4px;
-  border: 2px solid ${lightTheme.primary.white};
-  border-radius: 100px;
-  position: relative;
-  margin-right: 10px;
-  opacity: 1;
   &::before,
   &::after {
     position: absolute;
