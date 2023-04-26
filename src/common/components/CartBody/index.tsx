@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Card, Container } from '@gamiui/standard';
 
 import { CartContext, ICartProduct } from '../../../context/cart';
@@ -6,12 +6,18 @@ import * as S from './styles';
 
 export interface ICartBody {
   cartProducts: ICartProduct[];
+  setCartProducts: Dispatch<SetStateAction<ICartProduct[]>>;
 }
 
-export const CartBody = ({ cartProducts }: ICartBody) => {
+export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
   // const { cartProducts } = React.useContext(CartContext);
 
-  function handleRemove(id: number) {}
+  function handleRemove(id: number) {
+    const cartProductsFiltered = cartProducts.filter(
+      (cartProduct) => cartProduct.id !== id
+    );
+    setCartProducts(cartProductsFiltered);
+  }
 
   return (
     <S.CartBody>

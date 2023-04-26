@@ -12,7 +12,7 @@ export const CartDrawer = () => {
   const router = useRouter();
   const { slugCompany, pslug } = router.query;
 
-  const { cartProducts, isEnabledCart, setIsEnabledCart } =
+  const { cartProducts, isEnabledCart, setCartProducts, setIsEnabledCart } =
     React.useContext(CartContext);
 
   let totalToPay = 0;
@@ -51,7 +51,10 @@ export const CartDrawer = () => {
         </S.EmptyCart>
       ) : (
         <React.Fragment>
-          <CartBody cartProducts={cartProducts} />
+          <CartBody
+            cartProducts={cartProducts}
+            setCartProducts={setCartProducts}
+          />
           <CartSummaryDetails totalToPay={totalToPay} />
         </React.Fragment>
       )}
