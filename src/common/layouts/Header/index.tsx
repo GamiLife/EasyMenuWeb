@@ -124,6 +124,7 @@ export const Header = () => {
           />
         </S.SectionAlert>
       </S.FloatingMessage>
+      {/* CartDrawer */}
     </React.Fragment>
   );
 };

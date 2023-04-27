@@ -24,6 +24,7 @@ export interface ICartProduct {
   imageUrl: string;
   totalPrice: number;
   quantity: number;
+  cartId: number;
 }
 
 export const defaultCartValues = {

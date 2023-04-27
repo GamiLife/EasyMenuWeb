@@ -1,14 +1,19 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 
-import { CartContext, ICartProvider, defaultCartValues } from './context';
+import {
+  CartContext,
+  ICartProduct,
+  ICartProvider,
+  defaultCartValues,
+} from './context';
 import { get } from '../../config/api';
 
 const CartProvider = ({ children }: ICartProvider) => {
   const [isEnabledCart, setIsEnabledCart] = React.useState(
     defaultCartValues.isEnabledCart
   );
-  const [cartProducts, setCartProducts] = React.useState(
+  const [cartProducts, setCartProducts] = React.useState<ICartProduct[]>(
     defaultCartValues.cartProducts
   );
   // const router = useRouter();

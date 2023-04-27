@@ -63,7 +63,15 @@ export const ProductForm = ({
     setIsEnabledFloating(true);
     const productSet = [
       ...cartProducts,
-      { id, title, description, imageUrl, totalPrice, quantity: quantity + 1 },
+      {
+        id,
+        title,
+        description,
+        imageUrl,
+        totalPrice,
+        quantity: quantity + 1,
+        cartId: new Date().getTime(),
+      },
     ];
     setCartProducts(productSet);
     // console.log(productSet);

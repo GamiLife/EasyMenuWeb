@@ -12,9 +12,9 @@ export interface ICartBody {
 export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
   // const { cartProducts } = React.useContext(CartContext);
 
-  function handleRemove(id: number) {
+  function handleRemove(cartId: number) {
     const cartProductsFiltered = cartProducts.filter(
-      (cartProduct) => cartProduct.id !== id
+      (cartProduct) => cartProduct.cartId !== cartId
     );
     setCartProducts(cartProductsFiltered);
   }
@@ -23,7 +23,15 @@ export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
     <S.CartBody>
       <S.CartItemList>
         {cartProducts.map(
-          ({ id, imageUrl, title, description, totalPrice, quantity }) => (
+          ({
+            id,
+            imageUrl,
+            title,
+            description,
+            totalPrice,
+            quantity,
+            cartId,
+          }) => (
             <S.CartItem key={id}>
               <S.CartCard>
                 <Card.Cover className="card__cover">
@@ -49,7 +57,7 @@ export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
                         <S.ProductButton>Modificar</S.ProductButton>
                         <S.ProductButton
                           className="product-actions__remove"
-                          onClick={() => handleRemove(id)}
+                          onClick={() => handleRemove(cartId)}
                         >
                           Eliminar
                         </S.ProductButton>
