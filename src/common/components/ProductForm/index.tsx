@@ -51,7 +51,7 @@ export const ProductForm = ({
   const totalPrice =
     (priceByUnit + secondaryProductsTotalPrice) * (quantity + 1);
 
-  console.log(cartProducts);
+  // console.log(cartProducts);
 
   function handleClick() {
     setIsTriggerValidation(true);

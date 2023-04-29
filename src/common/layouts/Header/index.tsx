@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 import { useCustomTranslation } from '../../hooks/useCustomTranslation';
 import { NotificationContext } from '../../../context/notification';
-// import { ProductFormContext } from '../../../context/productForm';
 import { CartContext } from '../../../context/cart';
 import { lightTheme } from '../../../../styles/design-system/theme';
+import { CartDrawer } from '../../components/CartDrawer';
 import { useSearch } from '../../hooks/useSearch';
 import { useToggle } from '../../hooks';
 import homeBlock from '../../blocks/home-block.json';
@@ -15,8 +15,6 @@ import { Logo } from '../../components/Logo';
 import * as S from './styles';
 
 export const Header = () => {
-  // const { isTriggerValidation, setIsTriggerValidation } =
-  //   React.useContext(ProductFormContext);
   const { cartProducts, isEnabledCart, setIsEnabledCart } =
     React.useContext(CartContext);
   const { isEnabledFloating, setIsEnabledFloating } =
@@ -109,7 +107,7 @@ export const Header = () => {
         height="63px"
         open={isEnabledFloating}
         // open={isTriggerValidation}
-        zIndex={3}
+        zIndex={1}
         hasCloseIcon={false}
       >
         <S.SectionAlert>
@@ -124,7 +122,7 @@ export const Header = () => {
           />
         </S.SectionAlert>
       </S.FloatingMessage>
-      {/* CartDrawer */}
+      <CartDrawer />
     </React.Fragment>
   );
 };

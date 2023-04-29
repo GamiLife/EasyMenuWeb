@@ -5,12 +5,11 @@ import { lightTheme } from '../../../../styles/design-system';
 
 export const CartDrawer = styled(Drawer)`
   border-top-left-radius: 0 !important;
-  top: 100px !important;
-  height: calc(100% - 100px);
+  top: 80px !important;
+  height: calc(100% - 80px);
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
-  /* margin-top: 100px; */
 `;
 
 export const CartDrawerBar = styled(Container)`

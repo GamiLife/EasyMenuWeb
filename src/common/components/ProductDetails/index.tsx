@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import { useFetchDishById } from '../../hooks/useFetchDishById';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { ProductForm } from '../ProductForm';
-import { CartDrawer } from '../CartDrawer';
 import { lightTheme } from '../../../../styles/design-system';
 import { Spinner } from '../Spinner';
 import * as S from './styles';
@@ -36,7 +35,6 @@ export const ProductDetails = () => {
 
   return (
     <React.Fragment>
-      <CartDrawer />
       <S.ProductDetails>
         <S.BreadcrumbContainer>
           <NextBreadcrumbs />

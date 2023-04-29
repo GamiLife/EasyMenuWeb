@@ -5,6 +5,7 @@ import { IContainer } from '@gamiui/standard/lib/types/designSystem/layouts/Cont
 
 import { lightTheme } from '../../../../styles/design-system/theme';
 import { Block } from '../Block';
+
 interface IZoom {
   time: number;
   scale: number;
@@ -27,7 +28,9 @@ export const gamiavatar = css`
 `;
 
 export const LayoutWrapper = styled(Layout)`
-  padding-top: 99px;
+  /* padding-top: 99px; */
+  overflow: hidden;
+  padding-top: 80px;
 `;
 
 export const LayoutHeader = styled(Layout.Header)`
@@ -35,7 +38,8 @@ export const LayoutHeader = styled(Layout.Header)`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 2;
+  /* z-index: 10; */
 `;
 
 export const Content = styled(Layout.Content)``;

@@ -3,9 +3,9 @@ import Head from 'next/head';
 import { Container } from '@gamiui/standard';
 
 import { Header, Footer, Block } from '..';
+import { ThemeContext } from '../../../context';
 import homeBlock from '../../blocks/home-block.json';
 import * as S from './styles';
-import { ThemeContext } from '../../../context';
 
 export interface ILayoutWrapper {
   children: React.ReactNode;

@@ -8,9 +8,10 @@ import { Block } from '../Block';
 export const Header = styled(Block<IContainer>)`
   background-color: ${lightTheme.primary.white};
   display: flex;
+  height: 80px;
   justify-content: space-between;
-  max-height: 100px;
-  padding: 1rem;
+  padding: 0 1rem;
+  /* max-height: 100px; */
 `;
 
 export const HeaderLeft = styled(Container)`
@@ -63,7 +64,7 @@ export const CartCount = styled.span`
 export const FloatingMessage = styled(Floating)`
   background: #40c351;
   padding: 20px 9px 18px;
-  top: 100px !important;
+  top: 80px !important;
   right: 0;
   left: 0 !important;
   border-radius: 0;
