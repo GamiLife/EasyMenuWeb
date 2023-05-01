@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Card, Container } from '@gamiui/standard';
 
-import { CartContext, ICartProduct } from '../../../context/cart';
+import { ICartProduct } from '../../../context/cart';
 import * as S from './styles';
 
 export interface ICartBody {
@@ -10,8 +10,6 @@ export interface ICartBody {
 }
 
 export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
-  // const { cartProducts } = React.useContext(CartContext);
-
   function handleRemove(cartId: number) {
     const cartProductsFiltered = cartProducts.filter(
       (cartProduct) => cartProduct.cartId !== cartId
@@ -23,16 +21,8 @@ export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
     <S.CartBody>
       <S.CartItemList>
         {cartProducts.map(
-          ({
-            id,
-            imageUrl,
-            title,
-            description,
-            totalPrice,
-            quantity,
-            cartId,
-          }) => (
-            <S.CartItem key={id}>
+          ({ imageUrl, title, description, totalPrice, quantity, cartId }) => (
+            <S.CartItem key={cartId}>
               <S.CartCard>
                 <Card.Cover className="card__cover">
                   <S.ProductImage imageUrl={imageUrl} alt={title} />

@@ -26,6 +26,7 @@ export const CartDrawer = () => {
       width={410}
       placement={'right'}
       zIndex={100}
+      onClose={() => setIsEnabledCart(false)}
     >
       <S.CartDrawerBar>
         <S.CloseIcon

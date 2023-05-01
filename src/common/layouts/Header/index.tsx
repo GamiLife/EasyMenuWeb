@@ -106,7 +106,6 @@ export const Header = () => {
         width="100%"
         height="63px"
         open={isEnabledFloating}
-        // open={isTriggerValidation}
         zIndex={1}
         hasCloseIcon={false}
       >

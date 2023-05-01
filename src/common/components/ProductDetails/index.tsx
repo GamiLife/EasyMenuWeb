@@ -50,7 +50,6 @@ export const ProductDetails = () => {
             priceByUnit={priceByUnit}
             combos={combos}
             maxItems={maxItems}
-            id={id}
             title={title}
             description={description}
             imageUrl={imageUrl}

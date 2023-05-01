@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 export interface IProductFormContext {
   secondaryProductsTotalPrice: number;
@@ -6,7 +6,8 @@ export interface IProductFormContext {
   combosInvalid: ICombosInvalid[];
   setSecondaryProductsTotalPrice: (value: (prev: number) => number) => void;
   setIsTriggerValidation: (value: boolean) => void;
-  setCombosInvalid: (value: ICombosInvalid[]) => void;
+  setCombosInvalid: Dispatch<SetStateAction<ICombosInvalid[]>>;
+  // setCombosInvalid: (value: ICombosInvalid[]) => void;
 }
 
 export interface IProductFormProvider {

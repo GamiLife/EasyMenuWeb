@@ -18,7 +18,6 @@ interface IProductForm {
   priceByUnit: number;
   combos: GetDishResponseDTO.Combo[];
   maxItems: number;
-  id: number;
   title: string;
   description: string;
   imageUrl: string;
@@ -28,19 +27,20 @@ export const ProductForm = ({
   priceByUnit,
   combos,
   maxItems,
-  id,
   title,
   description,
   imageUrl,
 }: IProductForm) => {
   const {
     combosInvalid,
+    secondaryProductsTotalPrice,
     setCombosInvalid,
     setIsTriggerValidation,
-    secondaryProductsTotalPrice,
   } = React.useContext(ProductFormContext);
-  const { cartProducts, setCartProducts } = React.useContext(CartContext);
-  const { setIsEnabledFloating } = React.useContext(NotificationContext);
+  const { cartProducts, setCartProducts, setIsEnabledCart } =
+    React.useContext(CartContext);
+  const { isEnabledFloating, setIsEnabledFloating } =
+    React.useContext(NotificationContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
     useProductComboCounter(maxItems - 1);
@@ -50,8 +50,6 @@ export const ProductForm = ({
 
   const totalPrice =
     (priceByUnit + secondaryProductsTotalPrice) * (quantity + 1);
-
-  // console.log(cartProducts);
 
   function handleClick() {
     setIsTriggerValidation(true);
@@ -64,7 +62,6 @@ export const ProductForm = ({
     const productSet = [
       ...cartProducts,
       {
-        id,
         title,
         description,
         imageUrl,
@@ -74,7 +71,6 @@ export const ProductForm = ({
       },
     ];
     setCartProducts(productSet);
-    // console.log(productSet);
   }
 
   const verifyInvalidCombosOnInitial = (combos: GetDishResponseDTO.Combo[]) => {
@@ -82,7 +78,6 @@ export const ProductForm = ({
       .filter(({ minItems = 4 }) => minItems != undefined && minItems != 0)
       .map(({ id }) => ({
         comboId: id,
-        // message: '',
         validationType: 'minItems',
       }));
 
@@ -92,6 +87,12 @@ export const ProductForm = ({
   React.useEffect(() => {
     verifyInvalidCombosOnInitial(combos);
   }, []);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      if (isEnabledFloating) setIsEnabledCart(true);
+    }, 2000);
+  }, [isEnabledFloating]);
 
   return (
     <React.Fragment>

@@ -6,11 +6,6 @@ export interface ICartContext {
   setIsEnabledCart: (value: boolean) => void;
   setCartProducts: Dispatch<SetStateAction<ICartProduct[]>>;
   // setCartProducts: (value: ICartProduct[]) => void;
-  // id:
-  // description: string;
-  // imageUrl: string;
-  // price: number;
-  // title: string;
 }
 
 export interface ICartProvider {
@@ -18,7 +13,6 @@ export interface ICartProvider {
 }
 
 export interface ICartProduct {
-  id: number;
   title: string;
   description: string;
   imageUrl: string;
@@ -30,7 +24,6 @@ export interface ICartProduct {
 export const defaultCartValues = {
   isEnabledCart: false,
   cartProducts: [],
-  // title: '',
 };
 
 export const defaultCartSetter = {
