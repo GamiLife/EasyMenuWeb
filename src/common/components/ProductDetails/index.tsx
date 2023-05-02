@@ -14,6 +14,8 @@ import * as S from './styles';
 export const ProductDetails = () => {
   const router = useRouter();
   const { slugCompany, pslug } = router.query;
+  // router.query
+  console.log(router.query?.cartId);
 
   const { t } = useTranslation();
 

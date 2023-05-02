@@ -1,8 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Card, Container } from '@gamiui/standard';
 
-import { ICartProduct } from '../../../context/cart';
+import { CartContext, ICartProduct } from '../../../context/cart';
 import * as S from './styles';
+import { useRouter } from 'next/router';
 
 export interface ICartBody {
   cartProducts: ICartProduct[];
@@ -10,6 +11,9 @@ export interface ICartBody {
 }
 
 export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
+  const router = useRouter();
+  const { setIsEnabledCart } = React.useContext(CartContext);
+
   function handleRemove(cartId: number) {
     const cartProductsFiltered = cartProducts.filter(
       (cartProduct) => cartProduct.cartId !== cartId
@@ -17,11 +21,25 @@ export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
     setCartProducts(cartProductsFiltered);
   }
 
+  function handleModify(productUrl: string, cartId: number) {
+    setIsEnabledCart(false);
+    router.push(`${productUrl}?cartId=${cartId}`);
+    // /[slugCompany]/[categoryDynamic]/product/[slug]?cartId=1
+  }
+
   return (
     <S.CartBody>
       <S.CartItemList>
         {cartProducts.map(
-          ({ imageUrl, title, description, totalPrice, quantity, cartId }) => (
+          ({
+            imageUrl,
+            title,
+            description,
+            totalPrice,
+            quantity,
+            cartId,
+            productUrl,
+          }) => (
             <S.CartItem key={cartId}>
               <S.CartCard>
                 <Card.Cover className="card__cover">
@@ -44,7 +62,11 @@ export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
                         </Container>
                       </Container>
                       <S.ProductActions className="product-actions">
-                        <S.ProductButton>Modificar</S.ProductButton>
+                        <S.ProductButton
+                          onClick={() => handleModify(productUrl, cartId)}
+                        >
+                          Modificar
+                        </S.ProductButton>
                         <S.ProductButton
                           className="product-actions__remove"
                           onClick={() => handleRemove(cartId)}

@@ -45,6 +45,7 @@ export const CartDrawer = () => {
             onClick={() => {
               setIsEnabledCart(false);
               window.location.pathname = `${slugCompany}`;
+              // router.push
             }}
           >
             Carta
