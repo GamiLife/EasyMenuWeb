@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { Product } from '../../common/components/Product/index';
 
 export interface ICartContext {
   isEnabledCart: boolean;
@@ -19,6 +20,7 @@ export interface ICartProduct {
   totalPrice: number;
   quantity: number;
   cartId: number;
+  productUrl: string;
 }
 
 export const defaultCartValues = {
