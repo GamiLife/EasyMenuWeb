@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
 import { Card, Container } from '@gamiui/standard';
 
 import { CartContext, ICartProduct } from '../../../context/cart';
 import * as S from './styles';
-import { useRouter } from 'next/router';
 
 export interface ICartBody {
   cartProducts: ICartProduct[];

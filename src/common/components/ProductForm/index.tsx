@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Container } from '@gamiui/standard';
 
 import {
@@ -13,7 +14,6 @@ import { ProductOperators } from '../ProductOperators';
 import { CartContext } from '../../../context/cart';
 import { Combo } from '../Combo';
 import * as S from './styles';
-import { useRouter } from 'next/router';
 
 interface IProductForm {
   priceByUnit: number;
@@ -33,6 +33,7 @@ export const ProductForm = ({
   imageUrl,
 }: IProductForm) => {
   const router = useRouter();
+
   const {
     combosInvalid,
     secondaryProductsTotalPrice,
@@ -75,7 +76,6 @@ export const ProductForm = ({
     ];
     setCartProducts(productSet);
   }
-  // console.log(router);
 
   const verifyInvalidCombosOnInitial = (combos: GetDishResponseDTO.Combo[]) => {
     const invalidCombosResult = combos

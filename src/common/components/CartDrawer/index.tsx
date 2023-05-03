@@ -15,6 +15,9 @@ export const CartDrawer = () => {
   const { cartProducts, isEnabledCart, setCartProducts, setIsEnabledCart } =
     React.useContext(CartContext);
 
+  console.log(router);
+  console.log(slugCompany);
+
   let totalToPay = 0;
   for (let i = 0; i < cartProducts.length; i++) {
     totalToPay = totalToPay + cartProducts[i].totalPrice;
@@ -44,8 +47,8 @@ export const CartDrawer = () => {
           <S.LetterButton
             onClick={() => {
               setIsEnabledCart(false);
-              window.location.pathname = `${slugCompany}`;
-              // router.push
+              router.push(`/${slugCompany}`);
+              // window.location.pathname = `${slugCompany}`;
             }}
           >
             Carta

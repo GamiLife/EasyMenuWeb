@@ -41,6 +41,12 @@ export const BackIcon = styled(Icon)`
   display: inline;
 `;
 
+export const ModifyProductHeader = styled(Title)`
+  margin-bottom: 0;
+  font-size: 14px;
+  margin-top: 18px;
+`;
+
 export const ProductTitle = styled(Title)`
   color: ${lightTheme.semantic.danger};
   line-height: 1.4;
