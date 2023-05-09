@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button, Card, Container, RichText, Title } from '@gamiui/standard';
 import classNames from 'classnames';
 
-import { useCustomTranslation } from '../../hooks';
+import { useCustomTranslation, useRemoveWhiteSpace } from '../../hooks';
 import { HomeContext } from '../../../context/home';
 import { IProduct } from '../ProductList';
 import homeBlock from '../../blocks/home-block.json';
@@ -24,13 +24,7 @@ export const Product = ({
   const { categoryName } = useContext(HomeContext);
 
   const { t } = useCustomTranslation();
-
-  const removeWhiteSpace = (text: string) => {
-    do {
-      text = text.replace(' ', '-');
-    } while (text.includes(' '));
-    return (text.charAt(0) + text.slice(1)).toLowerCase();
-  };
+  const { hyphenatedText } = useRemoveWhiteSpace({ text: categoryName });
 
   return (
     <S.Product>
@@ -42,11 +36,7 @@ export const Product = ({
         rounded="md"
       >
         <Block.Tooltip blockId={homeBlock.PRODUCT_CARD} />
-        <Link
-          href={`${slugCompany}/${removeWhiteSpace(
-            categoryName
-          )}/product/${slug}`}
-        >
+        <Link href={`${slugCompany}/${hyphenatedText}/product/${slug}`}>
           <Card.Cover>
             <S.ProductImage
               imageUrl={imageUrl}
@@ -83,11 +73,7 @@ export const Product = ({
             <Title level="h3">S/{priceByUnit}</Title>
           </Container>
           <Container>
-            <Link
-              href={`${slugCompany}/${removeWhiteSpace(
-                categoryName
-              )}/product/${slug}`}
-            >
+            <Link href={`${slugCompany}/${hyphenatedText}/product/${slug}`}>
               <S.ProductButton
                 component={Button}
                 blockId={homeBlock.SHIPPING_BUTTON}

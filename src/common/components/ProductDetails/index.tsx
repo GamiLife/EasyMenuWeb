@@ -4,6 +4,7 @@ import { RichText } from '@gamiui/standard';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
+import { useRemoveWhiteSpace } from '../../hooks';
 import { useFetchDishById } from '../../hooks/useFetchDishById';
 import NextBreadcrumbs from '../NextBreadcrumbs';
 import { ProductForm } from '../ProductForm';
@@ -21,6 +22,7 @@ export const ProductDetails = () => {
 
   const { t } = useTranslation();
   const { response, isLoading } = useFetchDishById();
+  const { hyphenatedText } = useRemoveWhiteSpace({ text: categoryName });
 
   if (!response) return null;
   const {
@@ -36,19 +38,6 @@ export const ProductDetails = () => {
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
 
-  console.log(categoryName); //seafoods
-  const removeWhiteSpace = (text: string) => {
-    do {
-      text = text.replace(' ', '-');
-    } while (text.includes(' '));
-    return (text.charAt(0) + text.slice(1)).toLowerCase();
-  };
-  console.log(removeWhiteSpace(categoryName));
-  console.log(
-    `${slugCompany}/${removeWhiteSpace(categoryName)}/product/${slug}`
-  );
-  console.log(router.asPath);
-
   return (
     <React.Fragment>
       <S.ProductDetails>
@@ -61,14 +50,11 @@ export const ProductDetails = () => {
             {t('pageProductDetails.back')}
           </S.BackLink>
           {router.asPath !==
-            `${slugCompany}/${removeWhiteSpace(
-              categoryName
-            )}/product/${slug}` && (
+            `/${slugCompany}/${hyphenatedText}/product/${slug}` && (
             <S.ModifyProductHeader level="h6">
               Modificando producto del carrito de compras
             </S.ModifyProductHeader>
           )}
-
           <S.ProductTitle level="h1">{title}</S.ProductTitle>
           <RichText text={description} margin="0 0 1.7rem" />
           <ProductForm
@@ -78,6 +64,7 @@ export const ProductDetails = () => {
             title={title}
             description={description}
             imageUrl={imageUrl}
+            slug={slug}
           />
         </S.ContentContainer>
         <S.MainImageContainer>

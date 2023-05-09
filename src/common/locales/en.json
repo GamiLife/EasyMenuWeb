@@ -31,6 +31,7 @@
     "pageProductDetails": {
         "back": "Back",
         "productQuantityTitle": "Quantity",
-        "addButtonText": "Add"
+        "addText": "Add",
+        "textToApplyChanges": "Apply changes"
     }
 }

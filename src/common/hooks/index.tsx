@@ -10,6 +10,7 @@ export * from './useLocalStorage';
 export * from './usePagination';
 export * from './useProductComboCounter';
 export * from './useQueryData';
+export * from './useRemoveWhiteSpace';
 export * from './useSearch';
 export * from './useToggle';
 export * from './useBlock';

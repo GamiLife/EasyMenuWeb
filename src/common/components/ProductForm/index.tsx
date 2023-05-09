@@ -5,6 +5,7 @@ import { Container } from '@gamiui/standard';
 import {
   useCustomTranslation,
   useProductComboCounter,
+  useRemoveWhiteSpace,
   useToggle,
 } from '../../hooks';
 import { NotificationContext } from '../../../context/notification';
@@ -12,6 +13,7 @@ import { ProductFormContext } from '../../../context/productForm';
 import { GetDishResponseDTO } from '../../types/getDish.type';
 import { ProductOperators } from '../ProductOperators';
 import { CartContext } from '../../../context/cart';
+import { HomeContext } from '../../../context';
 import { Combo } from '../Combo';
 import * as S from './styles';
 
@@ -22,6 +24,7 @@ interface IProductForm {
   title: string;
   description: string;
   imageUrl: string;
+  slug: string;
 }
 
 export const ProductForm = ({
@@ -31,9 +34,12 @@ export const ProductForm = ({
   title,
   description,
   imageUrl,
+  slug,
 }: IProductForm) => {
   const router = useRouter();
+  const { slugCompany } = router.query;
 
+  const { categoryName } = React.useContext(HomeContext);
   const {
     combosInvalid,
     secondaryProductsTotalPrice,
@@ -50,6 +56,7 @@ export const ProductForm = ({
   const { t } = useCustomTranslation();
   const { isVisible: showErrorText, handleToggle: setShowErrorText } =
     useToggle({ defaultVisible: false });
+  const { hyphenatedText } = useRemoveWhiteSpace({ text: categoryName });
 
   const totalPrice =
     (priceByUnit + secondaryProductsTotalPrice) * (quantity + 1);
@@ -133,7 +140,9 @@ export const ProductForm = ({
           {showErrorText && 'Completa las opciones requeridas'}
         </S.ErrorText>
         <S.AddProductToCart className="btn-cart" onClick={() => handleClick()}>
-          {t('pageProductDetails.addButtonText')}
+          {router.asPath === `/${slugCompany}/${hyphenatedText}/product/${slug}`
+            ? t('pageProductDetails.addText')
+            : t('pageProductDetails.textToApplyChanges')}
         </S.AddProductToCart>
       </S.ProductSingleFixBottom>
     </React.Fragment>
