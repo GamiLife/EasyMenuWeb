@@ -37,7 +37,9 @@ export const ProductForm = ({
   slug,
 }: IProductForm) => {
   const router = useRouter();
-  const { slugCompany } = router.query;
+  const { cartId, slugCompany } = router.query;
+  console.log(router);
+  console.log(Number(cartId));
 
   const { categoryName } = React.useContext(HomeContext);
   const {
@@ -82,6 +84,14 @@ export const ProductForm = ({
       },
     ];
     setCartProducts(productSet);
+  }
+
+  function handleClickApplyChanges() {
+    // console.log('Click en aplicar cambios');
+    // const result = cartProducts.filter(
+    //   (cartProduct) => cartProduct.cartId === Number(cartId)
+    // );
+    // console.log(result);
   }
 
   const verifyInvalidCombosOnInitial = (combos: GetDishResponseDTO.Combo[]) => {
@@ -139,11 +149,23 @@ export const ProductForm = ({
         <S.ErrorText className={showErrorText ? 'error' : ''}>
           {showErrorText && 'Completa las opciones requeridas'}
         </S.ErrorText>
-        <S.AddProductToCart className="btn-cart" onClick={() => handleClick()}>
-          {router.asPath === `/${slugCompany}/${hyphenatedText}/product/${slug}`
-            ? t('pageProductDetails.addText')
-            : t('pageProductDetails.textToApplyChanges')}
-        </S.AddProductToCart>
+
+        {router.asPath ===
+        `/${slugCompany}/${hyphenatedText}/product/${slug}` ? (
+          <S.AddProductToCart
+            className="btn-cart"
+            onClick={() => handleClick()}
+          >
+            {t('pageProductDetails.addText')}
+          </S.AddProductToCart>
+        ) : (
+          <S.AddProductToCart
+            className="btn-cart"
+            onClick={() => handleClickApplyChanges()}
+          >
+            {t('pageProductDetails.textToApplyChanges')}
+          </S.AddProductToCart>
+        )}
       </S.ProductSingleFixBottom>
     </React.Fragment>
   );

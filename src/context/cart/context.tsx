@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Product } from '../../common/components/Product/index';
 
 export interface ICartContext {
   isEnabledCart: boolean;
@@ -13,6 +12,12 @@ export interface ICartProvider {
   children: React.ReactNode;
 }
 
+export interface ICombo {
+  id: number;
+  counter: number;
+  price: number;
+}
+
 export interface ICartProduct {
   title: string;
   description: string;
@@ -21,6 +26,8 @@ export interface ICartProduct {
   quantity: number;
   cartId: number;
   productUrl: string;
+  // dishesCombos: ICombo[];
+  // saucesCombos: ICombo[];
 }
 
 export const defaultCartValues = {
