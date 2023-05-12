@@ -16,6 +16,7 @@ const CartProvider = ({ children }: ICartProvider) => {
   const [cartProducts, setCartProducts] = React.useState<ICartProduct[]>(
     defaultCartValues.cartProducts
   );
+
   // const router = useRouter();
   // const { pslug } = router.query;
 

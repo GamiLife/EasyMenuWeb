@@ -12,7 +12,7 @@ export interface IHomeProvider {
 }
 
 export const defaultHomeValues = {
-  categoryName: 'seafoods',
+  categoryName: 'sea foods',
   idCategory: 1,
 };
 

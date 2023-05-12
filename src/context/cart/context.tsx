@@ -6,31 +6,33 @@ export interface ICartContext {
   setIsEnabledCart: (value: boolean) => void;
   setCartProducts: Dispatch<SetStateAction<ICartProduct[]>>;
   // setCartProducts: (value: ICartProduct[]) => void;
-  // id:
-  // description: string;
-  // imageUrl: string;
-  // price: number;
-  // title: string;
 }
 
 export interface ICartProvider {
   children: React.ReactNode;
 }
 
-export interface ICartProduct {
+export interface ICombo {
   id: number;
+  counter: number;
+  price: number;
+}
+
+export interface ICartProduct {
   title: string;
   description: string;
   imageUrl: string;
   totalPrice: number;
   quantity: number;
   cartId: number;
+  productUrl: string;
+  // dishesCombos: ICombo[];
+  // saucesCombos: ICombo[];
 }
 
 export const defaultCartValues = {
   isEnabledCart: false,
   cartProducts: [],
-  // title: '',
 };
 
 export const defaultCartSetter = {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
+import { GetDishResponseDTO } from '../types/getDish.type';
 import { CompanyContext } from '../../context';
 import { useQueryData } from './useQueryData';
-import { GetDishResponseDTO } from '../types/getDish.type';
 
 export interface IUseFetchDishByIdResponse {
   response: undefined | GetDishResponseDTO;

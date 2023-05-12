@@ -26,6 +26,7 @@ export const CartDrawer = () => {
       width={410}
       placement={'right'}
       zIndex={100}
+      onClose={() => setIsEnabledCart(false)}
     >
       <S.CartDrawerBar>
         <S.CloseIcon
@@ -43,7 +44,8 @@ export const CartDrawer = () => {
           <S.LetterButton
             onClick={() => {
               setIsEnabledCart(false);
-              window.location.pathname = `${slugCompany}`;
+              router.push(`/${slugCompany}`);
+              // window.location.pathname = `${slugCompany}`;
             }}
           >
             Carta
