@@ -12,6 +12,9 @@ export interface ICartBody {
 
 export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
   const router = useRouter();
+  const { cartId } = router.query;
+  // console.log(cartId);
+
   const { setIsEnabledCart } = React.useContext(CartContext);
 
   function handleRemove(cartId: number) {
@@ -25,6 +28,10 @@ export const CartBody = ({ cartProducts, setCartProducts }: ICartBody) => {
     setIsEnabledCart(false);
     router.push(`${productUrl}?cartId=${cartId}`);
     // /[slugCompany]/[categoryDynamic]/product/[slug]?cartId=1
+
+    const productToModify = cartProducts.filter(
+      (cartProduct) => cartProduct.cartId === cartId
+    );
   }
 
   return (

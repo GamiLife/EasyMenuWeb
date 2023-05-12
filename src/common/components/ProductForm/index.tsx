@@ -38,8 +38,8 @@ export const ProductForm = ({
 }: IProductForm) => {
   const router = useRouter();
   const { cartId, slugCompany } = router.query;
-  console.log(router);
-  console.log(Number(cartId));
+  // console.log(router);
+  // console.log(Number(cartId));
 
   const { categoryName } = React.useContext(HomeContext);
   const {
@@ -81,6 +81,20 @@ export const ProductForm = ({
         quantity: quantity + 1,
         cartId: new Date().getTime(),
         productUrl: router.asPath,
+        // saucesCombos: [
+        //   {
+        //     id,
+        //     counter,
+        //     price,
+        //   },
+        // ],
+        // dishesCombos: [
+        //   {
+        //     id,
+        //     counter,
+        //     price,
+        //   },
+        // ],
       },
     ];
     setCartProducts(productSet);
