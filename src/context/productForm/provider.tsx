@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import {
   ICombosInvalid,
+  IElementCombo,
   IProductFormProvider,
   ProductFormContext,
   defaultProductFormValues,
@@ -26,7 +27,37 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
     defaultProductFormValues.combosInvalid
   );
 
-  const [combos, setCombos] = React.useState(defaultProductFormValues.combos);
+  const [combos, setCombos] = React.useState<Record<number, IElementCombo[]>>(
+    defaultProductFormValues.combos
+  );
+
+  /**
+   * Ejemplo:
+   * {
+   *  1(comboId- salsas): [
+   *  {
+   *  id: 1,(elementComboId)
+   *  quantity: 0(newQuantity)
+   * },
+   *  {
+   *  id: 2,(elementComboId)
+   *  quantity: 0(newQuantity)
+   * }
+   * ],
+   *
+   *  2(comboId- dishes1): [
+   *  {
+   *  id: 1,(elementComboId)
+   *  quantity: 0(newQuantity)
+   * },
+   *  {
+   *  id: 2,(elementComboId)
+   *  quantity: 0(newQuantity)
+   * }
+   * ]
+   *
+   * }
+   */
 
   /**
    * Esta funcion va a recibir 3 parametros :
@@ -40,8 +71,14 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
     elementComboId: number,
     newQuantity: number
   ) => {
-    const combosUpdated = {};
-    setCombos(combosUpdated)
+    const combosUpdated = {
+      ...combos,
+      [comboId]: [
+        ...combos[comboId],
+        // Buscas el elemento de este array , y lo seteas en este mismo array
+      ],
+    };
+    setCombos(combosUpdated);
   };
 
   return (

@@ -50,7 +50,6 @@ export const useProductComboCounter = (
     );
   }, [combos]);
 
-
   const setQuantity = (quantityProp: number) => {
     setElementCombo(idCombo,idItemFromCombo, quantityProp)
   }
