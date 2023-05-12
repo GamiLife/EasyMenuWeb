@@ -47,7 +47,13 @@ export const ProductSetWrapper = ({
       {rows.map(
         ({
           id,
-          row: { title, description, priceByUnit, imageUrl },
+          row: {
+            title,
+            description,
+            priceByUnit,
+            imageUrl,
+            id: idItemFromCombo,
+          },
           maxItemsByRow,
         }) => {
           return (
@@ -62,6 +68,8 @@ export const ProductSetWrapper = ({
                   priceByUnit={priceByUnit}
                   imageUrl={imageUrl}
                   maxItemsByRow={maxItemsByRow}
+                  idItemFromCombo={idItemFromCombo}
+                  idCombo={id}
                 />
               ) : (
                 <S.SelectionCheck>

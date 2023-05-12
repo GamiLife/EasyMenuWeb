@@ -1,13 +1,39 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
+export interface IElementCombo {
+  id: number;
+  quantity: number;
+}
+
+/**
+ * {
+ *  1: [
+ *  {
+ *  id: 1,
+ *  quantity: 0
+ * },
+ *  {
+ *  id: 2,
+ *  quantity: 0
+ * }
+ * ]
+ *
+ * }
+ */
+
 export interface IProductFormContext {
   secondaryProductsTotalPrice: number;
   isTriggerValidation: boolean;
   combosInvalid: ICombosInvalid[];
+  combos: Record<number, IElementCombo[]>;
   setSecondaryProductsTotalPrice: (value: (prev: number) => number) => void;
   setIsTriggerValidation: (value: boolean) => void;
-  setCombosInvalid: Dispatch<SetStateAction<ICombosInvalid[]>>;
-  // setCombosInvalid: (value: ICombosInvalid[]) => void;
+  setCombosInvalid: (combosInvalid: ICombosInvalid[]) => void;
+  setElementCombo: (
+    comboId: number,
+    elementComboId: number,
+    newQuantity: number
+  ) => void;
 }
 
 export interface IProductFormProvider {
@@ -25,6 +51,7 @@ export const defaultProductFormValues = {
   secondaryProductsTotalPrice: 0,
   isTriggerValidation: false,
   combosInvalid: [],
+  combos: {},
 };
 
 export const defaultProductFormSetter = {
@@ -35,6 +62,9 @@ export const defaultProductFormSetter = {
     return;
   },
   setCombosInvalid: () => {
+    return;
+  },
+  setElementCombo: () => {
     return;
   },
 };

@@ -5,6 +5,7 @@ import { Container } from '@gamiui/standard';
 import {
   useCustomTranslation,
   useProductComboCounter,
+  useQuantity,
   useRemoveWhiteSpace,
   useToggle,
 } from '../../hooks';
@@ -38,8 +39,6 @@ export const ProductForm = ({
 }: IProductForm) => {
   const router = useRouter();
   const { cartId, slugCompany } = router.query;
-  // console.log(router);
-  // console.log(Number(cartId));
 
   const { categoryName } = React.useContext(HomeContext);
   const {
@@ -54,7 +53,7 @@ export const ProductForm = ({
     React.useContext(NotificationContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
-    useProductComboCounter(maxItems - 1);
+    useQuantity(maxItems - 1);
   const { t } = useCustomTranslation();
   const { isVisible: showErrorText, handleToggle: setShowErrorText } =
     useToggle({ defaultVisible: false });

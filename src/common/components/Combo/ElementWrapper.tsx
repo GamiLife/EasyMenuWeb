@@ -14,6 +14,8 @@ interface IRow {
   isEnableComboRow: boolean;
   handlerAddCombo: () => void;
   handlerSubstractCombo: () => void;
+  idItemFromCombo: number;
+  idCombo: number;
 }
 
 export const ElementWrapper = ({
@@ -24,12 +26,14 @@ export const ElementWrapper = ({
   isEnableComboRow,
   handlerAddCombo,
   handlerSubstractCombo,
+  idItemFromCombo,
+  idCombo,
 }: IRow) => {
   const { setSecondaryProductsTotalPrice } =
     React.useContext(ProductFormContext);
 
   const { quantity, disableAdd, disableSubtract, handleSubtract, handleAdd } =
-    useProductComboCounter(maxItemsByRow);
+    useProductComboCounter(maxItemsByRow, idItemFromCombo, idCombo);
 
   const isDisableAdd = disableAdd || !isEnableComboRow;
 

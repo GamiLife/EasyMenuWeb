@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import {
+  ICombosInvalid,
   IProductFormProvider,
   ProductFormContext,
   defaultProductFormValues,
@@ -21,9 +22,27 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
     defaultProductFormValues.isTriggerValidation
   );
 
-  const [combosInvalid, setCombosInvalid] = React.useState(
+  const [combosInvalid, setCombosInvalid] = React.useState<ICombosInvalid[]>(
     defaultProductFormValues.combosInvalid
   );
+
+  const [combos, setCombos] = React.useState(defaultProductFormValues.combos);
+
+  /**
+   * Esta funcion va a recibir 3 parametros :
+   * @param comboId : key del campos combos del context
+   * @param elementComboId : id del element del array de los combos
+   * @param newQuantity nueva cantidad para actualizar
+   * @returns actualizar el campo combos con la nueva cantidad actualizada
+   */
+  const setElementCombo = (
+    comboId: number,
+    elementComboId: number,
+    newQuantity: number
+  ) => {
+    const combosUpdated = {};
+    setCombos(combosUpdated)
+  };
 
   return (
     <ProductFormContext.Provider
@@ -31,9 +50,11 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
         secondaryProductsTotalPrice,
         isTriggerValidation,
         combosInvalid,
+        combos,
         setSecondaryProductsTotalPrice,
         setIsTriggerValidation,
         setCombosInvalid,
+        setElementCombo,
       }}
     >
       {children}
@@ -42,53 +63,3 @@ const ProductFormProvider = ({ children }: IProductFormProvider) => {
 };
 
 export default ProductFormProvider;
-
-// const [state, dispatch] = React.useReducer(productFormReducer, INITIAL_STATE);
-
-// const {
-//   // id,
-//   title,
-//   description,
-//   priceByUnit,
-//   maxItems,
-//   slug,
-//   imageUrl,
-//   combos,
-// } = state;
-
-// const {
-//   company: { id },
-// } = React.useContext(CompanyContext);
-
-//   const { response, isLoading } = useFetchDishById();
-//   if (!response) return null;
-//   const {
-//     combos,
-//     description,
-//     id,
-//     imageUrl,
-//     maxItems,
-//     priceByUnit,
-//     slug,
-//     title,
-//   } = response;
-
-//   const [totalPrice, setTotalprice] = React.useState(priceByUnit);
-
-// Comment Monday
-// React.useEffect(() => {
-//   if (!pslug) return;
-//   async function dishByIdFetch() {
-//     try {
-//       const { data, statusCode } = await get(
-//         `dishes/slug/${pslug}?companyId=${id}`
-//       );
-//       if (statusCode === 404) return;
-//       dispatch({ type: 'FETCH_SUCCESS', payload: data });
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
-//   dishByIdFetch();
-// }, [id, pslug]);
-// Comment Monday
