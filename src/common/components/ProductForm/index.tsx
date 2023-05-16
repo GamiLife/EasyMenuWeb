@@ -4,7 +4,6 @@ import { Container } from '@gamiui/standard';
 
 import {
   useCustomTranslation,
-  useProductComboCounter,
   useQuantity,
   useRemoveWhiteSpace,
   useToggle,
